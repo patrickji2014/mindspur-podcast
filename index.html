@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>MindSpur - Spaced Reviews</title>
+  
+  <!-- iOS PWA Optimizations -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MindSpur">
+  <meta name="theme-color" content="#1e1b4b">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><text x='50' y='66' font-size='52' text-anchor='middle'>🧠</text></svg>">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-base: #0b0f17;
+      --bg-card: #151c2c;
+      --bg-card-hover: #1c263c;
+      --bg-subtle: #1e293b;
+      --border-subtle: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-indigo: #6366f1;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #ef4444;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding-top: max(16px, env(safe-area-inset-top));
+      padding-bottom: max(32px, env(safe-area-inset-bottom));
+      padding-left: max(16px, env(safe-area-inset-left));
+      padding-right: max(16px, env(safe-area-inset-right));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* Header */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 4px;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      font-size: 28px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 8px rgba(99,102,241,0.4));
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      color: #818cf8;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-sync-action {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      min-height: 40px;
+      transition: all 0.2s;
+    }
+    .btn-sync-action:active { transform: scale(0.96); background: rgba(99, 102, 241, 0.2); }
+
+    /* Audio Generation Banner (Method 1) */
+    .audio-generator-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .audio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .audio-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audio-status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-generate-audio {
+      background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-purple) 100%);
+      border: none;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      width: 100%;
+      min-height: 48px;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      transition: all 0.2s;
+    }
+    .btn-generate-audio:active { transform: scale(0.98); opacity: 0.9; }
+    .btn-generate-audio:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .audio-player-box {
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      margin-top: 4px;
+    }
+    .audio-player-box audio { width: 100%; height: 36px; outline: none; }
+
+    /* Metrics Row */
+    .metrics-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .metric-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 10px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .metric-pill.active-due { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.08); }
+    .metric-num { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; }
+    .metric-tag { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+
+    /* Search & Filter */
+    .search-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: #fff;
+      padding: 12px 14px;
+      font-size: 14px;
+      outline: none;
+      min-height: 44px;
+    }
+    .search-input:focus { border-color: var(--accent-indigo); }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .nav-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 10px 4px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.2s;
+      min-height: 40px;
+    }
+    .nav-tab-btn.active {
+      background: var(--accent-indigo);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Sub-bar (Expand/Collapse all) */
+    .sub-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .sub-bar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .expand-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+    }
+    .expand-toggle input { accent-color: var(--accent-indigo); width: 16px; height: 16px; }
+
+    /* Card List */
+    .cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .card.status-due { border-left: 4px solid var(--accent-amber); }
+    .card.status-overdue { border-left: 4px solid var(--accent-rose); }
+    .card.status-upcoming { border-left: 4px solid var(--accent-indigo); }
+    .card.status-mastered { border-left: 4px solid var(--accent-emerald); }
+
+    .card.dismissing {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-concept-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .card-doc-origin {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .card-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+    }
+    .badge-stage { color: #818cf8; border-color: rgba(99,102,241,0.4); }
+    .badge-due-today { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4); }
+    .badge-overdue { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.4); }
+
+    /* Preset selector per card */
+    .card-preset-select {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #475569;
+      color: #e2e8f0;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 6px;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    /* Foldable Notes */
+    .card-notes-foldable {
+      background: rgba(11, 15, 23, 0.6);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+
+    .notes-header-btn {
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .notes-header-btn:hover { color: #f1f5f9; }
+
+    .notes-content-box {
+      padding: 8px 12px 12px 12px;
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      border-top: 1px solid rgba(51, 65, 85, 0.4);
+      white-space: pre-wrap;
+    }
+
+    .notes-edit-area {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .notes-textarea {
+      width: 100%;
+      min-height: 80px;
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    /* Card Action Buttons */
+    .card-actions-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .btn-review-main {
+      flex: 1;
+      background: var(--accent-emerald);
+      color: #064e3b;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.2s;
+    }
+    .btn-review-main:active { transform: scale(0.97); }
+
+    .grading-buttons {
+      display: flex;
+      flex: 1;
+      gap: 6px;
+    }
+
+    .btn-grade {
+      flex: 1;
+      padding: 12px 6px;
+      border-radius: var(--radius-md);
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.2s;
+    }
+    .btn-grade:active { transform: scale(0.96); }
+    .btn-hard { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
+    .btn-good { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
+    .btn-easy { background: rgba(99, 102, 241, 0.2); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.4); }
+
+    .btn-icon-action {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .btn-icon-action:active { transform: scale(0.95); }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 48px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .empty-icon { font-size: 48px; }
+    .empty-title { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; }
+    .empty-sub { font-size: 14px; color: var(--text-muted); max-width: 320px; line-height: 1.5; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(30, 41, 59, 0.95);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* Settings Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: flex-end;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+
+    .modal-sheet {
+      background: var(--bg-card);
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-bottom: max(32px, env(safe-area-inset-bottom));
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .modal-backdrop.show .modal-sheet { transform: translateY(0); }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-title { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 700; }
+    .btn-close-modal { background: none; border: none; color: #94a3b8; font-size: 22px; cursor: pointer; }
+
+    .setting-item { display: flex; flex-direction: column; gap: 6px; }
+    .setting-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .setting-input {
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-area">
+        <div class="brand-logo">🧠</div>
+        <div>
+          <div class="brand-title">MindSpur</div>
+          <div class="brand-subtitle">iPhone Spaced Reviews</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-sync" class="btn-sync-action">
+          <span id="sync-icon">🔄</span>
+          <span id="sync-text">Sync</span>
+        </button>
+        <button id="btn-settings" class="btn-icon-action" title="Settings">⚙️</button>
+      </div>
+    </header>
+
+    <!-- Method 1: Direct Mobile Audio Generation Banner -->
+    <section class="audio-generator-card">
+      <div class="audio-header">
+        <div class="audio-title">
+          <span>🎧</span> Daily Audio Flashcards
+        </div>
+        <div class="audio-status-pill" id="audio-due-pill">0 due today</div>
+      </div>
+      
+      <button id="btn-generate-audio" class="btn-generate-audio">
+        <span>🎙️</span> Generate Today's Audio Episode
+      </button>
+
+      <div class="audio-player-box hidden" id="audio-player-box">
+        <audio id="audio-preview-player" controls preload="none"></audio>
+      </div>
+    </section>
+
+    <!-- Metrics Row -->
+    <section class="metrics-bar">
+      <div class="metric-pill active-due" id="pill-due">
+        <span class="metric-num text-amber" id="metric-due-val">0</span>
+        <span class="metric-tag">Due</span>
+      </div>
+      <div class="metric-pill">
+        <span class="metric-num" id="metric-upcoming-val">0</span>
+        <span class="metric-tag">Upcoming</span>
+      </div>
+      <div class="metric-pill">
+        <span class="metric-num text-emerald" id="metric-mastered-val">0</span>
+        <span class="metric-tag">Mastered</span>
+      </div>
+      <div class="metric-pill">
+        <span class="metric-num" id="metric-total-val">0</span>
+        <span class="metric-tag">Total</span>
+      </div>
+    </section>
+
+    <!-- Search Box -->
+    <div class="search-row">
+      <input type="text" id="search-input" class="search-input" placeholder="🔍 Search sections or notes...">
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="nav-tab-btn active" data-tab="due">🔥 Due</button>
+      <button class="nav-tab-btn" data-tab="upcoming">📅 Upcoming</button>
+      <button class="nav-tab-btn" data-tab="mastered">🏆 Mastered</button>
+      <button class="nav-tab-btn" data-tab="all">📚 All</button>
+    </nav>
+
+    <!-- Controls Sub-bar -->
+    <div class="sub-bar">
+      <span class="sub-bar-title" id="tab-indicator-title">Items Due Today</span>
+      <label class="expand-toggle">
+        <input type="checkbox" id="cb-expand-all">
+        <span id="label-expand-all">Expand Notes</span>
+      </label>
+    </div>
+
+    <!-- Cards Container -->
+    <main class="cards-list" id="cards-container">
+      <!-- Dynamic cards rendered here -->
+    </main>
+
+    <!-- Empty State -->
+    <div class="empty-state hidden" id="empty-state">
+      <div class="empty-icon">✨</div>
+      <div class="empty-title" id="empty-title">All Caught Up!</div>
+      <div class="empty-sub" id="empty-sub">You have no items due for review right now. Peak retention achieved!</div>
+    </div>
+  </div>
+
+  <!-- Settings Sheet -->
+  <div class="modal-backdrop" id="settings-modal">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h3 class="modal-title">⚙️ Mobile App Settings</h3>
+        <button class="btn-close-modal" id="btn-close-modal">✕</button>
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Review Mode</label>
+        <select id="set-review-mode" class="setting-input">
+          <option value="simple">Simple Spaced (1-Click "Reviewed")</option>
+          <option value="self_grading">Interactive Self-Grading (Hard/Good/Easy)</option>
+        </select>
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">GitHub Owner / Org</label>
+        <input type="text" id="set-gh-owner" class="setting-input" placeholder="e.g. patrickji2014">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">GitHub Repository</label>
+        <input type="text" id="set-gh-repo" class="setting-input" value="mindspur-podcast">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">GitHub Access Token</label>
+        <input type="password" id="set-gh-token" class="setting-input" placeholder="ghp_...">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">TTS Provider</label>
+        <select id="set-tts-provider" class="setting-input">
+          <option value="openai">OpenAI Audio TTS (Nova, Alloy, Echo)</option>
+          <option value="google">Google Cloud TTS (Neural2)</option>
+        </select>
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">TTS API Key</label>
+        <input type="password" id="set-tts-key" class="setting-input" placeholder="sk-... or AIzaSy...">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">TTS Voice</label>
+        <select id="set-tts-voice" class="setting-input">
+          <option value="nova">Nova (Warm & Friendly Female)</option>
+          <option value="alloy">Alloy (Neutral & Balanced)</option>
+          <option value="echo">Echo (Calm Male)</option>
+          <option value="fable">Fable (British Accent)</option>
+          <option value="onyx">Onyx (Deep Male)</option>
+          <option value="shimmer">Shimmer (Bright Female)</option>
+          <option value="en-US-Neural2-F">Google Neural2 Female</option>
+          <option value="en-US-Neural2-D">Google Neural2 Male</option>
+        </select>
+      </div>
+
+      <button id="btn-save-settings" class="btn-generate-audio" style="margin-top: 8px;">
+        💾 Save Settings
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">✅ Sync Complete</div>
+
+  <script>
+    // State
+    let items = [];
+    let currentTab = 'due';
+    let searchQuery = '';
+    let areAllExpanded = false;
+    let authConfig = {
+      githubOwner: '',
+      githubRepo: 'mindspur-podcast',
+      githubToken: '',
+      ttsProvider: 'openai',
+      ttsApiKey: '',
+      ttsVoice: 'nova',
+      pauseSeconds: 3,
+      includeDocOrigin: false,
+      reviewMode: 'simple'
+    };
+
+    const INTERVALS = {
+      standard: [1, 3, 7, 14, 30],
+      intensive: [1, 2, 4, 7, 15],
+      longterm: [1, 3, 7, 14, 30, 60, 90]
+    };
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+      loadAuthFromHashOrStorage();
+      loadLocalItems();
+      initEvents();
+      if (authConfig.githubToken && authConfig.githubOwner) {
+        performSync();
+      }
+    });
+
+    function loadAuthFromHashOrStorage() {
+      // 1. Check URL hash for pairing payload from laptop QR code
+      const hash = window.location.hash;
+      if (hash && hash.includes('auth=')) {
+        try {
+          const match = /#?auth=([^&]+)/.exec(hash);
+          if (match) {
+            const rawB64 = decodeURIComponent(match[1]);
+            const jsonStr = decodeURIComponent(escape(atob(rawB64.replace(/\s/g, ''))));
+            const p = JSON.parse(jsonStr);
+            authConfig = {
+              githubOwner: p.o || authConfig.githubOwner,
+              githubRepo: p.r || authConfig.githubRepo,
+              githubToken: p.t || authConfig.githubToken,
+              ttsProvider: p.p || authConfig.ttsProvider,
+              ttsApiKey: p.k || authConfig.ttsApiKey,
+              ttsVoice: p.v || authConfig.ttsVoice,
+              pauseSeconds: p.s || 3,
+              includeDocOrigin: p.d === true,
+              reviewMode: p.m || 'simple'
+            };
+            localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+            // Strip auth hash from address bar for security
+            history.replaceState(null, '', window.location.pathname);
+            showToast('✅ Paired successfully with your laptop!');
+          }
+        } catch (err) {
+          console.error('Failed to parse auth hash:', err);
+        }
+      } else {
+        const stored = localStorage.getItem('mindspur_auth');
+        if (stored) {
+          try { authConfig = { ...authConfig, ...JSON.parse(stored) }; } catch (_) {}
+        }
+      }
+      populateSettingsModal();
+    }
+
+    function loadLocalItems() {
+      const stored = localStorage.getItem('mindspur_items');
+      if (stored) {
+        try { items = JSON.parse(stored); } catch (_) { items = []; }
+      }
+      render();
+    }
+
+    function saveLocalItems() {
+      localStorage.setItem('mindspur_items', JSON.stringify(items));
+    }
+
+    function initEvents() {
+      // Tabs
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentTab = btn.dataset.tab;
+          document.getElementById('tab-indicator-title').textContent = {
+            due: 'Items Due Today',
+            upcoming: 'Upcoming Schedule',
+            mastered: 'Mastered Sections',
+            all: 'All Tracked Sections'
+          }[currentTab];
+          render();
+        });
+      });
+
+      // Search
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        render();
+      });
+
+      // Expand all
+      const cbExpand = document.getElementById('cb-expand-all');
+      cbExpand.addEventListener('change', (e) => {
+        areAllExpanded = e.target.checked;
+        document.getElementById('label-expand-all').textContent = areAllExpanded ? 'Collapse Notes' : 'Expand Notes';
+        render();
+      });
+
+      // Sync button
+      document.getElementById('btn-sync').addEventListener('click', performSync);
+
+      // Settings modal
+      const modal = document.getElementById('settings-modal');
+      document.getElementById('btn-settings').addEventListener('click', () => modal.classList.add('show'));
+      document.getElementById('btn-close-modal').addEventListener('click', () => modal.classList.remove('show'));
+      document.getElementById('btn-save-settings').addEventListener('click', () => {
+        authConfig.reviewMode = document.getElementById('set-review-mode').value;
+        authConfig.githubOwner = document.getElementById('set-gh-owner').value.trim();
+        authConfig.githubRepo = document.getElementById('set-gh-repo').value.trim();
+        authConfig.githubToken = document.getElementById('set-gh-token').value.trim();
+        authConfig.ttsProvider = document.getElementById('set-tts-provider').value;
+        authConfig.ttsApiKey = document.getElementById('set-tts-key').value.trim();
+        authConfig.ttsVoice = document.getElementById('set-tts-voice').value;
+        localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+        modal.classList.remove('show');
+        showToast('⚙️ Settings saved!');
+        render();
+        if (authConfig.githubToken) performSync();
+      });
+
+      // Method 1: Generate Audio
+      document.getElementById('btn-generate-audio').addEventListener('click', handleMobileAudioGeneration);
+
+      // Real-time synchronization listeners: app/tab focus, visibility change, and 60s background heartbeat
+      window.addEventListener('focus', performSync);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) performSync();
+      });
+      setInterval(performSync, 60000);
+    }
+
+    function populateSettingsModal() {
+      document.getElementById('set-review-mode').value = authConfig.reviewMode || 'simple';
+      document.getElementById('set-gh-owner').value = authConfig.githubOwner || '';
+      document.getElementById('set-gh-repo').value = authConfig.githubRepo || 'mindspur-podcast';
+      document.getElementById('set-gh-token').value = authConfig.githubToken || '';
+      document.getElementById('set-tts-provider').value = authConfig.ttsProvider || 'openai';
+      document.getElementById('set-tts-key').value = authConfig.ttsApiKey || '';
+      document.getElementById('set-tts-voice').value = authConfig.ttsVoice || 'nova';
+    }
+
+    // Two-Way GitHub Sync
+    async function performSync() {
+      const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
+      if (!owner || !repo || !token) {
+        showToast('⚠️ Tap ⚙️ to set up GitHub credentials');
+        return;
+      }
+
+      const syncIcon = document.getElementById('sync-icon');
+      const syncText = document.getElementById('sync-text');
+      syncIcon.textContent = '⏳';
+      syncText.textContent = 'Syncing...';
+
+      try {
+        // 1. Fetch remote data
+        const path = 'data/reminders.json';
+        const getUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path;
+        const res = await fetch(getUrl, {
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'MindSpur-Mobile'
+          }
+        });
+
+        let remoteItems = [];
+        let remoteSha = null;
+
+        if (res.ok) {
+          const remoteData = await res.json();
+          remoteSha = remoteData.sha;
+          if (remoteData.content) {
+            const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
+            const parsed = JSON.parse(raw);
+            remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
+          }
+        }
+
+        // 2. Client-side merge
+        items = mergeLists(items, remoteItems);
+        saveLocalItems();
+
+        // 3. Push merged back to GitHub
+        const payload = {
+          version: 1,
+          updatedAt: new Date().toISOString(),
+          items: items,
+          settings: authConfig
+        };
+        const putBody = {
+          message: 'Sync from iPhone (' + items.length + ' items)',
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))))
+        };
+        if (remoteSha) putBody.sha = remoteSha;
+
+        await fetch(getUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'MindSpur-Mobile'
+          },
+          body: JSON.stringify(putBody)
+        });
+
+        showToast('🟢 Synced (' + items.length + ' items)');
+      } catch (err) {
+        console.error('Sync failed:', err);
+        showToast('⚠️ Sync error: ' + err.message);
+      } finally {
+        syncIcon.textContent = '🔄';
+        syncText.textContent = 'Sync';
+        render();
+      }
+    }
+
+    function mergeLists(local, remote) {
+      const map = new Map();
+      local.forEach(i => map.set(i.id, { ...i }));
+      remote.forEach(r => {
+        if (!map.has(r.id)) {
+          map.set(r.id, r);
+        } else {
+          const l = map.get(r.id);
+          const lTime = l.lastReviewedDate ? new Date(l.lastReviewedDate).getTime() : 0;
+          const rTime = r.lastReviewedDate ? new Date(r.lastReviewedDate).getTime() : 0;
+          const winner = (rTime > lTime || (rTime === lTime && (r.currentStage || 0) > (l.currentStage || 0))) ? r : l;
+
+          map.set(r.id, {
+            ...l,
+            currentStage: winner.currentStage,
+            nextReviewDate: winner.nextReviewDate,
+            lastReviewedDate: winner.lastReviewedDate,
+            isMastered: winner.isMastered,
+            easeFactor: winner.easeFactor !== undefined ? winner.easeFactor : l.easeFactor,
+            notes: (l.notes && l.notes.trim()) ? l.notes : (r.notes || ''),
+            presetKey: l.presetKey || r.presetKey || 'standard',
+            includeInPodcast: l.includeInPodcast !== undefined ? l.includeInPodcast : r.includeInPodcast
+          });
+        }
+      });
+      return Array.from(map.values());
+    }
+
+    // Method 1: Direct Mobile Audio Generation
+    async function handleMobileAudioGeneration() {
+      const btn = document.getElementById('btn-generate-audio');
+      const { githubOwner: owner, githubRepo: repo, githubToken: ghToken, ttsProvider, ttsApiKey, ttsVoice, pauseSeconds, includeDocOrigin } = authConfig;
+
+      if (!ghToken || !owner) {
+        alert('GitHub credentials missing. Please pair your iPhone or enter them in ⚙️ Settings.');
+        return;
+      }
+      if (!ttsApiKey) {
+        alert('TTS API Key missing. Please enter your API Key in ⚙️ Settings.');
+        return;
+      }
+
+      const dueItems = items.filter(i => {
+        const s = getItemStatus(i);
+        return (s === 'due' || s === 'overdue') && i.includeInPodcast !== false;
+      });
+
+      if (dueItems.length === 0) {
+        alert('No items due today with Audio ON.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span>⏳</span> Synthesizing Speech...';
+
+      try {
+        let audioBase64 = '';
+
+        if (ttsProvider === 'google') {
+          // Google Cloud TTS
+          let ssml = '<speak><s>MindSpur Daily Reviews. ' + dueItems.length + ' reviews due today. Let us begin.</s><break time="2s"/>';
+          dueItems.forEach((it, idx) => {
+            const title = (it.sectionTitle || 'Concept').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            const origin = (includeDocOrigin && it.docTitle) ? (' From ' + it.docTitle.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '.') : '';
+            ssml += '<s>Review ' + (idx + 1) + ': ' + title + '.' + origin + '</s>';
+            ssml += '<break time="' + (pauseSeconds || 3) + 's"/>';
+            if (it.notes) ssml += '<s>Notes: ' + it.notes.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</s>';
+            ssml += '<break time="2s"/>';
+          });
+          ssml += '<s>All reviews completed!</s></speak>';
+
+          const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize?key=' + encodeURIComponent(ttsApiKey), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              input: { ssml },
+              voice: { languageCode: 'en-US', name: ttsVoice || 'en-US-Neural2-F' },
+              audioConfig: { audioEncoding: 'MP3' }
+            })
+          });
+          if (!res.ok) throw new Error('Google TTS error: ' + res.status);
+          const data = await res.json();
+          audioBase64 = data.audioContent;
+        } else {
+          // OpenAI TTS
+          let script = 'MindSpur Daily Reviews. You have ' + dueItems.length + ' reviews due today. Let us begin.\n\n';
+          dueItems.forEach((it, idx) => {
+            const title = it.sectionTitle || 'Concept';
+            const origin = (includeDocOrigin && it.docTitle) ? (' From ' + it.docTitle + '.') : '';
+            script += 'Review ' + (idx + 1) + ': ' + title + '.' + origin + '\n\n...\n\n';
+            if (it.notes) script += 'Notes: ' + it.notes.trim() + '\n\n';
+            script += '----\n\n';
+          });
+          script += 'You have completed all audio reviews for today. Great job!';
+
+          const res = await fetch('https://api.openai.com/v1/audio/speech', {
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + ttsApiKey,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              model: 'tts-1',
+              input: script,
+              voice: ttsVoice || 'nova',
+              response_format: 'mp3'
+            })
+          });
+          if (!res.ok) throw new Error('OpenAI TTS error: ' + res.status);
+          const buffer = await res.arrayBuffer();
+          const bytes = new Uint8Array(buffer);
+          let binary = '';
+          for (let i = 0; i < bytes.length; i += 8192) {
+            binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + 8192, bytes.length)));
+          }
+          audioBase64 = btoa(binary);
+        }
+
+        btn.innerHTML = '<span>⏳</span> Uploading to GitHub...';
+
+        const todayStr = new Date().toISOString().split('T')[0];
+        const ts = Math.floor(Date.now() / 1000);
+        const audioPath = 'audio/' + todayStr + '_reviews_' + ts + '.mp3';
+        const putAudioUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + audioPath;
+
+        await fetch(putAudioUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + ghToken,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'MindSpur-Mobile'
+          },
+          body: JSON.stringify({
+            message: 'Publish audio for ' + todayStr + ' (v' + ts + ')',
+            content: audioBase64
+          })
+        });
+
+        // Update feed.xml
+        const feedUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/feed.xml';
+        const feedRes = await fetch(feedUrl, {
+          headers: {
+            'Authorization': 'Bearer ' + ghToken,
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'MindSpur-Mobile'
+          }
+        });
+
+        let feedSha = null;
+        let existingXml = '';
+        if (feedRes.ok) {
+          const feedJson = await feedRes.json();
+          feedSha = feedJson.sha;
+          if (feedJson.content) {
+            existingXml = decodeURIComponent(escape(atob(feedJson.content.replace(/\s/g, ''))));
+          }
+        }
+
+        const episodeUrl = 'https://' + owner.toLowerCase() + '.github.io/' + repo + '/' + audioPath;
+        const newEpXml = '    <item>\n' +
+          '      <title>Daily Reviews - ' + todayStr + ' (' + dueItems.length + ' items)</title>\n' +
+          '      <pubDate>' + new Date().toUTCString() + '</pubDate>\n' +
+          '      <enclosure url="' + episodeUrl + '" length="' + Math.round((audioBase64.length * 3) / 4) + '" type="audio/mpeg"/>\n' +
+          '      <guid isPermaLink="false">mindspur-daily-' + todayStr + '-' + ts + '</guid>\n' +
+          '    </item>\n';
+
+        let updatedFeedXml = '';
+        if (existingXml && existingXml.includes('<channel>')) {
+          updatedFeedXml = existingXml.replace('<channel>', '<channel>\n' + newEpXml);
+        } else {
+          updatedFeedXml = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>MindSpur Daily Audio Reviews</title>' + newEpXml + '</channel></rss>';
+        }
+
+        await fetch(feedUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + ghToken,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'MindSpur-Mobile'
+          },
+          body: JSON.stringify({
+            message: 'Update feed.xml for ' + todayStr,
+            content: btoa(unescape(encodeURIComponent(updatedFeedXml))),
+            sha: feedSha
+          })
+        });
+
+        // Set audio player preview
+        const playerBox = document.getElementById('audio-player-box');
+        const player = document.getElementById('audio-preview-player');
+        player.src = 'data:audio/mp3;base64,' + audioBase64;
+        playerBox.classList.remove('hidden');
+
+        showToast('🎙️ Episode Published! (' + dueItems.length + ' items)');
+      } catch (err) {
+        alert('Audio Generation error: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span>🎙️</span> Generate Today\'s Audio Episode';
+      }
+    }
+
+    // Spaced Repetition Progression
+    function advanceItem(item, rating = 'good') {
+      const preset = INTERVALS[item.presetKey] || INTERVALS.standard;
+      item.intervals = preset;
+      item.totalStages = preset.length;
+      item.lastReviewedDate = new Date().toISOString();
+      item.updatedAt = new Date().toISOString();
+
+      const isSelfGrading = authConfig.reviewMode === 'self_grading';
+
+      if (!isSelfGrading) {
+        const nextStage = (item.currentStage || 0) + 1;
+        if (nextStage >= preset.length) {
+          item.isMastered = true;
+          item.nextReviewDate = null;
+        } else {
+          item.currentStage = nextStage;
+          const days = preset[nextStage];
+          const nextDate = new Date();
+          nextDate.setDate(nextDate.getDate() + days);
+          item.nextReviewDate = nextDate.toISOString();
+        }
+      } else {
+        let ease = item.easeFactor || 2.5;
+        let stage = item.currentStage || 0;
+
+        if (rating === 'hard') {
+          ease = Math.max(1.3, ease - 0.2);
+          stage = 0;
+          const d = new Date();
+          d.setDate(d.getDate() + 1);
+          item.nextReviewDate = d.toISOString();
+        } else if (rating === 'easy') {
+          ease += 0.15;
+          const nextStage = stage + 1;
+          if (nextStage >= preset.length) {
+            item.isMastered = true;
+            item.nextReviewDate = null;
+          } else {
+            stage = nextStage;
+            const days = Math.round(preset[nextStage] * 1.3);
+            const d = new Date();
+            d.setDate(d.getDate() + days);
+            item.nextReviewDate = d.toISOString();
+          }
+        } else {
+          // good
+          const nextStage = stage + 1;
+          if (nextStage >= preset.length) {
+            item.isMastered = true;
+            item.nextReviewDate = null;
+          } else {
+            stage = nextStage;
+            const days = preset[nextStage];
+            const d = new Date();
+            d.setDate(d.getDate() + days);
+            item.nextReviewDate = d.toISOString();
+          }
+        }
+        item.currentStage = stage;
+        item.easeFactor = ease;
+      }
+
+      saveLocalItems();
+      // Background push to GitHub
+      if (authConfig.githubToken) {
+        setTimeout(performSync, 500);
+      }
+    }
+
+    function getItemStatus(item) {
+      if (item.isMastered || !item.nextReviewDate) return 'mastered';
+      const now = new Date();
+      const next = new Date(item.nextReviewDate);
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      const nextStart = new Date(next.getFullYear(), next.getMonth(), next.getDate()).getTime();
+      if (nextStart < todayStart) return 'overdue';
+      if (nextStart === todayStart) return 'due';
+      return 'upcoming';
+    }
+
+    function getRelativeDateLabel(dateStr) {
+      if (!dateStr) return 'Completed';
+      const now = new Date();
+      const target = new Date(dateStr);
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+      const targetStart = new Date(target.getFullYear(), target.getMonth(), target.getDate()).getTime();
+      const diffDays = Math.round((targetStart - todayStart) / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) return Math.abs(diffDays) + 'd overdue';
+      if (diffDays === 0) return 'Today';
+      if (diffDays === 1) return 'Tomorrow';
+      if (diffDays <= 7) return 'in ' + diffDays + ' days';
+      return target.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    // Rendering
+    function render() {
+      const container = document.getElementById('cards-container');
+      const emptyState = document.getElementById('empty-state');
+
+      // Calculate Metrics
+      let dueCount = 0;
+      let upcomingCount = 0;
+      let masteredCount = 0;
+
+      items.forEach(it => {
+        const s = getItemStatus(it);
+        if (s === 'due' || s === 'overdue') dueCount++;
+        else if (s === 'mastered') masteredCount++;
+        else upcomingCount++;
+      });
+
+      document.getElementById('metric-due-val').textContent = dueCount;
+      document.getElementById('metric-upcoming-val').textContent = upcomingCount;
+      document.getElementById('metric-mastered-val').textContent = masteredCount;
+      document.getElementById('metric-total-val').textContent = items.length;
+      document.getElementById('audio-due-pill').textContent = dueCount + ' due today';
+
+      // Filter
+      const filtered = items.filter(it => {
+        if (searchQuery) {
+          const q = searchQuery;
+          const matchTitle = (it.sectionTitle || '').toLowerCase().includes(q);
+          const matchDoc = (it.docTitle || '').toLowerCase().includes(q);
+          const matchNotes = (it.notes || '').toLowerCase().includes(q);
+          if (!matchTitle && !matchDoc && !matchNotes) return false;
+        }
+
+        const s = getItemStatus(it);
+        if (currentTab === 'due') return s === 'due' || s === 'overdue';
+        if (currentTab === 'upcoming') return s === 'upcoming';
+        if (currentTab === 'mastered') return s === 'mastered';
+        return true;
+      });
+
+      // Sort
+      if (currentTab === 'due' || currentTab === 'upcoming') {
+        filtered.sort((a, b) => new Date(a.nextReviewDate || 0) - new Date(b.nextReviewDate || 0));
+      }
+
+      container.innerHTML = '';
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(it => {
+        const card = createCard(it);
+        container.appendChild(card);
+      });
+    }
+
+    function createCard(item) {
+      const card = document.createElement('div');
+      const status = getItemStatus(item);
+      card.className = 'card status-' + status;
+      card.id = 'card-' + item.id;
+
+      const stage = (item.currentStage || 0) + 1;
+      const total = item.totalStages || 5;
+      const relDate = getRelativeDateLabel(item.nextReviewDate);
+      const isSelfGrading = authConfig.reviewMode === 'self_grading';
+      const isExpanded = areAllExpanded;
+
+      card.innerHTML = 
+        '<div class="card-top">' +
+          '<div>' +
+            '<div class="card-concept-title">' + escapeHtml(item.sectionTitle || 'Untitled Concept') + '</div>' +
+            '<div class="card-doc-origin">📄 ' + escapeHtml(item.docTitle || 'Document') + '</div>' +
+          '</div>' +
+          '<div class="card-badges">' +
+            (!item.isMastered ? '<span class="badge badge-stage">Stage ' + stage + '/' + total + '</span>' : '<span class="badge" style="color:#34d399;">🏆 Mastered</span>') +
+            (status === 'overdue' ? '<span class="badge badge-overdue">' + relDate + '</span>' : '') +
+            (status === 'due' ? '<span class="badge badge-due-today">Today</span>' : '') +
+            (status === 'upcoming' ? '<span class="badge">' + relDate + '</span>' : '') +
+          '</div>' +
+        '</div>' +
+
+        '<div style="display:flex; justify-content:space-between; align-items:center;">' +
+          '<select class="card-preset-select" data-id="' + item.id + '">' +
+            '<option value="standard"' + (item.presetKey === 'standard' ? ' selected' : '') + '>🎯 Standard</option>' +
+            '<option value="intensive"' + (item.presetKey === 'intensive' ? ' selected' : '') + '>⚡ Intensive</option>' +
+            '<option value="longterm"' + (item.presetKey === 'longterm' ? ' selected' : '') + '>⏳ Long-Term</option>' +
+          '</select>' +
+          '<button class="badge" style="background:none; border:none; color:#a855f7; cursor:pointer;" id="toggle-audio-' + item.id + '">' +
+            (item.includeInPodcast !== false ? '🎧 Audio ON' : '🔇 Audio OFF') +
+          '</button>' +
+        '</div>' +
+
+        '<div class="card-notes-foldable">' +
+          '<div class="notes-header-btn" id="notes-head-' + item.id + '">' +
+            '<span>📝 Notes & Recall Cues</span>' +
+            '<span id="chevron-' + item.id + '">' + (isExpanded ? '▾' : '▸') + '</span>' +
+          '</div>' +
+          '<div class="notes-content-box ' + (isExpanded ? '' : 'hidden') + '" id="notes-body-' + item.id + '">' +
+            (item.notes ? escapeHtml(item.notes) : '<em style="color:#64748b;">No notes saved yet.</em>') +
+            '<div style="margin-top:8px;"><button class="badge" id="btn-edit-note-' + item.id + '" style="cursor:pointer;">✏️ Edit Note</button></div>' +
+          '</div>' +
+          '<div class="notes-edit-area hidden" id="notes-edit-' + item.id + '">' +
+            '<textarea class="notes-textarea" id="textarea-' + item.id + '">' + (item.notes || '') + '</textarea>' +
+            '<div style="display:flex; gap:6px;">' +
+              '<button class="badge" id="btn-save-note-' + item.id + '" style="background:var(--accent-indigo); color:#fff; cursor:pointer; padding:6px 12px;">Save</button>' +
+              '<button class="badge" id="btn-cancel-note-' + item.id + '" style="cursor:pointer; padding:6px 12px;">Cancel</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="card-actions-row">' +
+          (!item.isMastered ? (
+            isSelfGrading ? (
+              '<div class="grading-buttons">' +
+                '<button class="btn-grade btn-hard" data-rating="hard">Hard</button>' +
+                '<button class="btn-grade btn-good" data-rating="good">Good</button>' +
+                '<button class="btn-grade btn-easy" data-rating="easy">Easy</button>' +
+              '</div>'
+            ) : (
+              '<button class="btn-review-main" id="btn-rev-' + item.id + '">✓ Mark Reviewed</button>'
+            )
+          ) : '<span style="color:#34d399; font-weight:700; font-size:13px;">🏆 Mastered Concept</span>') +
+
+          (item.targetUrl ? '<a href="' + item.targetUrl + '" target="_blank" class="btn-icon-action" title="Open Document">↗</a>' : '') +
+          '<button class="btn-icon-action btn-del" data-id="' + item.id + '" title="Delete">🗑️</button>' +
+        '</div>';
+
+      // Event bindings
+      const presetSel = card.querySelector('.card-preset-select');
+      presetSel.addEventListener('change', (e) => {
+        item.presetKey = e.target.value;
+        item.updatedAt = new Date().toISOString();
+        saveLocalItems();
+        showToast('🎯 Curve updated');
+        if (authConfig.githubToken) setTimeout(performSync, 500);
+      });
+
+      // Audio toggle
+      const audioBtn = card.querySelector('#toggle-audio-' + item.id);
+      audioBtn.addEventListener('click', () => {
+        item.includeInPodcast = item.includeInPodcast === false ? true : false;
+        item.updatedAt = new Date().toISOString();
+        saveLocalItems();
+        audioBtn.textContent = item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF';
+        showToast(item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF');
+        if (authConfig.githubToken) setTimeout(performSync, 500);
+      });
+
+      // Notes accordion
+      const notesHead = card.querySelector('#notes-head-' + item.id);
+      const notesBody = card.querySelector('#notes-body-' + item.id);
+      const chevron = card.querySelector('#chevron-' + item.id);
+      notesHead.addEventListener('click', () => {
+        const isHidden = notesBody.classList.contains('hidden');
+        notesBody.classList.toggle('hidden', !isHidden);
+        chevron.textContent = isHidden ? '▾' : '▸';
+      });
+
+      // Edit Note
+      const editBtn = card.querySelector('#btn-edit-note-' + item.id);
+      const editArea = card.querySelector('#notes-edit-' + item.id);
+      const textarea = card.querySelector('#textarea-' + item.id);
+      const saveNoteBtn = card.querySelector('#btn-save-note-' + item.id);
+      const cancelNoteBtn = card.querySelector('#btn-cancel-note-' + item.id);
+
+      editBtn.addEventListener('click', () => {
+        notesBody.classList.add('hidden');
+        editArea.classList.remove('hidden');
+        textarea.focus();
+      });
+
+      saveNoteBtn.addEventListener('click', () => {
+        item.notes = textarea.value.trim();
+        item.updatedAt = new Date().toISOString();
+        saveLocalItems();
+        editArea.classList.add('hidden');
+        render();
+        showToast('📝 Note updated');
+        if (authConfig.githubToken) setTimeout(performSync, 500);
+      });
+
+      cancelNoteBtn.addEventListener('click', () => {
+        editArea.classList.add('hidden');
+        notesBody.classList.remove('hidden');
+      });
+
+      // Review actions
+      if (!item.isMastered) {
+        if (isSelfGrading) {
+          card.querySelectorAll('.btn-grade').forEach(b => {
+            b.addEventListener('click', () => {
+              card.classList.add('dismissing');
+              setTimeout(() => {
+                advanceItem(item, b.dataset.rating);
+                render();
+              }, 250);
+            });
+          });
+        } else {
+          const revBtn = card.querySelector('#btn-rev-' + item.id);
+          if (revBtn) {
+            revBtn.addEventListener('click', () => {
+              card.classList.add('dismissing');
+              setTimeout(() => {
+                advanceItem(item, 'good');
+                render();
+              }, 250);
+            });
+          }
+        }
+      }
+
+      // Delete
+      card.querySelector('.btn-del').addEventListener('click', () => {
+        if (confirm('Delete reminder for "' + (item.sectionTitle || 'this item') + '"?')) {
+          card.classList.add('dismissing');
+          setTimeout(() => {
+            items = items.filter(i => i.id !== item.id);
+            saveLocalItems();
+            render();
+            showToast('🗑️ Reminder deleted');
+            if (authConfig.githubToken) setTimeout(performSync, 500);
+          }, 250);
+        }
+      });
+
+      return card;
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[m]);
+    }
+  </script>
+</body>
+</html>
