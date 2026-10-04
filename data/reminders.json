@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T23:34:35.653Z",
+  "updatedAt": "2026-10-04T23:34:42.423Z",
   "items": [
     {
       "calendarEventId": null,
@@ -39,7 +39,7 @@
       "isMastered": false,
       "lastReviewedAt": "2026-10-04T13:31:56.433Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-04T23:34:35.313Z",
+      "nextReviewDate": "2026-10-07T16:00:00.000Z",
       "notes": "what is compression rate\n\nnew line of comment\n\ntest multi-line comment",
       "presetKey": "standard",
       "sectionTitle": "compression rates",
@@ -50,7 +50,6 @@
       ],
       "targetUrl": "https://sebastianraschka.com/llm-architecture-gallery/csa-hca/#:~:text=layers%20then%20have%20fewer%20past%20entries%20to%20store%20and%20process.%20The%20two%20mechanisms%20work%20at%20different-,compression%20rates,-and%20use%20different%20lookup%20strategies.%20CSA%20preserves%20more%20entries%20and%20reads%20a%20sparse%20selection.%20HCA%20makes&rem_id=rem_web_1791029663113_xiz8h",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T16:39:11.758Z",
       "webAnchor": {
         "epilogue": "and use different lookup strategies. CSA preserves more entries and reads a sparse selection. HCA makes",
         "prologue": "layers then have fewer past entries to store and process. The two mechanisms work at different",
@@ -86,7 +85,6 @@
       ],
       "isMastered": false,
       "lastReviewedAt": null,
-      "lastReviewedDate": "2026-10-04T16:45:01.737Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-07T16:45:01.737Z",
       "notes": "test comment for gdoc reminder",
@@ -97,8 +95,9 @@
       "tags": [],
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T16:45:01.737Z",
-      "webAnchor": null
+      "webAnchor": null,
+      "lastReviewedDate": "2026-10-04T16:45:01.737Z",
+      "updatedAt": "2026-10-04T16:45:01.737Z"
     },
     {
       "calendarEventId": null,
@@ -128,7 +127,6 @@
       ],
       "isMastered": false,
       "lastReviewedAt": null,
-      "lastReviewedDate": "2026-10-04T16:39:08.027Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-07T16:39:08.027Z",
       "notes": "testing comment",
@@ -141,12 +139,13 @@
       ],
       "targetUrl": "https://sebastianraschka.com/llm-architecture-gallery/csa-hca/#:~:text=compression%20rates%20and%20use%20different%20lookup%20strategies.%20CSA%20preserves%20more%20entries%20and%20reads%20a%20sparse%20selection.-,HCA,-makes%20the%20history%20much%20shorter%20and%20reads%20all%20of%20its%20compressed%20entries.%20DeepSeek%20V4%20combines%20both&rem_id=rem_web_1791029546519_abcrw",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T16:39:11.758Z",
       "webAnchor": {
         "epilogue": "makes the history much shorter and reads all of its compressed entries. DeepSeek V4 combines both",
         "prologue": "compression rates and use different lookup strategies. CSA preserves more entries and reads a sparse selection.",
         "selectedText": "HCA"
-      }
+      },
+      "lastReviewedDate": "2026-10-04T16:39:08.027Z",
+      "updatedAt": "2026-10-04T16:39:08.027Z"
     },
     {
       "calendarEventId": null,
@@ -167,7 +166,6 @@
         }
       ],
       "id": "rem_web_1791029404566_da86f",
-      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -189,12 +187,13 @@
       ],
       "targetUrl": "https://github.com/#:~:text=purple%20glow%20and%20a%20scattering%20of%20stars.%20The%20future%20of%20building%20happens%20together%20Tools%20and%20trends-,evolve%2C,-but%20collaboration%20endures.%20With%20GitHub%2C%20developers%2C%20agents%2C%20and%20code%20come%20together%20on%20one%20platform.%20Enter%20your&rem_id=rem_web_1791029404566_da86f",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T23:32:35.063Z",
       "webAnchor": {
         "epilogue": "but collaboration endures. With GitHub, developers, agents, and code come together on one platform. Enter your",
         "prologue": "purple glow and a scattering of stars. The future of building happens together Tools and trends",
         "selectedText": "evolve,"
-      }
+      },
+      "includeInPodcast": false,
+      "updatedAt": "2026-10-04T23:32:35.063Z"
     },
     {
       "calendarEventId": null,
@@ -212,17 +211,9 @@
           "nextDate": "2026-10-04T16:00:00.000Z",
           "stage": 0,
           "timestamp": "2026-10-03T12:09:31.227Z"
-        },
-        {
-          "action": "reviewed",
-          "nextDate": "2026-10-07T16:00:00.000Z",
-          "rating": "good",
-          "stageCompleted": 0,
-          "timestamp": "2026-10-04T21:11:38.902Z"
         }
       ],
       "id": "rem_1791029371227_6nsftg",
-      "includeInPodcast": true,
       "intervals": [
         1,
         3,
@@ -231,7 +222,7 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-04T21:11:38.902Z",
+      "lastReviewedAt": null,
       "mode": "simple",
       "nextReviewDate": "2026-10-07T16:00:00.000Z",
       "notes": "",
@@ -242,13 +233,12 @@
       "tags": [],
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T16:39:11.758Z",
-      "webAnchor": null
+      "webAnchor": null,
+      "includeInPodcast": true
     }
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
