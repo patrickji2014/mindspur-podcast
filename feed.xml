@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>MindSpur Daily Audio Reviews</title>
     <link>https://patrickji2014.github.io/mindspur-podcast</link>
     <language>en-us</language>
     <description>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</description>
-    <lastBuildDate>Sun, 04 Oct 2026 20:48:10 GMT</lastBuildDate>
-
+    <lastBuildDate>Sun, 04 Oct 2026 21:00:04 GMT</lastBuildDate>
+    <itunes:author>MindSpur Spaced Repetition</itunes:author>
+    <itunes:summary>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</itunes:summary>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Education"/>
+    <item>
+      <title>Daily Reviews - 2026-10-04 (2 items)</title>
+      <description>Daily spaced reviews for 2026-10-04. Concepts covered: evolve,, header2.</description>
+      <pubDate>Sun, 04 Oct 2026 21:00:04 GMT</pubDate>
+      <enclosure url="https://patrickji2014.github.io/mindspur-podcast/audio/2026-10-04_reviews_1791147603.mp3" length="261312" type="audio/mpeg"/>
+      <guid isPermaLink="false">mindspur-daily-2026-10-04-1791147603</guid>
+      <itunes:duration>05:00</itunes:duration>
+    </item>
   </channel>
 </rss>
