@@ -1141,19 +1141,80 @@
         }
 
         const episodeUrl = 'https://' + owner.toLowerCase() + '.github.io/' + repo + '/' + audioPath;
-        const newEpXml = '    <item>\n' +
-          '      <title>Daily Reviews - ' + todayStr + ' (' + dueItems.length + ' items)</title>\n' +
-          '      <pubDate>' + new Date().toUTCString() + '</pubDate>\n' +
-          '      <enclosure url="' + episodeUrl + '" length="' + Math.round((audioBase64.length * 3) / 4) + '" type="audio/mpeg"/>\n' +
-          '      <guid isPermaLink="false">mindspur-daily-' + todayStr + '-' + ts + '</guid>\n' +
-          '    </item>\n';
 
-        let updatedFeedXml = '';
-        if (existingXml && existingXml.includes('<channel>')) {
-          updatedFeedXml = existingXml.replace('<channel>', '<channel>\n' + newEpXml);
-        } else {
-          updatedFeedXml = '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>MindSpur Daily Audio Reviews</title>' + newEpXml + '</channel></rss>';
+        // Parse existing episodes to remove duplicate for todayStr and maintain clean RSS
+        let existingEpisodes = [];
+        if (existingXml) {
+          const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+          let m;
+          while ((m = itemRegex.exec(existingXml)) !== null) {
+            const block = m[1];
+            const getTag = (t) => {
+              const tm = new RegExp('<' + t + '[^>]*>([\\s\\S]*?)<\\/' + t + '>', 'i').exec(block);
+              return tm ? tm[1].trim() : '';
+            };
+            const enc = /<enclosure\s+url="([^"]+)"(?:\s+length="([^"]+)")?/i.exec(block);
+            if (enc) {
+              existingEpisodes.push({
+                title: getTag('title').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
+                description: getTag('description'),
+                pubDate: getTag('pubDate'),
+                guid: getTag('guid'),
+                url: enc[1],
+                lengthBytes: parseInt(enc[2] || '1024000', 10)
+              });
+            }
+          }
         }
+
+        // Filter out any existing episode for the same dateStr to bust cache and avoid duplicates
+        const filteredEpisodes = existingEpisodes.filter(e => {
+          if (e.guid && e.guid.startsWith('mindspur-daily-' + todayStr)) return false;
+          if (e.url && e.url.includes(todayStr + '_reviews')) return false;
+          return true;
+        });
+
+        const newEpisodeObj = {
+          title: 'Daily Reviews - ' + todayStr + ' (' + dueItems.length + ' ' + (dueItems.length === 1 ? 'item' : 'items') + ')',
+          pubDate: new Date().toUTCString(),
+          url: episodeUrl,
+          lengthBytes: Math.round((audioBase64.length * 3) / 4),
+          guid: 'mindspur-daily-' + todayStr + '-' + ts,
+          description: 'Daily spaced reviews for ' + todayStr + '. Concepts covered: ' + dueItems.map(i => i.sectionTitle || 'Topic').join(', ')
+        };
+
+        const allEpList = [newEpisodeObj, ...filteredEpisodes];
+
+        // Format clean iTunes RSS 2.0 with updated lastBuildDate and namespaces
+        const escXml = (s) => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        const nowUtc = new Date().toUTCString();
+        const itemsXmlStr = allEpList.map(ep => 
+          '    <item>\n' +
+          '      <title>' + escXml(ep.title) + '</title>\n' +
+          '      <description>' + escXml(ep.description || ep.title) + '</description>\n' +
+          '      <pubDate>' + (ep.pubDate || nowUtc) + '</pubDate>\n' +
+          '      <enclosure url="' + escXml(ep.url) + '" length="' + (ep.lengthBytes || 1024000) + '" type="audio/mpeg"/>\n' +
+          '      <guid isPermaLink="false">' + escXml(ep.guid) + '</guid>\n' +
+          '      <itunes:duration>05:00</itunes:duration>\n' +
+          '    </item>'
+        ).join('\n');
+
+        const pagesUrl = 'https://' + owner.toLowerCase() + '.github.io/' + repo;
+        const updatedFeedXml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+          '<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">\n' +
+          '  <channel>\n' +
+          '    <title>MindSpur Daily Audio Reviews</title>\n' +
+          '    <link>' + pagesUrl + '</link>\n' +
+          '    <language>en-us</language>\n' +
+          '    <description>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</description>\n' +
+          '    <lastBuildDate>' + nowUtc + '</lastBuildDate>\n' +
+          '    <itunes:author>MindSpur Spaced Repetition</itunes:author>\n' +
+          '    <itunes:summary>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</itunes:summary>\n' +
+          '    <itunes:explicit>no</itunes:explicit>\n' +
+          '    <itunes:category text="Education"/>\n' +
+          itemsXmlStr + '\n' +
+          '  </channel>\n' +
+          '</rss>\n';
 
         await fetch(feedUrl, {
           method: 'PUT',
