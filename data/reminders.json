@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T23:18:09.408Z",
+  "updatedAt": "2026-10-04T23:18:56.355Z",
   "items": [
     {
       "calendarEventId": null,
@@ -179,7 +179,7 @@
       "lastReviewedAt": null,
       "mode": "simple",
       "nextReviewDate": "2026-10-04T16:00:00.000Z",
-      "notes": "```js\nfunction recall() { return true; }\n```",
+      "notes": "```py\ndef recall():\n  return true\n```",
       "presetKey": "standard",
       "sectionTitle": "evolve,",
       "tabId": null,
