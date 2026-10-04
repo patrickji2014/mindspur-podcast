@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T20:32:26.977Z",
+  "updatedAt": "2026-10-04T20:43:29.960Z",
   "items": [
     {
       "calendarEventId": null,
@@ -215,6 +215,7 @@
         }
       ],
       "id": "rem_1791029371227_6nsftg",
+      "includeInPodcast": true,
       "intervals": [
         1,
         3,
@@ -235,8 +236,7 @@
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
       "updatedAt": "2026-10-04T16:39:11.758Z",
-      "webAnchor": null,
-      "includeInPodcast": true
+      "webAnchor": null
     }
   ],
   "settings": {
