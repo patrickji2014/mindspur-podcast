@@ -932,12 +932,19 @@
         items = mergeLists(items, remoteItems);
         saveLocalItems();
 
-        // 3. Push merged back to GitHub
+        // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
+        const cloudSettings = {
+          reviewMode: authConfig.reviewMode || 'simple',
+          ttsProvider: authConfig.ttsProvider || 'openai',
+          ttsVoice: authConfig.ttsVoice || 'nova',
+          pauseSeconds: authConfig.pauseSeconds || 3,
+          includeDocOrigin: authConfig.includeDocOrigin || false
+        };
         const payload = {
           version: 1,
           updatedAt: new Date().toISOString(),
           items: items,
-          settings: authConfig
+          settings: cloudSettings
         };
         const putBody = {
           message: 'Sync from iPhone (' + items.length + ' items)',
