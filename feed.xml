@@ -5,17 +5,17 @@
     <link>https://patrickji2014.github.io/mindspur-podcast</link>
     <language>en-us</language>
     <description>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</description>
-    <lastBuildDate>Sun, 04 Oct 2026 21:00:04 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 04 Oct 2026 21:12:43 GMT</lastBuildDate>
     <itunes:author>MindSpur Spaced Repetition</itunes:author>
     <itunes:summary>Personal spaced repetition audio reviews generated from your Google Docs and web highlights.</itunes:summary>
     <itunes:explicit>no</itunes:explicit>
     <itunes:category text="Education"/>
     <item>
-      <title>Daily Reviews - 2026-10-04 (2 items)</title>
-      <description>Daily spaced reviews for 2026-10-04. Concepts covered: evolve,, header2.</description>
-      <pubDate>Sun, 04 Oct 2026 21:00:04 GMT</pubDate>
-      <enclosure url="https://patrickji2014.github.io/mindspur-podcast/audio/2026-10-04_reviews_1791147603.mp3" length="261312" type="audio/mpeg"/>
-      <guid isPermaLink="false">mindspur-daily-2026-10-04-1791147603</guid>
+      <title>Daily Reviews - 2026-10-04 (1 item)</title>
+      <description>Daily spaced reviews for 2026-10-04. Concepts covered: evolve,</description>
+      <pubDate>Sun, 04 Oct 2026 21:12:43 GMT</pubDate>
+      <enclosure url="https://patrickji2014.github.io/mindspur-podcast/audio/2026-10-04_reviews_1791148362.mp3" length="136320" type="audio/mpeg"/>
+      <guid isPermaLink="false">mindspur-daily-2026-10-04-1791148362</guid>
       <itunes:duration>05:00</itunes:duration>
     </item>
   </channel>
