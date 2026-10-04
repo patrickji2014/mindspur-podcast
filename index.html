@@ -1648,43 +1648,37 @@
       if (!text || typeof text !== 'string') return '';
       let md = escapeHtml(text);
       const codeBlocks = [];
-      md = md.replace(/```([a-zA-Z0-9_+-]*)?
-([sS]*?)```/g, (match, lang, code) => {
+      md = md.replace(/```([\w\-]*)[\r\n]+([\s\S]*?)```/g, (match, lang, code) => {
         const idx = codeBlocks.length;
         const langClass = lang ? ' class="language-' + lang + '"' : '';
         codeBlocks.push('<pre class="md-code-block"><code' + langClass + '>' + code.trim() + '</code></pre>');
         return 'XMDCODEBLOCK' + idx + 'X';
       });
       const inlineCodes = [];
-      md = md.replace(/`([^`
-]+)`/g, (match, code) => {
+      md = md.replace(/`([^\x60\r\n]+)`/g, (match, code) => {
         const idx = inlineCodes.length;
         inlineCodes.push('<code class="md-inline-code">' + code + '</code>');
         return 'XMDINLINECODE' + idx + 'X';
       });
-      md = md.replace(/^(?:---|***|___)s*$/gm, '<hr class="md-hr">');
-      md = md.replace(/(?:^&gt;[ 	]?(.*?)(?:?
-|$))+/gm, (match) => {
-        const inner = match.trim().split(/?
-/).map(l => l.replace(/^&gt;[ 	]?/, '').trim()).join('<br>');
-        return '<blockquote class="md-quote">' + inner + '</blockquote>
-';
+      md = md.replace(/^(?:---|\*\*\*|___)[ \t]*$/gm, '<hr class="md-hr">');
+      md = md.replace(/(?:^&gt;[ \t]?(.*?)(?:[\r\n]|$))+/gm, (match) => {
+        const inner = match.trim().split(/[\r\n]+/).map(l => l.replace(/^&gt;[ \t]?/, '').trim()).join('<br>');
+        return '<blockquote class="md-quote">' + inner + '</blockquote>\n';
       });
       md = md.replace(/^#### (.*?)$/gm, '<h6 class="md-h4">$1</h6>');
       md = md.replace(/^### (.*?)$/gm, '<h5 class="md-h3">$1</h5>');
       md = md.replace(/^## (.*?)$/gm, '<h4 class="md-h2">$1</h4>');
       md = md.replace(/^# (.*?)$/gm, '<h3 class="md-h1">$1</h3>');
-      md = md.replace(/^-s*[x]s*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check checked">☑</span> $1</div>');
-      md = md.replace(/^-s*[s*]s*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check">☐</span> $1</div>');
+      md = md.replace(/^-[ \t]*\[x\][ \t]*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check checked">☑</span> $1</div>');
+      md = md.replace(/^-[ \t]*\[[ \t]*\][ \t]*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check">☐</span> $1</div>');
 
-      const lines = md.split(/?
-/);
+      const lines = md.split(/\r?\n/);
       const processedLines = [];
       let inUl = false, inOl = false;
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        const ulMatch = line.match(/^(s*)[-*+]s+(.+)$/);
-        const olMatch = line.match(/^(s*)d+.s+(.+)$/);
+        const ulMatch = line.match(/^([ \t]*)[-*+][ \t]+(.+)$/);
+        const olMatch = line.match(/^([ \t]*)\d+\.[ \t]+(.+)$/);
         if (ulMatch && !line.includes('class="md-task-item"')) {
           if (inOl) { processedLines.push('</ol>'); inOl = false; }
           if (!inUl) { processedLines.push('<ul class="md-ul">'); inUl = true; }
@@ -1701,26 +1695,31 @@
       }
       if (inUl) processedLines.push('</ul>');
       if (inOl) processedLines.push('</ol>');
-      md = processedLines.join('
-');
+      md = processedLines.join('\n');
 
-      md = md.replace(/[([^]]+)](([^)]+))/g, (match, linkText, href) => {
+      md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, href) => {
         const cleanHref = href.trim();
         return isSafeUrl(cleanHref) ? '<a href="' + cleanHref + '" class="md-link" target="_blank" rel="noopener noreferrer">' + linkText + '</a>' : match;
       });
 
-      md = md.replace(/***([^*]+)***/g, '<strong><em>$1</em></strong>');
+      md = md.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
       md = md.replace(/___([^_]+)___/g, '<strong><em>$1</em></strong>');
-      md = md.replace(/**([^*]+)**/g, '<strong>$1</strong>');
+      md = md.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
       md = md.replace(/__([^_]+)__/g, '<strong>$1</strong>');
-      md = md.replace(/*([^*]+)*/g, '<em>$1</em>');
+      md = md.replace(/\*([^*]+)\*/g, '<em>$1</em>');
       md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
       md = md.replace(/~~([^~]+)~~/g, '<del>$1</del>');
-      md = md.replace(/(?<!</h[1-6]>|</pre>|</blockquote>|</ul>|</ol>|</div>|<hr[^>]*>)
-/g, '<br>');
 
-      md = md.replace(/XMDCODEBLOCK(d+)X/g, (match, idx) => codeBlocks[parseInt(idx, 10)] || '');
-      md = md.replace(/XMDINLINECODE(d+)X/g, (match, idx) => inlineCodes[parseInt(idx, 10)] || '');
+      const blockTags = ['<h1', '<h2', '<h3', '<h4', '<h5', '<h6', '<pre', '<blockquote', '<ul', '<ol', '</ul', '</ol', '<li', '<div', '<hr'];
+      md = md.split('\n').map(l => {
+        const t = l.trim();
+        if (!t) return '';
+        const isBlock = blockTags.some(tag => t.startsWith(tag));
+        return isBlock ? l : l + '<br>';
+      }).join('\n').replace(/(?:<br>)+$/g, '');
+
+      md = md.replace(/XMDCODEBLOCK(\d+)X/g, (match, idx) => codeBlocks[parseInt(idx, 10)] || '');
+      md = md.replace(/XMDINLINECODE(\d+)X/g, (match, idx) => inlineCodes[parseInt(idx, 10)] || '');
       return md.trim();
     }
   </script>
