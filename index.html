@@ -584,6 +584,7 @@
         </div>
       </div>
       <div class="header-actions">
+        <a href="./podcast-console.html" class="btn-icon-action" title="Podcast Console (Manage episodes & storage)" style="text-decoration:none;">🎙️</a>
         <button id="btn-sync" class="btn-sync-action">
           <span id="sync-icon">🔄</span>
           <span id="sync-text">Sync</span>
@@ -906,12 +907,15 @@
       try {
         // 1. Fetch remote data
         const path = 'data/reminders.json';
-        const getUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path;
+        const getUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path + '?_t=' + Date.now();
         const res = await fetch(getUrl, {
+          cache: 'no-store',
           headers: {
             'Authorization': 'Bearer ' + token,
             'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'MindSpur-Mobile'
+            'User-Agent': 'MindSpur-Mobile',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache'
           }
         });
 
@@ -1114,12 +1118,15 @@
         });
 
         // Update feed.xml
-        const feedUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/feed.xml';
+        const feedUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/feed.xml?_t=' + Date.now();
         const feedRes = await fetch(feedUrl, {
+          cache: 'no-store',
           headers: {
             'Authorization': 'Bearer ' + ghToken,
             'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'MindSpur-Mobile'
+            'User-Agent': 'MindSpur-Mobile',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache'
           }
         });
 
