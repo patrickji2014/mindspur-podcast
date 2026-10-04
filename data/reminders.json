@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T21:08:44.003Z",
+  "updatedAt": "2026-10-04T21:11:39.165Z",
   "items": [
     {
       "calendarEventId": null,
@@ -200,7 +200,7 @@
       "calendarEventId": null,
       "contentType": "gdoc",
       "createdAt": "2026-10-03T12:09:31.227Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o",
       "docTitle": "TestTheReviewTool",
       "docUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit",
@@ -212,6 +212,13 @@
           "nextDate": "2026-10-04T16:00:00.000Z",
           "stage": 0,
           "timestamp": "2026-10-03T12:09:31.227Z"
+        },
+        {
+          "action": "reviewed",
+          "nextDate": "2026-10-07T16:00:00.000Z",
+          "rating": "good",
+          "stageCompleted": 0,
+          "timestamp": "2026-10-04T21:11:38.902Z"
         }
       ],
       "id": "rem_1791029371227_6nsftg",
@@ -224,9 +231,9 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-10-04T21:11:38.902Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-04T16:00:00.000Z",
+      "nextReviewDate": "2026-10-07T16:00:00.000Z",
       "notes": "",
       "presetKey": "standard",
       "sectionTitle": "header2",
