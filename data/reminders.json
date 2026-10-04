@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T21:14:13.830Z",
+  "updatedAt": "2026-10-04T21:15:07.042Z",
   "items": [
     {
       "calendarEventId": null,
@@ -192,8 +192,7 @@
         "prologue": "purple glow and a scattering of stars. The future of building happens together Tools and trends",
         "selectedText": "evolve,"
       },
-      "includeInPodcast": true,
-      "updatedAt": "2026-10-04T21:04:56.933Z"
+      "includeInPodcast": true
     },
     {
       "calendarEventId": null,
