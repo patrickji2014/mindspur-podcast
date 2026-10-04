@@ -912,10 +912,7 @@
           cache: 'no-store',
           headers: {
             'Authorization': 'Bearer ' + token,
-            'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'MindSpur-Mobile',
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
+            'Accept': 'application/vnd.github.v3+json'
           }
         });
 
@@ -961,8 +958,7 @@
           headers: {
             'Authorization': 'Bearer ' + token,
             'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'MindSpur-Mobile'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(putBody)
         });
@@ -1108,8 +1104,7 @@
           headers: {
             'Authorization': 'Bearer ' + ghToken,
             'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'MindSpur-Mobile'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             message: 'Publish audio for ' + todayStr + ' (v' + ts + ')',
@@ -1123,10 +1118,7 @@
           cache: 'no-store',
           headers: {
             'Authorization': 'Bearer ' + ghToken,
-            'Accept': 'application/vnd.github.v3+json',
-            'User-Agent': 'MindSpur-Mobile',
-            'Cache-Control': 'no-cache, no-store, must-revalidate',
-            'Pragma': 'no-cache'
+            'Accept': 'application/vnd.github.v3+json'
           }
         });
 
@@ -1221,8 +1213,7 @@
           headers: {
             'Authorization': 'Bearer ' + ghToken,
             'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-            'User-Agent': 'MindSpur-Mobile'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             message: 'Update feed.xml for ' + todayStr,
