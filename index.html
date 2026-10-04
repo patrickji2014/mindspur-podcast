@@ -943,65 +943,88 @@
       syncText.textContent = 'Syncing...';
 
       try {
-        // 1. Fetch remote data
         const path = 'data/reminders.json';
         const getUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path + '?_t=' + Date.now();
-        const res = await fetch(getUrl, {
-          cache: 'no-store',
-          headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/vnd.github.v3+json'
-          }
-        });
+        const putUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path;
+        const maxRetries = 2;
 
-        let remoteItems = [];
-        let remoteSha = null;
-
-        if (res.ok) {
-          const remoteData = await res.json();
-          remoteSha = remoteData.sha;
-          if (remoteData.content) {
-            const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
-            const parsed = JSON.parse(raw);
-            remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
+        for (let attempt = 0; attempt <= maxRetries; attempt++) {
+          if (attempt > 0) {
+            await new Promise(r => setTimeout(r, (attempt * 200) + Math.floor(Math.random() * 50)));
           }
+
+          // 1. Fetch remote data
+          const res = await fetch(getUrl, {
+            cache: 'no-store',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+
+          let remoteItems = [];
+          let remoteSha = null;
+
+          if (res.ok) {
+            const remoteData = await res.json();
+            remoteSha = remoteData.sha;
+            if (remoteData.content) {
+              const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
+              const parsed = JSON.parse(raw);
+              remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
+            }
+          }
+
+          // 2. Client-side merge
+          items = mergeLists(items, remoteItems);
+          saveLocalItems();
+
+          // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
+          const cloudSettings = {
+            reviewMode: authConfig.reviewMode || 'simple',
+            ttsProvider: authConfig.ttsProvider || 'openai',
+            ttsVoice: authConfig.ttsVoice || 'nova',
+            pauseSeconds: authConfig.pauseSeconds || 3,
+            includeDocOrigin: authConfig.includeDocOrigin || false
+          };
+          const payload = {
+            version: 1,
+            updatedAt: new Date().toISOString(),
+            items: items,
+            settings: cloudSettings
+          };
+          const putBody = {
+            message: 'Sync from iPhone (' + items.length + ' items)',
+            content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))))
+          };
+          if (remoteSha) putBody.sha = remoteSha;
+
+          const putRes = await fetch(putUrl, {
+            method: 'PUT',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(putBody)
+          });
+
+          if (!putRes.ok) {
+            let detail = '';
+            try {
+              const errJson = await putRes.json();
+              if (errJson.message) detail = ': ' + errJson.message;
+            } catch (_) {}
+
+            if (putRes.status === 409 && attempt < maxRetries) {
+              continue;
+            }
+            throw new Error('HTTP ' + putRes.status + detail);
+          }
+
+          showToast('🟢 Synced (' + items.length + ' items)');
+          break;
         }
-
-        // 2. Client-side merge
-        items = mergeLists(items, remoteItems);
-        saveLocalItems();
-
-        // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
-        const cloudSettings = {
-          reviewMode: authConfig.reviewMode || 'simple',
-          ttsProvider: authConfig.ttsProvider || 'openai',
-          ttsVoice: authConfig.ttsVoice || 'nova',
-          pauseSeconds: authConfig.pauseSeconds || 3,
-          includeDocOrigin: authConfig.includeDocOrigin || false
-        };
-        const payload = {
-          version: 1,
-          updatedAt: new Date().toISOString(),
-          items: items,
-          settings: cloudSettings
-        };
-        const putBody = {
-          message: 'Sync from iPhone (' + items.length + ' items)',
-          content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))))
-        };
-        if (remoteSha) putBody.sha = remoteSha;
-
-        await fetch(getUrl, {
-          method: 'PUT',
-          headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(putBody)
-        });
-
-        showToast('🟢 Synced (' + items.length + ' items)');
       } catch (err) {
         console.error('Sync failed:', err);
         showToast('⚠️ Sync error: ' + err.message);
