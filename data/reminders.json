@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T16:44:57.977Z",
+  "updatedAt": "2026-10-04T16:45:02.419Z",
   "items": [
     {
       "calendarEventId": null,
@@ -60,7 +60,7 @@
       "calendarEventId": null,
       "contentType": "gdoc",
       "createdAt": "2026-10-03T12:13:25.249Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o",
       "docTitle": "TestTheReviewTool",
       "docUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit",
@@ -86,7 +86,7 @@
       "isMastered": false,
       "lastReviewedAt": null,
       "mode": "simple",
-      "nextReviewDate": "2026-10-04T16:00:00.000Z",
+      "nextReviewDate": "2026-10-07T16:45:01.737Z",
       "notes": "test comment for gdoc reminder",
       "presetKey": "standard",
       "sectionTitle": "header2",
@@ -95,7 +95,9 @@
       "tags": [],
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
-      "webAnchor": null
+      "webAnchor": null,
+      "lastReviewedDate": "2026-10-04T16:45:01.737Z",
+      "updatedAt": "2026-10-04T16:45:01.737Z"
     },
     {
       "calendarEventId": null,
