@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T20:32:25.941Z",
+  "updatedAt": "2026-10-04T20:32:26.977Z",
   "items": [
     {
       "calendarEventId": null,
@@ -167,6 +167,7 @@
         }
       ],
       "id": "rem_web_1791029404566_da86f",
+      "includeInPodcast": true,
       "intervals": [
         1,
         3,
@@ -193,8 +194,7 @@
         "epilogue": "but collaboration endures. With GitHub, developers, agents, and code come together on one platform. Enter your",
         "prologue": "purple glow and a scattering of stars. The future of building happens together Tools and trends",
         "selectedText": "evolve,"
-      },
-      "includeInPodcast": true
+      }
     },
     {
       "calendarEventId": null,
@@ -235,7 +235,8 @@
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
       "updatedAt": "2026-10-04T16:39:11.758Z",
-      "webAnchor": null
+      "webAnchor": null,
+      "includeInPodcast": true
     }
   ],
   "settings": {
