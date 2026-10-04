@@ -389,10 +389,48 @@
       padding: 8px 12px 12px 12px;
       font-size: 13px;
       color: #cbd5e1;
-      line-height: 1.5;
+      line-height: 1.55;
       border-top: 1px solid rgba(51, 65, 85, 0.4);
-      white-space: pre-wrap;
+      word-break: break-word;
     }
+    .notes-content-box .md-code-block {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin: 6px 0;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+      color: #38bdf8;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .notes-content-box .md-inline-code {
+      background: rgba(99, 102, 241, 0.15);
+      color: #c7d2fe;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 12px;
+    }
+    .notes-content-box .md-h1 { font-size: 15px; font-weight: 700; color: #f8fafc; margin: 6px 0 3px; }
+    .notes-content-box .md-h2 { font-size: 14px; font-weight: 700; color: #f1f5f9; margin: 5px 0 2px; }
+    .notes-content-box .md-h3 { font-size: 13px; font-weight: 600; color: #e2e8f0; margin: 4px 0 2px; }
+    .notes-content-box .md-h4 { font-size: 12px; font-weight: 600; color: #cbd5e1; margin: 4px 0 2px; }
+    .notes-content-box .md-quote {
+      border-left: 3px solid #818cf8;
+      margin: 6px 0;
+      padding: 4px 10px;
+      background: rgba(99, 102, 241, 0.08);
+      font-style: italic;
+      border-radius: 0 4px 4px 0;
+    }
+    .notes-content-box .md-ul, .notes-content-box .md-ol { margin: 4px 0 4px 18px; padding: 0; }
+    .notes-content-box .md-li { margin-bottom: 2px; }
+    .notes-content-box .md-task-item { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+    .notes-content-box .md-task-check.checked { color: #34d399; }
+    .notes-content-box .md-link { color: #818cf8; text-decoration: underline; }
+    .notes-content-box .md-hr { border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 8px 0; }
 
     .notes-edit-area {
       padding: 10px;
@@ -1434,11 +1472,11 @@
             '<span id="chevron-' + item.id + '">' + (isExpanded ? '▾' : '▸') + '</span>' +
           '</div>' +
           '<div class="notes-content-box ' + (isExpanded ? '' : 'hidden') + '" id="notes-body-' + item.id + '">' +
-            (item.notes ? escapeHtml(item.notes) : '<em style="color:#64748b;">No notes saved yet.</em>') +
+            (item.notes ? renderMarkdown(item.notes) : '<em style="color:#64748b;">No notes saved yet.</em>') +
             '<div style="margin-top:8px;"><button class="badge" id="btn-edit-note-' + item.id + '" style="cursor:pointer;">✏️ Edit Note</button></div>' +
           '</div>' +
           '<div class="notes-edit-area hidden" id="notes-edit-' + item.id + '">' +
-            '<textarea class="notes-textarea" id="textarea-' + item.id + '">' + (item.notes || '') + '</textarea>' +
+            '<textarea class="notes-textarea" id="textarea-' + item.id + '" placeholder="Notes or recall cues (Markdown supported: **bold**, *italic*, `code`, lists)...">' + escapeHtml(item.notes || '') + '</textarea>' +
             '<div style="display:flex; gap:6px;">' +
               '<button class="badge" id="btn-save-note-' + item.id + '" style="background:var(--accent-indigo); color:#fff; cursor:pointer; padding:6px 12px;">Save</button>' +
               '<button class="badge" id="btn-cancel-note-' + item.id + '" style="cursor:pointer; padding:6px 12px;">Cancel</button>' +
@@ -1575,6 +1613,92 @@
     function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[m]);
+    }
+
+    function isSafeUrl(url) {
+      if (!url) return false;
+      const t = url.trim().toLowerCase();
+      return t.startsWith('https://') || t.startsWith('http://') || t.startsWith('mailto:') || t.startsWith('#');
+    }
+
+    function renderMarkdown(text) {
+      if (!text || typeof text !== 'string') return '';
+      let md = escapeHtml(text);
+      const codeBlocks = [];
+      md = md.replace(/```([a-zA-Z0-9_+-]*)?
+([sS]*?)```/g, (match, lang, code) => {
+        const idx = codeBlocks.length;
+        const langClass = lang ? ' class="language-' + lang + '"' : '';
+        codeBlocks.push('<pre class="md-code-block"><code' + langClass + '>' + code.trim() + '</code></pre>');
+        return 'XMDCODEBLOCK' + idx + 'X';
+      });
+      const inlineCodes = [];
+      md = md.replace(/`([^`
+]+)`/g, (match, code) => {
+        const idx = inlineCodes.length;
+        inlineCodes.push('<code class="md-inline-code">' + code + '</code>');
+        return 'XMDINLINECODE' + idx + 'X';
+      });
+      md = md.replace(/^(?:---|***|___)s*$/gm, '<hr class="md-hr">');
+      md = md.replace(/(?:^&gt;[ 	]?(.*?)(?:?
+|$))+/gm, (match) => {
+        const inner = match.trim().split(/?
+/).map(l => l.replace(/^&gt;[ 	]?/, '').trim()).join('<br>');
+        return '<blockquote class="md-quote">' + inner + '</blockquote>
+';
+      });
+      md = md.replace(/^#### (.*?)$/gm, '<h6 class="md-h4">$1</h6>');
+      md = md.replace(/^### (.*?)$/gm, '<h5 class="md-h3">$1</h5>');
+      md = md.replace(/^## (.*?)$/gm, '<h4 class="md-h2">$1</h4>');
+      md = md.replace(/^# (.*?)$/gm, '<h3 class="md-h1">$1</h3>');
+      md = md.replace(/^-s*[x]s*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check checked">☑</span> $1</div>');
+      md = md.replace(/^-s*[s*]s*(.*?)$/gim, '<div class="md-task-item"><span class="md-task-check">☐</span> $1</div>');
+
+      const lines = md.split(/?
+/);
+      const processedLines = [];
+      let inUl = false, inOl = false;
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const ulMatch = line.match(/^(s*)[-*+]s+(.+)$/);
+        const olMatch = line.match(/^(s*)d+.s+(.+)$/);
+        if (ulMatch && !line.includes('class="md-task-item"')) {
+          if (inOl) { processedLines.push('</ol>'); inOl = false; }
+          if (!inUl) { processedLines.push('<ul class="md-ul">'); inUl = true; }
+          processedLines.push('  <li class="md-li">' + ulMatch[2] + '</li>');
+        } else if (olMatch) {
+          if (inUl) { processedLines.push('</ul>'); inUl = false; }
+          if (!inOl) { processedLines.push('<ol class="md-ol">'); inOl = true; }
+          processedLines.push('  <li class="md-li">' + olMatch[2] + '</li>');
+        } else {
+          if (inUl) { processedLines.push('</ul>'); inUl = false; }
+          if (inOl) { processedLines.push('</ol>'); inOl = false; }
+          processedLines.push(line);
+        }
+      }
+      if (inUl) processedLines.push('</ul>');
+      if (inOl) processedLines.push('</ol>');
+      md = processedLines.join('
+');
+
+      md = md.replace(/[([^]]+)](([^)]+))/g, (match, linkText, href) => {
+        const cleanHref = href.trim();
+        return isSafeUrl(cleanHref) ? '<a href="' + cleanHref + '" class="md-link" target="_blank" rel="noopener noreferrer">' + linkText + '</a>' : match;
+      });
+
+      md = md.replace(/***([^*]+)***/g, '<strong><em>$1</em></strong>');
+      md = md.replace(/___([^_]+)___/g, '<strong><em>$1</em></strong>');
+      md = md.replace(/**([^*]+)**/g, '<strong>$1</strong>');
+      md = md.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+      md = md.replace(/*([^*]+)*/g, '<em>$1</em>');
+      md = md.replace(/_([^_]+)_/g, '<em>$1</em>');
+      md = md.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+      md = md.replace(/(?<!</h[1-6]>|</pre>|</blockquote>|</ul>|</ol>|</div>|<hr[^>]*>)
+/g, '<br>');
+
+      md = md.replace(/XMDCODEBLOCK(d+)X/g, (match, idx) => codeBlocks[parseInt(idx, 10)] || '');
+      md = md.replace(/XMDINLINECODE(d+)X/g, (match, idx) => inlineCodes[parseInt(idx, 10)] || '');
+      return md.trim();
     }
   </script>
 </body>
