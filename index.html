@@ -381,6 +381,37 @@
     .badge-due-today { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border-color: rgba(245, 158, 11, 0.4); }
     .badge-overdue { background: rgba(239, 68, 68, 0.15); color: #f87171; border-color: rgba(239, 68, 68, 0.4); }
 
+    .btn-listen-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 999px;
+      cursor: pointer;
+      user-select: none;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-listen-card:hover {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: rgba(99, 102, 241, 0.6);
+      color: #ffffff;
+    }
+    .btn-listen-card.is-playing {
+      background: rgba(168, 85, 247, 0.25);
+      border-color: rgba(168, 85, 247, 0.6);
+      color: #f3e8ff;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+    }
+    .btn-listen-card.is-loading {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
     /* Preset selector per card */
     .card-preset-select {
       background: rgba(15, 23, 42, 0.8);
@@ -1482,6 +1513,257 @@
       return Array.from(map.values());
     }
 
+    // Audio Chunk Cache & MP3 Stitching for Lazy Synthesis & Cost Savings
+    const MobileAudioChunkCache = {
+      getChunk(chunkKey) {
+        try {
+          const raw = localStorage.getItem('mindspur_audio_chunks');
+          if (!raw) return null;
+          const cache = JSON.parse(raw);
+          return cache[chunkKey] ? (cache[chunkKey].audioBase64 || cache[chunkKey]) : null;
+        } catch (_) {
+          return null;
+        }
+      },
+      saveChunk(chunkKey, audioBase64) {
+        try {
+          const raw = localStorage.getItem('mindspur_audio_chunks');
+          const cache = raw ? JSON.parse(raw) : {};
+          cache[chunkKey] = {
+            audioBase64: audioBase64,
+            updatedAt: Date.now()
+          };
+          localStorage.setItem('mindspur_audio_chunks', JSON.stringify(cache));
+          return true;
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
+    function computeMobileReminderAudioHash(item, config) {
+      const provider = config.ttsProvider || config.providerId || 'openai';
+      const voice = config.ttsVoice || config.voiceName || 'nova';
+      const pause = config.pauseSeconds !== undefined ? config.pauseSeconds : 3;
+      const includeDoc = Boolean(config.includeDocOrigin);
+      const title = (item.sectionTitle || item.title || '').trim();
+      const doc = includeDoc ? (item.docTitle || '').trim() : '';
+      const notes = (item.notes || '').trim();
+      const excerpt = (item.selectedText || '').trim();
+
+      const rawKey = [provider, voice, pause, includeDoc ? '1' : '0', title, doc, notes, excerpt].join('|');
+      let h = 0x811c9dc5;
+      for (let i = 0; i < rawKey.length; i++) {
+        h ^= rawKey.charCodeAt(i);
+        h = Math.imul(h, 0x01000193);
+      }
+      const hex = (h >>> 0).toString(16).padStart(8, '0');
+      const safeId = String(item.id || 'rem').replace(/[^a-zA-Z0-9_-]/g, '_');
+      return 'chunk_' + safeId + '_' + hex;
+    }
+
+    function stripId3Frames(uint8Array) {
+      let offset = 0;
+      const len = uint8Array.length;
+      if (len >= 10 && uint8Array[0] === 0x49 && uint8Array[1] === 0x44 && uint8Array[2] === 0x33) {
+        const hasFooter = (uint8Array[5] & 0x10) !== 0;
+        const tagSize = ((uint8Array[6] & 0x7f) << 21) |
+                        ((uint8Array[7] & 0x7f) << 14) |
+                        ((uint8Array[8] & 0x7f) << 7) |
+                        (uint8Array[9] & 0x7f);
+        offset = 10 + tagSize + (hasFooter ? 10 : 0);
+      }
+      while (offset < len - 1) {
+        if (uint8Array[offset] === 0xFF && (uint8Array[offset + 1] & 0xE0) === 0xE0) {
+          break;
+        }
+        offset++;
+      }
+      let end = len;
+      if (end >= 128 && uint8Array[end - 128] === 0x54 && uint8Array[end - 127] === 0x41 && uint8Array[end - 126] === 0x47) {
+        end -= 128;
+      }
+      if (offset < end) {
+        return uint8Array.subarray(offset, end);
+      }
+      return uint8Array;
+    }
+
+    function concatMp3Base64List(base64List) {
+      if (!base64List || base64List.length === 0) return '';
+      const valid = base64List.filter(Boolean);
+      if (valid.length === 0) return '';
+      if (valid.length === 1) return valid[0];
+
+      const buffers = valid.map(b64 => {
+        const binary = atob(b64);
+        const len = binary.length;
+        const bytes = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+          bytes[i] = binary.charCodeAt(i);
+        }
+        return stripId3Frames(bytes);
+      });
+
+      const totalLength = buffers.reduce((acc, b) => acc + b.length, 0);
+      const result = new Uint8Array(totalLength);
+      let cur = 0;
+      for (const b of buffers) {
+        result.set(b, cur);
+        cur += b.length;
+      }
+
+      let binary = '';
+      for (let i = 0; i < result.length; i += 8192) {
+        binary += String.fromCharCode.apply(null, result.subarray(i, Math.min(i + 8192, result.length)));
+      }
+      return btoa(binary);
+    }
+
+    async function synthesizeSingleReminderAudioMobile(item, providerId, config) {
+      const { ttsApiKey, ttsVoice, pauseSeconds, includeDocOrigin } = config;
+      const title = item.sectionTitle || item.title || 'Concept';
+      const origin = (includeDocOrigin && item.docTitle) ? (' From ' + item.docTitle + '.') : '';
+      const pauseSec = pauseSeconds !== undefined ? pauseSeconds : 3;
+
+      if (providerId === 'google') {
+        const escTitle = title.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+        const escOrigin = (includeDocOrigin && item.docTitle) ? (' From ' + item.docTitle.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '.') : '';
+        let ssml = '<speak><s>Review: ' + escTitle + '.' + escOrigin + '</s>';
+        ssml += '<break time="' + pauseSec + 's"/>';
+        if (item.notes) {
+          ssml += '<s>Notes: ' + item.notes.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</s>';
+          ssml += '<break time="1s"/>';
+        }
+        ssml += '</speak>';
+
+        const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize?key=' + encodeURIComponent(ttsApiKey), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            input: { ssml },
+            voice: { languageCode: 'en-US', name: ttsVoice || 'en-US-Neural2-F' },
+            audioConfig: { audioEncoding: 'MP3' }
+          })
+        });
+        if (!res.ok) throw new Error('Google TTS error: ' + res.status);
+        const data = await res.json();
+        return data.audioContent;
+      } else {
+        // OpenAI TTS
+        let script = 'Review: ' + title + '.' + origin + '\n\n...\n\n';
+        if (item.notes) script += 'Notes: ' + item.notes.trim() + '\n\n';
+
+        const res = await fetch('https://api.openai.com/v1/audio/speech', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + ttsApiKey,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'tts-1',
+            input: script,
+            voice: ttsVoice || 'nova',
+            response_format: 'mp3'
+          })
+        });
+        if (!res.ok) throw new Error('OpenAI TTS error: ' + res.status);
+        const buffer = await res.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        let binary = '';
+        for (let i = 0; i < bytes.length; i += 8192) {
+          binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + 8192, bytes.length)));
+        }
+        return btoa(binary);
+      }
+    }
+
+    let currentMobileAudio = null;
+    let currentMobileAudioId = null;
+
+    async function handlePlayCardAudioMobile(item, btn) {
+      if (currentMobileAudio && currentMobileAudioId === item.id) {
+        currentMobileAudio.pause();
+        currentMobileAudio = null;
+        currentMobileAudioId = null;
+        btn.classList.remove('is-playing');
+        btn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+        return;
+      }
+
+      if (currentMobileAudio) {
+        currentMobileAudio.pause();
+        currentMobileAudio = null;
+        currentMobileAudioId = null;
+        const oldBtn = document.querySelector('.btn-listen-card.is-playing');
+        if (oldBtn) {
+          oldBtn.classList.remove('is-playing');
+          oldBtn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+        }
+      }
+
+      const { ttsProvider, ttsApiKey, ttsVoice, pauseSeconds, includeDocOrigin } = authConfig;
+      if (!ttsApiKey) {
+        alert('Please configure your TTS API Key in ⚙️ Settings to listen to audio.');
+        return;
+      }
+
+      const config = {
+        ttsProvider: ttsProvider || 'openai',
+        ttsApiKey,
+        ttsVoice: ttsVoice || (ttsProvider === 'openai' ? 'nova' : 'en-US-Neural2-F'),
+        pauseSeconds: pauseSeconds !== undefined ? pauseSeconds : 3,
+        includeDocOrigin: Boolean(includeDocOrigin)
+      };
+
+      const chunkKey = computeMobileReminderAudioHash(item, config);
+      let audioB64 = MobileAudioChunkCache.getChunk(chunkKey);
+
+      if (!audioB64) {
+        btn.classList.add('is-loading');
+        btn.innerHTML = '<span class="listen-icon">⏳</span><span class="listen-label">Loading...</span>';
+        try {
+          audioB64 = await synthesizeSingleReminderAudioMobile(item, config.ttsProvider, config);
+          MobileAudioChunkCache.saveChunk(chunkKey, audioB64);
+        } catch (err) {
+          btn.classList.remove('is-loading');
+          btn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+          alert('Failed to synthesize audio: ' + (err.message || err));
+          return;
+        } finally {
+          btn.classList.remove('is-loading');
+        }
+      }
+
+      try {
+        currentMobileAudio = new Audio('data:audio/mp3;base64,' + audioB64);
+        currentMobileAudioId = item.id;
+        btn.classList.add('is-playing');
+        btn.innerHTML = '<span class="listen-icon">⏸️</span><span class="listen-label">Pause</span>';
+
+        currentMobileAudio.onended = () => {
+          btn.classList.remove('is-playing');
+          btn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+          currentMobileAudio = null;
+          currentMobileAudioId = null;
+        };
+
+        currentMobileAudio.onerror = () => {
+          btn.classList.remove('is-playing');
+          btn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+          currentMobileAudio = null;
+          currentMobileAudioId = null;
+        };
+
+        await currentMobileAudio.play();
+      } catch (err) {
+        btn.classList.remove('is-playing');
+        btn.innerHTML = '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>';
+        currentMobileAudio = null;
+        currentMobileAudioId = null;
+      }
+    }
+
     // Method 1: Direct Mobile Audio Generation
     async function handleMobileAudioGeneration() {
       const btn = document.getElementById('btn-generate-audio');
@@ -1510,66 +1792,35 @@
       btn.innerHTML = '<span>⏳</span> Synthesizing Speech...';
 
       try {
-        let audioBase64 = '';
+        let chunks = [];
+        let reusedCount = 0;
+        let synthesizedCount = 0;
 
-        if (ttsProvider === 'google') {
-          // Google Cloud TTS
-          let ssml = '<speak><s>MindSpur Daily Reviews. ' + dueItems.length + ' reviews due today. Let us begin.</s><break time="2s"/>';
-          dueItems.forEach((it, idx) => {
-            const title = (it.sectionTitle || 'Concept').replace(/&/g, '&amp;').replace(/</g, '&lt;');
-            const origin = (includeDocOrigin && it.docTitle) ? (' From ' + it.docTitle.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '.') : '';
-            ssml += '<s>Review ' + (idx + 1) + ': ' + title + '.' + origin + '</s>';
-            ssml += '<break time="' + (pauseSeconds || 3) + 's"/>';
-            if (it.notes) ssml += '<s>Notes: ' + it.notes.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</s>';
-            ssml += '<break time="2s"/>';
-          });
-          ssml += '<s>All reviews completed!</s></speak>';
-
-          const res = await fetch('https://texttospeech.googleapis.com/v1/text:synthesize?key=' + encodeURIComponent(ttsApiKey), {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              input: { ssml },
-              voice: { languageCode: 'en-US', name: ttsVoice || 'en-US-Neural2-F' },
-              audioConfig: { audioEncoding: 'MP3' }
-            })
-          });
-          if (!res.ok) throw new Error('Google TTS error: ' + res.status);
-          const data = await res.json();
-          audioBase64 = data.audioContent;
-        } else {
-          // OpenAI TTS
-          let script = 'MindSpur Daily Reviews. You have ' + dueItems.length + ' reviews due today. Let us begin.\n\n';
-          dueItems.forEach((it, idx) => {
-            const title = it.sectionTitle || 'Concept';
-            const origin = (includeDocOrigin && it.docTitle) ? (' From ' + it.docTitle + '.') : '';
-            script += 'Review ' + (idx + 1) + ': ' + title + '.' + origin + '\n\n...\n\n';
-            if (it.notes) script += 'Notes: ' + it.notes.trim() + '\n\n';
-            script += '----\n\n';
-          });
-          script += 'You have completed all audio reviews for today. Great job!';
-
-          const res = await fetch('https://api.openai.com/v1/audio/speech', {
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + ttsApiKey,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              model: 'tts-1',
-              input: script,
-              voice: ttsVoice || 'nova',
-              response_format: 'mp3'
-            })
-          });
-          if (!res.ok) throw new Error('OpenAI TTS error: ' + res.status);
-          const buffer = await res.arrayBuffer();
-          const bytes = new Uint8Array(buffer);
-          let binary = '';
-          for (let i = 0; i < bytes.length; i += 8192) {
-            binary += String.fromCharCode.apply(null, bytes.subarray(i, Math.min(i + 8192, bytes.length)));
+        for (const it of dueItems) {
+          const config = {
+            ttsProvider: ttsProvider || 'openai',
+            ttsApiKey,
+            ttsVoice: ttsVoice || (ttsProvider === 'openai' ? 'nova' : 'en-US-Neural2-F'),
+            pauseSeconds: pauseSeconds !== undefined ? pauseSeconds : 3,
+            includeDocOrigin: Boolean(includeDocOrigin)
+          };
+          const chunkKey = computeMobileReminderAudioHash(it, config);
+          let chunkB64 = MobileAudioChunkCache.getChunk(chunkKey);
+          if (chunkB64) {
+            reusedCount++;
+          } else {
+            chunkB64 = await synthesizeSingleReminderAudioMobile(it, config.ttsProvider, config);
+            MobileAudioChunkCache.saveChunk(chunkKey, chunkB64);
+            synthesizedCount++;
           }
-          audioBase64 = btoa(binary);
+          if (chunkB64) chunks.push(chunkB64);
+        }
+
+        let audioBase64 = '';
+        if (chunks.length === 1) {
+          audioBase64 = chunks[0];
+        } else if (chunks.length > 1) {
+          audioBase64 = concatMp3Base64List(chunks);
         }
 
         btn.innerHTML = '<span>⏳</span> Uploading to GitHub...';
@@ -1709,7 +1960,8 @@
         player.src = 'data:audio/mp3;base64,' + audioBase64;
         playerBox.classList.remove('hidden');
 
-        showToast('🎙️ Episode Published! (' + dueItems.length + ' items)');
+        const statsMsg = reusedCount > 0 ? (' (' + reusedCount + ' reused from cache, ' + synthesizedCount + ' new)') : '';
+        showToast('🎙️ Episode Published! (' + dueItems.length + ' items' + statsMsg + ')');
       } catch (err) {
         alert('Audio Generation error: ' + err.message);
       } finally {
@@ -1903,9 +2155,14 @@
             '<option value="intensive"' + (item.presetKey === 'intensive' ? ' selected' : '') + '>⚡ Intensive</option>' +
             '<option value="longterm"' + (item.presetKey === 'longterm' ? ' selected' : '') + '>⏳ Long-Term</option>' +
           '</select>' +
-          '<button class="badge" style="background:none; border:none; color:#a855f7; cursor:pointer;" id="toggle-audio-' + item.id + '">' +
-            (item.includeInPodcast !== false ? '🎧 Audio ON' : '🔇 Audio OFF') +
-          '</button>' +
+          '<div style="display:flex; gap:6px; align-items:center;">' +
+            '<button class="badge btn-listen-card" id="btn-listen-' + item.id + '">' +
+              '<span class="listen-icon">🔊</span><span class="listen-label">Listen</span>' +
+            '</button>' +
+            '<button class="badge" style="background:none; border:none; color:#a855f7; cursor:pointer;" id="toggle-audio-' + item.id + '">' +
+              (item.includeInPodcast !== false ? '🎧 Audio ON' : '🔇 Audio OFF') +
+            '</button>' +
+          '</div>' +
         '</div>' +
 
         '<div class="card-notes-foldable">' +
@@ -1952,6 +2209,15 @@
         showToast('🎯 Curve updated');
         if (authConfig.githubToken) setTimeout(performSync, 500);
       });
+
+      // Individual Listen button listener (lazy audio synthesis)
+      const listenBtn = card.querySelector('#btn-listen-' + item.id);
+      if (listenBtn) {
+        listenBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          handlePlayCardAudioMobile(item, listenBtn);
+        });
+      }
 
       // Audio toggle
       const audioBtn = card.querySelector('#toggle-audio-' + item.id);
