@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T06:38:50.293Z",
+  "updatedAt": "2026-10-05T06:38:54.139Z",
   "items": [
     {
       "calendarEventId": null,
@@ -57,7 +57,6 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
