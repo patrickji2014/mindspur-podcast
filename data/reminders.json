@@ -1,22 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T23:13:07.581Z",
+  "updatedAt": "2026-10-05T23:17:03.831Z",
   "items": [
     {
-      "id": "rem_1791241987392_nztsi0",
-      "docId": "rem_1791241987392_bn1v3",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
+      "id": "rem_web_1791242223620_t850r",
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Stateful computations — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
+      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
       "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "How to use jax jit on class method",
+      "tabName": "docs.jax.dev",
+      "contentType": "webpage",
+      "webAnchor": {
+        "selectedText": "A function still counts as pure if it only uses refs internally",
+        "prologue": "That leaves reasoning, and the main new thing to learn is how refs interact with transformations.",
+        "epilogue": ". More precisely, a function is impure if and only if it takes a ref as"
+      },
+      "sectionTitle": "if a function use refs, is it still pure",
       "headingId": null,
-      "notes": "```py\n@jax.tree_util.register_dataclass\n@dataclasses.dataclass\nclass MyDataClass:\n  a: int\n  mul: int = jax.tree.static()\n  def cal(self, b):\n    return self.a if not self.mul else self.a * b\n```",
-      "tags": [],
-      "mode": "self_grading",
+      "notes": "A function still counts as pure if it only use refs internally, for example, it only create new refs inside the function rather than pass in through the parameters.",
+      "tags": [
+        "web"
+      ],
+      "mode": "simple",
       "presetKey": "standard",
       "intervals": [
         1,
@@ -29,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T23:13:07.392Z",
-      "updatedAt": "2026-10-05T23:13:07.408Z",
-      "notesUpdatedAt": "2026-10-05T23:13:07.392Z",
+      "createdAt": "2026-10-05T23:17:03.620Z",
+      "updatedAt": "2026-10-05T23:17:03.633Z",
+      "notesUpdatedAt": "2026-10-05T23:17:03.620Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -39,12 +45,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T23:13:07.392Z",
+          "timestamp": "2026-10-05T23:17:03.620Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T23:13:07.392Z",
+      "currentStage": 0,
+      "docId": "rem_1791241987392_bn1v3",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:13:07.392Z"
+        }
+      ],
+      "id": "rem_1791241987392_nztsi0",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "```py\n@jax.tree_util.register_dataclass\n@dataclasses.dataclass\nclass MyDataClass:\n  a: int\n  mul: int = jax.tree.static()\n  def cal(self, b):\n    return self.a if not self.mul else self.a * b\n```",
+      "notesUpdatedAt": "2026-10-05T23:13:07.392Z",
+      "presetKey": "standard",
+      "sectionTitle": "How to use jax jit on class method",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T23:13:07.408Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
