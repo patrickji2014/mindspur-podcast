@@ -808,6 +808,10 @@
       <button id="btn-copy-setup-link" class="btn-generate-audio" style="margin-top: 6px; background: rgba(99, 102, 241, 0.15); border: 1px solid var(--accent-indigo); color: #c7d2fe;">
         🔗 Copy Home Screen Setup Link
       </button>
+
+      <button id="btn-paste-setup-link" class="btn-generate-audio" style="margin-top: 6px; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-emerald); color: #a7f3d0;">
+        📋 Paste Pairing URL / Link
+      </button>
     </div>
   </div>
 
@@ -1092,6 +1096,33 @@
             });
           } else {
             prompt('Copy this setup link:', url);
+          }
+        });
+      }
+
+      const btnPasteLink = document.getElementById('btn-paste-setup-link');
+      if (btnPasteLink) {
+        btnPasteLink.addEventListener('click', async () => {
+          let text = '';
+          if (navigator.clipboard && navigator.clipboard.readText) {
+            try {
+              text = await navigator.clipboard.readText();
+            } catch (_) {}
+          }
+          if (!text || !text.includes('auth=')) {
+            text = prompt('Paste your iPhone Pairing URL (from laptop dashboard):', text || '');
+          }
+          if (text && text.includes('auth=')) {
+            const hashIdx = text.indexOf('#');
+            const hash = hashIdx !== -1 ? text.substring(hashIdx) : text;
+            window.location.hash = hash;
+            loadAuthFromHashOrStorage();
+            modal.classList.remove('show');
+            showToast('✅ Paired & loaded credentials!');
+            render();
+            if (authConfig.githubToken) performSync();
+          } else if (text) {
+            showToast('⚠️ No valid auth credentials found in link');
           }
         });
       }
