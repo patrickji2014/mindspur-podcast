@@ -1,7 +1,57 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T21:58:02.345Z",
+  "updatedAt": "2026-10-05T22:03:23.729Z",
   "items": [
+    {
+      "id": "rem_web_1791237803532_0kcx3",
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#jit-and-caching",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#jit-and-caching",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "contentType": "webpage",
+      "webAnchor": {
+        "selectedText": "The cache key",
+        "prologue": "jax.jit(g) . When f is first invoked, it gets compiled and the resulting executable is cached.",
+        "epilogue": "includes: the JAX types of the arguments — new shapes or dtypes trigger a fresh trace"
+      },
+      "sectionTitle": "what jax jit cache key composed of",
+      "headingId": null,
+      "notes": "- `dtype` and `shape`\n- 'static_argnames`\n- function signature. So **DONT** use the `tmp_f=partial()` inside a jit function as temp function has a different signature everytime",
+      "tags": [
+        "web"
+      ],
+      "mode": "simple",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": false,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-05T22:03:23.533Z",
+      "updatedAt": "2026-10-05T22:03:23.548Z",
+      "notesUpdatedAt": "2026-10-05T22:03:23.533Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-05T22:03:23.533Z",
+          "stage": 0,
+          "nextDate": "2026-10-06T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
     {
       "calendarEventId": null,
       "contentType": "webpage",
