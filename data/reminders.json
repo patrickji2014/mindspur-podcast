@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T19:54:12.750Z",
+  "updatedAt": "2026-10-05T19:54:26.410Z",
   "items": [
     {
       "calendarEventId": null,
@@ -188,11 +188,11 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T13:54:47.461Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791208487460_cqu0o",
       "docTitle": "General Reminder",
       "docUrl": "",
-      "easeFactor": 2.5,
+      "easeFactor": 2.65,
       "headingId": null,
       "history": [
         {
@@ -212,10 +212,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-05T19:54:25.514Z",
+      "lastReviewedDate": "2026-10-05T19:54:25.514Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T19:54:25.514Z",
       "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
       "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
       "presetKey": "standard",
@@ -225,7 +225,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T13:54:47.478Z",
+      "updatedAt": "2026-10-05T19:54:25.514Z",
       "webAnchor": null
     },
     {
