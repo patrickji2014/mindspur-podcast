@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T21:50:39.523Z",
+  "updatedAt": "2026-10-05T21:58:02.345Z",
   "items": [
     {
       "calendarEventId": null,
@@ -34,8 +34,8 @@
       "lastReviewedDate": null,
       "mode": "simple",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "- `jax.lax.select` 3 params are all `ArrayLike`\n- `jnp.where` is similar to `jax.lax.select` but more flexible on param type",
-      "notesUpdatedAt": "2026-10-05T21:49:27.811Z",
+      "notes": "- `jax.lax.select` 3 params are all `ArrayLike`\n- `jnp.where` is similar to `jax.lax.select` but more flexible on param type\n- `jax.lax.select(jnp.bool, ArrayLike, ArrayLike)` is also okay\n```py\nselects = jnp.round(selects).astype(jnp.int32)\nselects = selects.astype(jnp.bool)\njax.lax.select(selects, xs, ys)\n```",
+      "notesUpdatedAt": "2026-10-05T21:58:01.944Z",
       "presetKey": "standard",
       "sectionTitle": "what is jax.lax.select signature",
       "tabId": null,
@@ -45,7 +45,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.select.html#jax.lax.select",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T21:49:27.811Z",
+      "updatedAt": "2026-10-05T21:58:01.944Z",
       "webAnchor": {
         "epilogue": "# jax.lax. select ( pred , on_true , on_false ) [source] # Selects between two branches",
         "prologue": "Configuration Options API Reference jax.lax module jax.lax.select .rst .pdf Light Dark System Settings jax.lax.select Contents select()",
