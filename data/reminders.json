@@ -1,7 +1,51 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T23:19:36.342Z",
+  "updatedAt": "2026-10-05T23:24:36.847Z",
   "items": [
+    {
+      "id": "rem_1791242676472_2h2hmd",
+      "docId": "rem_1791242676471_w0gl0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "targetUrl": "",
+      "tabId": null,
+      "tabName": null,
+      "contentType": "note",
+      "webAnchor": null,
+      "sectionTitle": "jax Array's at operator",
+      "headingId": null,
+      "notes": "it's `array.at[]` not `array.at()`",
+      "tags": [],
+      "mode": "self_grading",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": false,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-05T23:24:36.472Z",
+      "updatedAt": "2026-10-05T23:24:36.488Z",
+      "notesUpdatedAt": "2026-10-05T23:24:36.472Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-05T23:24:36.472Z",
+          "stage": 0,
+          "nextDate": "2026-10-06T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
     {
       "calendarEventId": null,
       "contentType": "webpage",
