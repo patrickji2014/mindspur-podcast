@@ -1,60 +1,18 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T06:00:50.197Z",
-  "items": [
-    {
-      "calendarEventId": null,
-      "contentType": "gdoc",
-      "createdAt": "2026-10-03T12:13:25.249Z",
-      "currentStage": 2,
-      "docId": "1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o",
-      "docTitle": "TestTheReviewTool",
-      "docUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit",
-      "easeFactor": 2.5,
-      "headingId": "h.6s1shhq1ryzn",
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-04T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-03T12:13:25.249Z"
-        }
-      ],
-      "id": "rem_1791029605249_zyty63",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-04T16:45:01.737Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-12T06:00:21.909Z",
-      "notes": "test comment for gdoc reminder",
-      "presetKey": "standard",
-      "sectionTitle": "header2",
-      "tabId": "t.0",
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
-      "totalStages": 5,
-      "webAnchor": null,
-      "lastReviewedDate": "2026-10-05T06:00:21.909Z",
-      "updatedAt": "2026-10-05T06:00:21.909Z"
-    }
-  ],
+  "updatedAt": "2026-10-05T06:00:55.993Z",
+  "items": [],
   "deletedIds": [
     "rem_web_1791029404566_da86f",
     "rem_1791029371227_6nsftg",
     "rem_web_1791029546519_abcrw",
     "rem_web_1791157661836_zpil8",
-    "rem_web_1791029663113_xiz8h"
+    "rem_web_1791029663113_xiz8h",
+    "rem_1791029605249_zyty63"
   ],
   "settings": {
     "reviewMode": "self_grading",
+    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
