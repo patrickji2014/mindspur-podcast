@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T22:54:11.248Z",
+  "updatedAt": "2026-10-05T22:58:38.959Z",
   "items": [
     {
-      "id": "rem_web_1791240851044_a71zr",
+      "id": "rem_web_1791241118592_4xk5v",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.lax.top_k — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
+      "docTitle": "jax.numpy.argsort — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "values, indices = jax.lax.top_k(x, 3)",
-        "prologue": "= jnp . array ([ 9. , 3. , 6. , 4. , 10. ]) >>>",
-        "epilogue": ">>> values Array([10., 9., 6.], dtype=float32) >>> indices Array([4, 0, 2], dtype=int32) Copy to clipboard previous"
+        "selectedText": "jax.numpy.argsort",
+        "prologue": "API Reference jax.numpy module jax.numpy.argsort .rst .pdf Light Dark System Settings jax.numpy.argsort Contents argsort() jax.numpy.argsort #",
+        "epilogue": "( a , axis = -1 , * , kind = None , order = None"
       },
-      "sectionTitle": "what is jax lax top_k signature",
+      "sectionTitle": "jax.numpy.argsort",
       "headingId": null,
-      "notes": "- `values, indices = jax.lax.top_k(x, 3)`\n- need the `k` and `axis` parameter",
+      "notes": "```py\nx = jnp.array([[2, 1, 3],\n               [6, 4, 3]])\nindices = jnp.argsort(x, axis=1)\nindices\njnp.take_along_axis(x, indices, axis=1)\n```\n- jnp.sort has similar signature but directly return sorted array",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T22:54:11.045Z",
-      "updatedAt": "2026-10-05T22:54:11.062Z",
-      "notesUpdatedAt": "2026-10-05T22:54:11.045Z",
+      "createdAt": "2026-10-05T22:58:38.593Z",
+      "updatedAt": "2026-10-05T22:58:38.608Z",
+      "notesUpdatedAt": "2026-10-05T22:58:38.593Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T22:54:11.045Z",
+          "timestamp": "2026-10-05T22:58:38.593Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T22:54:11.045Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "jax.lax.top_k — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T22:54:11.045Z"
+        }
+      ],
+      "id": "rem_web_1791240851044_a71zr",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "- `values, indices = jax.lax.top_k(x, 3)`\n- need the `k` and `axis` parameter",
+      "notesUpdatedAt": "2026-10-05T22:54:11.045Z",
+      "presetKey": "standard",
+      "sectionTitle": "what is jax lax top_k signature",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T22:54:11.062Z",
+      "webAnchor": {
+        "epilogue": ">>> values Array([10., 9., 6.], dtype=float32) >>> indices Array([4, 0, 2], dtype=int32) Copy to clipboard previous",
+        "prologue": "= jnp . array ([ 9. , 3. , 6. , 4. , 10. ]) >>>",
+        "selectedText": "values, indices = jax.lax.top_k(x, 3)"
+      }
     },
     {
       "calendarEventId": null,
