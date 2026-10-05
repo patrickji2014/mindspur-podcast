@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T13:18:55.113Z",
+  "updatedAt": "2026-10-05T13:19:19.919Z",
   "items": [
     {
       "calendarEventId": null,
@@ -34,8 +34,8 @@
       "lastReviewedDate": null,
       "mode": "self_grading",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "```\nit has start_index, slice_size and axis parameters. The slice_in_dim function has start_index, limit_index, stride and axis parameters instead. The dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
-      "notesUpdatedAt": "2026-10-05T13:18:54.845Z",
+      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
+      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
       "presetKey": "standard",
       "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
       "tabId": null,
@@ -43,7 +43,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T13:18:54.845Z",
+      "updatedAt": "2026-10-05T13:19:19.726Z",
       "webAnchor": null
     },
     {
