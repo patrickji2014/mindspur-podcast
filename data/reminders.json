@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T19:06:25.075Z",
+  "updatedAt": "2026-10-05T19:07:43.901Z",
   "items": [
     {
-      "id": "rem_web_1791227184680_udfs6",
+      "id": "rem_web_1791227263616_vzx5j",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Control flow and logical operators with jit — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
@@ -12,13 +12,13 @@
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "fori_loop",
-        "prologue": "a loop, use scan (fixed length), or fori_loop with static bounds (which lowers to scan ).",
-        "epilogue": "# Python equivalent: def fori_loop ( start , stop , body_fun , init_val ): val ="
+        "selectedText": "scan takes an unroll",
+        "prologue": "training loop’s steps or an RNN’s time axis inside jit . For fine-tuning that compile-time/run-time trade,",
+        "epilogue": "parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and"
       },
-      "sectionTitle": "fori_loop signature",
+      "sectionTitle": "scan takes an unroll param",
       "headingId": null,
-      "notes": "answer is start, end, function and init value. the function should accept an index and carry.",
+      "notes": "For fine-tuning that compile-time/run-time trade, scan takes an unroll parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and unroll=True unrolls the loop entirely.",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T19:06:24.680Z",
-      "updatedAt": "2026-10-05T19:06:24.690Z",
-      "notesUpdatedAt": "2026-10-05T19:06:24.680Z",
+      "createdAt": "2026-10-05T19:07:43.616Z",
+      "updatedAt": "2026-10-05T19:07:43.628Z",
+      "notesUpdatedAt": "2026-10-05T19:07:43.616Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T19:06:24.680Z",
+          "timestamp": "2026-10-05T19:07:43.616Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T19:06:24.680Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T19:06:24.680Z"
+        }
+      ],
+      "id": "rem_web_1791227184680_udfs6",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "answer is start, end, function and init value. the function should accept an index and carry.",
+      "notesUpdatedAt": "2026-10-05T19:06:24.680Z",
+      "presetKey": "standard",
+      "sectionTitle": "fori_loop signature",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T19:06:24.690Z",
+      "webAnchor": {
+        "epilogue": "# Python equivalent: def fori_loop ( start , stop , body_fun , init_val ): val =",
+        "prologue": "a loop, use scan (fixed length), or fori_loop with static bounds (which lowers to scan ).",
+        "selectedText": "fori_loop"
+      }
     },
     {
       "calendarEventId": null,
