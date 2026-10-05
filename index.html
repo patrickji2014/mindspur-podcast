@@ -821,6 +821,10 @@
         💾 Save Settings
       </button>
 
+      <button id="btn-force-reload" class="btn-generate-audio" style="margin-top: 6px; background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; color: #93c5fd;">
+        🔄 Force Reload App (Bust Cache)
+      </button>
+
       <button id="btn-copy-setup-link" class="btn-generate-audio" style="margin-top: 6px; background: rgba(99, 102, 241, 0.15); border: 1px solid var(--accent-indigo); color: #c7d2fe;">
         🔗 Copy Home Screen Setup Link
       </button>
@@ -1140,6 +1144,16 @@
           } else if (text) {
             showToast('⚠️ No valid auth credentials found in link');
           }
+        });
+      }
+
+      const btnForceReload = document.getElementById('btn-force-reload');
+      if (btnForceReload) {
+        btnForceReload.addEventListener('click', () => {
+          showToast('Refreshing to latest version...');
+          setTimeout(() => {
+            window.location.href = window.location.origin + window.location.pathname + '?_t=' + Date.now() + (window.location.hash || '');
+          }, 300);
         });
       }
 
@@ -2197,7 +2211,7 @@
             )
           ) : '<span style="color:#34d399; font-weight:700; font-size:13px;">🏆 Mastered Concept</span>') +
 
-          (item.targetUrl ? '<a href="' + item.targetUrl + '" target="_blank" class="btn-icon-action" title="Open Document">↗</a>' : '') +
+          ((item.targetUrl || item.docUrl) ? '<a href="' + (item.targetUrl || item.docUrl) + '" target="_blank" class="btn-icon-action" title="Open Document">↗</a>' : '') +
           '<button class="btn-icon-action btn-del" data-id="' + item.id + '" title="Delete">🗑️</button>' +
         '</div>';
 
