@@ -1,7 +1,57 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:52:31.311Z",
+  "updatedAt": "2026-10-05T17:52:53.538Z",
   "items": [
+    {
+      "id": "rem_web_1791222773364_l36x8",
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "contentType": "webpage",
+      "webAnchor": {
+        "selectedText": "concrete and abstract meshes.",
+        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
+        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of"
+      },
+      "sectionTitle": "concrete and abstract meshes.",
+      "headingId": null,
+      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "tags": [
+        "web"
+      ],
+      "mode": "simple",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": false,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-05T17:52:53.365Z",
+      "updatedAt": "2026-10-05T17:52:53.366Z",
+      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-05T17:52:53.365Z",
+          "stage": 0,
+          "nextDate": "2026-10-06T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
     {
       "calendarEventId": null,
       "contentType": "webpage",
