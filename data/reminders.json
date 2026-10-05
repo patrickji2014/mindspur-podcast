@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T06:40:57.518Z",
+  "updatedAt": "2026-10-05T06:41:05.300Z",
   "items": [
     {
       "calendarEventId": null,
@@ -45,50 +45,6 @@
       "totalStages": 5,
       "updatedAt": "2026-10-05T06:38:34.914Z",
       "webAnchor": null
-    },
-    {
-      "id": "rem_1791182433854_baxcgh",
-      "docId": "rem_1791182433853_5hx8i",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "Test Code Format",
-      "headingId": null,
-      "notes": "```py\n@jax.jit\n@jax.shard_map(mesh=mesh, in_specs=(spec_X, spec_X), out_specs=spec_X, check_vma=False)\ndef pshuffle_mm(lhs, rhs):\n    axis_size = jax.lax.axis_size('X')\n    axis_index = jax.lax.axis_index('X')\n    slice_size = lhs.shape[1] // axis_size\n\n    result = jax.lax.full((lhs.shape[0], rhs.shape[1]), 0.0, dtype=lhs.dtype)\n\n    for i in range(axis_size):\n        offset = (i + axis_index) % axis_size\n        lhs_slice = jax.lax.dynamic_slice_in_dim(lhs, start_index=offset*slice_size, slice_size=slice_size, axis=1)\n        result = result + lhs_slice@rhs\n        rhs = jax.lax.pshuffle(rhs, perm=[(i + 1) % axis_size for i in range(axis_size)], axis_name='X')\n    return result\n\npshuffle_result = pshuffle_mm(lhs, rhs)\ntree_all(tree_map(partial(np.allclose, rtol=0.001, atol=0.001), expected_matmul, pshuffle_result))\n```",
-      "tags": [],
-      "mode": "self_grading",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T06:40:33.853Z",
-      "updatedAt": "2026-10-05T06:40:33.865Z",
-      "notesUpdatedAt": "2026-10-05T06:40:33.853Z",
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "nextReviewDate": "2026-10-05T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T06:40:33.853Z",
-          "stage": 0,
-          "nextDate": "2026-10-05T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
     }
   ],
   "deletedIds": [
@@ -97,7 +53,8 @@
     "rem_web_1791029546519_abcrw",
     "rem_web_1791157661836_zpil8",
     "rem_web_1791029663113_xiz8h",
-    "rem_1791029605249_zyty63"
+    "rem_1791029605249_zyty63",
+    "rem_1791182433854_baxcgh"
   ],
   "settings": {
     "reviewMode": "self_grading",
