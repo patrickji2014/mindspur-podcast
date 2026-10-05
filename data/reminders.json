@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T13:48:57.028Z",
+  "updatedAt": "2026-10-05T13:54:47.753Z",
   "items": [
     {
-      "id": "rem_1791208136746_ey8wgc",
-      "docId": "rem_1791208136746_ryrby",
+      "id": "rem_1791208487461_h742oy",
+      "docId": "rem_1791208487460_cqu0o",
       "docTitle": "General Reminder",
       "docUrl": "",
       "targetUrl": "",
@@ -12,9 +12,9 @@
       "tabName": null,
       "contentType": "note",
       "webAnchor": null,
-      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
+      "sectionTitle": "jax lax pmean behavior",
       "headingId": null,
-      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
+      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
       "tags": [],
       "mode": "self_grading",
       "presetKey": "standard",
@@ -29,9 +29,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T13:48:56.746Z",
-      "updatedAt": "2026-10-05T13:48:56.757Z",
-      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
+      "createdAt": "2026-10-05T13:54:47.461Z",
+      "updatedAt": "2026-10-05T13:54:47.478Z",
+      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -39,12 +39,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T13:48:56.746Z",
+          "timestamp": "2026-10-05T13:54:47.461Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:48:56.746Z",
+      "currentStage": 0,
+      "docId": "rem_1791208136746_ryrby",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:48:56.746Z"
+        }
+      ],
+      "id": "rem_1791208136746_ey8wgc",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
+      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:48:56.757Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
