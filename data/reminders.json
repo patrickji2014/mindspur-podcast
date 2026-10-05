@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:32:52.699Z",
+  "updatedAt": "2026-10-05T17:34:48.034Z",
   "items": [
     {
-      "id": "rem_web_1791221572374_3nhbv",
+      "id": "rem_web_1791221687733_ssar9",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#:~:text=names%2C%20and%20axis%20types%20reflecting%20the%20mode%20of%20each%20axis%3A%20from%20__future__%20import%20annotations%20import%20enum-,class%20AbstractMesh,-%3A%20axis_sizes%20%3A%20tuple%20%5B%20int%20%2C%20...%20%5D%20axis_names%20%3A%20tuple%20%5B%20str%20%2C%20...&rem_id=rem_web_1791221572374_3nhbv",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#:~:text=to%20clipboard%20float32%5B8%40X%2C16%5D%20True%20Copy%20to%20clipboard%20For%20details%2C%20see%20the%20Manual%20parallelism%20with%20shard_map%20tutorial.-,Device%20local%20layout,-%23%20A%20sharding%20answers%20%E2%80%9Cwhere%20do%20an%20array%E2%80%99s%20values%20live%3F%E2%80%9D%20at%20the%20scale%20of%20devices%3A%20how&rem_id=rem_web_1791221687733_ssar9",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "class AbstractMesh",
-        "prologue": "names, and axis types reflecting the mode of each axis: from __future__ import annotations import enum",
-        "epilogue": ": axis_sizes : tuple [ int , ... ] axis_names : tuple [ str , ..."
+        "selectedText": "Device-local layout",
+        "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
+        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how"
       },
-      "sectionTitle": "class AbstractMesh",
+      "sectionTitle": "Device-local layout",
       "headingId": null,
-      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T17:32:52.374Z",
-      "updatedAt": "2026-10-05T17:32:52.387Z",
-      "notesUpdatedAt": "2026-10-05T17:32:52.374Z",
+      "createdAt": "2026-10-05T17:34:47.733Z",
+      "updatedAt": "2026-10-05T17:34:47.742Z",
+      "notesUpdatedAt": "2026-10-05T17:34:47.733Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T17:32:52.374Z",
+          "timestamp": "2026-10-05T17:34:47.733Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:32:52.374Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:32:52.374Z"
+        }
+      ],
+      "id": "rem_web_1791221572374_3nhbv",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "notesUpdatedAt": "2026-10-05T17:32:52.374Z",
+      "presetKey": "standard",
+      "sectionTitle": "class AbstractMesh",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#:~:text=names%2C%20and%20axis%20types%20reflecting%20the%20mode%20of%20each%20axis%3A%20from%20__future__%20import%20annotations%20import%20enum-,class%20AbstractMesh,-%3A%20axis_sizes%20%3A%20tuple%20%5B%20int%20%2C%20...%20%5D%20axis_names%20%3A%20tuple%20%5B%20str%20%2C%20...&rem_id=rem_web_1791221572374_3nhbv",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T17:32:52.387Z",
+      "webAnchor": {
+        "epilogue": ": axis_sizes : tuple [ int , ... ] axis_names : tuple [ str , ...",
+        "prologue": "names, and axis types reflecting the mode of each axis: from __future__ import annotations import enum",
+        "selectedText": "class AbstractMesh"
+      }
     },
     {
       "calendarEventId": null,
