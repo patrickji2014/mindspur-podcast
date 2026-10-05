@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T22:18:46.942Z",
+  "updatedAt": "2026-10-05T22:20:15.023Z",
   "items": [
     {
-      "id": "rem_web_1791238726750_mqlnu",
+      "id": "rem_web_1791238814676_l7swj",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Just-in-time compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell35",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell35",
+      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "jax.new_ref",
-        "prologue": "): x_ref [ ... ] = jnp . sin ( x_ref [ ... ]) x_ref =",
-        "epilogue": "( jnp . arange ( 3.0 )) print ( x_ref . unsafe_buffer_pointer (), x_ref ) sin_inplace"
+        "selectedText": "Donating an argument that’s\na pytree donates every array in it",
+        "prologue": "= params , state = state ) Copy to clipboard Pytree arguments donate all their buffers.",
+        "epilogue": ": def add_ones ( xs : list [ jax . Array ]): return [ x +"
       },
-      "sectionTitle": "jax array reference",
+      "sectionTitle": "what happen if donate an argument that’s a pytree",
       "headingId": null,
-      "notes": "- `jax.new_ref(Array)` for creating an array reference\n- `Array.unsafe_buffer_pointer()` for the underlying pointer",
+      "notes": "Donating an argument that’s a pytree donates every array in it",
       "tags": [
         "web"
       ],
@@ -31,13 +31,13 @@
         14,
         30
       ],
-      "includeInPodcast": false,
+      "includeInPodcast": true,
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T22:18:46.750Z",
-      "updatedAt": "2026-10-05T22:18:46.761Z",
-      "notesUpdatedAt": "2026-10-05T22:18:46.750Z",
+      "createdAt": "2026-10-05T22:20:14.676Z",
+      "updatedAt": "2026-10-05T22:20:14.690Z",
+      "notesUpdatedAt": "2026-10-05T22:20:14.676Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T22:18:46.750Z",
+          "timestamp": "2026-10-05T22:20:14.676Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T22:18:46.750Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell35",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T22:18:46.750Z"
+        }
+      ],
+      "id": "rem_web_1791238726750_mqlnu",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "- `jax.new_ref(Array)` for creating an array reference\n- `Array.unsafe_buffer_pointer()` for the underlying pointer",
+      "notesUpdatedAt": "2026-10-05T22:18:46.750Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax array reference",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell35",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T22:18:46.761Z",
+      "webAnchor": {
+        "epilogue": "( jnp . arange ( 3.0 )) print ( x_ref . unsafe_buffer_pointer (), x_ref ) sin_inplace",
+        "prologue": "): x_ref [ ... ] = jnp . sin ( x_ref [ ... ]) x_ref =",
+        "selectedText": "jax.new_ref"
+      }
     },
     {
       "calendarEventId": null,
