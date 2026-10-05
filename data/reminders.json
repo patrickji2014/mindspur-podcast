@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T05:38:56.136Z",
+  "updatedAt": "2026-10-05T05:39:08.060Z",
   "items": [
     {
       "calendarEventId": null,
@@ -31,7 +31,6 @@
       ],
       "isMastered": false,
       "lastReviewedAt": "2026-10-04T16:45:01.737Z",
-      "lastReviewedDate": "2026-10-04T16:45:01.737Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-07T16:45:01.737Z",
       "notes": "test comment for gdoc reminder",
@@ -42,8 +41,9 @@
       "tags": [],
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
-      "updatedAt": "2026-10-04T16:45:01.737Z",
-      "webAnchor": null
+      "webAnchor": null,
+      "lastReviewedDate": "2026-10-04T16:45:01.737Z",
+      "updatedAt": "2026-10-04T16:45:01.737Z"
     }
   ],
   "deletedIds": [
@@ -55,7 +55,6 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
