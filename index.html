@@ -6,6 +6,9 @@
   <title>MindSpur - Spaced Reviews</title>
   
   <!-- iOS PWA Optimizations -->
+  <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="expires" content="0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="MindSpur">
@@ -18,6 +21,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Native Pull-to-Refresh Indicator */
+    .pull-refresh-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 0;
+      overflow: hidden;
+      font-size: 13px;
+      font-weight: 600;
+      color: #818cf8;
+      background: rgba(99, 102, 241, 0.08);
+      border-radius: var(--radius-sm);
+      transition: height 0.2s ease, opacity 0.2s ease, margin-bottom 0.2s ease;
+      opacity: 0;
+      margin-bottom: 0;
+      user-select: none;
+    }
+    .pull-refresh-indicator.visible {
+      height: 40px;
+      opacity: 1;
+      margin-bottom: 4px;
+    }
+    .pull-refresh-indicator.refreshing .pull-icon {
+      animation: spin 0.8s linear infinite;
+    }
     :root {
       --bg-base: #0b0f17;
       --bg-card: #151c2c;
@@ -631,6 +660,12 @@
       </div>
     </header>
 
+    <!-- Pull to Refresh Bar (Native Touch Gestures on iOS) -->
+    <div id="pull-refresh-indicator" class="pull-refresh-indicator">
+      <span class="pull-icon" id="pull-icon">↓</span>
+      <span class="pull-text" id="pull-text">Pull down to refresh</span>
+    </div>
+
     <!-- Method 1: Direct Mobile Audio Generation Banner -->
     <section class="audio-generator-card">
       <div class="audio-header">
@@ -769,6 +804,10 @@
       <button id="btn-save-settings" class="btn-generate-audio" style="margin-top: 8px;">
         💾 Save Settings
       </button>
+
+      <button id="btn-copy-setup-link" class="btn-generate-audio" style="margin-top: 6px; background: rgba(99, 102, 241, 0.15); border: 1px solid var(--accent-indigo); color: #c7d2fe;">
+        🔗 Copy Home Screen Setup Link
+      </button>
     </div>
   </div>
 
@@ -824,8 +863,66 @@
       } else if (isCriOS) {
         hintText.innerHTML = '📱 <strong>iPhone Chrome</strong>: Tap <strong>Menu (⋯)</strong> or Share → <strong>Add to Home Screen</strong> for fullscreen app experience.';
       } else if (isSafari) {
-        hintText.innerHTML = '📱 <strong>iPhone Safari</strong>: Tap <strong>Share (⎋)</strong> → <strong>Add to Home Screen</strong> for fullscreen app experience.';
+        hintText.innerHTML = '📱 <strong>iPhone Safari</strong>: Tap <strong>Share (⎋)</strong> → <strong>Add to Home Screen</strong>. (Settings & credentials are automatically preserved in the home screen shortcut!)';
       }
+    }
+
+    function getSerializedAuthHash() {
+      if (!authConfig || !authConfig.githubToken) return '';
+      const payload = {
+        o: authConfig.githubOwner || '',
+        r: authConfig.githubRepo || 'mindspur-podcast',
+        t: authConfig.githubToken || '',
+        b: authConfig.githubApiBase || 'https://api.github.com',
+        p: authConfig.ttsProvider || 'openai',
+        k: authConfig.ttsApiKey || '',
+        v: authConfig.ttsVoice || 'nova',
+        s: authConfig.pauseSeconds || 3,
+        d: authConfig.includeDocOrigin === true,
+        m: authConfig.reviewMode || 'simple'
+      };
+      return '#auth=' + encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))));
+    }
+
+    function ensureAuthHashInUrl(force = false) {
+      if (!authConfig || !authConfig.githubToken) return;
+      if (!force && window.location.hash && window.location.hash.includes('auth=')) return;
+      const expectedHash = getSerializedAuthHash();
+      if (!expectedHash) return;
+      if (window.location.hash !== expectedHash) {
+        if (history.replaceState) {
+          history.replaceState(null, '', window.location.pathname + expectedHash);
+        } else {
+          window.location.hash = expectedHash;
+        }
+      }
+    }
+
+    function updateManifestStartUrl() {
+      try {
+        const manifestEl = document.getElementById('app-manifest') || document.querySelector('link[rel="manifest"]');
+        if (!manifestEl) return;
+        const currentHash = window.location.hash || getSerializedAuthHash();
+        const startUrl = window.location.pathname + (currentHash || '');
+        const manifestObj = {
+          name: 'MindSpur Reviews',
+          short_name: 'MindSpur',
+          description: 'Spaced repetition reviews and audio podcast flashcards for iPhone.',
+          start_url: startUrl,
+          display: 'standalone',
+          orientation: 'portrait-primary',
+          background_color: '#0b0f17',
+          theme_color: '#1e1b4b',
+          icons: [{
+            src: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="%236366f1"/><text x="50" y="66" font-size="52" text-anchor="middle">🧠</text></svg>',
+            sizes: '192x192 512x512',
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
+          }]
+        };
+        const blob = new Blob([JSON.stringify(manifestObj, null, 2)], { type: 'application/manifest+json' });
+        manifestEl.href = URL.createObjectURL(blob);
+      } catch (_) {}
     }
 
     // Initialize
@@ -842,6 +939,7 @@
     function loadAuthFromHashOrStorage() {
       // 1. Check URL hash for pairing payload from laptop QR code
       const hash = window.location.hash;
+      let hashLoaded = false;
       if (hash && hash.includes('auth=')) {
         try {
           const match = /#?auth=([^&]+)/.exec(hash);
@@ -862,19 +960,36 @@
               reviewMode: p.m || 'simple'
             };
             localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
-            // Strip auth hash from address bar for security
-            history.replaceState(null, '', window.location.pathname);
+            hashLoaded = true;
             showToast('✅ Paired successfully with your laptop!');
           }
         } catch (err) {
           console.error('Failed to parse auth hash:', err);
         }
-      } else {
+      }
+
+      if (!hashLoaded) {
         const stored = localStorage.getItem('mindspur_auth');
         if (stored) {
           try { authConfig = { ...authConfig, ...JSON.parse(stored) }; } catch (_) {}
         }
       }
+
+      // CRITICAL FOR IOS "ADD TO HOME SCREEN" CREDENTIAL PROPAGATION:
+      // Mobile Safari browser and iOS Standalone PWA run in strictly isolated WebKit storage containers.
+      // Mobile Safari localStorage is NEVER shared with the Standalone Home Screen PWA.
+      // Therefore, the bookmark URL itself is the ONLY bridge to transfer credentials to the Home Screen PWA.
+      if (!isStandalone) {
+        // While viewing in Safari browser, preserve/re-attach #auth=... in the URL bar
+        ensureAuthHashInUrl();
+        updateManifestStartUrl();
+      } else {
+        // Once launched as a Standalone PWA on the home screen, credentials are safe in standalone localStorage:
+        if (history.replaceState && window.location.hash) {
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
       populateSettingsModal();
     }
 
@@ -955,11 +1070,31 @@
         authConfig.ttsApiKey = document.getElementById('set-tts-key').value.trim();
         authConfig.ttsVoice = document.getElementById('set-tts-voice').value;
         localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+        if (!isStandalone) {
+          ensureAuthHashInUrl(true);
+          updateManifestStartUrl();
+        }
         modal.classList.remove('show');
         showToast('⚙️ Settings saved!');
         render();
         if (authConfig.githubToken) performSync();
       });
+
+      const btnCopyLink = document.getElementById('btn-copy-setup-link');
+      if (btnCopyLink) {
+        btnCopyLink.addEventListener('click', () => {
+          const url = window.location.origin + window.location.pathname + getSerializedAuthHash();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => {
+              showToast('📋 Setup link copied to clipboard!');
+            }).catch(() => {
+              prompt('Copy this setup link:', url);
+            });
+          } else {
+            prompt('Copy this setup link:', url);
+          }
+        });
+      }
 
       // Method 1: Generate Audio
       document.getElementById('btn-generate-audio').addEventListener('click', handleMobileAudioGeneration);
@@ -969,7 +1104,96 @@
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) performSync();
       });
+
+      // Bfcache support for Safari back/forward navigation
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+          loadAuthFromHashOrStorage();
+          loadLocalItems();
+          if (authConfig.githubToken && authConfig.githubOwner) {
+            performSync();
+          }
+        }
+      });
+
+      window.addEventListener('popstate', () => {
+        loadAuthFromHashOrStorage();
+        loadLocalItems();
+        if (authConfig.githubToken && authConfig.githubOwner) performSync();
+      });
+
+      window.addEventListener('hashchange', () => {
+        loadAuthFromHashOrStorage();
+        loadLocalItems();
+        if (authConfig.githubToken && authConfig.githubOwner) performSync();
+      });
+
       setInterval(performSync, 60000);
+
+      // In-app touch pull-down-to-refresh
+      setupPullToRefresh();
+    }
+
+    function setupPullToRefresh() {
+      const indicator = document.getElementById('pull-refresh-indicator');
+      const pullIcon = document.getElementById('pull-icon');
+      const pullText = document.getElementById('pull-text');
+      if (!indicator || !pullIcon || !pullText) return;
+
+      let startY = 0;
+      let pulling = false;
+
+      window.addEventListener('touchstart', (e) => {
+        if (window.scrollY <= 4 && e.touches.length === 1) {
+          startY = e.touches[0].clientY;
+          pulling = true;
+        } else {
+          pulling = false;
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!pulling || e.touches.length !== 1) return;
+        const currentY = e.touches[0].clientY;
+        const diff = currentY - startY;
+
+        if (diff > 35 && window.scrollY <= 4) {
+          indicator.classList.add('visible');
+          if (diff > 75) {
+            pullIcon.textContent = '↑';
+            pullText.textContent = 'Release to refresh...';
+          } else {
+            pullIcon.textContent = '↓';
+            pullText.textContent = 'Pull to refresh...';
+          }
+        } else if (diff <= 35) {
+          indicator.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', async () => {
+        if (!pulling) return;
+        pulling = false;
+        if (indicator.classList.contains('visible') && pullText.textContent.includes('Release')) {
+          indicator.classList.add('refreshing');
+          pullIcon.textContent = '🔄';
+          pullText.textContent = 'Refreshing & syncing...';
+
+          loadAuthFromHashOrStorage();
+          loadLocalItems();
+          if (authConfig.githubToken && authConfig.githubOwner) {
+            await performSync();
+          }
+
+          setTimeout(() => {
+            indicator.classList.remove('visible', 'refreshing');
+            pullIcon.textContent = '↓';
+            pullText.textContent = 'Pull down to refresh';
+          }, 450);
+        } else {
+          indicator.classList.remove('visible');
+        }
+      }, { passive: true });
     }
 
     function populateSettingsModal() {
@@ -982,6 +1206,9 @@
       document.getElementById('set-tts-voice').value = authConfig.ttsVoice || 'nova';
     }
 
+    let isSyncing = false;
+    let syncPending = false;
+
     // Two-Way GitHub Sync
     async function performSync() {
       const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
@@ -990,15 +1217,33 @@
         return;
       }
 
+      if (isSyncing) {
+        syncPending = true;
+        return;
+      }
+      isSyncing = true;
+      syncPending = false;
+
       const syncIcon = document.getElementById('sync-icon');
       const syncText = document.getElementById('sync-text');
       syncIcon.textContent = '⏳';
       syncText.textContent = 'Syncing...';
 
+      loadDeletedIds();
+      const storedLocal = localStorage.getItem('mindspur_items');
+      if (storedLocal) {
+        try { items = JSON.parse(storedLocal); } catch (_) { items = []; }
+      }
+      if (deletedIds.length > 0) {
+        const delSet = new Set(deletedIds);
+        items = items.filter(i => !delSet.has(i.id));
+      }
+
       try {
         const path = 'data/reminders.json';
         const apiBase = (authConfig && authConfig.githubApiBase) ? authConfig.githubApiBase : 'https://api.github.com';
-        const getUrl = apiBase + '/repos/' + owner + '/' + repo + '/contents/' + path + '?_t=' + Date.now();
+        const cacheBuster = Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+        const getUrl = apiBase + '/repos/' + owner + '/' + repo + '/contents/' + path + '?_t=' + cacheBuster;
         const putUrl = apiBase + '/repos/' + owner + '/' + repo + '/contents/' + path;
         const maxRetries = 2;
 
@@ -1028,6 +1273,22 @@
               const parsed = JSON.parse(raw);
               remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
               remoteDeletedIds = Array.isArray(parsed.deletedIds) ? parsed.deletedIds : [];
+
+              // Synchronize cloud settings into mobile authConfig
+              if (parsed.settings && typeof parsed.settings === 'object') {
+                let settingsChanged = false;
+                ['reviewMode', 'ttsProvider', 'ttsVoice', 'pauseSeconds', 'includeDocOrigin'].forEach(k => {
+                  if (parsed.settings[k] !== undefined && authConfig[k] !== parsed.settings[k]) {
+                    authConfig[k] = parsed.settings[k];
+                    settingsChanged = true;
+                  }
+                });
+                if (settingsChanged) {
+                  localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+                  populateSettingsModal();
+                  if (!isStandalone) ensureAuthHashInUrl(true);
+                }
+              }
             }
           }
 
@@ -1091,9 +1352,14 @@
         console.error('Sync failed:', err);
         showToast('⚠️ Sync error: ' + err.message);
       } finally {
+        isSyncing = false;
         syncIcon.textContent = '🔄';
         syncText.textContent = 'Sync';
         render();
+        if (syncPending) {
+          syncPending = false;
+          setTimeout(performSync, 100);
+        }
       }
     }
 
