@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:55:33.782Z",
+  "updatedAt": "2026-10-05T18:59:11.082Z",
   "items": [
     {
-      "id": "rem_web_1791226533523_jg76w",
+      "id": "rem_web_1791226750717_dddxo",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "SingleDeviceSharding",
-        "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
-        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s"
+        "selectedText": "Python control flow without",
+        "prologue": "an array with more than one element is ambiguous. Use a.any() or a.all() Copy to clipboard",
+        "epilogue": "jit # The constraints on this page are about jit (and other transformations that trace with"
       },
-      "sectionTitle": "is SingleDeviceSharding Committed",
+      "sectionTitle": "If not in jit, does the pythonic control flow works?",
       "headingId": null,
-      "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
+      "notes": "Yes, if not in `jax.jit`, you don't need `jax.lax.fori_loop`, `jax.lax.scan`, `jax.lax.cond` or `jax.lax.select` control statement. Pythonic control is okay without jax.jit.",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:55:33.523Z",
-      "updatedAt": "2026-10-05T18:55:33.531Z",
-      "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
+      "createdAt": "2026-10-05T18:59:10.718Z",
+      "updatedAt": "2026-10-05T18:59:10.735Z",
+      "notesUpdatedAt": "2026-10-05T18:59:10.718Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:55:33.523Z",
+          "timestamp": "2026-10-05T18:59:10.718Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:55:33.523Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:55:33.523Z"
+        }
+      ],
+      "id": "rem_web_1791226533523_jg76w",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
+      "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
+      "presetKey": "standard",
+      "sectionTitle": "is SingleDeviceSharding Committed",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:55:33.531Z",
+      "webAnchor": {
+        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s",
+        "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
+        "selectedText": "SingleDeviceSharding"
+      }
     },
     {
       "calendarEventId": null,
