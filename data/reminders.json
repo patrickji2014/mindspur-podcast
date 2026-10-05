@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T06:55:19.396Z",
+  "updatedAt": "2026-10-05T06:55:52.254Z",
   "items": [
     {
       "calendarEventId": null,
@@ -21,7 +21,7 @@
         }
       ],
       "id": "rem_1791182314901_o8c1w9",
-      "includeInPodcast": true,
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -43,7 +43,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T06:38:34.914Z",
+      "updatedAt": "2026-10-05T06:55:52.094Z",
       "webAnchor": null
     }
   ],
@@ -58,6 +58,7 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
+    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
