@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:59:11.082Z",
+  "updatedAt": "2026-10-05T19:04:58.038Z",
   "items": [
     {
-      "id": "rem_web_1791226750717_dddxo",
+      "id": "rem_web_1791227097656_p62dc",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Control flow and logical operators with jit — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
@@ -12,13 +12,13 @@
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "Python control flow without",
-        "prologue": "an array with more than one element is ambiguous. Use a.any() or a.all() Copy to clipboard",
-        "epilogue": "jit # The constraints on this page are about jit (and other transformations that trace with"
+        "selectedText": "jax.lax.scan()",
+        "prologue": "Array(45, dtype=int32, weak_type=True) Copy to clipboard scan # The most commonly used of the four is",
+        "epilogue": ": a loop with a fixed number of iterations that carries state from step to step,"
       },
-      "sectionTitle": "If not in jit, does the pythonic control flow works?",
+      "sectionTitle": "what is jax lax scan signature",
       "headingId": null,
-      "notes": "Yes, if not in `jax.jit`, you don't need `jax.lax.fori_loop`, `jax.lax.scan`, `jax.lax.cond` or `jax.lax.select` control statement. Pythonic control is okay without jax.jit.",
+      "notes": "answer is fn, init, and xs\n```py\ndef scan(f, init, xs):\n  carry = init\n  ys = []\n  for x in xs:\n    carry, y = f(carry, x)\n    ys.append(y)\n  return carry, np.stack(ys)\n```",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:59:10.718Z",
-      "updatedAt": "2026-10-05T18:59:10.735Z",
-      "notesUpdatedAt": "2026-10-05T18:59:10.718Z",
+      "createdAt": "2026-10-05T19:04:57.657Z",
+      "updatedAt": "2026-10-05T19:04:57.659Z",
+      "notesUpdatedAt": "2026-10-05T19:04:57.657Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:59:10.718Z",
+          "timestamp": "2026-10-05T19:04:57.657Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:59:10.718Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:59:10.718Z"
+        }
+      ],
+      "id": "rem_web_1791226750717_dddxo",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "Yes, if not in `jax.jit`, you don't need `jax.lax.fori_loop`, `jax.lax.scan`, `jax.lax.cond` or `jax.lax.select` control statement. Pythonic control is okay without jax.jit.",
+      "notesUpdatedAt": "2026-10-05T18:59:10.718Z",
+      "presetKey": "standard",
+      "sectionTitle": "If not in jit, does the pythonic control flow works?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:59:10.735Z",
+      "webAnchor": {
+        "epilogue": "jit # The constraints on this page are about jit (and other transformations that trace with",
+        "prologue": "an array with more than one element is ambiguous. Use a.any() or a.all() Copy to clipboard",
+        "selectedText": "Python control flow without"
+      }
     },
     {
       "calendarEventId": null,
