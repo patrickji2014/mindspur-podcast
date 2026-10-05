@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:38:55.792Z",
+  "updatedAt": "2026-10-05T17:40:17.915Z",
   "items": [
     {
       "calendarEventId": null,
@@ -278,8 +278,8 @@
       "lastReviewedDate": null,
       "mode": "self_grading",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only with different sharding spec\n- `jax.device_put` can be used in all Axis Type",
-      "notesUpdatedAt": "2026-10-05T17:38:55.457Z",
+      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis, on Explicit axis, it acts like assertion\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only with different sharding spec\n- `jax.device_put` can be used in all Axis Type",
+      "notesUpdatedAt": "2026-10-05T17:40:17.736Z",
       "presetKey": "standard",
       "sectionTitle": "different sharding operation used in different axis type",
       "tabId": null,
@@ -287,7 +287,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T17:38:55.457Z",
+      "updatedAt": "2026-10-05T17:40:17.736Z",
       "webAnchor": null
     },
     {
