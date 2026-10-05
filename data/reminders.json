@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T23:18:59.464Z",
+  "updatedAt": "2026-10-05T23:19:36.342Z",
   "items": [
     {
-      "id": "rem_web_1791242339208_bzbqz",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T23:18:59.209Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Stateful computations — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
-      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "x_ref[2, 3] = val",
-        "prologue": "[ 1 ] = row # tuple indexing val = x_ref [ 1 , 2 ]",
-        "epilogue": "# slice indexing col = x_ref [:, 1 ] x_ref [ 0 , : 3 ]"
-      },
-      "sectionTitle": "jax refs syntax",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:18:59.209Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791242339208_bzbqz",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T23:18:59.209Z",
-      "updatedAt": "2026-10-05T23:18:59.225Z",
-      "notesUpdatedAt": "2026-10-05T23:18:59.209Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T23:18:59.209Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
+      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref’s value first, like `jnp.sin(x_ref[...])`",
+      "notesUpdatedAt": "2026-10-05T23:19:35.941Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax refs syntax",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T23:19:35.941Z",
+      "webAnchor": {
+        "epilogue": "# slice indexing col = x_ref [:, 1 ] x_ref [ 0 , : 3 ]",
+        "prologue": "[ 1 ] = row # tuple indexing val = x_ref [ 1 , 2 ]",
+        "selectedText": "x_ref[2, 3] = val"
+      }
     },
     {
       "calendarEventId": null,
