@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T04:47:42.344Z",
+  "updatedAt": "2026-10-05T04:47:44.254Z",
   "items": [
     {
       "calendarEventId": null,
@@ -285,7 +285,7 @@
       "lastReviewedAt": "2026-10-04T21:11:38.902Z",
       "lastReviewedDate": "2026-10-04T21:11:38.902Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-07T16:00:00.000Z",
+      "nextReviewDate": "2026-10-05T04:47:44.055Z",
       "notes": "",
       "presetKey": "standard",
       "sectionTitle": "header2",
@@ -294,7 +294,7 @@
       "tags": [],
       "targetUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit?tab=t.0#heading=h.6s1shhq1ryzn",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T00:11:30.275Z",
+      "updatedAt": "2026-10-05T04:47:44.055Z",
       "webAnchor": null
     }
   ],
