@@ -1,16 +1,16 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T04:47:26.366Z",
+  "updatedAt": "2026-10-05T04:47:31.179Z",
   "items": [
     {
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-03T12:14:23.114Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "web_aHR0cHMlM0ElMkYlMkZzZWJh",
       "docTitle": "CSA and HCA | Sebastian Raschka, PhD",
       "docUrl": "https://sebastianraschka.com/llm-architecture-gallery/csa-hca/",
-      "easeFactor": 2.5,
+      "easeFactor": 2.65,
       "headingId": null,
       "history": [
         {
@@ -39,7 +39,7 @@
       "isMastered": false,
       "lastReviewedAt": "2026-10-04T13:31:56.433Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-04T23:34:35.313Z",
+      "nextReviewDate": "2026-10-14T04:47:30.346Z",
       "notes": "what is compression rate\n\nnew line of comment\n\ntest multi-line comment",
       "presetKey": "standard",
       "sectionTitle": "compression rates",
@@ -55,8 +55,8 @@
         "prologue": "layers then have fewer past entries to store and process. The two mechanisms work at different",
         "selectedText": "compression rates"
       },
-      "lastReviewedDate": "2026-10-04T13:31:56.433Z",
-      "updatedAt": "2026-10-05T00:11:30.275Z"
+      "lastReviewedDate": "2026-10-05T04:47:30.346Z",
+      "updatedAt": "2026-10-05T04:47:30.346Z"
     },
     {
       "calendarEventId": null,
