@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T13:54:47.753Z",
+  "updatedAt": "2026-10-05T14:11:05.788Z",
   "items": [
     {
-      "id": "rem_1791208487461_h742oy",
-      "docId": "rem_1791208487460_cqu0o",
+      "id": "rem_1791209465556_1j4t9d",
+      "docId": "rem_1791209465556_3wofl",
       "docTitle": "General Reminder",
       "docUrl": "",
       "targetUrl": "",
@@ -12,9 +12,9 @@
       "tabName": null,
       "contentType": "note",
       "webAnchor": null,
-      "sectionTitle": "jax lax pmean behavior",
+      "sectionTitle": "jnp tile behavior",
       "headingId": null,
-      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
+      "notes": "> The reps parameter in jnp.tile controls how many times the input array is repeated along each dimension.\n> \n> * Accepted values: A single integer or a sequence of integers.\n> * Matching dimensions: When reps provides a count for each axis of the array, the length of each corresponding dimension in the output is multiplied by that number.\n> * Fewer dimensions or scalar: If reps has fewer elements than the array has dimensions, or if it is a single integer, it applies only to the trailing dimension or dimensions. The leading dimensions remain unchanged.",
       "tags": [],
       "mode": "self_grading",
       "presetKey": "standard",
@@ -29,9 +29,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T13:54:47.461Z",
-      "updatedAt": "2026-10-05T13:54:47.478Z",
-      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
+      "createdAt": "2026-10-05T14:11:05.556Z",
+      "updatedAt": "2026-10-05T14:11:05.573Z",
+      "notesUpdatedAt": "2026-10-05T14:11:05.556Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -39,12 +39,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T13:54:47.461Z",
+          "timestamp": "2026-10-05T14:11:05.556Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:54:47.461Z",
+      "currentStage": 0,
+      "docId": "rem_1791208487460_cqu0o",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:54:47.461Z"
+        }
+      ],
+      "id": "rem_1791208487461_h742oy",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
+      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax pmean behavior",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:54:47.478Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
