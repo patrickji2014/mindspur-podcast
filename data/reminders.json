@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:23:49.149Z",
+  "updatedAt": "2026-10-05T17:24:16.508Z",
   "items": [
     {
-      "id": "rem_web_1791221028901_of25l",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:23:48.902Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "jax.shard_map — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html",
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html#:~:text=of%20terms%20Configuration%20Options%20API%20Reference%20jax.shard_map%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.shard_map%20Contents%20shard_map()-,jax.shard_map,-%23%20jax.%20shard_map%20(%20f%20%3A%20F%20%2C%20%2F%20%2C%20*%20%2C%20out_specs%20%3A%20Specs%20%2C&rem_id=rem_web_1791221028901_of25l",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "jax.shard_map",
-        "prologue": "of terms Configuration Options API Reference jax.shard_map .rst .pdf Light Dark System Settings jax.shard_map Contents shard_map()",
-        "epilogue": "# jax. shard_map ( f : F , / , * , out_specs : Specs ,"
-      },
-      "sectionTitle": "jax.shard_map",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "- `jax.shard_map` has mesh, in_specs, out_specs, check_vma as parameters. \n- `jax.jit` has in_shardings, out_shardings, static_argnames, donated_argnames \n- Note that the out_specs only impact how jax interprets the global view of the array",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:23:48.902Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791221028901_of25l",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T17:23:48.902Z",
-      "updatedAt": "2026-10-05T17:23:48.911Z",
-      "notesUpdatedAt": "2026-10-05T17:23:48.902Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T17:23:48.902Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
+      "notes": "- `jax.shard_map` has mesh, in_specs, out_specs, check_vma as parameters. \n- `jax.jit` has in_shardings, out_shardings, static_argnames, donated_argnames \n- Note that the `out_specs` only impact how jax interprets the global view of the array",
+      "notesUpdatedAt": "2026-10-05T17:24:16.330Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.shard_map",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html#:~:text=of%20terms%20Configuration%20Options%20API%20Reference%20jax.shard_map%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.shard_map%20Contents%20shard_map()-,jax.shard_map,-%23%20jax.%20shard_map%20(%20f%20%3A%20F%20%2C%20%2F%20%2C%20*%20%2C%20out_specs%20%3A%20Specs%20%2C&rem_id=rem_web_1791221028901_of25l",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T17:24:16.330Z",
+      "webAnchor": {
+        "epilogue": "# jax. shard_map ( f : F , / , * , out_specs : Specs ,",
+        "prologue": "of terms Configuration Options API Reference jax.shard_map .rst .pdf Light Dark System Settings jax.shard_map Contents shard_map()",
+        "selectedText": "jax.shard_map"
+      }
     },
     {
       "calendarEventId": null,
