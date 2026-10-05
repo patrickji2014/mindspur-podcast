@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T00:11:31.951Z",
+  "updatedAt": "2026-10-05T00:11:39.351Z",
   "items": [
     {
       "calendarEventId": null,
@@ -153,11 +153,11 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-03T12:10:04.566Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZnaXRo",
       "docTitle": "GitHub · Change is constant. GitHub keeps you ahead. · GitHub",
       "docUrl": "https://github.com/",
-      "easeFactor": 2.5,
+      "easeFactor": 2.65,
       "headingId": null,
       "history": [
         {
@@ -176,9 +176,9 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
+      "lastReviewedAt": "2026-10-05T00:11:38.581Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-04T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T00:11:38.581Z",
       "notes": "```js\nfunction recall() { return true; }\n```",
       "presetKey": "standard",
       "sectionTitle": "evolve,",
@@ -195,8 +195,8 @@
         "selectedText": "evolve,"
       },
       "includeInPodcast": false,
-      "updatedAt": "2026-10-04T23:32:35.063Z",
-      "lastReviewedDate": null
+      "updatedAt": "2026-10-05T00:11:38.581Z",
+      "lastReviewedDate": "2026-10-05T00:11:38.581Z"
     },
     {
       "calendarEventId": null,
