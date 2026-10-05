@@ -1,7 +1,277 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:40:17.915Z",
+  "updatedAt": "2026-10-05T17:43:25.782Z",
   "items": [
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T06:38:34.901Z",
+      "currentStage": 0,
+      "docId": "rem_1791182314901_45vdl",
+      "docTitle": "Extensions",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-05T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T06:38:34.901Z"
+        }
+      ],
+      "id": "rem_1791182314901_o8c1w9",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-05T16:00:00.000Z",
+      "notes": "Don't forget to specify the tiled parameter. and don't forget to specify the axis_name parameter too.",
+      "notesUpdatedAt": "2026-10-05T12:59:29.808Z",
+      "presetKey": "standard",
+      "sectionTitle": "Jax Collective Operations' Tiled Parameter",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T12:59:29.808Z",
+      "webAnchor": null
+    },
+    {
+      "id": "rem_1791204808889_sdkbhl",
+      "docId": "rem_1791204808889_rctd3",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "targetUrl": "",
+      "tabId": null,
+      "tabName": null,
+      "contentType": "note",
+      "webAnchor": null,
+      "sectionTitle": "Jax shard_map function's in_specs is a what type",
+      "headingId": null,
+      "notes": "Jax shard_map's in_specs parameter is a tuple",
+      "tags": [],
+      "mode": "self_grading",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": true,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-05T12:53:28.889Z",
+      "updatedAt": "2026-10-05T12:53:28.905Z",
+      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-05T12:53:28.889Z",
+          "stage": 0,
+          "nextDate": "2026-10-06T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:17:15.017Z",
+      "currentStage": 0,
+      "docId": "rem_1791206235017_t7ji8",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:17:15.017Z"
+        }
+      ],
+      "id": "rem_1791206235017_hspxxl",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
+      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:19:19.726Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T14:12:34.062Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "jax.numpy.tile — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T14:12:34.062Z"
+        }
+      ],
+      "id": "rem_web_1791209554062_q2hsq",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
+      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.numpy.tile(A, reps)",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T14:13:07.413Z",
+      "webAnchor": {
+        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
+        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
+        "selectedText": "jax.numpy.tile(A, reps)"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:54:47.461Z",
+      "currentStage": 0,
+      "docId": "rem_1791208487460_cqu0o",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:54:47.461Z"
+        }
+      ],
+      "id": "rem_1791208487461_h742oy",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
+      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax pmean behavior",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:54:47.478Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:48:56.746Z",
+      "currentStage": 0,
+      "docId": "rem_1791208136746_ryrby",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:48:56.746Z"
+        }
+      ],
+      "id": "rem_1791208136746_ey8wgc",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
+      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:48:56.757Z",
+      "webAnchor": null
+    },
     {
       "calendarEventId": null,
       "contentType": "webpage",
@@ -289,276 +559,6 @@
       "totalStages": 5,
       "updatedAt": "2026-10-05T17:40:17.736Z",
       "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T14:12:34.062Z",
-      "currentStage": 0,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.numpy.tile — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T14:12:34.062Z"
-        }
-      ],
-      "id": "rem_web_1791209554062_q2hsq",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
-      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax.numpy.tile(A, reps)",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T14:13:07.413Z",
-      "webAnchor": {
-        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
-        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
-        "selectedText": "jax.numpy.tile(A, reps)"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:54:47.461Z",
-      "currentStage": 0,
-      "docId": "rem_1791208487460_cqu0o",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:54:47.461Z"
-        }
-      ],
-      "id": "rem_1791208487461_h742oy",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
-      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax pmean behavior",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T13:54:47.478Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:48:56.746Z",
-      "currentStage": 0,
-      "docId": "rem_1791208136746_ryrby",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:48:56.746Z"
-        }
-      ],
-      "id": "rem_1791208136746_ey8wgc",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
-      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T13:48:56.757Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:17:15.017Z",
-      "currentStage": 0,
-      "docId": "rem_1791206235017_t7ji8",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:17:15.017Z"
-        }
-      ],
-      "id": "rem_1791206235017_hspxxl",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
-      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T13:19:19.726Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T12:53:28.889Z",
-      "currentStage": 0,
-      "docId": "rem_1791204808889_rctd3",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T12:53:28.889Z"
-        }
-      ],
-      "id": "rem_1791204808889_sdkbhl",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "Jax shard_map's in_specs parameter is a tuple",
-      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
-      "presetKey": "standard",
-      "sectionTitle": "Jax shard_map function's in_specs is a what type",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T12:53:28.905Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T06:38:34.901Z",
-      "currentStage": 0,
-      "docId": "rem_1791182314901_45vdl",
-      "docTitle": "Extensions",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-05T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T06:38:34.901Z"
-        }
-      ],
-      "id": "rem_1791182314901_o8c1w9",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-05T16:00:00.000Z",
-      "notes": "Don't forget to specify the tiled parameter. and don't forget to specify the axis_name parameter too.",
-      "notesUpdatedAt": "2026-10-05T12:59:29.808Z",
-      "presetKey": "standard",
-      "sectionTitle": "Jax Collective Operations' Tiled Parameter",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T12:59:29.808Z",
-      "webAnchor": null
     }
   ],
   "deletedIds": [
@@ -573,7 +573,6 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
