@@ -843,10 +843,28 @@
       populateSettingsModal();
     }
 
+    let deletedIds = [];
+    function loadDeletedIds() {
+      const stored = localStorage.getItem('mindspur_deleted_ids');
+      if (stored) {
+        try { deletedIds = JSON.parse(stored); } catch (_) { deletedIds = []; }
+      }
+      if (!Array.isArray(deletedIds)) deletedIds = [];
+    }
+
+    function saveDeletedIds() {
+      localStorage.setItem('mindspur_deleted_ids', JSON.stringify(deletedIds));
+    }
+
     function loadLocalItems() {
+      loadDeletedIds();
       const stored = localStorage.getItem('mindspur_items');
       if (stored) {
         try { items = JSON.parse(stored); } catch (_) { items = []; }
+      }
+      if (deletedIds.length > 0) {
+        const delSet = new Set(deletedIds);
+        items = items.filter(i => !delSet.has(i.id));
       }
       render();
     }
@@ -963,6 +981,7 @@
           });
 
           let remoteItems = [];
+          let remoteDeletedIds = [];
           let remoteSha = null;
 
           if (res.ok) {
@@ -972,11 +991,17 @@
               const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
               const parsed = JSON.parse(raw);
               remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
+              remoteDeletedIds = Array.isArray(parsed.deletedIds) ? parsed.deletedIds : [];
             }
           }
 
+          // Merge deletedIds
+          const allDeleted = Array.from(new Set([...(deletedIds || []), ...(remoteDeletedIds || [])]));
+          deletedIds = allDeleted;
+          saveDeletedIds();
+
           // 2. Client-side merge
-          items = mergeLists(items, remoteItems);
+          items = mergeLists(items, remoteItems, deletedIds);
           saveLocalItems();
 
           // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
@@ -991,6 +1016,7 @@
             version: 1,
             updatedAt: new Date().toISOString(),
             items: items,
+            deletedIds: deletedIds,
             settings: cloudSettings
           };
           const putBody = {
@@ -1035,29 +1061,72 @@
       }
     }
 
-    function mergeLists(local, remote) {
+    function mergeLists(local, remote, deleted = []) {
+      const deletedSet = new Set(deleted || []);
       const map = new Map();
-      local.forEach(i => map.set(i.id, { ...i }));
+
+      local.forEach(i => {
+        if (i && i.id && !deletedSet.has(i.id)) {
+          map.set(i.id, { ...i });
+        }
+      });
+
       remote.forEach(r => {
+        if (!r || !r.id || deletedSet.has(r.id)) return;
+
         if (!map.has(r.id)) {
           map.set(r.id, r);
         } else {
           const l = map.get(r.id);
-          const lTime = l.lastReviewedDate ? new Date(l.lastReviewedDate).getTime() : 0;
-          const rTime = r.lastReviewedDate ? new Date(r.lastReviewedDate).getTime() : 0;
-          const winner = (rTime > lTime || (rTime === lTime && (r.currentStage || 0) > (l.currentStage || 0))) ? r : l;
+          const lTime = (l.lastReviewedDate || l.lastReviewedAt) ? new Date(l.lastReviewedDate || l.lastReviewedAt).getTime() : 0;
+          const rTime = (r.lastReviewedDate || r.lastReviewedAt) ? new Date(r.lastReviewedDate || r.lastReviewedAt).getTime() : 0;
+          const lUp = l.updatedAt ? new Date(l.updatedAt).getTime() : (l.createdAt ? new Date(l.createdAt).getTime() : 0);
+          const rUp = r.updatedAt ? new Date(r.updatedAt).getTime() : (r.createdAt ? new Date(r.createdAt).getTime() : 0);
 
-          map.set(r.id, {
+          let reviewWinner = l;
+          if (rTime > lTime) {
+            reviewWinner = r;
+          } else if (lTime > rTime) {
+            reviewWinner = l;
+          } else {
+            const lStage = l.currentStage || 0;
+            const rStage = r.currentStage || 0;
+            if (rStage > lStage) {
+              reviewWinner = r;
+            } else if (lStage > rStage) {
+              reviewWinner = l;
+            } else {
+              // Same stage and review time: whichever was updated later wins the review state (e.g. "Review Today")
+              reviewWinner = (rUp > lUp) ? r : l;
+            }
+          }
+
+          const merged = {
             ...l,
-            currentStage: winner.currentStage,
-            nextReviewDate: winner.nextReviewDate,
-            lastReviewedDate: winner.lastReviewedDate,
-            isMastered: winner.isMastered,
-            easeFactor: winner.easeFactor !== undefined ? winner.easeFactor : l.easeFactor,
-            notes: (l.notes && l.notes.trim()) ? l.notes : (r.notes || ''),
-            presetKey: l.presetKey || r.presetKey || 'standard',
-            includeInPodcast: l.includeInPodcast !== undefined ? l.includeInPodcast : r.includeInPodcast
-          });
+            currentStage: reviewWinner.currentStage,
+            nextReviewDate: reviewWinner.nextReviewDate,
+            lastReviewedDate: reviewWinner.lastReviewedDate || reviewWinner.lastReviewedAt || null,
+            lastReviewedAt: reviewWinner.lastReviewedAt || reviewWinner.lastReviewedDate || null,
+            isMastered: reviewWinner.isMastered,
+            easeFactor: reviewWinner.easeFactor !== undefined ? reviewWinner.easeFactor : l.easeFactor
+          };
+
+          if (rUp > lUp) {
+            if (r.notes !== undefined) merged.notes = r.notes;
+            if (r.presetKey) merged.presetKey = r.presetKey;
+            if (r.intervals) merged.intervals = r.intervals;
+            if (r.totalStages) merged.totalStages = r.totalStages;
+            if (r.includeInPodcast !== undefined) merged.includeInPodcast = r.includeInPodcast;
+            merged.updatedAt = r.updatedAt;
+          } else {
+            if (!merged.notes && r.notes) merged.notes = r.notes;
+            if (r.includeInPodcast !== undefined && l.includeInPodcast === undefined) {
+              merged.includeInPodcast = r.includeInPodcast;
+            }
+            merged.updatedAt = l.updatedAt || new Date().toISOString();
+          }
+
+          map.set(r.id, merged);
         }
       });
       return Array.from(map.values());
@@ -1614,6 +1683,10 @@
         if (confirm('Delete reminder for "' + (item.sectionTitle || 'this item') + '"?')) {
           card.classList.add('dismissing');
           setTimeout(() => {
+            if (!deletedIds.includes(item.id)) {
+              deletedIds.push(item.id);
+              saveDeletedIds();
+            }
             items = items.filter(i => i.id !== item.id);
             saveLocalItems();
             render();
