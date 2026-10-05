@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:04:54.480Z",
+  "updatedAt": "2026-10-05T18:11:16.679Z",
   "items": [
     {
-      "id": "rem_web_1791223494158_68d81",
+      "id": "rem_web_1791223876493_908ps",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "Stage out",
-        "prologue": "arguments, say f(x, y) where x and y are arrays, JAX does the following in order:",
-        "epilogue": "a version of the original Python callable F , specialized to the JAX types of the"
+        "selectedText": "eval_shape",
+        "prologue": "you need is a function’s output type , with no lowering, compiling, or executing at all,",
+        "epilogue": "runs just the specialization step: >>> jax . jit ( f ) . eval_shape ( jax"
       },
-      "sectionTitle": "jax Stage out",
+      "sectionTitle": "eval_shape",
       "headingId": null,
-      "notes": "jax stage out is the same as the trace, `jax.jit().trace()`",
+      "notes": "When all you need is a function’s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:04:54.158Z",
-      "updatedAt": "2026-10-05T18:04:54.168Z",
-      "notesUpdatedAt": "2026-10-05T18:04:54.158Z",
+      "createdAt": "2026-10-05T18:11:16.493Z",
+      "updatedAt": "2026-10-05T18:11:16.507Z",
+      "notesUpdatedAt": "2026-10-05T18:11:16.493Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:04:54.158Z",
+          "timestamp": "2026-10-05T18:11:16.493Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:04:54.158Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:04:54.158Z"
+        }
+      ],
+      "id": "rem_web_1791223494158_68d81",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "jax stage out is the same as the trace, `jax.jit().trace()`",
+      "notesUpdatedAt": "2026-10-05T18:04:54.158Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax Stage out",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:04:54.168Z",
+      "webAnchor": {
+        "epilogue": "a version of the original Python callable F , specialized to the JAX types of the",
+        "prologue": "arguments, say f(x, y) where x and y are arrays, JAX does the following in order:",
+        "selectedText": "Stage out"
+      }
     },
     {
       "calendarEventId": null,
