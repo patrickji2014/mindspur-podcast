@@ -216,26 +216,6 @@
     }
     .audio-player-box audio { width: 100%; height: 36px; outline: none; }
 
-    /* Metrics Row */
-    .metrics-bar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-
-    .metric-pill {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 10px 8px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .metric-pill.active-due { border-color: rgba(245, 158, 11, 0.6); background: rgba(245, 158, 11, 0.08); }
-    .metric-num { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 800; }
-    .metric-tag { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
 
     /* Search & Filter */
     .search-row {
@@ -287,6 +267,19 @@
       background: var(--accent-indigo);
       color: #fff;
       box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
+    }
+    .nav-tab-badge {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      line-height: 1.2;
+    }
+    .nav-tab-btn.active .nav-tab-badge {
+      background: rgba(255, 255, 255, 0.28);
+      color: #ffffff;
     }
 
     /* Sub-bar (Expand/Collapse all) */
@@ -715,37 +708,29 @@
       </div>
     </section>
 
-    <!-- Metrics Row -->
-    <section class="metrics-bar">
-      <div class="metric-pill active-due" id="pill-due">
-        <span class="metric-num text-amber" id="metric-due-val">0</span>
-        <span class="metric-tag">Due</span>
-      </div>
-      <div class="metric-pill">
-        <span class="metric-num" id="metric-upcoming-val">0</span>
-        <span class="metric-tag">Upcoming</span>
-      </div>
-      <div class="metric-pill">
-        <span class="metric-num text-emerald" id="metric-mastered-val">0</span>
-        <span class="metric-tag">Mastered</span>
-      </div>
-      <div class="metric-pill">
-        <span class="metric-num" id="metric-total-val">0</span>
-        <span class="metric-tag">Total</span>
-      </div>
-    </section>
-
     <!-- Search Box -->
     <div class="search-row">
       <input type="text" id="search-input" class="search-input" placeholder="🔍 Search sections or notes...">
     </div>
 
-    <!-- Navigation Tabs -->
+    <!-- Navigation Tabs (Concise Primary Filter Navigation with Badges) -->
     <nav class="nav-tabs">
-      <button class="nav-tab-btn active" data-tab="due">🔥 Due</button>
-      <button class="nav-tab-btn" data-tab="upcoming">📅 Upcoming</button>
-      <button class="nav-tab-btn" data-tab="mastered">🏆 Mastered</button>
-      <button class="nav-tab-btn" data-tab="all">📚 All</button>
+      <button class="nav-tab-btn active" data-tab="due" id="tab-due">
+        <span>🔥 Due</span>
+        <span class="nav-tab-badge" id="tab-due-badge">0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="upcoming" id="tab-upcoming">
+        <span>📅 Upcoming</span>
+        <span class="nav-tab-badge" id="tab-upcoming-badge">0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="mastered" id="tab-mastered">
+        <span>🏆 Mastered</span>
+        <span class="nav-tab-badge" id="tab-mastered-badge">0</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="all" id="tab-all">
+        <span>📚 All</span>
+        <span class="nav-tab-badge" id="tab-all-badge">0</span>
+      </button>
     </nav>
 
     <!-- Controls Sub-bar -->
@@ -2082,11 +2067,27 @@
         else upcomingCount++;
       });
 
-      document.getElementById('metric-due-val').textContent = dueCount;
-      document.getElementById('metric-upcoming-val').textContent = upcomingCount;
-      document.getElementById('metric-mastered-val').textContent = masteredCount;
-      document.getElementById('metric-total-val').textContent = items.length;
-      document.getElementById('audio-due-pill').textContent = dueCount + ' due today';
+      // Update Tab Badges (unified primary filter counters)
+      const tabDueBadge = document.getElementById('tab-due-badge');
+      if (tabDueBadge) tabDueBadge.textContent = dueCount;
+      const tabUpcomingBadge = document.getElementById('tab-upcoming-badge');
+      if (tabUpcomingBadge) tabUpcomingBadge.textContent = upcomingCount;
+      const tabMasteredBadge = document.getElementById('tab-mastered-badge');
+      if (tabMasteredBadge) tabMasteredBadge.textContent = masteredCount;
+      const tabAllBadge = document.getElementById('tab-all-badge');
+      if (tabAllBadge) tabAllBadge.textContent = items.length;
+
+      // Gracefully update legacy metric pills if present
+      const mDue = document.getElementById('metric-due-val');
+      if (mDue) mDue.textContent = dueCount;
+      const mUpcoming = document.getElementById('metric-upcoming-val');
+      if (mUpcoming) mUpcoming.textContent = upcomingCount;
+      const mMastered = document.getElementById('metric-mastered-val');
+      if (mMastered) mMastered.textContent = masteredCount;
+      const mTotal = document.getElementById('metric-total-val');
+      if (mTotal) mTotal.textContent = items.length;
+      const audioPill = document.getElementById('audio-due-pill');
+      if (audioPill) audioPill.textContent = dueCount + ' due today';
 
       // Filter
       const filtered = items.filter(it => {
