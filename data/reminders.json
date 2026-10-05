@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T23:10:24.782Z",
+  "updatedAt": "2026-10-05T23:13:07.581Z",
   "items": [
     {
-      "id": "rem_1791241824376_dcgsk0",
-      "docId": "rem_1791241824376_708g0",
+      "id": "rem_1791241987392_nztsi0",
+      "docId": "rem_1791241987392_bn1v3",
       "docTitle": "General Reminder",
       "docUrl": "",
       "targetUrl": "",
@@ -12,9 +12,9 @@
       "tabName": null,
       "contentType": "note",
       "webAnchor": null,
-      "sectionTitle": "Different ways to register pytree node",
+      "sectionTitle": "How to use jax jit on class method",
       "headingId": null,
-      "notes": "- `jax.tree_util.register_pytree_node`\n- `jax.tree_util.register_pytree_node_class`, the class provide tree_flatten and tree_unflatten class method\n- `jax.tree_util.register_dataclass`, can specify data fields and static fields as needed",
+      "notes": "```py\n@jax.tree_util.register_dataclass\n@dataclasses.dataclass\nclass MyDataClass:\n  a: int\n  mul: int = jax.tree.static()\n  def cal(self, b):\n    return self.a if not self.mul else self.a * b\n```",
       "tags": [],
       "mode": "self_grading",
       "presetKey": "standard",
@@ -29,9 +29,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T23:10:24.376Z",
-      "updatedAt": "2026-10-05T23:10:24.395Z",
-      "notesUpdatedAt": "2026-10-05T23:10:24.376Z",
+      "createdAt": "2026-10-05T23:13:07.392Z",
+      "updatedAt": "2026-10-05T23:13:07.408Z",
+      "notesUpdatedAt": "2026-10-05T23:13:07.392Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -39,12 +39,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T23:10:24.376Z",
+          "timestamp": "2026-10-05T23:13:07.392Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T23:10:24.376Z",
+      "currentStage": 0,
+      "docId": "rem_1791241824376_708g0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:10:24.376Z"
+        }
+      ],
+      "id": "rem_1791241824376_dcgsk0",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "- `jax.tree_util.register_pytree_node`\n- `jax.tree_util.register_pytree_node_class`, the class provide tree_flatten and tree_unflatten class method\n- `jax.tree_util.register_dataclass`, can specify data fields and static fields as needed",
+      "notesUpdatedAt": "2026-10-05T23:10:24.376Z",
+      "presetKey": "standard",
+      "sectionTitle": "Different ways to register pytree node",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T23:10:24.395Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
