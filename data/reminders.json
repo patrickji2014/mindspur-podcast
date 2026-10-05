@@ -1,51 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T14:11:05.788Z",
+  "updatedAt": "2026-10-05T14:11:33.355Z",
   "items": [
-    {
-      "id": "rem_1791209465556_1j4t9d",
-      "docId": "rem_1791209465556_3wofl",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "jnp tile behavior",
-      "headingId": null,
-      "notes": "> The reps parameter in jnp.tile controls how many times the input array is repeated along each dimension.\n> \n> * Accepted values: A single integer or a sequence of integers.\n> * Matching dimensions: When reps provides a count for each axis of the array, the length of each corresponding dimension in the output is multiplied by that number.\n> * Fewer dimensions or scalar: If reps has fewer elements than the array has dimensions, or if it is a single integer, it applies only to the trailing dimension or dimensions. The leading dimensions remain unchanged.",
-      "tags": [],
-      "mode": "self_grading",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T14:11:05.556Z",
-      "updatedAt": "2026-10-05T14:11:05.573Z",
-      "notesUpdatedAt": "2026-10-05T14:11:05.556Z",
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T14:11:05.556Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
-    },
     {
       "calendarEventId": null,
       "contentType": "note",
@@ -274,7 +230,8 @@
     "rem_web_1791157661836_zpil8",
     "rem_web_1791029663113_xiz8h",
     "rem_1791029605249_zyty63",
-    "rem_1791182433854_baxcgh"
+    "rem_1791182433854_baxcgh",
+    "rem_1791209465556_1j4t9d"
   ],
   "settings": {
     "reviewMode": "self_grading",
