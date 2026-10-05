@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:48:12.929Z",
+  "updatedAt": "2026-10-05T18:52:05.365Z",
   "items": [
     {
-      "id": "rem_web_1791226092741_7tzr6",
+      "id": "rem_web_1791226324994_l0oqs",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "Commitment is a promise JAX enforces. Combining arrays committed to\ndifferent meshes in one operation is an error",
-        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a ’s devices.",
-        "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P"
+        "selectedText": "jax.device_put",
+        "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
+        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s"
       },
-      "sectionTitle": "What if committed array from different mesh operate together?",
+      "sectionTitle": "jax.device_put can accept sharding param, what else it can?",
       "headingId": null,
-      "notes": "It will error out. Committed means an array committed to a specific mesh. The only way to move it around is use `jax.device_put` explicitly.",
+      "notes": "it can accept donate=True param",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:48:12.741Z",
-      "updatedAt": "2026-10-05T18:48:12.752Z",
-      "notesUpdatedAt": "2026-10-05T18:48:12.741Z",
+      "createdAt": "2026-10-05T18:52:04.995Z",
+      "updatedAt": "2026-10-05T18:52:05.003Z",
+      "notesUpdatedAt": "2026-10-05T18:52:04.995Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:48:12.741Z",
+          "timestamp": "2026-10-05T18:52:04.995Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:48:12.741Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:48:12.741Z"
+        }
+      ],
+      "id": "rem_web_1791226092741_7tzr6",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "It will error out. Committed means an array committed to a specific mesh. The only way to move it around is use `jax.device_put` explicitly.",
+      "notesUpdatedAt": "2026-10-05T18:48:12.741Z",
+      "presetKey": "standard",
+      "sectionTitle": "What if committed array from different mesh operate together?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:48:12.752Z",
+      "webAnchor": {
+        "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P",
+        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a ’s devices.",
+        "selectedText": "Commitment is a promise JAX enforces. Combining arrays committed to\ndifferent meshes in one operation is an error"
+      }
     },
     {
       "calendarEventId": null,
