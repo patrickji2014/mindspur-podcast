@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T22:20:15.023Z",
+  "updatedAt": "2026-10-05T22:21:53.031Z",
   "items": [
     {
-      "id": "rem_web_1791238814676_l7swj",
+      "id": "rem_web_1791238912664_rndic",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Just-in-time compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
+      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell47",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell47",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "Donating an argument that’s\na pytree donates every array in it",
-        "prologue": "= params , state = state ) Copy to clipboard Pytree arguments donate all their buffers.",
-        "epilogue": ": def add_ones ( xs : list [ jax . Array ]): return [ x +"
+        "selectedText": "block_until_ready",
+        "prologue": "clipboard Array(shape=(1000, 1000), dtype=float32) Copy to clipboard Blocking without transferring the result to the host (as",
+        "epilogue": "does) is usually faster than forcing a transfer with np.asarray(...) , and is the right tool"
       },
-      "sectionTitle": "what happen if donate an argument that’s a pytree",
+      "sectionTitle": "block_until_ready",
       "headingId": null,
-      "notes": "Donating an argument that’s a pytree donates every array in it",
+      "notes": "- `jax.block_until_ready` will Blocking without transferring the result to the host\n- using np.asarray(ArrayLike) will transfer to host memory",
       "tags": [
         "web"
       ],
@@ -31,13 +31,13 @@
         14,
         30
       ],
-      "includeInPodcast": true,
+      "includeInPodcast": false,
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T22:20:14.676Z",
-      "updatedAt": "2026-10-05T22:20:14.690Z",
-      "notesUpdatedAt": "2026-10-05T22:20:14.676Z",
+      "createdAt": "2026-10-05T22:21:52.665Z",
+      "updatedAt": "2026-10-05T22:21:52.680Z",
+      "notesUpdatedAt": "2026-10-05T22:21:52.665Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T22:20:14.676Z",
+          "timestamp": "2026-10-05T22:21:52.665Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T22:20:14.676Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T22:20:14.676Z"
+        }
+      ],
+      "id": "rem_web_1791238814676_l7swj",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "Donating an argument that’s a pytree donates every array in it",
+      "notesUpdatedAt": "2026-10-05T22:20:14.676Z",
+      "presetKey": "standard",
+      "sectionTitle": "what happen if donate an argument that’s a pytree",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T22:20:14.690Z",
+      "webAnchor": {
+        "epilogue": ": def add_ones ( xs : list [ jax . Array ]): return [ x +",
+        "prologue": "= params , state = state ) Copy to clipboard Pytree arguments donate all their buffers.",
+        "selectedText": "Donating an argument that’s\na pytree donates every array in it"
+      }
     },
     {
       "calendarEventId": null,
