@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:52:05.365Z",
+  "updatedAt": "2026-10-05T18:55:33.782Z",
   "items": [
     {
-      "id": "rem_web_1791226324994_l0oqs",
+      "id": "rem_web_1791226533523_jg76w",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "jax.device_put",
-        "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
-        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s"
+        "selectedText": "SingleDeviceSharding",
+        "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
+        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s"
       },
-      "sectionTitle": "jax.device_put can accept sharding param, what else it can?",
+      "sectionTitle": "is SingleDeviceSharding Committed",
       "headingId": null,
-      "notes": "it can accept donate=True param",
+      "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:52:04.995Z",
-      "updatedAt": "2026-10-05T18:52:05.003Z",
-      "notesUpdatedAt": "2026-10-05T18:52:04.995Z",
+      "createdAt": "2026-10-05T18:55:33.523Z",
+      "updatedAt": "2026-10-05T18:55:33.531Z",
+      "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:52:04.995Z",
+          "timestamp": "2026-10-05T18:55:33.523Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:52:04.995Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:52:04.995Z"
+        }
+      ],
+      "id": "rem_web_1791226324994_l0oqs",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "it can accept donate=True param",
+      "notesUpdatedAt": "2026-10-05T18:52:04.995Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.device_put can accept sharding param, what else it can?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:52:05.003Z",
+      "webAnchor": {
+        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s",
+        "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
+        "selectedText": "jax.device_put"
+      }
     },
     {
       "calendarEventId": null,
