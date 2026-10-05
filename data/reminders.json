@@ -1,95 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T13:19:19.919Z",
+  "updatedAt": "2026-10-05T13:20:05.598Z",
   "items": [
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:17:15.017Z",
-      "currentStage": 0,
-      "docId": "rem_1791206235017_t7ji8",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:17:15.017Z"
-        }
-      ],
-      "id": "rem_1791206235017_hspxxl",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
-      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T13:19:19.726Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T12:53:28.889Z",
-      "currentStage": 0,
-      "docId": "rem_1791204808889_rctd3",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T12:53:28.889Z"
-        }
-      ],
-      "id": "rem_1791204808889_sdkbhl",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "notes": "Jax shard_map's in_specs parameter is a tuple",
-      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
-      "presetKey": "standard",
-      "sectionTitle": "Jax shard_map function's in_specs is a what type",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T12:53:28.905Z",
-      "webAnchor": null
-    },
     {
       "calendarEventId": null,
       "contentType": "note",
@@ -133,6 +45,94 @@
       "totalStages": 5,
       "updatedAt": "2026-10-05T12:59:29.808Z",
       "webAnchor": null
+    },
+    {
+      "id": "rem_1791204808889_sdkbhl",
+      "docId": "rem_1791204808889_rctd3",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "targetUrl": "",
+      "tabId": null,
+      "tabName": null,
+      "contentType": "note",
+      "webAnchor": null,
+      "sectionTitle": "Jax shard_map function's in_specs is a what type",
+      "headingId": null,
+      "notes": "Jax shard_map's in_specs parameter is a tuple",
+      "tags": [],
+      "mode": "self_grading",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": true,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-05T12:53:28.889Z",
+      "updatedAt": "2026-10-05T12:53:28.905Z",
+      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-05T12:53:28.889Z",
+          "stage": 0,
+          "nextDate": "2026-10-06T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:17:15.017Z",
+      "currentStage": 0,
+      "docId": "rem_1791206235017_t7ji8",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:17:15.017Z"
+        }
+      ],
+      "id": "rem_1791206235017_hspxxl",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
+      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T13:19:19.726Z",
+      "webAnchor": null
     }
   ],
   "deletedIds": [
@@ -146,7 +146,6 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
