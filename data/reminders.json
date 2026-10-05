@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T21:48:32.178Z",
+  "updatedAt": "2026-10-05T21:49:28.020Z",
   "items": [
     {
-      "id": "rem_web_1791236911992_ntxcd",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T21:48:31.992Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "jax.lax.select — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.select.html#jax.lax.select",
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.select.html#jax.lax.select",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "jax.lax.select",
-        "prologue": "Configuration Options API Reference jax.lax module jax.lax.select .rst .pdf Light Dark System Settings jax.lax.select Contents select()",
-        "epilogue": "# jax.lax. select ( pred , on_true , on_false ) [source] # Selects between two branches"
-      },
-      "sectionTitle": "what is jax.lax.select signature",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "`jax.lax.select` 3 params are all `ArrayLike`",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T21:48:31.992Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791236911992_ntxcd",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T21:48:31.992Z",
-      "updatedAt": "2026-10-05T21:48:32.005Z",
-      "notesUpdatedAt": "2026-10-05T21:48:31.992Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T21:48:31.992Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
+      "notes": "- `jax.lax.select` 3 params are all `ArrayLike`\n- `jnp.where` is similar to `jax.lax.select` but more flexible on param type",
+      "notesUpdatedAt": "2026-10-05T21:49:27.811Z",
+      "presetKey": "standard",
+      "sectionTitle": "what is jax.lax.select signature",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.select.html#jax.lax.select",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T21:49:27.811Z",
+      "webAnchor": {
+        "epilogue": "# jax.lax. select ( pred , on_true , on_false ) [source] # Selects between two branches",
+        "prologue": "Configuration Options API Reference jax.lax module jax.lax.select .rst .pdf Light Dark System Settings jax.lax.select Contents select()",
+        "selectedText": "jax.lax.select"
+      }
     },
     {
       "calendarEventId": null,
