@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:52:53.538Z",
+  "updatedAt": "2026-10-05T17:53:25.580Z",
   "items": [
     {
-      "id": "rem_web_1791222773364_l36x8",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:52:53.365Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "concrete and abstract meshes.",
-        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
-        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of"
-      },
-      "sectionTitle": "concrete and abstract meshes.",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:52:53.365Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791222773364_l36x8",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T17:52:53.365Z",
-      "updatedAt": "2026-10-05T17:52:53.366Z",
-      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T17:52:53.365Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
+      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
+      "presetKey": "standard",
+      "sectionTitle": "concrete and abstract meshes.",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T17:52:53.366Z",
+      "webAnchor": {
+        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of",
+        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
+        "selectedText": "concrete and abstract meshes."
+      }
     },
     {
       "calendarEventId": null,
