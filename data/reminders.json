@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T06:00:55.993Z",
+  "updatedAt": "2026-10-05T06:01:03.203Z",
   "items": [],
   "deletedIds": [
     "rem_web_1791029404566_da86f",
@@ -12,7 +12,6 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
-    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
