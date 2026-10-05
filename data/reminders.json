@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T04:48:04.013Z",
+  "updatedAt": "2026-10-05T04:48:07.106Z",
   "items": [
     {
       "calendarEventId": null,
@@ -202,7 +202,7 @@
       "calendarEventId": null,
       "contentType": "gdoc",
       "createdAt": "2026-10-03T12:09:31.227Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o",
       "docTitle": "TestTheReviewTool",
       "docUrl": "https://docs.google.com/document/d/1N4GNj1_2flQiH1nBFeQbBvAqkSyvRBb4wsrFNf8hZ_o/edit",
@@ -227,7 +227,7 @@
       "isMastered": false,
       "lastReviewedAt": "2026-10-04T21:11:38.902Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-05T04:47:44.055Z",
+      "nextReviewDate": "2026-10-12T04:48:06.314Z",
       "notes": "",
       "presetKey": "standard",
       "sectionTitle": "header2",
@@ -238,8 +238,8 @@
       "totalStages": 5,
       "webAnchor": null,
       "includeInPodcast": true,
-      "lastReviewedDate": "2026-10-04T21:11:38.902Z",
-      "updatedAt": "2026-10-05T04:47:44.055Z"
+      "lastReviewedDate": "2026-10-05T04:48:06.314Z",
+      "updatedAt": "2026-10-05T04:48:06.314Z"
     },
     {
       "id": "rem_web_1791157661836_zpil8",
