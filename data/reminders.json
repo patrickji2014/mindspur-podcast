@@ -1,22 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T17:11:57.054Z",
+  "updatedAt": "2026-10-05T17:18:16.803Z",
   "items": [
     {
-      "id": "rem_1791220316736_5s7w4r",
-      "docId": "rem_1791220316736_8mjw0",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
+      "id": "rem_web_1791220695470_9tm33",
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Manual parallelism with shard_map — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/shard-map.html",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/shard-map.html#:~:text=1%2C3%2C5%2C7%20CPU%200%2C1%20CPU%202%2C3%20CPU%204%2C5%20CPU%206%2C7%20Slow%20down%2C%20start%20with%20the%20basics!%20%23-,Rank%20reducing%20vs%20rank%20preserving%20maps,-%23%20We%20can%20think%20of%20vmap%20as%20unstacking%20each%20array%20input%20along%20an%20axis%20(e.g.%20unpacking&rem_id=rem_web_1791220695470_9tm33",
       "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "different sharding operation used in different axis type",
+      "tabName": "docs.jax.dev",
+      "contentType": "webpage",
+      "webAnchor": {
+        "selectedText": "Rank-reducing vs rank-preserving maps",
+        "prologue": "1,3,5,7 CPU 0,1 CPU 2,3 CPU 4,5 CPU 6,7 Slow down, start with the basics! #",
+        "epilogue": "# We can think of vmap as unstacking each array input along an axis (e.g. unpacking"
+      },
+      "sectionTitle": "Rank-reducing vs rank-preserving maps",
       "headingId": null,
-      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only\n- `jax.device_put` can be used in all Axis Type",
-      "tags": [],
-      "mode": "self_grading",
+      "notes": "- `jax.vmap` is rank preserved mapping, the result will be stack back again. it use in_axes tuppe and out_axes as parameters to control the mapping axes.\n- `jax.shard_map` is rank preserve mapping. thinking about this, the mesh size is smaller than the matrix dimension.",
+      "tags": [
+        "web"
+      ],
+      "mode": "simple",
       "presetKey": "standard",
       "intervals": [
         1,
@@ -29,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T17:11:56.736Z",
-      "updatedAt": "2026-10-05T17:11:56.751Z",
-      "notesUpdatedAt": "2026-10-05T17:11:56.736Z",
+      "createdAt": "2026-10-05T17:18:15.471Z",
+      "updatedAt": "2026-10-05T17:18:15.482Z",
+      "notesUpdatedAt": "2026-10-05T17:18:15.471Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-06T16:00:00.000Z",
@@ -39,12 +45,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T17:11:56.736Z",
+          "timestamp": "2026-10-05T17:18:15.471Z",
           "stage": 0,
           "nextDate": "2026-10-06T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T17:11:56.736Z",
+      "currentStage": 0,
+      "docId": "rem_1791220316736_8mjw0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:11:56.736Z"
+        }
+      ],
+      "id": "rem_1791220316736_5s7w4r",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only\n- `jax.device_put` can be used in all Axis Type",
+      "notesUpdatedAt": "2026-10-05T17:11:56.736Z",
+      "presetKey": "standard",
+      "sectionTitle": "different sharding operation used in different axis type",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T17:11:56.751Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
