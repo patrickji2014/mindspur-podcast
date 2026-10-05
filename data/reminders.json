@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T18:34:12.750Z",
+  "updatedAt": "2026-10-05T18:34:33.223Z",
   "items": [
     {
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T06:38:34.901Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791182314901_45vdl",
       "docTitle": "Extensions",
       "docUrl": "",
@@ -30,10 +30,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-05T18:34:32.322Z",
+      "lastReviewedDate": "2026-10-05T18:34:32.322Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-05T16:00:00.000Z",
+      "nextReviewDate": "2026-10-08T18:34:32.322Z",
       "notes": "Don't forget to specify the tiled parameter. and don't forget to specify the axis_name parameter too.",
       "notesUpdatedAt": "2026-10-05T12:59:29.808Z",
       "presetKey": "standard",
@@ -43,7 +43,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T12:59:29.808Z",
+      "updatedAt": "2026-10-05T18:34:32.322Z",
       "webAnchor": null
     },
     {
