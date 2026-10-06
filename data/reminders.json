@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T19:58:00.305Z",
+  "updatedAt": "2026-10-06T19:58:23.877Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1358,7 +1358,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T22:54:11.045Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "jax.lax.top_k — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
@@ -1382,10 +1382,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T19:58:22.509Z",
+      "lastReviewedDate": "2026-10-06T19:58:22.509Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T19:58:22.509Z",
       "notes": "- `values, indices = jax.lax.top_k(x, 3)`\n- need the `k` and `axis` parameter",
       "notesUpdatedAt": "2026-10-05T22:54:11.045Z",
       "presetKey": "standard",
@@ -1397,7 +1397,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T22:54:11.062Z",
+      "updatedAt": "2026-10-06T19:58:22.509Z",
       "webAnchor": {
         "epilogue": ">>> values Array([10., 9., 6.], dtype=float32) >>> indices Array([4, 0, 2], dtype=int32) Copy to clipboard previous",
         "prologue": "= jnp . array ([ 9. , 3. , 6. , 4. , 10. ]) >>>",
