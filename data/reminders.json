@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T20:24:09.954Z",
+  "updatedAt": "2026-10-06T20:24:15.959Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1408,7 +1408,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T22:51:20.184Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791240680184_2lsdv",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -1432,10 +1432,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T20:24:15.086Z",
+      "lastReviewedDate": "2026-10-06T20:24:15.086Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T20:24:15.086Z",
       "notes": "- for `preferred_element_type`, always use `jnp.float32` as it's supported by hardware and offers the best stability. It doesn't have performance degrade\n- to perform downcasting, need to use `Array.astype()`. But if the value is out of the new dtype's range, `INF/NAN` will happen\n- How to perform quantization\n```py\nmax_val = jax.dtypes.finfo(jnp.float8_e4m3fn).max\nscale = jnp.max(jnp.abs(f32_array))\nscale = max(scale, 1e-6) # not jnp.max, use max\n# always clip before downcasting\nf8_e4m3fn_array = jnp.clip(f32_array/scale, -fp8_max, fp8_max).astype(jnp.float8_e4m3fn)\n```",
       "notesUpdatedAt": "2026-10-05T22:51:20.184Z",
       "presetKey": "standard",
@@ -1445,7 +1445,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T22:51:20.198Z",
+      "updatedAt": "2026-10-06T20:24:15.086Z",
       "webAnchor": null
     },
     {
