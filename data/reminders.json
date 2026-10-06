@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:22:33.487Z",
+  "updatedAt": "2026-10-06T17:22:42.154Z",
   "items": [
     {
       "calendarEventId": null,
@@ -658,7 +658,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:12:37.903Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
@@ -682,10 +682,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:22:41.183Z",
+      "lastReviewedDate": "2026-10-06T17:22:41.183Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:22:41.183Z",
       "notes": "The answer is No",
       "notesUpdatedAt": "2026-10-05T18:12:37.903Z",
       "presetKey": "standard",
@@ -697,7 +697,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T18:12:37.919Z",
+      "updatedAt": "2026-10-06T17:22:41.183Z",
       "webAnchor": {
         "epilogue": "# Compiled functions are specialized to a particular set of argument JAX types, such as arrays",
         "prologue": "in a different process. See Exporting and serializing staged-out computations for additional APIs for this purpose.",
