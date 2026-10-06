@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:27:07.943Z",
+  "updatedAt": "2026-10-06T17:27:20.616Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1208,7 +1208,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:41:40.553Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Data placement — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
@@ -1232,10 +1232,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:27:19.336Z",
+      "lastReviewedDate": "2026-10-06T17:27:19.336Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:27:19.336Z",
       "notes": "it can accept `devices` param",
       "notesUpdatedAt": "2026-10-05T18:41:40.553Z",
       "presetKey": "standard",
@@ -1247,7 +1247,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T18:41:40.561Z",
+      "updatedAt": "2026-10-06T17:27:19.336Z",
       "webAnchor": {
         "epilogue": "(( 4 ,), ( 'x' ,), devices = full . devices [: 4 ]) mesh_b =",
         "prologue": "subsets of the same hardware — two halves, and a couple of single-device meshes: mesh_a =",
