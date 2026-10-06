@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:30:14.163Z",
+  "updatedAt": "2026-10-06T17:30:46.196Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1940,7 +1940,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T23:18:59.209Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Stateful computations — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
@@ -1964,10 +1964,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:30:44.956Z",
+      "lastReviewedDate": "2026-10-06T17:30:44.956Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:30:44.956Z",
       "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref’s value first, like `jnp.sin(x_ref[...])`",
       "notesUpdatedAt": "2026-10-05T23:19:35.941Z",
       "presetKey": "standard",
@@ -1979,7 +1979,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T23:19:35.941Z",
+      "updatedAt": "2026-10-06T17:30:44.956Z",
       "webAnchor": {
         "epilogue": "# slice indexing col = x_ref [:, 1 ] x_ref [ 0 , : 3 ]",
         "prologue": "[ 1 ] = row # tuple indexing val = x_ref [ 1 , 2 ]",
