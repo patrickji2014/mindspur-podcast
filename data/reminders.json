@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T23:53:15.143Z",
+  "updatedAt": "2026-10-06T23:54:05.685Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1796,7 +1796,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T21:34:55.526Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Control flow and logical operators with jit — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#cond",
@@ -1820,10 +1820,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T23:54:04.510Z",
+      "lastReviewedDate": "2026-10-06T23:54:04.510Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T23:54:04.510Z",
       "notes": "- Unlike a Python if, the predicate here **can be** a traced value. The choice of branch happens **on the device, at run time, inside the compiled program**\n- `jax.lax.cond` is used for a replacement for `if` statement so it can depend on the value of the input args. `jit_f=jax.jit(lambda x: jax.lax.cond(x < 3), lambda : 3*x**2, lambda : x)` . This is okay, but you cannot use this to perform a value dependent shape-var etc.\n- `jax.lax.cond` pred param is a Boolean scalar type, indicating which branch function to apply.\n- `jax.lax.cond(pred, true_fun, false_fun, *operands, operand=<object object>)`",
       "notesUpdatedAt": "2026-10-05T21:50:39.306Z",
       "presetKey": "standard",
@@ -1835,7 +1835,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#cond",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T21:50:39.306Z",
+      "updatedAt": "2026-10-06T23:54:04.510Z",
       "webAnchor": {
         "epilogue": "# Python equivalent: def cond ( pred , true_fun , false_fun , operand ): if pred",
         "prologue": ": forward-mode differentiable in general; forward- and reverse-mode differentiable if endpoints are static lax.scan : differentiable",
