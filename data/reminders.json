@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:25:17.634Z",
+  "updatedAt": "2026-10-06T17:25:39.536Z",
   "items": [
     {
       "calendarEventId": null,
@@ -908,7 +908,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T19:06:24.680Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Control flow and logical operators with jit — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
@@ -932,10 +932,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:25:38.346Z",
+      "lastReviewedDate": "2026-10-06T17:25:38.346Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:25:38.346Z",
       "notes": "answer is start, end, function and init value. the function should accept an index and carry.",
       "notesUpdatedAt": "2026-10-05T19:06:24.680Z",
       "presetKey": "standard",
@@ -947,7 +947,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T19:06:24.690Z",
+      "updatedAt": "2026-10-06T17:25:38.346Z",
       "webAnchor": {
         "epilogue": "# Python equivalent: def fori_loop ( start , stop , body_fun , init_val ): val =",
         "prologue": "a loop, use scan (fixed length), or fori_loop with static bounds (which lowers to scan ).",
