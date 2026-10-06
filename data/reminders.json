@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:25:39.536Z",
+  "updatedAt": "2026-10-06T17:26:07.316Z",
   "items": [
     {
       "calendarEventId": null,
@@ -958,7 +958,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T19:04:57.657Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Control flow and logical operators with jit — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
@@ -982,10 +982,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:26:06.196Z",
+      "lastReviewedDate": "2026-10-06T17:26:06.196Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:26:06.196Z",
       "notes": "answer is f, init, and xs\n```py\ndef scan(f, init, xs):\n  carry = init\n  ys = []\n  for x in xs:\n    carry, y = f(carry, x)\n    ys.append(y)\n  return carry, np.stack(ys)\n```",
       "notesUpdatedAt": "2026-10-05T19:05:14.005Z",
       "presetKey": "standard",
@@ -997,7 +997,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T19:05:14.005Z",
+      "updatedAt": "2026-10-06T17:26:06.196Z",
       "webAnchor": {
         "epilogue": ": a loop with a fixed number of iterations that carries state from step to step,",
         "prologue": "Array(45, dtype=int32, weak_type=True) Copy to clipboard scan # The most commonly used of the four is",
