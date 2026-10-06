@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:29:49.112Z",
+  "updatedAt": "2026-10-06T17:30:02.022Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1990,7 +1990,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T23:17:03.620Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Stateful computations — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
@@ -2014,10 +2014,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:30:00.966Z",
+      "lastReviewedDate": "2026-10-06T17:30:00.966Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:30:00.966Z",
       "notes": "A function still counts as pure if it only use refs internally, for example, it only create new refs inside the function rather than pass in through the parameters.",
       "notesUpdatedAt": "2026-10-05T23:17:03.620Z",
       "presetKey": "standard",
@@ -2029,7 +2029,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T23:17:03.633Z",
+      "updatedAt": "2026-10-06T17:30:00.966Z",
       "webAnchor": {
         "epilogue": ". More precisely, a function is impure if and only if it takes a ref as",
         "prologue": "That leaves reasoning, and the main new thing to learn is how refs interact with transformations.",
