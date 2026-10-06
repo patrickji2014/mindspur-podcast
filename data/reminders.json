@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T19:56:56.815Z",
+  "updatedAt": "2026-10-06T19:57:05.074Z",
   "items": [
     {
       "calendarEventId": null,
@@ -420,7 +420,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T17:11:56.736Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791220316736_8mjw0",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -444,10 +444,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T19:57:03.921Z",
+      "lastReviewedDate": "2026-10-06T19:57:03.921Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T19:57:03.921Z",
       "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis, on Explicit axis, it acts like assertion\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only with different sharding spec\n- `jax.device_put` can be used in all Axis Type",
       "notesUpdatedAt": "2026-10-05T17:40:17.736Z",
       "presetKey": "standard",
@@ -457,7 +457,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T17:40:17.736Z",
+      "updatedAt": "2026-10-06T19:57:03.921Z",
       "webAnchor": null
     },
     {
