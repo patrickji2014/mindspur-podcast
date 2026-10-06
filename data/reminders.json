@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T20:08:58.931Z",
+  "updatedAt": "2026-10-06T20:09:12.476Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1496,7 +1496,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T22:21:52.665Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Just-in-time compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell47",
@@ -1520,10 +1520,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T20:09:11.697Z",
+      "lastReviewedDate": "2026-10-06T20:09:11.697Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T20:09:11.697Z",
       "notes": "- `jax.block_until_ready` will Blocking without transferring the result to the host\n- using np.asarray(ArrayLike) will transfer to host memory",
       "notesUpdatedAt": "2026-10-05T22:21:52.665Z",
       "presetKey": "standard",
@@ -1535,7 +1535,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell47",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T22:21:52.680Z",
+      "updatedAt": "2026-10-06T20:09:11.697Z",
       "webAnchor": {
         "epilogue": "does) is usually faster than forcing a transfer with np.asarray(...) , and is the right tool",
         "prologue": "clipboard Array(shape=(1000, 1000), dtype=float32) Copy to clipboard Blocking without transferring the result to the host (as",
