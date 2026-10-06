@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:23:39.000Z",
+  "updatedAt": "2026-10-06T17:23:45.396Z",
   "items": [
     {
       "calendarEventId": null,
@@ -808,7 +808,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:03:43.903Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
@@ -832,10 +832,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:23:44.166Z",
+      "lastReviewedDate": "2026-10-06T17:23:44.166Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:23:44.166Z",
       "notes": "The `compile()` step accepts the same `compiler_options` dictionary as `jax.jit()` itself",
       "notesUpdatedAt": "2026-10-05T18:03:43.903Z",
       "presetKey": "standard",
@@ -847,7 +847,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T18:03:43.918Z",
+      "updatedAt": "2026-10-06T17:23:44.166Z",
       "webAnchor": {
         "epilogue": ", for setting XLA flags on a per-compilation basis; see XLA compiler flags . Alongside cost_analysis",
         "prologue": "See the jax.stages documentation for more details on what functionality the lowered and compiled objects provide.",
