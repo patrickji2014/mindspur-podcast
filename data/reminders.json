@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T16:20:59.611Z",
+  "updatedAt": "2026-10-06T16:21:21.925Z",
   "items": [
     {
       "calendarEventId": null,
@@ -370,7 +370,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T17:18:15.471Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Manual parallelism with shard_map — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/shard-map.html",
@@ -394,10 +394,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T16:21:20.914Z",
+      "lastReviewedDate": "2026-10-06T16:21:20.914Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T16:21:20.914Z",
       "notes": "- `jax.vmap` is rank preserved mapping, the result will be stack back again. it use in_axes tuppe and out_axes as parameters to control the mapping axes.\n- `jax.shard_map` is rank preserve mapping. thinking about this, the mesh size is smaller than the matrix dimension.",
       "notesUpdatedAt": "2026-10-05T17:18:15.471Z",
       "presetKey": "standard",
@@ -409,7 +409,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/shard-map.html#:~:text=1%2C3%2C5%2C7%20CPU%200%2C1%20CPU%202%2C3%20CPU%204%2C5%20CPU%206%2C7%20Slow%20down%2C%20start%20with%20the%20basics!%20%23-,Rank%20reducing%20vs%20rank%20preserving%20maps,-%23%20We%20can%20think%20of%20vmap%20as%20unstacking%20each%20array%20input%20along%20an%20axis%20(e.g.%20unpacking&rem_id=rem_web_1791220695470_9tm33",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T17:18:15.482Z",
+      "updatedAt": "2026-10-06T16:21:20.914Z",
       "webAnchor": {
         "epilogue": "# We can think of vmap as unstacking each array input along an axis (e.g. unpacking",
         "prologue": "1,3,5,7 CPU 0,1 CPU 2,3 CPU 4,5 CPU 6,7 Slow down, start with the basics! #",
