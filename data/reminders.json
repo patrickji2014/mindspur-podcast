@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T20:10:20.155Z",
+  "updatedAt": "2026-10-06T20:10:36.412Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1646,7 +1646,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T22:15:03.764Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Just-in-time compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#in-place-updates-with-refs",
@@ -1670,10 +1670,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T20:10:34.619Z",
+      "lastReviewedDate": "2026-10-06T20:10:34.619Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T20:10:34.619Z",
       "notes": "- Donate buffer through `donate_argnames`\n- Use input ref\n\n```py\n@jax.jit\ndef sin_inplace(x_ref):\n  x_ref[...] = jnp.sin(x_ref[...])\n\nx_ref = jax.new_ref(jnp.arange(3.0))\nprint(x_ref.unsafe_buffer_pointer(), x_ref)\nsin_inplace(x_ref)\nprint(x_ref.unsafe_buffer_pointer(), x_ref)\n```",
       "notesUpdatedAt": "2026-10-05T22:15:03.764Z",
       "presetKey": "standard",
@@ -1685,7 +1685,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#in-place-updates-with-refs",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T22:15:03.779Z",
+      "updatedAt": "2026-10-06T20:10:34.619Z",
       "webAnchor": {
         "epilogue": "# A compiled function’s inputs and outputs are immutable arrays, so at the jit boundary every",
         "prologue": "dataclass, jax.tree_util.register_dataclass() gets you the same result with much less ceremony; see Custom pytree nodes .",
