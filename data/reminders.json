@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T17:23:08.302Z",
+  "updatedAt": "2026-10-06T17:23:39.000Z",
   "items": [
     {
       "calendarEventId": null,
@@ -758,7 +758,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:04:54.158Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
@@ -782,10 +782,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T17:23:37.095Z",
+      "lastReviewedDate": "2026-10-06T17:23:37.095Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T17:23:37.095Z",
       "notes": "jax stage out is the same as the trace, `jax.jit().trace()`",
       "notesUpdatedAt": "2026-10-05T18:04:54.158Z",
       "presetKey": "standard",
@@ -797,7 +797,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T18:04:54.168Z",
+      "updatedAt": "2026-10-06T17:23:37.095Z",
       "webAnchor": {
         "epilogue": "a version of the original Python callable F , specialized to the JAX types of the",
         "prologue": "arguments, say f(x, y) where x and y are arrays, JAX does the following in order:",
