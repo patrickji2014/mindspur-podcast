@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T16:19:17.599Z",
+  "updatedAt": "2026-10-06T16:19:33.182Z",
   "items": [
     {
       "calendarEventId": null,
@@ -276,7 +276,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T17:28:27.719Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791221307719_71eh6",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -300,10 +300,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T16:19:32.057Z",
+      "lastReviewedDate": "2026-10-06T16:19:32.057Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T16:19:32.057Z",
       "notes": "- Swish Gated Linear Unit is the standard MoE gate up projection\n- SiLU(x) = x * sigmoid(x)\n- SwiGLU(x) = SiLU(x) * (xW)",
       "notesUpdatedAt": "2026-10-05T17:28:27.719Z",
       "presetKey": "standard",
@@ -313,7 +313,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T17:28:27.736Z",
+      "updatedAt": "2026-10-06T16:19:32.057Z",
       "webAnchor": null
     },
     {
