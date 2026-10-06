@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T16:18:29.174Z",
+  "updatedAt": "2026-10-06T16:18:41.525Z",
   "items": [
     {
       "calendarEventId": null,
@@ -94,7 +94,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-05T13:17:15.017Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791206235017_t7ji8",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -118,10 +118,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T16:18:40.152Z",
+      "lastReviewedDate": "2026-10-06T16:18:40.152Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T16:18:40.152Z",
       "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
       "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
       "presetKey": "standard",
@@ -131,7 +131,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T13:19:19.726Z",
+      "updatedAt": "2026-10-06T16:18:40.152Z",
       "webAnchor": null
     },
     {
