@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-06T20:09:12.476Z",
+  "updatedAt": "2026-10-06T20:09:17.281Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1546,7 +1546,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T22:20:14.676Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Just-in-time compilation — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
@@ -1570,10 +1570,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-06T20:09:16.277Z",
+      "lastReviewedDate": "2026-10-06T20:09:16.277Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-06T16:00:00.000Z",
+      "nextReviewDate": "2026-10-09T20:09:16.277Z",
       "notes": "Donating an argument that’s a pytree donates every array in it",
       "notesUpdatedAt": "2026-10-05T22:20:14.676Z",
       "presetKey": "standard",
@@ -1585,7 +1585,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
       "totalStages": 5,
-      "updatedAt": "2026-10-05T22:20:14.690Z",
+      "updatedAt": "2026-10-06T20:09:16.277Z",
       "webAnchor": {
         "epilogue": ": def add_ones ( xs : list [ jax . Array ]): return [ x +",
         "prologue": "= params , state = state ) Copy to clipboard Pytree arguments donate all their buffers.",
