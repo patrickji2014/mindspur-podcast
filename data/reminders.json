@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T16:15:01.699Z",
+  "updatedAt": "2026-10-07T16:15:22.442Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2310,7 +2310,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-07T05:16:27.216Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Pytrees — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
@@ -2334,10 +2334,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-07T16:15:21.349Z",
+      "lastReviewedDate": "2026-10-07T16:15:21.349Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-07T16:00:00.000Z",
+      "nextReviewDate": "2026-10-10T16:15:21.349Z",
       "notes": "`vmap(f, in_axes=(0, {\"k1\": 0, \"k2\": None}))`",
       "notesUpdatedAt": "2026-10-07T05:16:27.216Z",
       "presetKey": "standard",
@@ -2349,7 +2349,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T05:16:27.227Z",
+      "updatedAt": "2026-10-07T16:15:21.349Z",
       "webAnchor": {
         "epilogue": "Copy to clipboard maps over the leading axis of the first argument and of k1 ,",
         "prologue": "up against the argument structure. For example, with a function whose second argument is a dict:",
