@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T16:15:22.442Z",
+  "updatedAt": "2026-10-07T16:16:19.031Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2410,7 +2410,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-07T05:13:06.221Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Pytrees — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#what-is-a-pytree",
@@ -2434,10 +2434,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-07T16:16:18.086Z",
+      "lastReviewedDate": "2026-10-07T16:16:18.086Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-07T16:00:00.000Z",
+      "nextReviewDate": "2026-10-10T16:16:18.086Z",
       "notes": "A pytree is a recursive structure: either a leaf, or a container (a node) whose children are pytrees. Containers can be lists, tuples, and dicts, nested arbitrarily. A leaf is anything that’s not a container, like an array. Tuple and NamedTuple is a pytree container but it can only contains the jax.ArrayLike type. Dataclass is not a container and make it as as a container, needs the `@jax.tree_util.register_dataclass` annotation and the `jax.tree.static_field()` to mark it as metadata field.",
       "notesUpdatedAt": "2026-10-07T05:13:06.221Z",
       "presetKey": "standard",
@@ -2449,7 +2449,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#what-is-a-pytree",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T05:13:06.231Z",
+      "updatedAt": "2026-10-07T16:16:18.086Z",
       "webAnchor": {
         "epilogue": "# A pytree is a recursive structure: either a leaf , or a container (a node",
         "prologue": "explains the pytree abstraction, the utilities for working with pytrees, and some common gotchas and patterns.",
