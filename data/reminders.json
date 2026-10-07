@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T16:16:43.763Z",
+  "updatedAt": "2026-10-07T16:16:53.163Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2360,7 +2360,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-07T05:14:21.487Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Pytrees — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
@@ -2384,10 +2384,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-07T16:16:52.155Z",
+      "lastReviewedDate": "2026-10-07T16:16:52.155Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-07T16:00:00.000Z",
+      "nextReviewDate": "2026-10-10T16:16:52.155Z",
       "notes": "- `leaves, treedef = jax.tree.flatten(params)`\n- `jax.tree.unflatten(treedef, leaves)`\n- `jax.tree.leaves()` and `jax.tree.structure`\n- `jax.tree.map` and `jax.tree.reduce`\n- `jax.tree.all`\n\n```py\njax.tree.map(lambda x, y, z: x + y + z, tree1, tree2, tree3)\n```",
       "notesUpdatedAt": "2026-10-07T13:09:40.724Z",
       "presetKey": "standard",
@@ -2399,7 +2399,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T13:09:40.724Z",
+      "updatedAt": "2026-10-07T16:16:52.155Z",
       "webAnchor": {
         "epilogue": "print ( leaves ) print ( treedef ) print ( jax . tree . unflatten (",
         "prologue": "jnp . zeros (( 2 , 3 )), 'b' : jnp . zeros ( 3 )}",
