@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T05:14:21.906Z",
+  "updatedAt": "2026-10-07T05:14:34.403Z",
   "items": [
     {
-      "id": "rem_web_1791350061487_til2v",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-07T05:14:21.487Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Pytrees — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
-      "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "leaves, treedef = jax.tree.flatten(params)",
-        "prologue": "jnp . zeros (( 2 , 3 )), 'b' : jnp . zeros ( 3 )}",
-        "epilogue": "print ( leaves ) print ( treedef ) print ( jax . tree . unflatten ("
-      },
-      "sectionTitle": "Pytree APIs",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "- `leaves, treedef = jax.tree.flatten(params)`\n- `jax.tree.unflatten(treedef, leaves)`",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-07T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-07T05:14:21.487Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791350061487_til2v",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-07T05:14:21.487Z",
-      "updatedAt": "2026-10-07T05:14:21.499Z",
-      "notesUpdatedAt": "2026-10-07T05:14:21.487Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-07T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-07T05:14:21.487Z",
-          "stage": 0,
-          "nextDate": "2026-10-07T16:00:00.000Z"
-        }
+      "notes": "- `leaves, treedef = jax.tree.flatten(params)`\n- `jax.tree.unflatten(treedef, leaves)`\n- `jax.tree.leaves()`",
+      "notesUpdatedAt": "2026-10-07T05:14:34.160Z",
+      "presetKey": "standard",
+      "sectionTitle": "Pytree APIs",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
+      "totalStages": 5,
+      "updatedAt": "2026-10-07T05:14:34.160Z",
+      "webAnchor": {
+        "epilogue": "print ( leaves ) print ( treedef ) print ( jax . tree . unflatten (",
+        "prologue": "jnp . zeros (( 2 , 3 )), 'b' : jnp . zeros ( 3 )}",
+        "selectedText": "leaves, treedef = jax.tree.flatten(params)"
+      }
     },
     {
       "calendarEventId": null,
