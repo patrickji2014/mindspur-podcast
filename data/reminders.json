@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T13:13:28.210Z",
+  "updatedAt": "2026-10-07T13:19:03.786Z",
   "items": [
     {
-      "id": "rem_1791378807794_l2svl8",
-      "docId": "rem_1791378807793_lcvka",
+      "id": "rem_1791379143372_8xm637",
+      "docId": "rem_1791379143371_yvfn5",
       "docTitle": "General Reminder",
       "docUrl": "",
       "targetUrl": "",
@@ -12,9 +12,9 @@
       "tabName": null,
       "contentType": "note",
       "webAnchor": null,
-      "sectionTitle": "jnp.asarray vs jnp.array",
+      "sectionTitle": "Chunk - XLA TPU Memory Allocation",
       "headingId": null,
-      "notes": "- `jnp.asarray` will ensure the output is jax.Array and try to reuse the udnerlying data\n- `jnp.array` will definitely create a new array\n- both `np.array` and` jax.Array` are `jax.ArrayLike` type, `list`/`tuple` are not `jax.ArrayLike`",
+      "notes": "- in XLA, tpu memory is always allocated to units of `chunk`\n- a `chunk` is always `8 * 128` (or `x * 128` if use compact 2nd minor dimension packing) in size\n- the minor dimension is always put on the lane and the second minor is always put on sublane",
       "tags": [],
       "mode": "self_grading",
       "presetKey": "standard",
@@ -29,9 +29,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-07T13:13:27.794Z",
-      "updatedAt": "2026-10-07T13:13:27.809Z",
-      "notesUpdatedAt": "2026-10-07T13:13:27.794Z",
+      "createdAt": "2026-10-07T13:19:03.372Z",
+      "updatedAt": "2026-10-07T13:19:03.388Z",
+      "notesUpdatedAt": "2026-10-07T13:19:03.372Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-08T16:00:00.000Z",
@@ -39,12 +39,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-07T13:13:27.794Z",
+          "timestamp": "2026-10-07T13:19:03.372Z",
           "stage": 0,
           "nextDate": "2026-10-08T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-07T13:13:27.794Z",
+      "currentStage": 0,
+      "docId": "rem_1791378807793_lcvka",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-08T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-07T13:13:27.794Z"
+        }
+      ],
+      "id": "rem_1791378807794_l2svl8",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-08T16:00:00.000Z",
+      "notes": "- `jnp.asarray` will ensure the output is jax.Array and try to reuse the udnerlying data\n- `jnp.array` will definitely create a new array\n- both `np.array` and` jax.Array` are `jax.ArrayLike` type, `list`/`tuple` are not `jax.ArrayLike`",
+      "notesUpdatedAt": "2026-10-07T13:13:27.794Z",
+      "presetKey": "standard",
+      "sectionTitle": "jnp.asarray vs jnp.array",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-07T13:13:27.809Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
