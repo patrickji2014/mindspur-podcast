@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T16:16:19.031Z",
+  "updatedAt": "2026-10-07T16:16:43.763Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2460,7 +2460,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-07T05:04:05.955Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "jax.dtypes module — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/jax.dtypes.html#module-jax.dtypes",
@@ -2484,10 +2484,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-07T16:16:42.918Z",
+      "lastReviewedDate": "2026-10-07T16:16:42.918Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-07T16:00:00.000Z",
+      "nextReviewDate": "2026-10-10T16:16:42.918Z",
       "notes": "- `jax.dtypes.iinfo` and `jax.dtypes.finfo`\n- `jax.dtypes.issubdtype` `jnp.floating` `jnp.integer`\n- `jax.dtypes.itemsize_bits()`",
       "notesUpdatedAt": "2026-10-07T05:04:05.955Z",
       "presetKey": "standard",
@@ -2499,7 +2499,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/jax.dtypes.html#module-jax.dtypes",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T05:04:05.975Z",
+      "updatedAt": "2026-10-07T16:16:42.918Z",
       "webAnchor": {
         "epilogue": "# bfloat16 bfloat16 floating-point values canonicalize_dtype (dtype[, allow_extended_dtype]) Convert from a dtype to a canonical dtype",
         "prologue": "of terms Configuration Options API Reference jax.dtypes module .rst .pdf Light Dark System Settings jax.dtypes module",
