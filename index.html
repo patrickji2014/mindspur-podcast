@@ -484,6 +484,66 @@
     .notes-content-box .md-task-check.checked { color: #34d399; }
     .notes-content-box .md-link { color: #818cf8; text-decoration: underline; }
     .notes-content-box .md-hr { border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 8px 0; }
+    .notes-content-box .md-image {
+      max-width: 100%;
+      max-height: 260px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      margin: 6px 0;
+      cursor: pointer;
+      display: block;
+      background: rgba(15, 23, 42, 0.4);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .mobile-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset-top, 16px) 16px env(safe-area-inset-bottom, 16px) 16px;
+    }
+    .mobile-lightbox-img {
+      max-width: 96vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: #0f172a;
+    }
+    .mobile-lightbox-caption {
+      margin-top: 10px;
+      color: #cbd5e1;
+      font-size: 13px;
+      text-align: center;
+      max-width: 90vw;
+    }
+    .mobile-lightbox-close {
+      position: absolute;
+      top: max(env(safe-area-inset-top, 16px), 16px);
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(30, 41, 59, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+    }
 
     .notes-edit-area {
       padding: 10px;
@@ -502,6 +562,29 @@
       font-family: inherit;
       font-size: 13px;
       outline: none;
+      transition: border-color 0.15s, background-color 0.15s;
+    }
+    .notes-textarea.dragover {
+      border-color: var(--accent-indigo);
+      background: rgba(99, 102, 241, 0.1);
+    }
+    .btn-mobile-attach {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-sm);
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .btn-mobile-attach:active {
+      background: rgba(255, 255, 255, 0.18);
+      transform: scale(0.97);
     }
 
     /* Card Action Buttons */
@@ -833,6 +916,13 @@
         📋 Paste Pairing URL / Link
       </button>
     </div>
+  </div>
+
+  <!-- Mobile Image Lightbox Overlay -->
+  <div id="mobile-lightbox" class="mobile-lightbox" style="display: none;">
+    <button class="mobile-lightbox-close" id="btn-close-mobile-lightbox" aria-label="Close">✕</button>
+    <img id="mobile-lightbox-img" class="mobile-lightbox-img" src="" alt="Enlarged note image">
+    <div id="mobile-lightbox-caption" class="mobile-lightbox-caption"></div>
   </div>
 
   <!-- Toast -->
@@ -1191,6 +1281,7 @@
 
       // In-app touch pull-down-to-refresh
       setupPullToRefresh();
+      setupMobileLightbox();
     }
 
     function setupPullToRefresh() {
@@ -2188,10 +2279,16 @@
             '<div style="margin-top:8px;"><button class="badge" id="btn-edit-note-' + item.id + '" style="cursor:pointer;">✏️ Edit Note</button></div>' +
           '</div>' +
           '<div class="notes-edit-area hidden" id="notes-edit-' + item.id + '">' +
-            '<textarea class="notes-textarea" id="textarea-' + item.id + '" placeholder="Notes or recall cues (Markdown supported: **bold**, *italic*, `code`, lists)...">' + escapeHtml(item.notes || '') + '</textarea>' +
-            '<div style="display:flex; gap:6px;">' +
-              '<button class="badge" id="btn-save-note-' + item.id + '" style="background:var(--accent-indigo); color:#fff; cursor:pointer; padding:6px 12px;">Save</button>' +
-              '<button class="badge" id="btn-cancel-note-' + item.id + '" style="cursor:pointer; padding:6px 12px;">Cancel</button>' +
+            '<textarea class="notes-textarea" id="textarea-' + item.id + '" placeholder="Notes or recall cues (Markdown supported: **bold**, *italic*, `code`, lists, images)...">' + escapeHtml(item.notes || '') + '</textarea>' +
+            '<div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;">' +
+              '<div style="display:flex; gap:6px; align-items:center;">' +
+                '<button type="button" class="btn-mobile-attach" id="btn-attach-' + item.id + '" title="Attach photo or image">📷 Attach Photo</button>' +
+                '<input type="file" id="file-input-' + item.id + '" accept="image/*" style="display:none;" />' +
+              '</div>' +
+              '<div style="display:flex; gap:6px;">' +
+                '<button class="badge" id="btn-save-note-' + item.id + '" style="background:var(--accent-indigo); color:#fff; cursor:pointer; padding:6px 12px;">Save</button>' +
+                '<button class="badge" id="btn-cancel-note-' + item.id + '" style="cursor:pointer; padding:6px 12px;">Cancel</button>' +
+              '</div>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -2283,6 +2380,13 @@
         notesBody.classList.remove('hidden');
       });
 
+      // Mobile Image Attach & Clipboard Paste
+      const attachBtn = card.querySelector('#btn-attach-' + item.id);
+      const fileInput = card.querySelector('#file-input-' + item.id);
+      if (typeof setupMobileImageUpload === 'function') {
+        setupMobileImageUpload(textarea, attachBtn, fileInput);
+      }
+
       // Review actions
       if (!item.isMastered) {
         if (isSelfGrading) {
@@ -2337,15 +2441,237 @@
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
+    function setupMobileLightbox() {
+      const overlay = document.getElementById('mobile-lightbox');
+      const imgEl = document.getElementById('mobile-lightbox-img');
+      const captionEl = document.getElementById('mobile-lightbox-caption');
+      const btnClose = document.getElementById('btn-close-mobile-lightbox');
+      if (!overlay || !imgEl) return;
+
+      function openLb(src, alt) {
+        imgEl.src = src;
+        imgEl.alt = alt || '';
+        if (captionEl) {
+          captionEl.textContent = alt || '';
+          captionEl.style.display = alt ? 'block' : 'none';
+        }
+        overlay.style.display = 'flex';
+      }
+
+      function closeLb() {
+        overlay.style.display = 'none';
+        imgEl.src = '';
+      }
+
+      if (btnClose) btnClose.addEventListener('click', closeLb);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target === btnClose) closeLb();
+      });
+
+      document.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.classList && target.classList.contains('md-image')) {
+          e.stopPropagation();
+          openLb(target.src, target.alt);
+        }
+      });
+    }
+
+    function setupMobileImageUpload(textarea, attachBtn, fileInput) {
+      if (!textarea) return;
+
+      function insertMarkdownImage(url, alt) {
+        const altText = String(alt || 'Image').replace(/[^a-zA-Z0-9 _-]/g, ' ').trim() || 'Image';
+        const md = '\n\n![' + altText + '](' + url + ')\n\n';
+        const start = textarea.selectionStart !== undefined ? textarea.selectionStart : textarea.value.length;
+        const end = textarea.selectionEnd !== undefined ? textarea.selectionEnd : start;
+        const val = textarea.value;
+        textarea.value = val.substring(0, start) + md + val.substring(end);
+        const newPos = start + md.length;
+        textarea.selectionStart = textarea.selectionEnd = newPos;
+        textarea.focus();
+      }
+
+      function compressImageBlob(file, maxDimension, quality) {
+        maxDimension = maxDimension || 1600;
+        quality = quality !== undefined ? quality : 0.82;
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error('Failed to read image file'));
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onerror = () => reject(new Error('Failed to load image'));
+            img.onload = () => {
+              let width = img.naturalWidth || img.width;
+              let height = img.naturalHeight || img.height;
+              if (width > maxDimension || height > maxDimension) {
+                if (width >= height) {
+                  height = Math.round(height * (maxDimension / width));
+                  width = maxDimension;
+                } else {
+                  width = Math.round(width * (maxDimension / height));
+                  height = maxDimension;
+                }
+              }
+              const canvas = document.createElement('canvas');
+              canvas.width = Math.max(1, width);
+              canvas.height = Math.max(1, height);
+              const ctx = canvas.getContext('2d');
+              ctx.drawImage(img, 0, 0, width, height);
+
+              // Try webp first
+              let dataUrl = canvas.toDataURL('image/webp', quality);
+              let format = 'webp';
+              if (!dataUrl || !dataUrl.startsWith('data:image/webp')) {
+                dataUrl = canvas.toDataURL('image/jpeg', quality);
+                format = 'jpeg';
+              }
+              resolve({ dataUrl: dataUrl, format: format, width: width, height: height });
+            };
+            img.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      async function uploadToGitHub(base64Content, extension) {
+        if (!authConfig || !authConfig.githubToken || !authConfig.githubOwner) return null;
+        const repo = authConfig.githubRepo || 'mindspur-podcast';
+        const timestamp = Date.now();
+        const rand = Math.random().toString(36).substring(2, 8);
+        const filename = 'img_' + timestamp + '_' + rand + '.' + (extension || 'webp');
+        const assetPath = 'assets/images/' + filename;
+        const apiUrl = 'https://api.github.com/repos/' + authConfig.githubOwner + '/' + repo + '/contents/' + assetPath;
+
+        const res = await fetch(apiUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'Bearer ' + authConfig.githubToken,
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            message: 'Upload note image: ' + filename,
+            content: base64Content,
+            branch: 'main'
+          })
+        });
+
+        if (!res.ok) {
+          throw new Error('GitHub upload failed with HTTP ' + res.status);
+        }
+
+        return 'https://' + authConfig.githubOwner.toLowerCase() + '.github.io/' + repo + '/' + assetPath;
+      }
+
+      async function processAndInsertImage(file, label) {
+        if (!file || !file.type || !file.type.startsWith('image/')) {
+          showToast('⚠️ Selected file is not an image');
+          return;
+        }
+        try {
+          showToast('⏳ Compressing image to WebP...');
+          const compressed = await compressImageBlob(file, 1600, 0.82);
+          const rawBase64 = compressed.dataUrl.split(',')[1];
+          let finalUrl = null;
+
+          if (authConfig && authConfig.githubToken && authConfig.githubOwner) {
+            try {
+              finalUrl = await uploadToGitHub(rawBase64, compressed.format);
+            } catch (uploadErr) {
+              console.warn('Mobile GitHub upload failed, falling back to local data URL:', uploadErr);
+              finalUrl = compressed.dataUrl;
+            }
+          } else {
+            finalUrl = compressed.dataUrl;
+          }
+
+          insertMarkdownImage(finalUrl, label || 'Image');
+          showToast(finalUrl.startsWith('http') ? '📷 Photo uploaded to GitHub CDN!' : '📷 Photo compressed and attached!');
+        } catch (err) {
+          console.error('Image processing failed:', err);
+          showToast('❌ Image processing failed: ' + (err.message || 'Unknown error'));
+        }
+      }
+
+      if (attachBtn && fileInput) {
+        attachBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+          if (fileInput.files && fileInput.files[0]) {
+            processAndInsertImage(fileInput.files[0], 'Photo');
+            fileInput.value = '';
+          }
+        });
+      }
+
+      // Clipboard Paste
+      textarea.addEventListener('paste', (e) => {
+        if (!e.clipboardData || !e.clipboardData.items) return;
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type && items[i].type.startsWith('image/')) {
+            e.preventDefault();
+            const file = items[i].getAsFile();
+            if (file) {
+              processAndInsertImage(file, 'Pasted Image');
+            }
+            break;
+          }
+        }
+      });
+
+      // Drag and Drop
+      textarea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        textarea.classList.add('dragover');
+      });
+      textarea.addEventListener('dragleave', () => {
+        textarea.classList.remove('dragover');
+      });
+      textarea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        textarea.classList.remove('dragover');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+          const file = e.dataTransfer.files[0];
+          if (file.type && file.type.startsWith('image/')) {
+            processAndInsertImage(file, 'Dropped Image');
+          }
+        }
+      });
+    }
+
     function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[m]);
     }
 
     function isSafeUrl(url) {
-      if (!url) return false;
-      const t = url.trim().toLowerCase();
-      return t.startsWith('https://') || t.startsWith('http://') || t.startsWith('mailto:') || t.startsWith('#');
+      if (!url || typeof url !== 'string') return false;
+      const t = url.trim();
+      if (/[\r\n\t\0"'<>]/.test(t)) return false;
+      if (t.includes('&quot;') || t.includes('&#39;')) return false;
+      const lower = t.toLowerCase();
+      return lower.startsWith('https://') || lower.startsWith('http://') || lower.startsWith('mailto:') || lower.startsWith('#');
+    }
+
+    function isSafeImageUrl(url) {
+      if (!url || typeof url !== 'string') return false;
+      const t = url.trim();
+      if (/[\r\n\t\0"'<>]/.test(t)) return false;
+      if (t.includes('&quot;') || t.includes('&#39;')) return false;
+      const lower = t.toLowerCase();
+      if (lower.startsWith('javascript:') || lower.startsWith('vbscript:') || lower.startsWith('data:text/') || lower.startsWith('file:')) return false;
+      if (lower.startsWith('https://') || lower.startsWith('http://')) return true;
+      if (lower.startsWith('assets/') || lower.startsWith('./assets/') || lower.startsWith('/assets/') || /^(\.\/|\/)?[\w\-./]+\.(?:png|jpe?g|webp|gif|bmp|ico)$/i.test(t)) return true;
+      if (lower.startsWith('data:image/')) {
+        if (lower.startsWith('data:image/svg')) return false;
+        return /^data:image\/(?:png|jpe?g|webp|gif|bmp);base64,[A-Za-z0-9+/=]+$/.test(t);
+      }
+      return false;
     }
 
     function renderMarkdown(text) {
@@ -2401,7 +2727,27 @@
       if (inOl) processedLines.push('</ol>');
       md = processedLines.join('\n');
 
-      md = md.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, href) => {
+      // Images before links
+      md = md.replace(/!\[([^\]]*)\]\(((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*)\)/g, (match, alt, inner) => {
+        const trimmedInner = (inner || '').trim();
+        const titleMatch = trimmedInner.match(/^([^\s]+)(?:\s+(?:&quot;([\s\S]*?)&quot;|&#39;([\s\S]*?)&#39;|"([\s\S]*?)"|'([\s\S]*?)'))?$/);
+        let src = '';
+        let title = '';
+        if (titleMatch) {
+          src = titleMatch[1];
+          title = titleMatch[2] || titleMatch[3] || titleMatch[4] || titleMatch[5] || '';
+        } else {
+          const spaceIdx = trimmedInner.indexOf(' ');
+          src = spaceIdx === -1 ? trimmedInner : trimmedInner.slice(0, spaceIdx);
+        }
+        const safeAlt = (alt || '').replace(/"/g, '&quot;');
+        if (!isSafeImageUrl(src)) return safeAlt || '';
+        const titleAttr = title ? ' title="' + title.replace(/"/g, '&quot;') + '"' : '';
+        return '<img src="' + src + '" alt="' + safeAlt + '" class="md-image" loading="lazy" decoding="async"' + titleAttr + '>';
+      });
+
+      // Links (avoid broken image tags)
+      md = md.replace(/(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, href) => {
         const cleanHref = href.trim();
         return isSafeUrl(cleanHref) ? '<a href="' + cleanHref + '" class="md-link" target="_blank" rel="noopener noreferrer">' + linkText + '</a>' : match;
       });
