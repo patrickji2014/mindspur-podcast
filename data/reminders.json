@@ -1,51 +1,7 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T14:11:34.213Z",
+  "updatedAt": "2026-10-07T14:12:01.967Z",
   "items": [
-    {
-      "id": "rem_1791382293895_z0bwt1",
-      "docId": "rem_1791382293895_l6if2",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "Test image",
-      "headingId": null,
-      "notes": "![Note Image](https://patrickji2014.github.io/mindspur-podcast/assets/images/img_1791382274822_z65ifx.webp)",
-      "tags": [],
-      "mode": "self_grading",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-07T14:11:33.895Z",
-      "updatedAt": "2026-10-07T14:11:33.915Z",
-      "notesUpdatedAt": "2026-10-07T14:11:33.895Z",
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-07T14:11:33.895Z",
-          "stage": 0,
-          "nextDate": "2026-10-08T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
-    },
     {
       "calendarEventId": null,
       "contentType": "note",
@@ -2562,7 +2518,8 @@
     "rem_1791209465556_1j4t9d",
     "rem_web_1791221687733_ssar9",
     "rem_web_1791221572374_3nhbv",
-    "rem_web_1791223078428_2t277"
+    "rem_web_1791223078428_2t277",
+    "rem_1791382293895_z0bwt1"
   ],
   "settings": {
     "reviewMode": "self_grading",
