@@ -1,630 +1,28 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T03:08:25.844Z",
+  "updatedAt": "2026-10-07T05:04:06.141Z",
   "items": [
     {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T06:38:34.901Z",
-      "currentStage": 1,
-      "docId": "rem_1791182314901_45vdl",
-      "docTitle": "Extensions",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-05T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T06:38:34.901Z"
-        }
-      ],
-      "id": "rem_1791182314901_o8c1w9",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-05T18:34:32.322Z",
-      "lastReviewedDate": "2026-10-05T18:34:32.322Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-08T18:34:32.322Z",
-      "notes": "Don't forget to specify the tiled parameter. and don't forget to specify the axis_name parameter too.",
-      "notesUpdatedAt": "2026-10-05T12:59:29.808Z",
-      "presetKey": "standard",
-      "sectionTitle": "Jax Collective Operations' Tiled Parameter",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T18:34:32.322Z",
-      "webAnchor": null
-    },
-    {
-      "id": "rem_1791204808889_sdkbhl",
-      "docId": "rem_1791204808889_rctd3",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "Jax shard_map function's in_specs is a what type",
-      "headingId": null,
-      "notes": "Jax shard_map's in_specs parameter is a tuple",
-      "tags": [],
-      "mode": "self_grading",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": true,
-      "currentStage": 1,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T12:53:28.889Z",
-      "updatedAt": "2026-10-06T14:35:17.517Z",
-      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
-      "lastReviewedAt": "2026-10-06T14:35:17.517Z",
-      "lastReviewedDate": "2026-10-06T14:35:17.517Z",
-      "nextReviewDate": "2026-10-09T14:35:17.517Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T12:53:28.889Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:17:15.017Z",
-      "currentStage": 1,
-      "docId": "rem_1791206235017_t7ji8",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:17:15.017Z"
-        }
-      ],
-      "id": "rem_1791206235017_hspxxl",
-      "includeInPodcast": true,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:18:40.152Z",
-      "lastReviewedDate": "2026-10-06T16:18:40.152Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T16:18:40.152Z",
-      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
-      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:18:40.152Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:52:53.365Z",
-      "currentStage": 1,
+      "id": "rem_web_1791349445954_8c4mf",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:52:53.365Z"
-        }
-      ],
-      "id": "rem_web_1791222773364_l36x8",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:21:32.421Z",
-      "lastReviewedDate": "2026-10-06T16:21:32.421Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:21:32.421Z",
-      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
-      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
-      "presetKey": "standard",
-      "sectionTitle": "concrete and abstract meshes.",
+      "docTitle": "jax.dtypes module — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/jax.dtypes.html#module-jax.dtypes",
+      "targetUrl": "https://docs.jax.dev/en/latest/jax.dtypes.html#module-jax.dtypes",
       "tabId": null,
       "tabName": "docs.jax.dev",
+      "contentType": "webpage",
+      "webAnchor": {
+        "selectedText": "jax.dtypes module",
+        "prologue": "of terms Configuration Options API Reference jax.dtypes module .rst .pdf Light Dark System Settings jax.dtypes module",
+        "epilogue": "# bfloat16 bfloat16 floating-point values canonicalize_dtype (dtype[, allow_extended_dtype]) Convert from a dtype to a canonical dtype"
+      },
+      "sectionTitle": "what are in the jax.dtypes module",
+      "headingId": null,
+      "notes": "- `jax.dtypes.iinfo` and `jax.dtypes.finfo`\n- `jax.dtypes.issubdtype` `jnp.floating` `jnp.integer`\n- `jax.dtypes.itemsize_bits()`",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:21:32.421Z",
-      "webAnchor": {
-        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of",
-        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
-        "selectedText": "concrete and abstract meshes."
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:50:44.812Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:50:44.812Z"
-        }
-      ],
-      "id": "rem_web_1791222644812_9moda",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:22:23.738Z",
-      "lastReviewedDate": "2026-10-06T17:22:23.738Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:22:23.738Z",
-      "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
-      "notesUpdatedAt": "2026-10-05T17:50:44.812Z",
-      "presetKey": "standard",
-      "sectionTitle": "Layout Sharding and Format",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:22:23.738Z",
-      "webAnchor": {
-        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how",
-        "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
-        "selectedText": "Device-local layout"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:49:32.731Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:49:32.731Z"
-        }
-      ],
-      "id": "rem_web_1791222572731_ww5s0",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:44.903Z",
-      "lastReviewedDate": "2026-10-06T17:26:44.903Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:44.903Z",
-      "notes": "to change the axis type in a jit function, can use `jax.sharding.auto_axes` or `jax.sharding.explicit_axes` decorator",
-      "notesUpdatedAt": "2026-10-05T17:49:32.731Z",
-      "presetKey": "standard",
-      "sectionTitle": "auto_axes",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:44.903Z",
-      "webAnchor": {
-        "epilogue": "the compiler chooses shardings within the decorated function # If you don’t want to specify the",
-        "prologue": "in an f32[8,16] , likely by doing an all-gather on y as in FSDP. With @",
-        "selectedText": "auto_axes"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T17:28:27.719Z",
-      "currentStage": 1,
-      "docId": "rem_1791221307719_71eh6",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:28:27.719Z"
-        }
-      ],
-      "id": "rem_1791221307719_dsf63e",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:19:32.057Z",
-      "lastReviewedDate": "2026-10-06T16:19:32.057Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T16:19:32.057Z",
-      "notes": "- Swish Gated Linear Unit is the standard MoE gate up projection\n- SiLU(x) = x * sigmoid(x)\n- SwiGLU(x) = SiLU(x) * (xW)",
-      "notesUpdatedAt": "2026-10-05T17:28:27.719Z",
-      "presetKey": "standard",
-      "sectionTitle": "SwiGLU - Swish Gated Linear Unit",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:19:32.057Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:23:48.902Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.shard_map — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:23:48.902Z"
-        }
-      ],
-      "id": "rem_web_1791221028901_of25l",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:20:28.647Z",
-      "lastReviewedDate": "2026-10-06T16:20:28.647Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:20:28.647Z",
-      "notes": "- `jax.shard_map` has mesh, in_specs, out_specs, check_vma as parameters. \n- `jax.jit` has in_shardings, out_shardings, static_argnames, donated_argnames \n- Note that the `out_specs` only impact how jax interprets the global view of the array",
-      "notesUpdatedAt": "2026-10-05T17:24:16.330Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax.shard_map",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html#:~:text=of%20terms%20Configuration%20Options%20API%20Reference%20jax.shard_map%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.shard_map%20Contents%20shard_map()-,jax.shard_map,-%23%20jax.%20shard_map%20(%20f%20%3A%20F%20%2C%20%2F%20%2C%20*%20%2C%20out_specs%20%3A%20Specs%20%2C&rem_id=rem_web_1791221028901_of25l",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:20:28.647Z",
-      "webAnchor": {
-        "epilogue": "# jax. shard_map ( f : F , / , * , out_specs : Specs ,",
-        "prologue": "of terms Configuration Options API Reference jax.shard_map .rst .pdf Light Dark System Settings jax.shard_map Contents shard_map()",
-        "selectedText": "jax.shard_map"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:18:15.471Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Manual parallelism with shard_map — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/shard-map.html",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:18:15.471Z"
-        }
-      ],
-      "id": "rem_web_1791220695470_9tm33",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:21:20.914Z",
-      "lastReviewedDate": "2026-10-06T16:21:20.914Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:21:20.914Z",
-      "notes": "- `jax.vmap` is rank preserved mapping, the result will be stack back again. it use in_axes tuppe and out_axes as parameters to control the mapping axes.\n- `jax.shard_map` is rank preserve mapping. thinking about this, the mesh size is smaller than the matrix dimension.",
-      "notesUpdatedAt": "2026-10-05T17:18:15.471Z",
-      "presetKey": "standard",
-      "sectionTitle": "Rank-reducing vs rank-preserving maps",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/shard-map.html#:~:text=1%2C3%2C5%2C7%20CPU%200%2C1%20CPU%202%2C3%20CPU%204%2C5%20CPU%206%2C7%20Slow%20down%2C%20start%20with%20the%20basics!%20%23-,Rank%20reducing%20vs%20rank%20preserving%20maps,-%23%20We%20can%20think%20of%20vmap%20as%20unstacking%20each%20array%20input%20along%20an%20axis%20(e.g.%20unpacking&rem_id=rem_web_1791220695470_9tm33",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:21:20.914Z",
-      "webAnchor": {
-        "epilogue": "# We can think of vmap as unstacking each array input along an axis (e.g. unpacking",
-        "prologue": "1,3,5,7 CPU 0,1 CPU 2,3 CPU 4,5 CPU 6,7 Slow down, start with the basics! #",
-        "selectedText": "Rank-reducing vs rank-preserving maps"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T17:11:56.736Z",
-      "currentStage": 1,
-      "docId": "rem_1791220316736_8mjw0",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T17:11:56.736Z"
-        }
-      ],
-      "id": "rem_1791220316736_5s7w4r",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T19:57:03.921Z",
-      "lastReviewedDate": "2026-10-06T19:57:03.921Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T19:57:03.921Z",
-      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis, on Explicit axis, it acts like assertion\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only with different sharding spec\n- `jax.device_put` can be used in all Axis Type",
-      "notesUpdatedAt": "2026-10-05T17:40:17.736Z",
-      "presetKey": "standard",
-      "sectionTitle": "different sharding operation used in different axis type",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T19:57:03.921Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T14:12:34.062Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.numpy.tile — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T14:12:34.062Z"
-        }
-      ],
-      "id": "rem_web_1791209554062_q2hsq",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:19:07.696Z",
-      "lastReviewedDate": "2026-10-06T16:19:07.696Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:19:07.696Z",
-      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
-      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax.numpy.tile(A, reps)",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:19:07.696Z",
-      "webAnchor": {
-        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
-        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
-        "selectedText": "jax.numpy.tile(A, reps)"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:54:47.461Z",
-      "currentStage": 1,
-      "docId": "rem_1791208487460_cqu0o",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.65,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:54:47.461Z"
-        }
-      ],
-      "id": "rem_1791208487461_h742oy",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-05T19:54:25.514Z",
-      "lastReviewedDate": "2026-10-05T19:54:25.514Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T19:54:25.514Z",
-      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
-      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax pmean behavior",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T19:54:25.514Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:48:56.746Z",
-      "currentStage": 1,
-      "docId": "rem_1791208136746_ryrby",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:48:56.746Z"
-        }
-      ],
-      "id": "rem_1791208136746_ey8wgc",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:19:16.520Z",
-      "lastReviewedDate": "2026-10-06T16:19:16.520Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T16:19:16.520Z",
-      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
-      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T16:19:16.520Z",
-      "webAnchor": null
-    },
-    {
-      "id": "rem_1791225098679_13a5no",
-      "docId": "rem_1791225098679_stu81",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "What is the scope memory configs in HLO",
-      "headingId": null,
-      "notes": "- `scope_memory_configs` in HLO specifies the boundary of memory allocated for this **KERNEL**, if has the `memory_space`, `offset` and `size` fields. Memory space 1 is Vmem.\n- `used_scoped_memory_configs` has the similar fields and this is for a specific **instruction**, if the `size`  is smaller than expected, that means it's chunked up.",
-      "tags": [],
-      "mode": "self_grading",
       "presetKey": "standard",
       "intervals": [
         1,
@@ -634,22 +32,22 @@
         30
       ],
       "includeInPodcast": false,
-      "currentStage": 1,
+      "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-05T18:31:38.679Z",
-      "updatedAt": "2026-10-06T17:22:32.526Z",
-      "notesUpdatedAt": "2026-10-05T18:31:38.679Z",
-      "lastReviewedAt": "2026-10-06T17:22:32.526Z",
-      "lastReviewedDate": "2026-10-06T17:22:32.526Z",
-      "nextReviewDate": "2026-10-09T17:22:32.526Z",
+      "createdAt": "2026-10-07T05:04:05.955Z",
+      "updatedAt": "2026-10-07T05:04:05.975Z",
+      "notesUpdatedAt": "2026-10-07T05:04:05.955Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-07T16:00:00.000Z",
       "isMastered": false,
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-05T18:31:38.679Z",
+          "timestamp": "2026-10-07T05:04:05.955Z",
           "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
+          "nextDate": "2026-10-07T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
@@ -657,11 +55,11 @@
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T18:12:37.903Z",
+      "createdAt": "2026-10-05T23:26:43.200Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
+      "docTitle": "jax.lax.scan — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -669,10 +67,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T18:12:37.903Z"
+          "timestamp": "2026-10-05T23:26:43.200Z"
         }
       ],
-      "id": "rem_web_1791223957903_a2ody",
+      "id": "rem_web_1791242803199_urt64",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -682,36 +80,130 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:22:41.183Z",
-      "lastReviewedDate": "2026-10-06T17:22:41.183Z",
+      "lastReviewedAt": "2026-10-06T17:30:54.979Z",
+      "lastReviewedDate": "2026-10-06T17:30:54.979Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:22:41.183Z",
-      "notes": "The answer is No",
-      "notesUpdatedAt": "2026-10-05T18:12:37.903Z",
+      "nextReviewDate": "2026-10-09T17:30:54.979Z",
+      "notes": "`jax.lax.scan` has a `length` param for use when `xs=None`",
+      "notesUpdatedAt": "2026-10-05T23:26:43.200Z",
       "presetKey": "standard",
-      "sectionTitle": "Can AOT-compiled functions be transformed",
+      "sectionTitle": "jax lax scan signature",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:22:41.183Z",
+      "updatedAt": "2026-10-06T17:30:54.979Z",
       "webAnchor": {
-        "epilogue": "# Compiled functions are specialized to a particular set of argument JAX types, such as arrays",
-        "prologue": "in a different process. See Exporting and serializing staged-out computations for additional APIs for this purpose.",
-        "selectedText": "AOT-compiled functions cannot be transformed"
+        "epilogue": "( f , init , xs = None , length = None , reverse = False",
+        "prologue": "API Reference jax.lax module jax.lax.scan .rst .pdf Light Dark System Settings jax.lax.scan Contents scan() jax.lax.scan #",
+        "selectedText": "jax.lax.scan"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T23:24:36.472Z",
+      "currentStage": 1,
+      "docId": "rem_1791242676471_w0gl0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:24:36.472Z"
+        }
+      ],
+      "id": "rem_1791242676472_2h2hmd",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:30:49.689Z",
+      "lastReviewedDate": "2026-10-06T17:30:49.689Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T17:30:49.689Z",
+      "notes": "it's `array.at[]` not `array.at()`",
+      "notesUpdatedAt": "2026-10-05T23:24:36.472Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax Array's at operator",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:30:49.689Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T23:18:59.209Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Stateful computations — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:18:59.209Z"
+        }
+      ],
+      "id": "rem_web_1791242339208_bzbqz",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:30:44.956Z",
+      "lastReviewedDate": "2026-10-06T17:30:44.956Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:30:44.956Z",
+      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref’s value first, like `jnp.sin(x_ref[...])`",
+      "notesUpdatedAt": "2026-10-05T23:19:35.941Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax refs syntax",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:30:44.956Z",
+      "webAnchor": {
+        "epilogue": "# slice indexing col = x_ref [:, 1 ] x_ref [ 0 , : 3 ]",
+        "prologue": "[ 1 ] = row # tuple indexing val = x_ref [ 1 , 2 ]",
+        "selectedText": "x_ref[2, 3] = val"
       }
     },
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T18:11:16.493Z",
+      "createdAt": "2026-10-05T23:17:03.620Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
+      "docTitle": "Stateful computations — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -719,10 +211,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T18:11:16.493Z"
+          "timestamp": "2026-10-05T23:17:03.620Z"
         }
       ],
-      "id": "rem_web_1791223876493_908ps",
+      "id": "rem_web_1791242223620_t850r",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -732,36 +224,36 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:23:07.322Z",
-      "lastReviewedDate": "2026-10-06T17:23:07.322Z",
+      "lastReviewedAt": "2026-10-06T17:30:00.966Z",
+      "lastReviewedDate": "2026-10-06T17:30:00.966Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:23:07.322Z",
-      "notes": "When all you need is a function’s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
-      "notesUpdatedAt": "2026-10-05T18:11:16.493Z",
+      "nextReviewDate": "2026-10-09T17:30:00.966Z",
+      "notes": "A function still counts as pure if it only use refs internally, for example, it only create new refs inside the function rather than pass in through the parameters.",
+      "notesUpdatedAt": "2026-10-05T23:17:03.620Z",
       "presetKey": "standard",
-      "sectionTitle": "eval_shape",
+      "sectionTitle": "if a function use refs, is it still pure",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
+      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:23:07.322Z",
+      "updatedAt": "2026-10-06T17:30:00.966Z",
       "webAnchor": {
-        "epilogue": "runs just the specialization step: >>> jax . jit ( f ) . eval_shape ( jax",
-        "prologue": "you need is a function’s output type , with no lowering, compiling, or executing at all,",
-        "selectedText": "eval_shape"
+        "epilogue": ". More precisely, a function is impure if and only if it takes a ref as",
+        "prologue": "That leaves reasoning, and the main new thing to learn is how refs interact with transformations.",
+        "selectedText": "A function still counts as pure if it only uses refs internally"
       }
     },
     {
       "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:04:54.158Z",
+      "contentType": "note",
+      "createdAt": "2026-10-05T23:13:07.392Z",
       "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "docId": "rem_1791241987392_bn1v3",
+      "docTitle": "General Reminder",
+      "docUrl": "",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -769,10 +261,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T18:04:54.158Z"
+          "timestamp": "2026-10-05T23:13:07.392Z"
         }
       ],
-      "id": "rem_web_1791223494158_68d81",
+      "id": "rem_1791241987392_nztsi0",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -782,100 +274,86 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:23:37.095Z",
-      "lastReviewedDate": "2026-10-06T17:23:37.095Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:23:37.095Z",
-      "notes": "jax stage out is the same as the trace, `jax.jit().trace()`",
-      "notesUpdatedAt": "2026-10-05T18:04:54.158Z",
+      "lastReviewedAt": "2026-10-06T23:54:52.792Z",
+      "lastReviewedDate": "2026-10-06T23:54:52.792Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T23:54:52.792Z",
+      "notes": "```py\n@jax.tree_util.register_dataclass\n@dataclasses.dataclass\nclass MyDataClass:\n  a: int\n  mul: int = jax.tree.static()\n  def cal(self, b):\n    return self.a if not self.mul else self.a * b\n```",
+      "notesUpdatedAt": "2026-10-05T23:13:07.392Z",
       "presetKey": "standard",
-      "sectionTitle": "jax Stage out",
+      "sectionTitle": "How to use jax jit on class method",
       "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:23:37.095Z",
-      "webAnchor": {
-        "epilogue": "a version of the original Python callable F , specialized to the JAX types of the",
-        "prologue": "arguments, say f(x, y) where x and y are arrays, JAX does the following in order:",
-        "selectedText": "Stage out"
-      }
+      "updatedAt": "2026-10-06T23:54:52.792Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T23:10:24.376Z",
+      "currentStage": 1,
+      "docId": "rem_1791241824376_708g0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T23:10:24.376Z"
+        }
+      ],
+      "id": "rem_1791241824376_dcgsk0",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:28:34.437Z",
+      "lastReviewedDate": "2026-10-06T17:28:34.437Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T17:28:34.437Z",
+      "notes": "- `jax.tree_util.register_pytree_node`\n- `jax.tree_util.register_pytree_node_class`, the class provide tree_flatten and tree_unflatten class method\n- `jax.tree_util.register_dataclass`, can specify data fields and static fields as needed",
+      "notesUpdatedAt": "2026-10-05T23:10:24.376Z",
+      "presetKey": "standard",
+      "sectionTitle": "Different ways to register pytree node",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:28:34.437Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T18:03:43.903Z",
+      "createdAt": "2026-10-05T22:58:38.593Z",
       "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:03:43.903Z"
-        }
-      ],
-      "id": "rem_web_1791223423903_7quph",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:23:44.166Z",
-      "lastReviewedDate": "2026-10-06T17:23:44.166Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:23:44.166Z",
-      "notes": "The `compile()` step accepts the same `compiler_options` dictionary as `jax.jit()` itself",
-      "notesUpdatedAt": "2026-10-05T18:03:43.903Z",
-      "presetKey": "standard",
-      "sectionTitle": "The compile step accepts the same compiler_options",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:23:44.166Z",
-      "webAnchor": {
-        "epilogue": ", for setting XLA flags on a per-compilation basis; see XLA compiler flags . Alongside cost_analysis",
-        "prologue": "See the jax.stages documentation for more details on what functionality the lowered and compiled objects provide.",
-        "selectedText": "The compile step accepts the same compiler_options dictionary as\njax.jit() itself"
-      }
-    },
-    {
-      "id": "rem_web_1791241118592_4xk5v",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "jax.numpy.argsort — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "jax.numpy.argsort",
-        "prologue": "API Reference jax.numpy module jax.numpy.argsort .rst .pdf Light Dark System Settings jax.numpy.argsort Contents argsort() jax.numpy.argsort #",
-        "epilogue": "( a , axis = -1 , * , kind = None , order = None"
-      },
-      "sectionTitle": "jax.numpy.argsort",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "```py\nx = jnp.array([[2, 1, 3],\n               [6, 4, 3]])\nindices = jnp.argsort(x, axis=1)\nindices\njnp.take_along_axis(x, indices, axis=1)\n```\n- jnp.sort has similar signature but directly return sorted array",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T22:58:38.593Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791241118592_4xk5v",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -883,26 +361,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 1,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T22:58:38.593Z",
-      "updatedAt": "2026-10-06T19:57:59.178Z",
-      "notesUpdatedAt": "2026-10-05T22:58:38.593Z",
+      "isMastered": false,
       "lastReviewedAt": "2026-10-06T19:57:59.178Z",
       "lastReviewedDate": "2026-10-06T19:57:59.178Z",
+      "mode": "simple",
       "nextReviewDate": "2026-10-09T19:57:59.178Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T22:58:38.593Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
+      "notes": "```py\nx = jnp.array([[2, 1, 3],\n               [6, 4, 3]])\nindices = jnp.argsort(x, axis=1)\nindices\njnp.take_along_axis(x, indices, axis=1)\n```\n- jnp.sort has similar signature but directly return sorted array",
+      "notesUpdatedAt": "2026-10-05T22:58:38.593Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.numpy.argsort",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T19:57:59.178Z",
+      "webAnchor": {
+        "epilogue": "( a , axis = -1 , * , kind = None , order = None",
+        "prologue": "API Reference jax.numpy module jax.numpy.argsort .rst .pdf Light Dark System Settings jax.numpy.argsort Contents argsort() jax.numpy.argsort #",
+        "selectedText": "jax.numpy.argsort"
+      }
     },
     {
       "calendarEventId": null,
@@ -1843,61 +1323,11 @@
       }
     },
     {
-      "id": "rem_web_1791242803199_urt64",
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.lax.scan — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "jax.lax.scan",
-        "prologue": "API Reference jax.lax module jax.lax.scan .rst .pdf Light Dark System Settings jax.lax.scan Contents scan() jax.lax.scan #",
-        "epilogue": "( f , init , xs = None , length = None , reverse = False"
-      },
-      "sectionTitle": "jax lax scan signature",
-      "headingId": null,
-      "notes": "`jax.lax.scan` has a `length` param for use when `xs=None`",
-      "tags": [
-        "web"
-      ],
-      "mode": "simple",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 1,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T23:26:43.200Z",
-      "updatedAt": "2026-10-06T17:30:54.979Z",
-      "notesUpdatedAt": "2026-10-05T23:26:43.200Z",
-      "lastReviewedAt": "2026-10-06T17:30:54.979Z",
-      "lastReviewedDate": "2026-10-06T17:30:54.979Z",
-      "nextReviewDate": "2026-10-09T17:30:54.979Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T23:26:43.200Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
-    },
-    {
       "calendarEventId": null,
       "contentType": "note",
-      "createdAt": "2026-10-05T23:24:36.472Z",
+      "createdAt": "2026-10-05T18:31:38.679Z",
       "currentStage": 1,
-      "docId": "rem_1791242676471_w0gl0",
+      "docId": "rem_1791225098679_stu81",
       "docTitle": "General Reminder",
       "docUrl": "",
       "easeFactor": 2.5,
@@ -1907,10 +1337,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T23:24:36.472Z"
+          "timestamp": "2026-10-05T18:31:38.679Z"
         }
       ],
-      "id": "rem_1791242676472_2h2hmd",
+      "id": "rem_1791225098679_13a5no",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -1920,30 +1350,30 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:30:49.689Z",
-      "lastReviewedDate": "2026-10-06T17:30:49.689Z",
+      "lastReviewedAt": "2026-10-06T17:22:32.526Z",
+      "lastReviewedDate": "2026-10-06T17:22:32.526Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T17:30:49.689Z",
-      "notes": "it's `array.at[]` not `array.at()`",
-      "notesUpdatedAt": "2026-10-05T23:24:36.472Z",
+      "nextReviewDate": "2026-10-09T17:22:32.526Z",
+      "notes": "- `scope_memory_configs` in HLO specifies the boundary of memory allocated for this **KERNEL**, if has the `memory_space`, `offset` and `size` fields. Memory space 1 is Vmem.\n- `used_scoped_memory_configs` has the similar fields and this is for a specific **instruction**, if the `size`  is smaller than expected, that means it's chunked up.",
+      "notesUpdatedAt": "2026-10-05T18:31:38.679Z",
       "presetKey": "standard",
-      "sectionTitle": "jax Array's at operator",
+      "sectionTitle": "What is the scope memory configs in HLO",
       "tabId": null,
       "tabName": null,
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:30:49.689Z",
+      "updatedAt": "2026-10-06T17:22:32.526Z",
       "webAnchor": null
     },
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T23:18:59.209Z",
+      "createdAt": "2026-10-05T18:12:37.903Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Stateful computations — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
+      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -1951,10 +1381,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T23:18:59.209Z"
+          "timestamp": "2026-10-05T18:12:37.903Z"
         }
       ],
-      "id": "rem_web_1791242339208_bzbqz",
+      "id": "rem_web_1791223957903_a2ody",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -1964,36 +1394,36 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:30:44.956Z",
-      "lastReviewedDate": "2026-10-06T17:30:44.956Z",
+      "lastReviewedAt": "2026-10-06T17:22:41.183Z",
+      "lastReviewedDate": "2026-10-06T17:22:41.183Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:30:44.956Z",
-      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref’s value first, like `jnp.sin(x_ref[...])`",
-      "notesUpdatedAt": "2026-10-05T23:19:35.941Z",
+      "nextReviewDate": "2026-10-09T17:22:41.183Z",
+      "notes": "The answer is No",
+      "notesUpdatedAt": "2026-10-05T18:12:37.903Z",
       "presetKey": "standard",
-      "sectionTitle": "jax refs syntax",
+      "sectionTitle": "Can AOT-compiled functions be transformed",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:30:44.956Z",
+      "updatedAt": "2026-10-06T17:22:41.183Z",
       "webAnchor": {
-        "epilogue": "# slice indexing col = x_ref [:, 1 ] x_ref [ 0 , : 3 ]",
-        "prologue": "[ 1 ] = row # tuple indexing val = x_ref [ 1 , 2 ]",
-        "selectedText": "x_ref[2, 3] = val"
+        "epilogue": "# Compiled functions are specialized to a particular set of argument JAX types, such as arrays",
+        "prologue": "in a different process. See Exporting and serializing staged-out computations for additional APIs for this purpose.",
+        "selectedText": "AOT-compiled functions cannot be transformed"
       }
     },
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T23:17:03.620Z",
+      "createdAt": "2026-10-05T18:11:16.493Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Stateful computations — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
+      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -2001,10 +1431,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T23:17:03.620Z"
+          "timestamp": "2026-10-05T18:11:16.493Z"
         }
       ],
-      "id": "rem_web_1791242223620_t850r",
+      "id": "rem_web_1791223876493_908ps",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -2014,34 +1444,284 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:30:00.966Z",
-      "lastReviewedDate": "2026-10-06T17:30:00.966Z",
+      "lastReviewedAt": "2026-10-06T17:23:07.322Z",
+      "lastReviewedDate": "2026-10-06T17:23:07.322Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:30:00.966Z",
-      "notes": "A function still counts as pure if it only use refs internally, for example, it only create new refs inside the function rather than pass in through the parameters.",
-      "notesUpdatedAt": "2026-10-05T23:17:03.620Z",
+      "nextReviewDate": "2026-10-09T17:23:07.322Z",
+      "notes": "When all you need is a function’s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
+      "notesUpdatedAt": "2026-10-05T18:11:16.493Z",
       "presetKey": "standard",
-      "sectionTitle": "if a function use refs, is it still pure",
+      "sectionTitle": "eval_shape",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:30:00.966Z",
+      "updatedAt": "2026-10-06T17:23:07.322Z",
       "webAnchor": {
-        "epilogue": ". More precisely, a function is impure if and only if it takes a ref as",
-        "prologue": "That leaves reasoning, and the main new thing to learn is how refs interact with transformations.",
-        "selectedText": "A function still counts as pure if it only uses refs internally"
+        "epilogue": "runs just the specialization step: >>> jax . jit ( f ) . eval_shape ( jax",
+        "prologue": "you need is a function’s output type , with no lowering, compiling, or executing at all,",
+        "selectedText": "eval_shape"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:04:54.158Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:04:54.158Z"
+        }
+      ],
+      "id": "rem_web_1791223494158_68d81",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:23:37.095Z",
+      "lastReviewedDate": "2026-10-06T17:23:37.095Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:23:37.095Z",
+      "notes": "jax stage out is the same as the trace, `jax.jit().trace()`",
+      "notesUpdatedAt": "2026-10-05T18:04:54.158Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax Stage out",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:23:37.095Z",
+      "webAnchor": {
+        "epilogue": "a version of the original Python callable F , specialized to the JAX types of the",
+        "prologue": "arguments, say f(x, y) where x and y are arrays, JAX does the following in order:",
+        "selectedText": "Stage out"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:03:43.903Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:03:43.903Z"
+        }
+      ],
+      "id": "rem_web_1791223423903_7quph",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:23:44.166Z",
+      "lastReviewedDate": "2026-10-06T17:23:44.166Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:23:44.166Z",
+      "notes": "The `compile()` step accepts the same `compiler_options` dictionary as `jax.jit()` itself",
+      "notesUpdatedAt": "2026-10-05T18:03:43.903Z",
+      "presetKey": "standard",
+      "sectionTitle": "The compile step accepts the same compiler_options",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:23:44.166Z",
+      "webAnchor": {
+        "epilogue": ", for setting XLA flags on a per-compilation basis; see XLA compiler flags . Alongside cost_analysis",
+        "prologue": "See the jax.stages documentation for more details on what functionality the lowered and compiled objects provide.",
+        "selectedText": "The compile step accepts the same compiler_options dictionary as\njax.jit() itself"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:52:53.365Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:52:53.365Z"
+        }
+      ],
+      "id": "rem_web_1791222773364_l36x8",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T16:21:32.421Z",
+      "lastReviewedDate": "2026-10-06T16:21:32.421Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T16:21:32.421Z",
+      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
+      "presetKey": "standard",
+      "sectionTitle": "concrete and abstract meshes.",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T16:21:32.421Z",
+      "webAnchor": {
+        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of",
+        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
+        "selectedText": "concrete and abstract meshes."
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:50:44.812Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:50:44.812Z"
+        }
+      ],
+      "id": "rem_web_1791222644812_9moda",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:22:23.738Z",
+      "lastReviewedDate": "2026-10-06T17:22:23.738Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:22:23.738Z",
+      "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
+      "notesUpdatedAt": "2026-10-05T17:50:44.812Z",
+      "presetKey": "standard",
+      "sectionTitle": "Layout Sharding and Format",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:22:23.738Z",
+      "webAnchor": {
+        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how",
+        "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
+        "selectedText": "Device-local layout"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:49:32.731Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:49:32.731Z"
+        }
+      ],
+      "id": "rem_web_1791222572731_ww5s0",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:44.903Z",
+      "lastReviewedDate": "2026-10-06T17:26:44.903Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:44.903Z",
+      "notes": "to change the axis type in a jit function, can use `jax.sharding.auto_axes` or `jax.sharding.explicit_axes` decorator",
+      "notesUpdatedAt": "2026-10-05T17:49:32.731Z",
+      "presetKey": "standard",
+      "sectionTitle": "auto_axes",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:44.903Z",
+      "webAnchor": {
+        "epilogue": "the compiler chooses shardings within the decorated function # If you don’t want to specify the",
+        "prologue": "in an f32[8,16] , likely by doing an all-gather on y as in FSDP. With @",
+        "selectedText": "auto_axes"
       }
     },
     {
       "calendarEventId": null,
       "contentType": "note",
-      "createdAt": "2026-10-05T23:13:07.392Z",
+      "createdAt": "2026-10-05T17:28:27.719Z",
       "currentStage": 1,
-      "docId": "rem_1791241987392_bn1v3",
+      "docId": "rem_1791221307719_71eh6",
       "docTitle": "General Reminder",
       "docUrl": "",
       "easeFactor": 2.5,
@@ -2051,10 +1731,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T23:13:07.392Z"
+          "timestamp": "2026-10-05T17:28:27.719Z"
         }
       ],
-      "id": "rem_1791241987392_nztsi0",
+      "id": "rem_1791221307719_dsf63e",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -2064,28 +1744,266 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T23:54:52.792Z",
-      "lastReviewedDate": "2026-10-06T23:54:52.792Z",
+      "lastReviewedAt": "2026-10-06T16:19:32.057Z",
+      "lastReviewedDate": "2026-10-06T16:19:32.057Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T23:54:52.792Z",
-      "notes": "```py\n@jax.tree_util.register_dataclass\n@dataclasses.dataclass\nclass MyDataClass:\n  a: int\n  mul: int = jax.tree.static()\n  def cal(self, b):\n    return self.a if not self.mul else self.a * b\n```",
-      "notesUpdatedAt": "2026-10-05T23:13:07.392Z",
+      "nextReviewDate": "2026-10-09T16:19:32.057Z",
+      "notes": "- Swish Gated Linear Unit is the standard MoE gate up projection\n- SiLU(x) = x * sigmoid(x)\n- SwiGLU(x) = SiLU(x) * (xW)",
+      "notesUpdatedAt": "2026-10-05T17:28:27.719Z",
       "presetKey": "standard",
-      "sectionTitle": "How to use jax jit on class method",
+      "sectionTitle": "SwiGLU - Swish Gated Linear Unit",
       "tabId": null,
       "tabName": null,
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T23:54:52.792Z",
+      "updatedAt": "2026-10-06T16:19:32.057Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:23:48.902Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "jax.shard_map — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:23:48.902Z"
+        }
+      ],
+      "id": "rem_web_1791221028901_of25l",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T16:20:28.647Z",
+      "lastReviewedDate": "2026-10-06T16:20:28.647Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T16:20:28.647Z",
+      "notes": "- `jax.shard_map` has mesh, in_specs, out_specs, check_vma as parameters. \n- `jax.jit` has in_shardings, out_shardings, static_argnames, donated_argnames \n- Note that the `out_specs` only impact how jax interprets the global view of the array",
+      "notesUpdatedAt": "2026-10-05T17:24:16.330Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.shard_map",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html#:~:text=of%20terms%20Configuration%20Options%20API%20Reference%20jax.shard_map%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.shard_map%20Contents%20shard_map()-,jax.shard_map,-%23%20jax.%20shard_map%20(%20f%20%3A%20F%20%2C%20%2F%20%2C%20*%20%2C%20out_specs%20%3A%20Specs%20%2C&rem_id=rem_web_1791221028901_of25l",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T16:20:28.647Z",
+      "webAnchor": {
+        "epilogue": "# jax. shard_map ( f : F , / , * , out_specs : Specs ,",
+        "prologue": "of terms Configuration Options API Reference jax.shard_map .rst .pdf Light Dark System Settings jax.shard_map Contents shard_map()",
+        "selectedText": "jax.shard_map"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:18:15.471Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Manual parallelism with shard_map — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/shard-map.html",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:18:15.471Z"
+        }
+      ],
+      "id": "rem_web_1791220695470_9tm33",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T16:21:20.914Z",
+      "lastReviewedDate": "2026-10-06T16:21:20.914Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T16:21:20.914Z",
+      "notes": "- `jax.vmap` is rank preserved mapping, the result will be stack back again. it use in_axes tuppe and out_axes as parameters to control the mapping axes.\n- `jax.shard_map` is rank preserve mapping. thinking about this, the mesh size is smaller than the matrix dimension.",
+      "notesUpdatedAt": "2026-10-05T17:18:15.471Z",
+      "presetKey": "standard",
+      "sectionTitle": "Rank-reducing vs rank-preserving maps",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/shard-map.html#:~:text=1%2C3%2C5%2C7%20CPU%200%2C1%20CPU%202%2C3%20CPU%204%2C5%20CPU%206%2C7%20Slow%20down%2C%20start%20with%20the%20basics!%20%23-,Rank%20reducing%20vs%20rank%20preserving%20maps,-%23%20We%20can%20think%20of%20vmap%20as%20unstacking%20each%20array%20input%20along%20an%20axis%20(e.g.%20unpacking&rem_id=rem_web_1791220695470_9tm33",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T16:21:20.914Z",
+      "webAnchor": {
+        "epilogue": "# We can think of vmap as unstacking each array input along an axis (e.g. unpacking",
+        "prologue": "1,3,5,7 CPU 0,1 CPU 2,3 CPU 4,5 CPU 6,7 Slow down, start with the basics! #",
+        "selectedText": "Rank-reducing vs rank-preserving maps"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T17:11:56.736Z",
+      "currentStage": 1,
+      "docId": "rem_1791220316736_8mjw0",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:11:56.736Z"
+        }
+      ],
+      "id": "rem_1791220316736_5s7w4r",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T19:57:03.921Z",
+      "lastReviewedDate": "2026-10-06T19:57:03.921Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T19:57:03.921Z",
+      "notes": "- `jax.lax.with_sharding_constraint `can only be in Auto Axis, on Explicit axis, it acts like assertion\n- `jax.einsum`'s out_sharding can only be used in Explicit Axis Type and it can be without jit decoration\n- `jax.reshard `can be used in Explicit axis type only with different sharding spec\n- `jax.device_put` can be used in all Axis Type",
+      "notesUpdatedAt": "2026-10-05T17:40:17.736Z",
+      "presetKey": "standard",
+      "sectionTitle": "different sharding operation used in different axis type",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T19:57:03.921Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T14:12:34.062Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "jax.numpy.tile — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T14:12:34.062Z"
+        }
+      ],
+      "id": "rem_web_1791209554062_q2hsq",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T16:19:07.696Z",
+      "lastReviewedDate": "2026-10-06T16:19:07.696Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T16:19:07.696Z",
+      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
+      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.numpy.tile(A, reps)",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T16:19:07.696Z",
+      "webAnchor": {
+        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
+        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
+        "selectedText": "jax.numpy.tile(A, reps)"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:54:47.461Z",
+      "currentStage": 1,
+      "docId": "rem_1791208487460_cqu0o",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.65,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:54:47.461Z"
+        }
+      ],
+      "id": "rem_1791208487461_h742oy",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-05T19:54:25.514Z",
+      "lastReviewedDate": "2026-10-05T19:54:25.514Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T19:54:25.514Z",
+      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
+      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax pmean behavior",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T19:54:25.514Z",
       "webAnchor": null
     },
     {
       "calendarEventId": null,
       "contentType": "note",
-      "createdAt": "2026-10-05T23:10:24.376Z",
+      "createdAt": "2026-10-05T13:48:56.746Z",
       "currentStage": 1,
-      "docId": "rem_1791241824376_708g0",
+      "docId": "rem_1791208136746_ryrby",
       "docTitle": "General Reminder",
       "docUrl": "",
       "easeFactor": 2.5,
@@ -2095,10 +2013,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T23:10:24.376Z"
+          "timestamp": "2026-10-05T13:48:56.746Z"
         }
       ],
-      "id": "rem_1791241824376_dcgsk0",
+      "id": "rem_1791208136746_ey8wgc",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -2108,20 +2026,152 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:28:34.437Z",
-      "lastReviewedDate": "2026-10-06T17:28:34.437Z",
+      "lastReviewedAt": "2026-10-06T16:19:16.520Z",
+      "lastReviewedDate": "2026-10-06T16:19:16.520Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T17:28:34.437Z",
-      "notes": "- `jax.tree_util.register_pytree_node`\n- `jax.tree_util.register_pytree_node_class`, the class provide tree_flatten and tree_unflatten class method\n- `jax.tree_util.register_dataclass`, can specify data fields and static fields as needed",
-      "notesUpdatedAt": "2026-10-05T23:10:24.376Z",
+      "nextReviewDate": "2026-10-09T16:19:16.520Z",
+      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
+      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
       "presetKey": "standard",
-      "sectionTitle": "Different ways to register pytree node",
+      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
       "tabId": null,
       "tabName": null,
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:28:34.437Z",
+      "updatedAt": "2026-10-06T16:19:16.520Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:17:15.017Z",
+      "currentStage": 1,
+      "docId": "rem_1791206235017_t7ji8",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T13:17:15.017Z"
+        }
+      ],
+      "id": "rem_1791206235017_hspxxl",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T16:18:40.152Z",
+      "lastReviewedDate": "2026-10-06T16:18:40.152Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T16:18:40.152Z",
+      "notes": "```\nit has start_index, slice_size and axis parameters. \nThe slice_in_dim function has start_index, limit_index, stride and axis parameters instead. \nThe dynamic_slice has start_indices, slice_sizes because you need to specify multiple axis now.\n```",
+      "notesUpdatedAt": "2026-10-05T13:19:19.726Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax lax dynamic_slice_in_dim and slice_in_dim function signature",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T16:18:40.152Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T12:53:28.889Z",
+      "currentStage": 1,
+      "docId": "rem_1791204808889_rctd3",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T12:53:28.889Z"
+        }
+      ],
+      "id": "rem_1791204808889_sdkbhl",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T14:35:17.517Z",
+      "lastReviewedDate": "2026-10-06T14:35:17.517Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T14:35:17.517Z",
+      "notes": "Jax shard_map's in_specs parameter is a tuple",
+      "notesUpdatedAt": "2026-10-05T12:53:28.889Z",
+      "presetKey": "standard",
+      "sectionTitle": "Jax shard_map function's in_specs is a what type",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T14:35:17.517Z",
+      "webAnchor": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-05T06:38:34.901Z",
+      "currentStage": 1,
+      "docId": "rem_1791182314901_45vdl",
+      "docTitle": "Extensions",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-05T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T06:38:34.901Z"
+        }
+      ],
+      "id": "rem_1791182314901_o8c1w9",
+      "includeInPodcast": true,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-05T18:34:32.322Z",
+      "lastReviewedDate": "2026-10-05T18:34:32.322Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-08T18:34:32.322Z",
+      "notes": "Don't forget to specify the tiled parameter. and don't forget to specify the axis_name parameter too.",
+      "notesUpdatedAt": "2026-10-05T12:59:29.808Z",
+      "presetKey": "standard",
+      "sectionTitle": "Jax Collective Operations' Tiled Parameter",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-05T18:34:32.322Z",
       "webAnchor": null
     }
   ],
@@ -2140,6 +2190,7 @@
   ],
   "settings": {
     "reviewMode": "self_grading",
+    "defaultPreset": "standard",
     "ttsProvider": "google",
     "ttsVoice": "en-US-Neural2-F",
     "pauseSeconds": 5,
