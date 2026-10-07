@@ -1160,7 +1160,7 @@
       // Method 1: Generate Audio
       document.getElementById('btn-generate-audio').addEventListener('click', handleMobileAudioGeneration);
 
-      // Real-time synchronization listeners: app/tab focus, visibility change, and 60s background heartbeat
+      // Real-time synchronization listeners: app/tab focus, visibility change, and navigation (event-driven, no periodic polling)
       window.addEventListener('focus', performSync);
       document.addEventListener('visibilitychange', () => {
         if (!document.hidden) performSync();
@@ -1188,8 +1188,6 @@
         loadLocalItems();
         if (authConfig.githubToken && authConfig.githubOwner) performSync();
       });
-
-      setInterval(performSync, 60000);
 
       // In-app touch pull-down-to-refresh
       setupPullToRefresh();
