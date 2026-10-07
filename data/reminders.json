@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T05:14:34.403Z",
+  "updatedAt": "2026-10-07T05:15:32.814Z",
   "items": [
     {
       "calendarEventId": null,
@@ -34,8 +34,8 @@
       "lastReviewedDate": null,
       "mode": "simple",
       "nextReviewDate": "2026-10-07T16:00:00.000Z",
-      "notes": "- `leaves, treedef = jax.tree.flatten(params)`\n- `jax.tree.unflatten(treedef, leaves)`\n- `jax.tree.leaves()`",
-      "notesUpdatedAt": "2026-10-07T05:14:34.160Z",
+      "notes": "- `leaves, treedef = jax.tree.flatten(params)`\n- `jax.tree.unflatten(treedef, leaves)`\n- `jax.tree.leaves()`\n- `jax.tree.map`\n- `jax.tree.all`",
+      "notesUpdatedAt": "2026-10-07T05:15:32.399Z",
       "presetKey": "standard",
       "sectionTitle": "Pytree APIs",
       "tabId": null,
@@ -45,7 +45,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T05:14:34.160Z",
+      "updatedAt": "2026-10-07T05:15:32.399Z",
       "webAnchor": {
         "epilogue": "print ( leaves ) print ( treedef ) print ( jax . tree . unflatten (",
         "prologue": "jnp . zeros (( 2 , 3 )), 'b' : jnp . zeros ( 3 )}",
