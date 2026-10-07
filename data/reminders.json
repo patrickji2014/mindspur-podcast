@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T05:16:27.618Z",
+  "updatedAt": "2026-10-07T05:20:45.749Z",
   "items": [
     {
-      "id": "rem_web_1791350187216_6dt9i",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-07T05:16:27.216Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Pytrees — JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
-      "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "vmap(f, in_axes=(0, {\"k1\": 0, \"k2\": None}))",
-        "prologue": "up against the argument structure. For example, with a function whose second argument is a dict:",
-        "epilogue": "Copy to clipboard maps over the leading axis of the first argument and of k1 ,"
-      },
-      "sectionTitle": "use pytree in vmap's in_axes",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "`vmap(f, in_axes=(0, {\"k1\": 0, \"k2\": None}))`",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-07T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-07T05:16:27.216Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1791350187216_6dt9i",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-07T05:16:27.216Z",
-      "updatedAt": "2026-10-07T05:16:27.227Z",
-      "notesUpdatedAt": "2026-10-07T05:16:27.216Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-07T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-07T05:16:27.216Z",
-          "stage": 0,
-          "nextDate": "2026-10-07T16:00:00.000Z"
-        }
+      "notes": "`vmap(f, in_axes=(0, {\"k1\": 0, \"k2\": None}))`",
+      "notesUpdatedAt": "2026-10-07T05:16:27.216Z",
+      "presetKey": "standard",
+      "sectionTitle": "use pytree in vmap's in_axes",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
+      "totalStages": 5,
+      "updatedAt": "2026-10-07T05:16:27.227Z",
+      "webAnchor": {
+        "epilogue": "Copy to clipboard maps over the leading axis of the first argument and of k1 ,",
+        "prologue": "up against the argument structure. For example, with a function whose second argument is a dict:",
+        "selectedText": "vmap(f, in_axes=(0, {\"k1\": 0, \"k2\": None}))"
+      }
     },
     {
       "calendarEventId": null,
