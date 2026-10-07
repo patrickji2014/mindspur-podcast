@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T21:58:04.217Z",
+  "updatedAt": "2026-10-07T23:03:47.206Z",
   "items": [
     {
       "calendarEventId": null,
@@ -137,11 +137,11 @@
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T14:12:34.062Z",
+      "createdAt": "2026-10-05T17:52:53.365Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.numpy.tile — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -149,10 +149,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T14:12:34.062Z"
+          "timestamp": "2026-10-05T17:52:53.365Z"
         }
       ],
-      "id": "rem_web_1791209554062_q2hsq",
+      "id": "rem_web_1791222773364_l36x8",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -162,80 +162,36 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:19:07.696Z",
-      "lastReviewedDate": "2026-10-06T16:19:07.696Z",
+      "lastReviewedAt": "2026-10-06T16:21:32.421Z",
+      "lastReviewedDate": "2026-10-06T16:21:32.421Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:19:07.696Z",
-      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
-      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
+      "nextReviewDate": "2026-10-09T16:21:32.421Z",
+      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
+      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
       "presetKey": "standard",
-      "sectionTitle": "jax.numpy.tile(A, reps)",
+      "sectionTitle": "concrete and abstract meshes.",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T16:19:07.696Z",
+      "updatedAt": "2026-10-06T16:21:32.421Z",
       "webAnchor": {
-        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
-        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
-        "selectedText": "jax.numpy.tile(A, reps)"
+        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of",
+        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
+        "selectedText": "concrete and abstract meshes."
       }
     },
     {
       "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:54:47.461Z",
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:50:44.812Z",
       "currentStage": 1,
-      "docId": "rem_1791208487460_cqu0o",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.65,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T13:54:47.461Z"
-        }
-      ],
-      "id": "rem_1791208487461_h742oy",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-05T19:54:25.514Z",
-      "lastReviewedDate": "2026-10-05T19:54:25.514Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T19:54:25.514Z",
-      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
-      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax lax pmean behavior",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-10-05T19:54:25.514Z",
-      "webAnchor": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-10-05T13:48:56.746Z",
-      "currentStage": 1,
-      "docId": "rem_1791208136746_ryrby",
-      "docTitle": "General Reminder",
-      "docUrl": "",
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -243,10 +199,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T13:48:56.746Z"
+          "timestamp": "2026-10-05T17:50:44.812Z"
         }
       ],
-      "id": "rem_1791208136746_ey8wgc",
+      "id": "rem_web_1791222644812_9moda",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -256,21 +212,77 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:19:16.520Z",
-      "lastReviewedDate": "2026-10-06T16:19:16.520Z",
-      "mode": "self_grading",
-      "nextReviewDate": "2026-10-09T16:19:16.520Z",
-      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
-      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
+      "lastReviewedAt": "2026-10-06T17:22:23.738Z",
+      "lastReviewedDate": "2026-10-06T17:22:23.738Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:22:23.738Z",
+      "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
+      "notesUpdatedAt": "2026-10-05T17:50:44.812Z",
       "presetKey": "standard",
-      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
+      "sectionTitle": "Layout Sharding and Format",
       "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T16:19:16.520Z",
-      "webAnchor": null
+      "updatedAt": "2026-10-06T17:22:23.738Z",
+      "webAnchor": {
+        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how",
+        "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
+        "selectedText": "Device-local layout"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T17:49:32.731Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T17:49:32.731Z"
+        }
+      ],
+      "id": "rem_web_1791222572731_ww5s0",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:44.903Z",
+      "lastReviewedDate": "2026-10-06T17:26:44.903Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:44.903Z",
+      "notes": "to change the axis type in a jit function, can use `jax.sharding.auto_axes` or `jax.sharding.explicit_axes` decorator",
+      "notesUpdatedAt": "2026-10-05T17:49:32.731Z",
+      "presetKey": "standard",
+      "sectionTitle": "auto_axes",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:44.903Z",
+      "webAnchor": {
+        "epilogue": "the compiler chooses shardings within the decorated function # If you don’t want to specify the",
+        "prologue": "in an f32[8,16] , likely by doing an all-gather on y as in FSDP. With @",
+        "selectedText": "auto_axes"
+      }
     },
     {
       "calendarEventId": null,
@@ -463,11 +475,11 @@
     {
       "calendarEventId": null,
       "contentType": "webpage",
-      "createdAt": "2026-10-05T17:52:53.365Z",
+      "createdAt": "2026-10-05T14:12:34.062Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "docTitle": "jax.numpy.tile — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -475,10 +487,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T17:52:53.365Z"
+          "timestamp": "2026-10-05T14:12:34.062Z"
         }
       ],
-      "id": "rem_web_1791222773364_l36x8",
+      "id": "rem_web_1791209554062_q2hsq",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -488,47 +500,47 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T16:21:32.421Z",
-      "lastReviewedDate": "2026-10-06T16:21:32.421Z",
+      "lastReviewedAt": "2026-10-06T16:19:07.696Z",
+      "lastReviewedDate": "2026-10-06T16:19:07.696Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T16:21:32.421Z",
-      "notes": "`AbstractMesh` has everything same as a concrete mesh but it doesn't have the device information. In `jax.jit`, you can only get the abstract mesh.",
-      "notesUpdatedAt": "2026-10-05T17:52:53.365Z",
+      "nextReviewDate": "2026-10-09T16:19:07.696Z",
+      "notes": "if the reps parameter is a scalar, it only apply to the last dimension.  the reps parameter can be a tuple represent applying to each dimension too.",
+      "notesUpdatedAt": "2026-10-05T14:12:34.062Z",
       "presetKey": "standard",
-      "sectionTitle": "concrete and abstract meshes.",
+      "sectionTitle": "jax.numpy.tile(A, reps)",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
         "web"
       ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
+      "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html#:~:text=API%20Reference%20jax.numpy%20module%20jax.numpy.tile%20.rst%20.pdf%20Light%20Dark%20System%20Settings%20jax.numpy.tile%20Contents%20tile()%20jax.numpy.tile%20%23-,jax.numpy.tile(A%2C%20reps),-%5Bsource%5D%20%23%20Construct%20an%20array%20by%20repeating%20A%20along%20specified%20dimensions.%20JAX%20implementation%20of%20numpy.tile()%20.&rem_id=rem_web_1791209554062_q2hsq",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T16:21:32.421Z",
+      "updatedAt": "2026-10-06T16:19:07.696Z",
       "webAnchor": {
-        "epilogue": "An abstract mesh comprises only a shape, axis names, and axis types reflecting the mode of",
-        "prologue": "communication performance. The mesh should reflect the physical connection topology among the devices. We distinguish between",
-        "selectedText": "concrete and abstract meshes."
+        "epilogue": "[source] # Construct an array by repeating A along specified dimensions. JAX implementation of numpy.tile() .",
+        "prologue": "API Reference jax.numpy module jax.numpy.tile .rst .pdf Light Dark System Settings jax.numpy.tile Contents tile() jax.numpy.tile #",
+        "selectedText": "jax.numpy.tile(A, reps)"
       }
     },
     {
       "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:50:44.812Z",
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:54:47.461Z",
       "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
-      "easeFactor": 2.5,
+      "docId": "rem_1791208487460_cqu0o",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.65,
       "headingId": null,
       "history": [
         {
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T17:50:44.812Z"
+          "timestamp": "2026-10-05T13:54:47.461Z"
         }
       ],
-      "id": "rem_web_1791222644812_9moda",
+      "id": "rem_1791208487461_h742oy",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -538,36 +550,30 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:22:23.738Z",
-      "lastReviewedDate": "2026-10-06T17:22:23.738Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:22:23.738Z",
-      "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
-      "notesUpdatedAt": "2026-10-05T17:50:44.812Z",
+      "lastReviewedAt": "2026-10-05T19:54:25.514Z",
+      "lastReviewedDate": "2026-10-05T19:54:25.514Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T19:54:25.514Z",
+      "notes": "jax lax pmean will do the element wise mean if the collective axis dimension is not 1. so do a local mean first if needed.",
+      "notesUpdatedAt": "2026-10-05T13:54:47.461Z",
       "presetKey": "standard",
-      "sectionTitle": "Layout Sharding and Format",
+      "sectionTitle": "jax lax pmean behavior",
       "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:22:23.738Z",
-      "webAnchor": {
-        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how",
-        "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
-        "selectedText": "Device-local layout"
-      }
+      "updatedAt": "2026-10-05T19:54:25.514Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T17:49:32.731Z",
+      "contentType": "note",
+      "createdAt": "2026-10-05T13:48:56.746Z",
       "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "docId": "rem_1791208136746_ryrby",
+      "docTitle": "General Reminder",
+      "docUrl": "",
       "easeFactor": 2.5,
       "headingId": null,
       "history": [
@@ -575,10 +581,10 @@
           "action": "created",
           "nextDate": "2026-10-06T16:00:00.000Z",
           "stage": 0,
-          "timestamp": "2026-10-05T17:49:32.731Z"
+          "timestamp": "2026-10-05T13:48:56.746Z"
         }
       ],
-      "id": "rem_web_1791222572731_ww5s0",
+      "id": "rem_1791208136746_ey8wgc",
       "includeInPodcast": false,
       "intervals": [
         1,
@@ -588,27 +594,21 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:44.903Z",
-      "lastReviewedDate": "2026-10-06T17:26:44.903Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:44.903Z",
-      "notes": "to change the axis type in a jit function, can use `jax.sharding.auto_axes` or `jax.sharding.explicit_axes` decorator",
-      "notesUpdatedAt": "2026-10-05T17:49:32.731Z",
+      "lastReviewedAt": "2026-10-06T16:19:16.520Z",
+      "lastReviewedDate": "2026-10-06T16:19:16.520Z",
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-09T16:19:16.520Z",
+      "notes": "```py\njax.config.update(\"jax_log_compiles\", True)\njax.config.update(\"jax_explain_cache_misses\", True)\n```",
+      "notesUpdatedAt": "2026-10-05T13:48:56.746Z",
       "presetKey": "standard",
-      "sectionTitle": "auto_axes",
+      "sectionTitle": "jax_log_compiles and jax_explain_cache_misses flags",
       "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:44.903Z",
-      "webAnchor": {
-        "epilogue": "the compiler chooses shardings within the decorated function # If you don’t want to specify the",
-        "prologue": "in an f32[8,16] , likely by doing an all-gather on y as in FSDP. With @",
-        "selectedText": "auto_axes"
-      }
+      "updatedAt": "2026-10-06T16:19:16.520Z",
+      "webAnchor": null
     },
     {
       "id": "rem_1791225098679_13a5no",
@@ -852,456 +852,6 @@
         "epilogue": ", for setting XLA flags on a per-compilation basis; see XLA compiler flags . Alongside cost_analysis",
         "prologue": "See the jax.stages documentation for more details on what functionality the lowered and compiled objects provide.",
         "selectedText": "The compile step accepts the same compiler_options dictionary as\njax.jit() itself"
-      }
-    },
-    {
-      "id": "rem_web_1791227263616_vzx5j",
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "scan takes an unroll",
-        "prologue": "training loop’s steps or an RNN’s time axis inside jit . For fine-tuning that compile-time/run-time trade,",
-        "epilogue": "parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and"
-      },
-      "sectionTitle": "scan takes an unroll param",
-      "headingId": null,
-      "notes": "For fine-tuning that compile-time/run-time trade, scan takes an unroll parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and unroll=True unrolls the loop entirely.",
-      "tags": [
-        "web"
-      ],
-      "mode": "simple",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 1,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-05T19:07:43.616Z",
-      "updatedAt": "2026-10-06T17:25:16.619Z",
-      "notesUpdatedAt": "2026-10-05T19:07:43.616Z",
-      "lastReviewedAt": "2026-10-06T17:25:16.619Z",
-      "lastReviewedDate": "2026-10-06T17:25:16.619Z",
-      "nextReviewDate": "2026-10-09T17:25:16.619Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-05T19:07:43.616Z",
-          "stage": 0,
-          "nextDate": "2026-10-06T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T19:06:24.680Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T19:06:24.680Z"
-        }
-      ],
-      "id": "rem_web_1791227184680_udfs6",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:25:38.346Z",
-      "lastReviewedDate": "2026-10-06T17:25:38.346Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:25:38.346Z",
-      "notes": "answer is start, end, function and init value. the function should accept an index and carry.",
-      "notesUpdatedAt": "2026-10-05T19:06:24.680Z",
-      "presetKey": "standard",
-      "sectionTitle": "fori_loop signature",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:25:38.346Z",
-      "webAnchor": {
-        "epilogue": "# Python equivalent: def fori_loop ( start , stop , body_fun , init_val ): val =",
-        "prologue": "a loop, use scan (fixed length), or fori_loop with static bounds (which lowers to scan ).",
-        "selectedText": "fori_loop"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T19:04:57.657Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T19:04:57.657Z"
-        }
-      ],
-      "id": "rem_web_1791227097656_p62dc",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:06.196Z",
-      "lastReviewedDate": "2026-10-06T17:26:06.196Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:06.196Z",
-      "notes": "answer is f, init, and xs\n```py\ndef scan(f, init, xs):\n  carry = init\n  ys = []\n  for x in xs:\n    carry, y = f(carry, x)\n    ys.append(y)\n  return carry, np.stack(ys)\n```",
-      "notesUpdatedAt": "2026-10-05T19:05:14.005Z",
-      "presetKey": "standard",
-      "sectionTitle": "what is jax lax scan signature",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:06.196Z",
-      "webAnchor": {
-        "epilogue": ": a loop with a fixed number of iterations that carries state from step to step,",
-        "prologue": "Array(45, dtype=int32, weak_type=True) Copy to clipboard scan # The most commonly used of the four is",
-        "selectedText": "jax.lax.scan()"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:59:10.718Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:59:10.718Z"
-        }
-      ],
-      "id": "rem_web_1791226750717_dddxo",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:27.660Z",
-      "lastReviewedDate": "2026-10-06T17:26:27.660Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:27.660Z",
-      "notes": "Yes, if not in `jax.jit`, you don't need `jax.lax.fori_loop`, `jax.lax.scan`, `jax.lax.cond` or `jax.lax.select` control statement. Pythonic control is okay without jax.jit.",
-      "notesUpdatedAt": "2026-10-05T18:59:10.718Z",
-      "presetKey": "standard",
-      "sectionTitle": "If not in jit, does the pythonic control flow works?",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:27.660Z",
-      "webAnchor": {
-        "epilogue": "jit # The constraints on this page are about jit (and other transformations that trace with",
-        "prologue": "an array with more than one element is ambiguous. Use a.any() or a.all() Copy to clipboard",
-        "selectedText": "Python control flow without"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:55:33.523Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:55:33.523Z"
-        }
-      ],
-      "id": "rem_web_1791226533523_jg76w",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:32.893Z",
-      "lastReviewedDate": "2026-10-06T17:26:32.893Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:32.893Z",
-      "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
-      "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
-      "presetKey": "standard",
-      "sectionTitle": "is SingleDeviceSharding Committed",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:32.893Z",
-      "webAnchor": {
-        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s",
-        "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
-        "selectedText": "SingleDeviceSharding"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:52:04.995Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:52:04.995Z"
-        }
-      ],
-      "id": "rem_web_1791226324994_l0oqs",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:26:53.022Z",
-      "lastReviewedDate": "2026-10-06T17:26:53.022Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:53.022Z",
-      "notes": "it can accept donate=True param",
-      "notesUpdatedAt": "2026-10-05T18:52:04.995Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax.device_put can accept sharding param, what else it can?",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:53.022Z",
-      "webAnchor": {
-        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s",
-        "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
-        "selectedText": "jax.device_put"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:48:12.741Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:48:12.741Z"
-        }
-      ],
-      "id": "rem_web_1791226092741_7tzr6",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:27:01.951Z",
-      "lastReviewedDate": "2026-10-06T17:27:01.951Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:27:01.951Z",
-      "notes": "It will error out. Committed means an array committed to a specific mesh. The only way to move it around is use `jax.device_put` explicitly.",
-      "notesUpdatedAt": "2026-10-05T18:48:12.741Z",
-      "presetKey": "standard",
-      "sectionTitle": "What if committed array from different mesh operate together?",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:27:01.951Z",
-      "webAnchor": {
-        "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P",
-        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a ’s devices.",
-        "selectedText": "Commitment is a promise JAX enforces. Combining arrays committed to\ndifferent meshes in one operation is an error"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:41:40.553Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:41:40.553Z"
-        }
-      ],
-      "id": "rem_web_1791225700552_05fej",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:27:19.336Z",
-      "lastReviewedDate": "2026-10-06T17:27:19.336Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:27:19.336Z",
-      "notes": "it can accept `devices` param",
-      "notesUpdatedAt": "2026-10-05T18:41:40.553Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax make_mesh can accept shape, type and whatelse params",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:27:19.336Z",
-      "webAnchor": {
-        "epilogue": "(( 4 ,), ( 'x' ,), devices = full . devices [: 4 ]) mesh_b =",
-        "prologue": "subsets of the same hardware — two halves, and a couple of single-device meshes: mesh_a =",
-        "selectedText": "jax.make_mesh"
-      }
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "webpage",
-      "createdAt": "2026-10-05T18:38:34.657Z",
-      "currentStage": 1,
-      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.stages module — JAX documentation",
-      "docUrl": "https://docs.jax.dev/en/latest/jax.stages.html#jax.stages.Wrapped",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-10-06T16:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-10-05T18:38:34.657Z"
-        }
-      ],
-      "id": "rem_web_1791225514657_xrz0c",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": "2026-10-06T17:27:39.960Z",
-      "lastReviewedDate": "2026-10-06T17:27:39.960Z",
-      "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:27:39.960Z",
-      "notes": "- `Wrapped` is the stage before traced\n- Lowered and Compiled can have `cost_analysis` and `memory_analysis`",
-      "notesUpdatedAt": "2026-10-05T18:38:34.657Z",
-      "presetKey": "standard",
-      "sectionTitle": "jax stages Wrapped Traced Lowered Compiled",
-      "tabId": null,
-      "tabName": "docs.jax.dev",
-      "tags": [
-        "web"
-      ],
-      "targetUrl": "https://docs.jax.dev/en/latest/jax.stages.html#jax.stages.Wrapped",
-      "totalStages": 5,
-      "updatedAt": "2026-10-06T17:27:39.960Z",
-      "webAnchor": {
-        "epilogue": "( * args , ** kwargs ) [source] # A function ready to be traced, lowered,",
-        "prologue": "represent the stages of this process. For more, see the AOT walkthrough . Classes # class",
-        "selectedText": "jax.stages.Wrapped"
       }
     },
     {
@@ -1840,6 +1390,456 @@
         "epilogue": "# Python equivalent: def cond ( pred , true_fun , false_fun , operand ): if pred",
         "prologue": ": forward-mode differentiable in general; forward- and reverse-mode differentiable if endpoints are static lax.scan : differentiable",
         "selectedText": "cond"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T19:07:43.616Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T19:07:43.616Z"
+        }
+      ],
+      "id": "rem_web_1791227263616_vzx5j",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:25:16.619Z",
+      "lastReviewedDate": "2026-10-06T17:25:16.619Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:25:16.619Z",
+      "notes": "For fine-tuning that compile-time/run-time trade, scan takes an unroll parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and unroll=True unrolls the loop entirely.",
+      "notesUpdatedAt": "2026-10-05T19:07:43.616Z",
+      "presetKey": "standard",
+      "sectionTitle": "scan takes an unroll param",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:25:16.619Z",
+      "webAnchor": {
+        "epilogue": "parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and",
+        "prologue": "training loop’s steps or an RNN’s time axis inside jit . For fine-tuning that compile-time/run-time trade,",
+        "selectedText": "scan takes an unroll"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T19:06:24.680Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T19:06:24.680Z"
+        }
+      ],
+      "id": "rem_web_1791227184680_udfs6",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:25:38.346Z",
+      "lastReviewedDate": "2026-10-06T17:25:38.346Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:25:38.346Z",
+      "notes": "answer is start, end, function and init value. the function should accept an index and carry.",
+      "notesUpdatedAt": "2026-10-05T19:06:24.680Z",
+      "presetKey": "standard",
+      "sectionTitle": "fori_loop signature",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:25:38.346Z",
+      "webAnchor": {
+        "epilogue": "# Python equivalent: def fori_loop ( start , stop , body_fun , init_val ): val =",
+        "prologue": "a loop, use scan (fixed length), or fori_loop with static bounds (which lowers to scan ).",
+        "selectedText": "fori_loop"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T19:04:57.657Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T19:04:57.657Z"
+        }
+      ],
+      "id": "rem_web_1791227097656_p62dc",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:06.196Z",
+      "lastReviewedDate": "2026-10-06T17:26:06.196Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:06.196Z",
+      "notes": "answer is f, init, and xs\n```py\ndef scan(f, init, xs):\n  carry = init\n  ys = []\n  for x in xs:\n    carry, y = f(carry, x)\n    ys.append(y)\n  return carry, np.stack(ys)\n```",
+      "notesUpdatedAt": "2026-10-05T19:05:14.005Z",
+      "presetKey": "standard",
+      "sectionTitle": "what is jax lax scan signature",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:06.196Z",
+      "webAnchor": {
+        "epilogue": ": a loop with a fixed number of iterations that carries state from step to step,",
+        "prologue": "Array(45, dtype=int32, weak_type=True) Copy to clipboard scan # The most commonly used of the four is",
+        "selectedText": "jax.lax.scan()"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:59:10.718Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:59:10.718Z"
+        }
+      ],
+      "id": "rem_web_1791226750717_dddxo",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:27.660Z",
+      "lastReviewedDate": "2026-10-06T17:26:27.660Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:27.660Z",
+      "notes": "Yes, if not in `jax.jit`, you don't need `jax.lax.fori_loop`, `jax.lax.scan`, `jax.lax.cond` or `jax.lax.select` control statement. Pythonic control is okay without jax.jit.",
+      "notesUpdatedAt": "2026-10-05T18:59:10.718Z",
+      "presetKey": "standard",
+      "sectionTitle": "If not in jit, does the pythonic control flow works?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:27.660Z",
+      "webAnchor": {
+        "epilogue": "jit # The constraints on this page are about jit (and other transformations that trace with",
+        "prologue": "an array with more than one element is ambiguous. Use a.any() or a.all() Copy to clipboard",
+        "selectedText": "Python control flow without"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:55:33.523Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:55:33.523Z"
+        }
+      ],
+      "id": "rem_web_1791226533523_jg76w",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:32.893Z",
+      "lastReviewedDate": "2026-10-06T17:26:32.893Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:32.893Z",
+      "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
+      "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
+      "presetKey": "standard",
+      "sectionTitle": "is SingleDeviceSharding Committed",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:32.893Z",
+      "webAnchor": {
+        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s",
+        "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
+        "selectedText": "SingleDeviceSharding"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:52:04.995Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:52:04.995Z"
+        }
+      ],
+      "id": "rem_web_1791226324994_l0oqs",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:26:53.022Z",
+      "lastReviewedDate": "2026-10-06T17:26:53.022Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:26:53.022Z",
+      "notes": "it can accept donate=True param",
+      "notesUpdatedAt": "2026-10-05T18:52:04.995Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax.device_put can accept sharding param, what else it can?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:26:53.022Z",
+      "webAnchor": {
+        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s",
+        "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
+        "selectedText": "jax.device_put"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:48:12.741Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:48:12.741Z"
+        }
+      ],
+      "id": "rem_web_1791226092741_7tzr6",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:27:01.951Z",
+      "lastReviewedDate": "2026-10-06T17:27:01.951Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:27:01.951Z",
+      "notes": "It will error out. Committed means an array committed to a specific mesh. The only way to move it around is use `jax.device_put` explicitly.",
+      "notesUpdatedAt": "2026-10-05T18:48:12.741Z",
+      "presetKey": "standard",
+      "sectionTitle": "What if committed array from different mesh operate together?",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:27:01.951Z",
+      "webAnchor": {
+        "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P",
+        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a ’s devices.",
+        "selectedText": "Commitment is a promise JAX enforces. Combining arrays committed to\ndifferent meshes in one operation is an error"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:41:40.553Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "Data placement — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:41:40.553Z"
+        }
+      ],
+      "id": "rem_web_1791225700552_05fej",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:27:19.336Z",
+      "lastReviewedDate": "2026-10-06T17:27:19.336Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:27:19.336Z",
+      "notes": "it can accept `devices` param",
+      "notesUpdatedAt": "2026-10-05T18:41:40.553Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax make_mesh can accept shape, type and whatelse params",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:27:19.336Z",
+      "webAnchor": {
+        "epilogue": "(( 4 ,), ( 'x' ,), devices = full . devices [: 4 ]) mesh_b =",
+        "prologue": "subsets of the same hardware — two halves, and a couple of single-device meshes: mesh_a =",
+        "selectedText": "jax.make_mesh"
+      }
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-05T18:38:34.657Z",
+      "currentStage": 1,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
+      "docTitle": "jax.stages module — JAX documentation",
+      "docUrl": "https://docs.jax.dev/en/latest/jax.stages.html#jax.stages.Wrapped",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-06T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-05T18:38:34.657Z"
+        }
+      ],
+      "id": "rem_web_1791225514657_xrz0c",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": "2026-10-06T17:27:39.960Z",
+      "lastReviewedDate": "2026-10-06T17:27:39.960Z",
+      "mode": "simple",
+      "nextReviewDate": "2026-10-09T17:27:39.960Z",
+      "notes": "- `Wrapped` is the stage before traced\n- Lowered and Compiled can have `cost_analysis` and `memory_analysis`",
+      "notesUpdatedAt": "2026-10-05T18:38:34.657Z",
+      "presetKey": "standard",
+      "sectionTitle": "jax stages Wrapped Traced Lowered Compiled",
+      "tabId": null,
+      "tabName": "docs.jax.dev",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://docs.jax.dev/en/latest/jax.stages.html#jax.stages.Wrapped",
+      "totalStages": 5,
+      "updatedAt": "2026-10-06T17:27:39.960Z",
+      "webAnchor": {
+        "epilogue": "( * args , ** kwargs ) [source] # A function ready to be traced, lowered,",
+        "prologue": "represent the stages of this process. For more, see the AOT walkthrough . Classes # class",
+        "selectedText": "jax.stages.Wrapped"
       }
     },
     {
