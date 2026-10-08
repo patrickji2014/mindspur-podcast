@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:30:55.591Z",
+  "updatedAt": "2026-10-08T15:31:04.464Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2172,7 +2172,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-07T13:13:27.794Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791378807793_lcvka",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -2196,10 +2196,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-08T15:31:03.641Z",
+      "lastReviewedDate": "2026-10-08T15:31:03.641Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
+      "nextReviewDate": "2026-10-11T15:31:03.641Z",
       "notes": "- `jnp.asarray` will ensure the output is jax.Array and try to reuse the udnerlying data\n- `jnp.array` will definitely create a new array\n- both `np.array` and` jax.Array` are `jax.ArrayLike` type, `list`/`tuple` are not `jax.ArrayLike`",
       "notesUpdatedAt": "2026-10-07T13:13:27.794Z",
       "presetKey": "standard",
@@ -2209,7 +2209,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T13:13:27.809Z",
+      "updatedAt": "2026-10-08T15:31:03.641Z",
       "webAnchor": null
     },
     {
