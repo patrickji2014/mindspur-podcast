@@ -1114,6 +1114,9 @@
     <button class="mobile-lightbox-close" id="btn-close-mobile-lightbox" aria-label="Close">✕</button>
     <img id="mobile-lightbox-img" class="mobile-lightbox-img" src="" alt="Enlarged note image">
     <div id="mobile-lightbox-caption" class="mobile-lightbox-caption"></div>
+    <div class="mobile-lightbox-actions" style="margin-top: 10px;">
+      <a id="btn-open-mobile-original" class="btn-mobile-attach" href="#" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:none; padding: 8px 14px; font-size: 13px;">↗ Open Original</a>
+    </div>
   </div>
 
   <!-- Toast -->
@@ -2934,19 +2937,41 @@
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
+    function resolveGitHubAssetUrl(url) {
+      if (!url || typeof url !== 'string') return url || '';
+      var trimmed = url.trim();
+      if (trimmed.indexOf('https://raw.githubusercontent.com/') === 0) {
+        return trimmed;
+      }
+      var match = trimmed.match(/^https?:\/\/([a-zA-Z0-9_-]+)\.github\.io\/([^/]+)\/(assets\/[^\s?#]+|.+?\.(?:webp|png|jpe?g|gif|bmp|ico|svg)(?:[?#]\S*)?)$/i);
+      if (match) {
+        var owner = match[1];
+        var repo = match[2];
+        var pathAndQuery = match[3];
+        return 'https://raw.githubusercontent.com/' + owner + '/' + repo + '/main/' + pathAndQuery;
+      }
+      return trimmed;
+    }
+
     function setupMobileLightbox() {
       const overlay = document.getElementById('mobile-lightbox');
       const imgEl = document.getElementById('mobile-lightbox-img');
       const captionEl = document.getElementById('mobile-lightbox-caption');
       const btnClose = document.getElementById('btn-close-mobile-lightbox');
+      const openBtn = document.getElementById('btn-open-mobile-original');
       if (!overlay || !imgEl) return;
 
       function openLb(src, alt) {
-        imgEl.src = src;
+        const resolved = resolveGitHubAssetUrl(src);
+        imgEl.src = resolved;
         imgEl.alt = alt || '';
         if (captionEl) {
           captionEl.textContent = alt || '';
           captionEl.style.display = alt ? 'block' : 'none';
+        }
+        if (openBtn) {
+          openBtn.href = resolved;
+          openBtn.style.display = 'inline-flex';
         }
         overlay.style.display = 'flex';
       }
@@ -2954,6 +2979,10 @@
       function closeLb() {
         overlay.style.display = 'none';
         imgEl.src = '';
+        if (openBtn) {
+          openBtn.href = '#';
+          openBtn.style.display = 'none';
+        }
       }
 
       if (btnClose) btnClose.addEventListener('click', closeLb);
@@ -2968,6 +2997,18 @@
           openLb(target.src, target.alt);
         }
       });
+
+      // Automatic fallback for image loading errors (e.g. if github.io fails due to corporate proxy policy)
+      window.addEventListener('error', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'IMG' && target.src && !target.dataset.triedFallback) {
+          target.dataset.triedFallback = '1';
+          const fallback = resolveGitHubAssetUrl(target.src);
+          if (fallback && fallback !== target.src) {
+            target.src = fallback;
+          }
+        }
+      }, true);
     }
 
     function setupMobileImageUpload(textarea, attachBtn, fileInput) {
@@ -3054,7 +3095,7 @@
           throw new Error('GitHub upload failed with HTTP ' + res.status);
         }
 
-        return 'https://' + authConfig.githubOwner.toLowerCase() + '.github.io/' + repo + '/' + assetPath;
+        return 'https://raw.githubusercontent.com/' + authConfig.githubOwner + '/' + repo + '/main/' + assetPath;
       }
 
       async function processAndInsertImage(file, label) {
@@ -3221,6 +3262,7 @@
       md = processedLines.join('\n');
 
       // Images before links
+      const images = [];
       md = md.replace(/!\[([^\]]*)\]\(((?:[^)(]+|\((?:[^)(]+|\([^)(]*\))*\))*)\)/g, (match, alt, inner) => {
         const trimmedInner = (inner || '').trim();
         const titleMatch = trimmedInner.match(/^([^\s]+)(?:\s+(?:&quot;([\s\S]*?)&quot;|&#39;([\s\S]*?)&#39;|"([\s\S]*?)"|'([\s\S]*?)'))?$/);
@@ -3235,14 +3277,24 @@
         }
         const safeAlt = (alt || '').replace(/"/g, '&quot;');
         if (!isSafeImageUrl(src)) return safeAlt || '';
+        const resolvedSrc = resolveGitHubAssetUrl(src);
         const titleAttr = title ? ' title="' + title.replace(/"/g, '&quot;') + '"' : '';
-        return '<img src="' + src + '" alt="' + safeAlt + '" class="md-image" loading="lazy" decoding="async"' + titleAttr + '>';
+        const idx = images.length;
+        images.push('<img src="' + resolvedSrc + '" alt="' + safeAlt + '" class="md-image" loading="lazy" decoding="async"' + titleAttr + '>');
+        return 'XMDIMAGE' + idx + 'X';
       });
 
       // Links (avoid broken image tags)
+      const links = [];
       md = md.replace(/(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, href) => {
         const cleanHref = href.trim();
-        return isSafeUrl(cleanHref) ? '<a href="' + cleanHref + '" class="md-link" target="_blank" rel="noopener noreferrer">' + linkText + '</a>' : match;
+        const resolvedHref = resolveGitHubAssetUrl(cleanHref);
+        if (isSafeUrl(resolvedHref)) {
+          const idx = links.length;
+          links.push('<a href="' + resolvedHref + '" class="md-link" target="_blank" rel="noopener noreferrer">' + linkText + '</a>');
+          return 'XMDLINK' + idx + 'X';
+        }
+        return match;
       });
 
       md = md.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
@@ -3261,6 +3313,8 @@
         return isBlock ? l : l + '<br>';
       }).join('\n').replace(/(?:<br>)+$/g, '');
 
+      md = md.replace(/XMDLINK(\d+)X/g, (match, idx) => links[parseInt(idx, 10)] || '');
+      md = md.replace(/XMDIMAGE(\d+)X/g, (match, idx) => images[parseInt(idx, 10)] || '');
       md = md.replace(/XMDCODEBLOCK(\d+)X/g, (match, idx) => codeBlocks[parseInt(idx, 10)] || '');
       md = md.replace(/XMDINLINECODE(\d+)X/g, (match, idx) => inlineCodes[parseInt(idx, 10)] || '');
       return md.trim();
