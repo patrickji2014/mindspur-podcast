@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:31:04.464Z",
+  "updatedAt": "2026-10-08T15:31:21.758Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2216,7 +2216,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-07T13:05:16.068Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZvcGVu",
       "docTitle": "Shapes and layout  |  OpenXLA Project",
       "docUrl": "https://openxla.org/xla/shapes#structure_of_an_xla_op",
@@ -2240,10 +2240,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-08T15:31:20.828Z",
+      "lastReviewedDate": "2026-10-08T15:31:20.828Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
+      "nextReviewDate": "2026-10-11T15:31:20.828Z",
       "notes": "- in `T(8, 128)(2,1)`, the `T(8, 128)` is tiling and `(2, 1)` is packing as the datatype is bf16 here\n- the `{3,2,01}` here is the minor-to-major layout",
       "notesUpdatedAt": "2026-10-07T13:05:16.068Z",
       "presetKey": "standard",
@@ -2255,7 +2255,7 @@
       ],
       "targetUrl": "https://openxla.org/xla/shapes#structure_of_an_xla_op",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T13:05:16.089Z",
+      "updatedAt": "2026-10-08T15:31:20.828Z",
       "webAnchor": {
         "epilogue": "add(exponential.183, broadcast.3115) This consists of the following components: Op Name: add.936 This is the unique name",
         "prologue": "into arrays Memory Space Identifiers Structure of an XLA Op Consider an example HLO: add.936 =",
