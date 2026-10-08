@@ -149,6 +149,56 @@
     }
     .btn-sync-action:active { transform: scale(0.96); background: rgba(99, 102, 241, 0.2); }
 
+    .btn-add-action {
+      background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-purple) 100%);
+      border: none;
+      color: #ffffff;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 10px rgba(99, 102, 241, 0.35);
+      white-space: nowrap;
+    }
+    .btn-add-action:active { transform: scale(0.96); opacity: 0.9; }
+
+    @media (max-width: 410px) {
+      .btn-add-text { display: none; }
+      .btn-add-action { padding: 8px 10px; }
+    }
+
+    .fab-add {
+      position: fixed;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      right: max(20px, env(safe-area-inset-right));
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-indigo) 0%, var(--accent-purple) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 18px rgba(99, 102, 241, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      z-index: 90;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .fab-add:active {
+      transform: scale(0.92);
+      box-shadow: 0 2px 8px rgba(99, 102, 241, 0.35);
+    }
+
     /* Audio Generation Banner (Method 1) */
     .audio-generator-card {
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
@@ -743,6 +793,57 @@
       outline: none;
     }
 
+    /* Markdown write/preview tabs & formatting toolbar in add modal */
+    .md-editor-tabs {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .btn-md-tab {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-md-tab.active {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+    .md-toolbar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .btn-md-action {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .btn-md-action:active {
+      background: rgba(99, 102, 241, 0.3);
+      transform: scale(0.96);
+    }
+
     .hidden { display: none !important; }
   </style>
 </head>
@@ -758,6 +859,9 @@
         </div>
       </div>
       <div class="header-actions">
+        <button id="btn-add-reminder" class="btn-add-action" title="Add Review Reminder">
+          <span>＋</span><span class="btn-add-text">Add</span>
+        </button>
         <a href="./podcast-console.html" class="btn-icon-action" title="Podcast Console (Manage episodes & storage)" style="text-decoration:none;">🎙️</a>
         <button id="btn-sync" class="btn-sync-action">
           <span id="sync-icon">🔄</span>
@@ -830,11 +934,98 @@
       <!-- Dynamic cards rendered here -->
     </main>
 
+    <!-- Floating Action Button for 1-Tap Quick Add on iPhone -->
+    <button id="btn-fab-add" class="fab-add" title="Add Review Reminder" aria-label="Add Review Reminder">
+      ＋
+    </button>
+
     <!-- Empty State -->
     <div class="empty-state hidden" id="empty-state">
       <div class="empty-icon">✨</div>
       <div class="empty-title" id="empty-title">All Caught Up!</div>
       <div class="empty-sub" id="empty-sub">You have no items due for review right now. Peak retention achieved!</div>
+      <button id="btn-empty-add" class="btn-generate-audio" style="margin-top: 14px; width: auto; padding: 12px 24px; font-size: 14px;">
+        <span>＋</span> Create Reminder
+      </button>
+    </div>
+  </div>
+
+  <!-- Add Reminder Modal Sheet -->
+  <div class="modal-backdrop" id="add-reminder-modal">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h3 class="modal-title">📌 Add Review Reminder</h3>
+        <button class="btn-close-modal" id="btn-close-add-modal" aria-label="Close">✕</button>
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Reminder Title / Concept <span style="color: #ef4444;">*</span></label>
+        <input type="text" id="add-section-title" class="setting-input" placeholder="e.g. Consistent Hashing Algorithm" required>
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Document or Web URL <span style="font-weight: 400; font-size: 11px;">(Optional)</span></label>
+        <input type="url" id="add-doc-url" class="setting-input" placeholder="https://... or Google Doc link (optional)">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Source / Document Title <span style="font-weight: 400; font-size: 11px;">(Optional)</span></label>
+        <input type="text" id="add-doc-title" class="setting-input" placeholder="e.g. System Design Notes (optional)">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Spaced Curve Preset</label>
+        <select id="add-preset" class="setting-input">
+          <option value="standard" selected>🎯 Standard (1, 3, 7, 14, 30 days)</option>
+          <option value="intensive">⚡ Intensive (1, 2, 4, 7, 15 days)</option>
+          <option value="longterm">⏳ Long-Term (1, 3, 7, 14, 30, 60, 90 days)</option>
+        </select>
+      </div>
+
+      <div class="setting-item">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+          <label class="setting-label" style="margin-bottom: 0;">Optional Notes / Recall Cues</label>
+          <div class="md-editor-tabs">
+            <button type="button" class="btn-md-tab active" id="btn-tab-write-add-notes">✍️ Write</button>
+            <button type="button" class="btn-md-tab" id="btn-tab-preview-add-notes">👁️ Preview</button>
+          </div>
+        </div>
+
+        <div class="md-toolbar" id="add-notes-toolbar">
+          <button type="button" class="btn-md-action" data-format="bold" title="Bold (**text**)"><strong>B</strong></button>
+          <button type="button" class="btn-md-action" data-format="italic" title="Italic (*text*)"><em>I</em></button>
+          <button type="button" class="btn-md-action" data-format="code" title="Inline Code (&lt;code&gt;)"><code>&lt;&gt;</code></button>
+          <button type="button" class="btn-md-action" data-format="list" title="Bullet List (- item)">• List</button>
+          <button type="button" class="btn-md-action" data-format="quote" title="Blockquote (&gt; text)">” Quote</button>
+          <button type="button" class="btn-md-action btn-mobile-attach" id="btn-add-attach-photo" title="Attach Photo or Camera">📷 Photo</button>
+          <input type="file" id="add-file-input" accept="image/*" style="display: none;">
+        </div>
+
+        <textarea id="add-notes" class="setting-input notes-textarea" placeholder="Key takeaways, active recall cues (Markdown supported: **bold**, *italic*, code, lists, images)..." style="min-height: 80px;"></textarea>
+        <div id="add-notes-preview" class="notes-content-box hidden" style="min-height: 80px; max-height: 160px; overflow-y: auto;"></div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+        <input type="checkbox" id="add-include-podcast" style="cursor: pointer; width: 18px; height: 18px; accent-color: var(--accent-purple);">
+        <label for="add-include-podcast" class="setting-label" style="margin-bottom: 0; cursor: pointer; text-transform: none; font-size: 13px; color: #cbd5e1;">
+          🎧 Include in Audio Podcast (TTS generation)
+        </label>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 2px;">
+        <input type="checkbox" id="add-due-today" style="cursor: pointer; width: 18px; height: 18px; accent-color: var(--accent-amber);">
+        <label for="add-due-today" class="setting-label" style="margin-bottom: 0; cursor: pointer; text-transform: none; font-size: 13px; color: #cbd5e1;">
+          ⚡ Review Today (make due immediately)
+        </label>
+      </div>
+
+      <button id="btn-submit-add-reminder" class="btn-generate-audio" style="margin-top: 8px;">
+        📌 Schedule Review
+      </button>
+
+      <button id="btn-cancel-add-reminder" class="btn-generate-audio" style="margin-top: 6px; background: rgba(148, 163, 184, 0.15); border: 1px solid var(--border-subtle); color: var(--text-muted);">
+        Cancel
+      </button>
     </div>
   </div>
 
@@ -1045,6 +1236,7 @@
       loadAuthFromHashOrStorage();
       loadLocalItems();
       initEvents();
+      checkMobileUrlParamsForAddAction();
       if (authConfig.githubToken && authConfig.githubOwner) {
         performSync();
       }
@@ -1279,9 +1471,310 @@
         if (authConfig.githubToken && authConfig.githubOwner) performSync();
       });
 
+      // Backdrop click to close settings modal
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) modal.classList.remove('show');
+        });
+      }
+
       // In-app touch pull-down-to-refresh
       setupPullToRefresh();
       setupMobileLightbox();
+      setupMobileAddReminder();
+    }
+
+    function setupMobileAddReminder() {
+      const addModal = document.getElementById('add-reminder-modal');
+      const btnAddHeader = document.getElementById('btn-add-reminder');
+      const btnFabAdd = document.getElementById('btn-fab-add');
+      const btnEmptyAdd = document.getElementById('btn-empty-add');
+      const btnCloseAdd = document.getElementById('btn-close-add-modal');
+      const btnCancelAdd = document.getElementById('btn-cancel-add-reminder');
+      const btnSubmitAdd = document.getElementById('btn-submit-add-reminder');
+
+      function openModal() {
+        if (!addModal) return;
+        addModal.classList.add('show');
+        setTimeout(() => {
+          const titleInput = document.getElementById('add-section-title');
+          if (titleInput) titleInput.focus();
+        }, 120);
+      }
+
+      function closeModal() {
+        if (!addModal) return;
+        addModal.classList.remove('show');
+      }
+
+      if (btnAddHeader) btnAddHeader.addEventListener('click', openModal);
+      if (btnFabAdd) btnFabAdd.addEventListener('click', openModal);
+      if (btnEmptyAdd) btnEmptyAdd.addEventListener('click', openModal);
+      if (btnCloseAdd) btnCloseAdd.addEventListener('click', closeModal);
+      if (btnCancelAdd) btnCancelAdd.addEventListener('click', closeModal);
+
+      if (addModal) {
+        addModal.addEventListener('click', (e) => {
+          if (e.target === addModal) closeModal();
+        });
+      }
+
+      if (btnSubmitAdd) {
+        btnSubmitAdd.addEventListener('click', handleCreateReminderMobile);
+      }
+
+      const sectionInput = document.getElementById('add-section-title');
+      if (sectionInput) {
+        sectionInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleCreateReminderMobile();
+          }
+        });
+      }
+
+      const tabWrite = document.getElementById('btn-tab-write-add-notes');
+      const tabPreview = document.getElementById('btn-tab-preview-add-notes');
+      if (tabWrite) tabWrite.addEventListener('click', () => switchAddNotesTab('write'));
+      if (tabPreview) tabPreview.addEventListener('click', () => switchAddNotesTab('preview'));
+
+      const addToolbar = document.getElementById('add-notes-toolbar');
+      if (addToolbar) {
+        addToolbar.addEventListener('click', (e) => {
+          const btn = e.target.closest('.btn-md-action');
+          if (!btn) return;
+          const format = btn.getAttribute('data-format');
+          if (format) insertAddNotesMarkdownFormat(format);
+        });
+      }
+
+      const addNotes = document.getElementById('add-notes');
+      const addAttachBtn = document.getElementById('btn-add-attach-photo');
+      const addFileInput = document.getElementById('add-file-input');
+      if (typeof setupMobileImageUpload === 'function') {
+        setupMobileImageUpload(addNotes, addAttachBtn, addFileInput);
+      }
+    }
+
+    function switchAddNotesTab(tab) {
+      const writeBtn = document.getElementById('btn-tab-write-add-notes');
+      const prevBtn = document.getElementById('btn-tab-preview-add-notes');
+      const toolbar = document.getElementById('add-notes-toolbar');
+      const textarea = document.getElementById('add-notes');
+      const preview = document.getElementById('add-notes-preview');
+
+      if (!writeBtn || !prevBtn || !textarea || !preview) return;
+
+      if (tab === 'preview') {
+        writeBtn.classList.remove('active');
+        prevBtn.classList.add('active');
+        textarea.style.display = 'none';
+        if (toolbar) toolbar.style.display = 'none';
+        preview.classList.remove('hidden');
+        preview.style.display = 'block';
+        const rawVal = textarea.value.trim();
+        if (rawVal) {
+          preview.innerHTML = renderMarkdown(rawVal);
+        } else {
+          preview.innerHTML = '<em style="color:#64748b; font-size:12px;">(No notes entered yet - switch back to Write to add notes)</em>';
+        }
+      } else {
+        prevBtn.classList.remove('active');
+        writeBtn.classList.add('active');
+        preview.classList.add('hidden');
+        preview.style.display = 'none';
+        if (toolbar) toolbar.style.display = 'flex';
+        textarea.style.display = 'block';
+        textarea.focus();
+      }
+    }
+
+    function insertAddNotesMarkdownFormat(format) {
+      const textarea = document.getElementById('add-notes');
+      if (!textarea) return;
+
+      const start = textarea.selectionStart || 0;
+      const end = textarea.selectionEnd || 0;
+      const selText = textarea.value.substring(start, end);
+      let replacement = '';
+
+      switch (format) {
+        case 'bold':
+          replacement = '**' + (selText || 'bold text') + '**';
+          break;
+        case 'italic':
+          replacement = '*' + (selText || 'italic text') + '*';
+          break;
+        case 'code':
+          replacement = String.fromCharCode(96) + (selText || 'code') + String.fromCharCode(96);
+          break;
+        case 'list':
+          replacement = selText ? selText.split('\n').map(l => '- ' + l).join('\n') : '- list item';
+          break;
+        case 'quote':
+          replacement = selText ? selText.split('\n').map(l => '> ' + l).join('\n') : '> quote';
+          break;
+        default:
+          return;
+      }
+
+      if (typeof textarea.setRangeText === 'function') {
+        textarea.setRangeText(replacement, start, end, 'select');
+      } else {
+        const val = textarea.value;
+        textarea.value = val.substring(0, start) + replacement + val.substring(end);
+      }
+      textarea.focus();
+    }
+
+    function handleCreateReminderMobile() {
+      const sectionTitleInput = document.getElementById('add-section-title');
+      const docUrlInput = document.getElementById('add-doc-url');
+      const docTitleInput = document.getElementById('add-doc-title');
+      const presetSelect = document.getElementById('add-preset');
+      const notesInput = document.getElementById('add-notes');
+      const podcastCheckbox = document.getElementById('add-include-podcast');
+      const dueTodayCheckbox = document.getElementById('add-due-today');
+
+      const sectionTitle = sectionTitleInput ? sectionTitleInput.value.trim() : '';
+      const docUrl = docUrlInput ? docUrlInput.value.trim() : '';
+      const docTitle = docTitleInput ? docTitleInput.value.trim() : '';
+      const presetKey = presetSelect ? presetSelect.value : 'standard';
+      const notes = notesInput ? notesInput.value.trim() : '';
+      const includeInPodcast = podcastCheckbox ? podcastCheckbox.checked : false;
+      const isDueToday = dueTodayCheckbox ? dueTodayCheckbox.checked : false;
+
+      if (!sectionTitle) {
+        alert('Please provide a Reminder Title.');
+        if (sectionTitleInput) sectionTitleInput.focus();
+        return;
+      }
+
+      let docId = '';
+      let contentType = 'gdoc';
+      let targetUrl = docUrl;
+
+      if (docUrl) {
+        const match = docUrl.match(/\/document\/d\/([a-zA-Z0-9-_]+)/);
+        if (match) {
+          docId = match[1];
+          contentType = 'gdoc';
+        } else {
+          docId = 'web_' + Date.now();
+          contentType = 'webpage';
+        }
+      } else {
+        docId = 'rem_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+        contentType = 'note';
+        targetUrl = '';
+      }
+
+      const finalDocTitle = docTitle || (docUrl ? (contentType === 'gdoc' ? 'Google Document' : 'Web Page') : 'General Reminder');
+
+      const preset = INTERVALS[presetKey] || INTERVALS.standard;
+      const intervals = [...preset];
+      const now = new Date();
+      let nextReviewDate;
+
+      if (isDueToday) {
+        const d = new Date(now);
+        d.setHours(9, 0, 0, 0);
+        nextReviewDate = d;
+      } else {
+        const firstIntervalDays = intervals[0] || 1;
+        const d = new Date(now.getTime() + firstIntervalDays * 24 * 60 * 60 * 1000);
+        d.setHours(9, 0, 0, 0);
+        nextReviewDate = d;
+      }
+
+      const id = 'rem_' + Date.now() + '_' + Math.random().toString(36).substring(2, 8);
+      const nowIso = now.toISOString();
+
+      const newItem = {
+        id: id,
+        docId: docId,
+        docTitle: finalDocTitle,
+        docUrl: docUrl || '',
+        targetUrl: targetUrl || '',
+        tabId: null,
+        tabName: null,
+        contentType: contentType,
+        webAnchor: null,
+        sectionTitle: sectionTitle,
+        headingId: null,
+        notes: notes,
+        tags: [],
+        mode: authConfig.reviewMode || 'simple',
+        presetKey: presetKey,
+        intervals: intervals,
+        includeInPodcast: Boolean(includeInPodcast),
+        currentStage: 0,
+        totalStages: intervals.length,
+        easeFactor: 2.5,
+        createdAt: nowIso,
+        updatedAt: nowIso,
+        notesUpdatedAt: nowIso,
+        lastReviewedAt: null,
+        lastReviewedDate: null,
+        nextReviewDate: nextReviewDate.toISOString(),
+        isMastered: false,
+        history: [
+          {
+            action: 'created',
+            timestamp: nowIso,
+            stage: 0,
+            nextDate: nextReviewDate.toISOString()
+          }
+        ],
+        calendarEventId: null
+      };
+
+      items.unshift(newItem);
+      saveLocalItems();
+      render();
+
+      if (sectionTitleInput) sectionTitleInput.value = '';
+      if (docUrlInput) docUrlInput.value = '';
+      if (docTitleInput) docTitleInput.value = '';
+      if (notesInput) notesInput.value = '';
+      if (presetSelect) presetSelect.value = 'standard';
+      if (podcastCheckbox) podcastCheckbox.checked = false;
+      if (dueTodayCheckbox) dueTodayCheckbox.checked = false;
+      switchAddNotesTab('write');
+
+      const addModal = document.getElementById('add-reminder-modal');
+      if (addModal) addModal.classList.remove('show');
+
+      showToast('📌 Reminder "' + sectionTitle + '" created!');
+
+      if (authConfig.githubToken) {
+        performSync();
+      }
+    }
+
+    function checkMobileUrlParamsForAddAction() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('action') === 'add') {
+          const addModal = document.getElementById('add-reminder-modal');
+          if (addModal) {
+            addModal.classList.add('show');
+            const urlVal = params.get('url');
+            const titleVal = params.get('title');
+            const selVal = params.get('selection');
+            const notesVal = params.get('notes');
+            const urlInput = document.getElementById('add-doc-url');
+            const titleInput = document.getElementById('add-doc-title');
+            const sectionInput = document.getElementById('add-section-title');
+            const notesInput = document.getElementById('add-notes');
+            if (urlVal && urlInput) urlInput.value = urlVal;
+            if (titleVal && titleInput) titleInput.value = titleVal;
+            if (selVal && sectionInput) sectionInput.value = selVal;
+            if (notesVal && notesInput) notesInput.value = notesVal;
+            if (sectionInput) sectionInput.focus();
+          }
+        }
+      } catch (_) {}
     }
 
     function setupPullToRefresh() {
