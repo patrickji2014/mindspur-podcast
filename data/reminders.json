@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:30:40.473Z",
+  "updatedAt": "2026-10-08T15:30:55.591Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2128,7 +2128,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-07T13:19:03.372Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791379143371_yvfn5",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -2152,10 +2152,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-08T15:30:54.768Z",
+      "lastReviewedDate": "2026-10-08T15:30:54.768Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
+      "nextReviewDate": "2026-10-11T15:30:54.768Z",
       "notes": "- in XLA, tpu memory is always allocated to units of `chunk`\n- a `chunk` is always `8 * 128` (or `x * 128` if use compact 2nd minor dimension packing) in size\n- the minor dimension is always put on the lane and the second minor is always put on sublane",
       "notesUpdatedAt": "2026-10-07T13:19:03.372Z",
       "presetKey": "standard",
@@ -2165,7 +2165,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T13:19:03.388Z",
+      "updatedAt": "2026-10-08T15:30:54.768Z",
       "webAnchor": null
     },
     {
