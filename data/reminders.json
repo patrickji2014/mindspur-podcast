@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T15:41:49.252Z",
+  "updatedAt": "2026-10-08T15:41:52.843Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2266,7 +2266,7 @@
       "calendarEventId": null,
       "contentType": "note",
       "createdAt": "2026-10-07T12:56:19.430Z",
-      "currentStage": 0,
+      "currentStage": 1,
       "docId": "rem_1791377779429_cmabq",
       "docTitle": "General Reminder",
       "docUrl": "",
@@ -2290,10 +2290,10 @@
         30
       ],
       "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
+      "lastReviewedAt": "2026-10-08T15:41:51.901Z",
+      "lastReviewedDate": "2026-10-08T15:41:51.901Z",
       "mode": "self_grading",
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
+      "nextReviewDate": "2026-10-11T15:41:51.901Z",
       "notes": "- `W8A8` use fp8 computation even you use `preferred_element_type=jnp.float32`, `w8A16` uses fp16 computation.\n- Gemma4 has hidden dimension 2816 and global head dimension 512, local head dimension 256\n- Gemma4 uses dynamic activation quantization for Attention Layer. the Activation is stored as `bf16` but before feeding into matmul, it's quantized to `fp8`. The `q_proj` and `kv_proj` shares the same 2-step quantization steps which can armortized the quantization. \n- The quantization steps include activation scale computation and activation casting.\n- for calculating the scale, it needs to read in `bf16` and write 1 element, the scale, per token.\n- for downcasting, it needs to read in `bf16` and write back `fp8`\n- the overall flow looks like this(dont forget the epilogue):\n\n```\n 1.  activation bf16 -> bf8_e4m3fn quantization\n 2. read bf8 activation  and bf8 weight and perform bf8 matmul using 3. preferred_element_type = jnp.float32\n 4. rescale the   f32 output using weight scale and activation scale\n 5. quantized the f32 output to bf16 again (fp32->bf16 is pure casting)\n```\n- accumulator needs to use `fp32` to avoid overflow because we are accumulating across hidden dimension - 2816 here.\n- why don't quantize to fp8_e4m3fn instead? because RoPE need bf16 for precision purpose. and the saving is minimal because activation is small compared to weight and kv cache",
       "notesUpdatedAt": "2026-10-07T12:56:19.430Z",
       "presetKey": "standard",
@@ -2303,7 +2303,7 @@
       "tags": [],
       "targetUrl": "",
       "totalStages": 5,
-      "updatedAt": "2026-10-07T12:56:19.448Z",
+      "updatedAt": "2026-10-08T15:41:51.901Z",
       "webAnchor": null
     },
     {
