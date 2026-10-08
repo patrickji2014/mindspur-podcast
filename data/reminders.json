@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-08T05:00:34.125Z",
+  "updatedAt": "2026-10-08T05:00:35.750Z",
   "items": [
     {
       "calendarEventId": null,
@@ -2505,50 +2505,6 @@
         "prologue": "of terms Configuration Options API Reference jax.dtypes module .rst .pdf Light Dark System Settings jax.dtypes module",
         "selectedText": "jax.dtypes module"
       }
-    },
-    {
-      "id": "rem_1791434490640_vd0qvx",
-      "docId": "rem_1791434490638_w1fjx",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "targetUrl": "",
-      "tabId": null,
-      "tabName": null,
-      "contentType": "note",
-      "webAnchor": null,
-      "sectionTitle": "Test image from iphone",
-      "headingId": null,
-      "notes": "![Photo](https://patrickji2014.github.io/mindspur-podcast/assets/images/img_1791434483293_4cnowx.jpeg)",
-      "tags": [],
-      "mode": "self_grading",
-      "presetKey": "standard",
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-08T04:41:30.638Z",
-      "updatedAt": "2026-10-08T04:41:30.638Z",
-      "notesUpdatedAt": "2026-10-08T04:41:30.638Z",
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "nextReviewDate": "2026-10-08T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-08T04:41:30.638Z",
-          "stage": 0,
-          "nextDate": "2026-10-08T16:00:00.000Z"
-        }
-      ],
-      "calendarEventId": null
     }
   ],
   "deletedIds": [
@@ -2564,7 +2520,8 @@
     "rem_web_1791221572374_3nhbv",
     "rem_web_1791223078428_2t277",
     "rem_1791382293895_z0bwt1",
-    "rem_1791432015161_83wyb4"
+    "rem_1791432015161_83wyb4",
+    "rem_1791434490640_vd0qvx"
   ],
   "settings": {
     "reviewMode": "self_grading",
