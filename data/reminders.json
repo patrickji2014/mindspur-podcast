@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-09T06:21:32.355Z",
+  "updatedAt": "2026-10-09T06:21:53.747Z",
   "items": [
     {
       "calendarEventId": null,
@@ -140,7 +140,7 @@
       "createdAt": "2026-10-05T14:12:34.062Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.numpy.tile — JAX documentation",
+      "docTitle": "jax.numpy.tile \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.tile.html",
       "easeFactor": 2.5,
       "headingId": null,
@@ -322,7 +322,7 @@
       "createdAt": "2026-10-05T17:23:48.902Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.shard_map — JAX documentation",
+      "docTitle": "jax.shard_map \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.shard_map.html",
       "easeFactor": 2.5,
       "headingId": null,
@@ -372,7 +372,7 @@
       "createdAt": "2026-10-05T17:18:15.471Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Manual parallelism with shard_map — JAX documentation",
+      "docTitle": "Manual parallelism with shard_map \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/shard-map.html",
       "easeFactor": 2.5,
       "headingId": null,
@@ -466,7 +466,7 @@
       "createdAt": "2026-10-05T17:52:53.365Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docTitle": "Distributed arrays and automatic parallelization \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#a-mesh-is-a-grid-of-devices-with-named-axes",
       "easeFactor": 2.5,
       "headingId": null,
@@ -516,7 +516,7 @@
       "createdAt": "2026-10-05T17:50:44.812Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docTitle": "Distributed arrays and automatic parallelization \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
       "easeFactor": 2.5,
       "headingId": null,
@@ -555,7 +555,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T17:22:23.738Z",
       "webAnchor": {
-        "epilogue": "# A sharding answers “where do an array’s values live?” at the scale of devices: how",
+        "epilogue": "# A sharding answers \u201cwhere do an array\u2019s values live?\u201d at the scale of devices: how",
         "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
         "selectedText": "Device-local layout"
       }
@@ -566,7 +566,7 @@
       "createdAt": "2026-10-05T17:49:32.731Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Distributed arrays and automatic parallelization — JAX documentation",
+      "docTitle": "Distributed arrays and automatic parallelization \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#with-auto-axes-the-compiler-chooses-shardings-within-the-decorated-function",
       "easeFactor": 2.5,
       "headingId": null,
@@ -605,7 +605,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T17:26:44.903Z",
       "webAnchor": {
-        "epilogue": "the compiler chooses shardings within the decorated function # If you don’t want to specify the",
+        "epilogue": "the compiler chooses shardings within the decorated function # If you don\u2019t want to specify the",
         "prologue": "in an f32[8,16] , likely by doing an all-gather on y as in FSDP. With @",
         "selectedText": "auto_axes"
       }
@@ -660,7 +660,7 @@
       "createdAt": "2026-10-05T18:12:37.903Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docTitle": "Ahead-of-time lowering and compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#aot-compiled-functions-cannot-be-transformed",
       "easeFactor": 2.5,
       "headingId": null,
@@ -710,7 +710,7 @@
       "createdAt": "2026-10-05T18:11:16.493Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docTitle": "Ahead-of-time lowering and compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
       "easeFactor": 2.5,
       "headingId": null,
@@ -736,7 +736,7 @@
       "lastReviewedDate": "2026-10-06T17:23:07.322Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-09T17:23:07.322Z",
-      "notes": "When all you need is a function’s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
+      "notes": "When all you need is a function\u2019s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
       "notesUpdatedAt": "2026-10-05T18:11:16.493Z",
       "presetKey": "standard",
       "sectionTitle": "eval_shape",
@@ -750,7 +750,7 @@
       "updatedAt": "2026-10-06T17:23:07.322Z",
       "webAnchor": {
         "epilogue": "runs just the specialization step: >>> jax . jit ( f ) . eval_shape ( jax",
-        "prologue": "you need is a function’s output type , with no lowering, compiling, or executing at all,",
+        "prologue": "you need is a function\u2019s output type , with no lowering, compiling, or executing at all,",
         "selectedText": "eval_shape"
       }
     },
@@ -760,7 +760,7 @@
       "createdAt": "2026-10-05T18:04:54.158Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docTitle": "Ahead-of-time lowering and compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#ahead-of-time-lowering-and-compilation",
       "easeFactor": 2.5,
       "headingId": null,
@@ -810,7 +810,7 @@
       "createdAt": "2026-10-05T18:03:43.903Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Ahead-of-time lowering and compilation — JAX documentation",
+      "docTitle": "Ahead-of-time lowering and compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell0",
       "easeFactor": 2.5,
       "headingId": null,
@@ -857,7 +857,7 @@
     {
       "id": "rem_web_1791227263616_vzx5j",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docTitle": "Control flow and logical operators with jit \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "targetUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "tabId": null,
@@ -865,7 +865,7 @@
       "contentType": "webpage",
       "webAnchor": {
         "selectedText": "scan takes an unroll",
-        "prologue": "training loop’s steps or an RNN’s time axis inside jit . For fine-tuning that compile-time/run-time trade,",
+        "prologue": "training loop\u2019s steps or an RNN\u2019s time axis inside jit . For fine-tuning that compile-time/run-time trade,",
         "epilogue": "parameter: unroll=k makes each iteration of the compiled loop perform k steps of the scan, and"
       },
       "sectionTitle": "scan takes an unroll param",
@@ -910,7 +910,7 @@
       "createdAt": "2026-10-05T19:06:24.680Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docTitle": "Control flow and logical operators with jit \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "easeFactor": 2.5,
       "headingId": null,
@@ -960,7 +960,7 @@
       "createdAt": "2026-10-05T19:04:57.657Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docTitle": "Control flow and logical operators with jit \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1010,7 +1010,7 @@
       "createdAt": "2026-10-05T18:59:10.718Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docTitle": "Control flow and logical operators with jit \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#python-control-flow-without-jit",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1060,7 +1060,7 @@
       "createdAt": "2026-10-05T18:55:33.523Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
+      "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1099,7 +1099,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T17:26:32.893Z",
       "webAnchor": {
-        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn’t tied to its location: if it’s",
+        "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn\u2019t tied to its location: if it\u2019s",
         "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
         "selectedText": "SingleDeviceSharding"
       }
@@ -1110,7 +1110,7 @@
       "createdAt": "2026-10-05T18:52:04.995Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
+      "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#notes",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1149,7 +1149,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T17:26:53.022Z",
       "webAnchor": {
-        "epilogue": "accepts donate=True to reuse the input’s buffers when possible, in the same spirit as jit ’s",
+        "epilogue": "accepts donate=True to reuse the input\u2019s buffers when possible, in the same spirit as jit \u2019s",
         "prologue": "committed or not, and transfers anything else (like a NumPy array) to the default placement, uncommitted.",
         "selectedText": "jax.device_put"
       }
@@ -1160,7 +1160,7 @@
       "createdAt": "2026-10-05T18:48:12.741Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
+      "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1200,7 +1200,7 @@
       "updatedAt": "2026-10-06T17:27:01.951Z",
       "webAnchor": {
         "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P",
-        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a ’s devices.",
+        "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a \u2019s devices.",
         "selectedText": "Commitment is a promise JAX enforces. Combining arrays committed to\ndifferent meshes in one operation is an error"
       }
     },
@@ -1210,7 +1210,7 @@
       "createdAt": "2026-10-05T18:41:40.553Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Data placement — JAX documentation",
+      "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell3",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1250,7 +1250,7 @@
       "updatedAt": "2026-10-06T17:27:19.336Z",
       "webAnchor": {
         "epilogue": "(( 4 ,), ( 'x' ,), devices = full . devices [: 4 ]) mesh_b =",
-        "prologue": "subsets of the same hardware — two halves, and a couple of single-device meshes: mesh_a =",
+        "prologue": "subsets of the same hardware \u2014 two halves, and a couple of single-device meshes: mesh_a =",
         "selectedText": "jax.make_mesh"
       }
     },
@@ -1260,7 +1260,7 @@
       "createdAt": "2026-10-05T18:38:34.657Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.stages module — JAX documentation",
+      "docTitle": "jax.stages module \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/jax.stages.html#jax.stages.Wrapped",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1307,7 +1307,7 @@
     {
       "id": "rem_web_1791241118592_4xk5v",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.numpy.argsort — JAX documentation",
+      "docTitle": "jax.numpy.argsort \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
       "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.numpy.argsort.html#jax.numpy.argsort",
       "tabId": null,
@@ -1360,7 +1360,7 @@
       "createdAt": "2026-10-05T22:54:11.045Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.lax.top_k — JAX documentation",
+      "docTitle": "jax.lax.top_k \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.top_k.html#codecell0",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1498,7 +1498,7 @@
       "createdAt": "2026-10-05T22:21:52.665Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docTitle": "Just-in-time compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell47",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1548,7 +1548,7 @@
       "createdAt": "2026-10-05T22:20:14.676Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docTitle": "Just-in-time compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell40",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1574,10 +1574,10 @@
       "lastReviewedDate": "2026-10-06T20:09:16.277Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-09T20:09:16.277Z",
-      "notes": "Donating an argument that’s a pytree donates every array in it",
+      "notes": "Donating an argument that\u2019s a pytree donates every array in it",
       "notesUpdatedAt": "2026-10-05T22:20:14.676Z",
       "presetKey": "standard",
-      "sectionTitle": "what happen if donate an argument that’s a pytree",
+      "sectionTitle": "what happen if donate an argument that\u2019s a pytree",
       "tabId": null,
       "tabName": "docs.jax.dev",
       "tags": [
@@ -1589,7 +1589,7 @@
       "webAnchor": {
         "epilogue": ": def add_ones ( xs : list [ jax . Array ]): return [ x +",
         "prologue": "= params , state = state ) Copy to clipboard Pytree arguments donate all their buffers.",
-        "selectedText": "Donating an argument that’s\na pytree donates every array in it"
+        "selectedText": "Donating an argument that\u2019s\na pytree donates every array in it"
       }
     },
     {
@@ -1598,7 +1598,7 @@
       "createdAt": "2026-10-05T22:18:46.750Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docTitle": "Just-in-time compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#codecell35",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1648,7 +1648,7 @@
       "createdAt": "2026-10-05T22:15:03.764Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docTitle": "Just-in-time compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#in-place-updates-with-refs",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1687,7 +1687,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T20:10:34.619Z",
       "webAnchor": {
-        "epilogue": "# A compiled function’s inputs and outputs are immutable arrays, so at the jit boundary every",
+        "epilogue": "# A compiled function\u2019s inputs and outputs are immutable arrays, so at the jit boundary every",
         "prologue": "dataclass, jax.tree_util.register_dataclass() gets you the same result with much less ceremony; see Custom pytree nodes .",
         "selectedText": "In-place updates with refs"
       }
@@ -1698,7 +1698,7 @@
       "createdAt": "2026-10-05T22:03:23.533Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Just-in-time compilation — JAX documentation",
+      "docTitle": "Just-in-time compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/jit.html#jit-and-caching",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1737,7 +1737,7 @@
       "totalStages": 5,
       "updatedAt": "2026-10-06T17:32:12.745Z",
       "webAnchor": {
-        "epilogue": "includes: the JAX types of the arguments — new shapes or dtypes trigger a fresh trace",
+        "epilogue": "includes: the JAX types of the arguments \u2014 new shapes or dtypes trigger a fresh trace",
         "prologue": "jax.jit(g) . When f is first invoked, it gets compiled and the resulting executable is cached.",
         "selectedText": "The cache key"
       }
@@ -1748,7 +1748,7 @@
       "createdAt": "2026-10-05T21:48:31.992Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.lax.select — JAX documentation",
+      "docTitle": "jax.lax.select \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.select.html#jax.lax.select",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1798,7 +1798,7 @@
       "createdAt": "2026-10-05T21:34:55.526Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Control flow and logical operators with jit — JAX documentation",
+      "docTitle": "Control flow and logical operators with jit \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/control-flow.html#cond",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1845,7 +1845,7 @@
     {
       "id": "rem_web_1791242803199_urt64",
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.lax.scan — JAX documentation",
+      "docTitle": "jax.lax.scan \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
       "targetUrl": "https://docs.jax.dev/en/latest/_autosummary/jax.lax.scan.html#jax.lax.scan",
       "tabId": null,
@@ -1942,7 +1942,7 @@
       "createdAt": "2026-10-05T23:18:59.209Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Stateful computations — JAX documentation",
+      "docTitle": "Stateful computations \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/state.html#codecell18",
       "easeFactor": 2.5,
       "headingId": null,
@@ -1968,7 +1968,7 @@
       "lastReviewedDate": "2026-10-06T17:30:44.956Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-09T17:30:44.956Z",
-      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref’s value first, like `jnp.sin(x_ref[...])`",
+      "notes": "- `x_ref[2, 3] = val`\n- very similar to `array.at[1,2,3,4].set(...)`\n- `x_ref[2, :3]` slicing, but it's still a ref so you cannot assign a array to it like this.\n- To do math, you need to read the ref\u2019s value first, like `jnp.sin(x_ref[...])`",
       "notesUpdatedAt": "2026-10-05T23:19:35.941Z",
       "presetKey": "standard",
       "sectionTitle": "jax refs syntax",
@@ -1992,7 +1992,7 @@
       "createdAt": "2026-10-05T23:17:03.620Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Stateful computations — JAX documentation",
+      "docTitle": "Stateful computations \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/state.html#refs-and-purity",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2218,7 +2218,7 @@
       "createdAt": "2026-10-07T13:05:16.068Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZvcGVu",
-      "docTitle": "Shapes and layout  |  OpenXLA Project",
+      "docTitle": "Shapes and layout \u00a0|\u00a0 OpenXLA Project",
       "docUrl": "https://openxla.org/xla/shapes#structure_of_an_xla_op",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2312,7 +2312,7 @@
       "createdAt": "2026-10-07T05:16:27.216Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Pytrees — JAX documentation",
+      "docTitle": "Pytrees \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell16",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2362,7 +2362,7 @@
       "createdAt": "2026-10-07T05:14:21.487Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Pytrees — JAX documentation",
+      "docTitle": "Pytrees \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#codecell2",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2412,7 +2412,7 @@
       "createdAt": "2026-10-07T05:13:06.221Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "Pytrees — JAX documentation",
+      "docTitle": "Pytrees \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/101/pytrees.html#what-is-a-pytree",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2438,7 +2438,7 @@
       "lastReviewedDate": "2026-10-07T16:16:18.086Z",
       "mode": "simple",
       "nextReviewDate": "2026-10-10T16:16:18.086Z",
-      "notes": "A pytree is a recursive structure: either a leaf, or a container (a node) whose children are pytrees. Containers can be lists, tuples, and dicts, nested arbitrarily. A leaf is anything that’s not a container, like an array. Tuple and NamedTuple is a pytree container but it can only contains the jax.ArrayLike type. Dataclass is not a container and make it as as a container, needs the `@jax.tree_util.register_dataclass` annotation and the `jax.tree.static_field()` to mark it as metadata field.",
+      "notes": "A pytree is a recursive structure: either a leaf, or a container (a node) whose children are pytrees. Containers can be lists, tuples, and dicts, nested arbitrarily. A leaf is anything that\u2019s not a container, like an array. Tuple and NamedTuple is a pytree container but it can only contains the jax.ArrayLike type. Dataclass is not a container and make it as as a container, needs the `@jax.tree_util.register_dataclass` annotation and the `jax.tree.static_field()` to mark it as metadata field.",
       "notesUpdatedAt": "2026-10-07T05:13:06.221Z",
       "presetKey": "standard",
       "sectionTitle": "What is a pytree?",
@@ -2462,7 +2462,7 @@
       "createdAt": "2026-10-07T05:04:05.955Z",
       "currentStage": 1,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
-      "docTitle": "jax.dtypes module — JAX documentation",
+      "docTitle": "jax.dtypes module \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/jax.dtypes.html#module-jax.dtypes",
       "easeFactor": 2.5,
       "headingId": null,
@@ -2522,7 +2522,8 @@
     "rem_1791382293895_z0bwt1",
     "rem_1791432015161_83wyb4",
     "rem_1791434490640_vd0qvx",
-    "rem_1791435676812_vxl9nb"
+    "rem_1791435676812_vxl9nb",
+    "rem_1791526913322_pxqrex"
   ],
   "settings": {
     "reviewMode": "self_grading",
