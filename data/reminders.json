@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T23:08:18.721Z",
+  "updatedAt": "2026-10-15T23:08:26.798Z",
   "items": [
     {
-      "id": "rem_web_1792105697937_3pgcf",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-15T23:08:17.938Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
       "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
       "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#single-strategy-deep-dives",
-      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#single-strategy-deep-dives",
-      "tabId": null,
-      "tabName": "rocm.blogs.amd.com",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "When to use TP+EP",
-        "prologue": "The memory overhead is acceptable if you have sufficient HBM and prioritize latency over batch size.",
-        "epilogue": ": Large MoE models that don’t fit on a single GPU Low-moderate concurrency workloads where latency"
-      },
-      "sectionTitle": "When to use TP+EP",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "*Large MoE models that don’t fit on a single GPU\n*Low-moderate concurrency workloads where latency matters most\n*Sufficient HBM to handle KV cache duplication",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-16T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-15T23:08:17.938Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1792105697937_3pgcf",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-15T23:08:17.938Z",
-      "updatedAt": "2026-10-15T23:08:17.994Z",
-      "notesUpdatedAt": "2026-10-15T23:08:17.938Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-16T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-15T23:08:17.938Z",
-          "stage": 0,
-          "nextDate": "2026-10-16T16:00:00.000Z"
-        }
+      "notes": "* Large MoE models that don’t fit on a single GPU\n* Low-moderate concurrency workloads where latency matters most\n* Sufficient HBM to handle KV cache duplication",
+      "notesUpdatedAt": "2026-10-15T23:08:26.351Z",
+      "presetKey": "standard",
+      "sectionTitle": "When to use TP+EP",
+      "tabId": null,
+      "tabName": "rocm.blogs.amd.com",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#single-strategy-deep-dives",
+      "totalStages": 5,
+      "updatedAt": "2026-10-15T23:08:26.351Z",
+      "webAnchor": {
+        "epilogue": ": Large MoE models that don’t fit on a single GPU Low-moderate concurrency workloads where latency",
+        "prologue": "The memory overhead is acceptable if you have sufficient HBM and prioritize latency over batch size.",
+        "selectedText": "When to use TP+EP"
+      }
     },
     {
       "calendarEventId": null,
