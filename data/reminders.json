@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T22:47:23.789Z",
+  "updatedAt": "2026-10-15T22:53:04.297Z",
   "items": [
     {
-      "id": "rem_web_1792104443092_ody47",
+      "id": "rem_web_1792104782965_gyypj",
       "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
       "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
-      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-2-dp-attention-and-traditional-data-parallelism-are-the-same",
-      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-2-dp-attention-and-traditional-data-parallelism-are-the-same",
+      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-3-all-experts-are-treated-the-same-in-moe-models",
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-3-all-experts-are-treated-the-same-in-moe-models",
       "tabId": null,
       "tabName": "rocm.blogs.amd.com",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "It can be used",
-        "prologue": "all-gather, all-to-all, slice) to reconcile batch partitions between attention and MoE layers. configured with –data-parallel-size N.",
-        "epilogue": ": With EP: “DP + EP” (experts distributed; uses all-to-all or gather/slice around MoE). Without EP:"
+        "selectedText": "Shared Experts",
+        "prologue": "tensors are sharded via flatten_tp_across_dp Examples: DeepSeek-R1 has 256 routed experts , 8 activated per token",
+        "epilogue": ": Always activated for every token (no routing) Treated as a standard dense MLP layer The"
       },
-      "sectionTitle": "MoE Model's DP with/without EP",
+      "sectionTitle": "Shared Experts' Sharding in vLLM",
       "headingId": null,
-      "notes": "- if without EP, then it's traditional DP\n- if use with EP, then it's attention DP, attention DP only supported after MLA shows up.\n- Mostly, use TP if you cannot hold all the computation or weight in one tpu or want to claim more space for KV cache. If KV cache duplication and you want to have more space for kv cache to improve the batch size, then you can start to have the AttentionDP.",
+      "notes": "The weight is sharded across GPUs. The weight is only replicated in each GPU if all the following conditions are met:\n* Expert parallelism is enabled\n* Tensor parallel size > 1\n* Data parallel size > 1\n* Using specific all2all backends (allgather_reducescatter, naive, deepep_high_throughput, or deepep_low_latency)",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-15T22:47:23.092Z",
-      "updatedAt": "2026-10-15T22:47:23.155Z",
-      "notesUpdatedAt": "2026-10-15T22:47:23.092Z",
+      "createdAt": "2026-10-15T22:53:02.965Z",
+      "updatedAt": "2026-10-15T22:53:03.020Z",
+      "notesUpdatedAt": "2026-10-15T22:53:02.965Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-16T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-15T22:47:23.092Z",
+          "timestamp": "2026-10-15T22:53:02.965Z",
           "stage": 0,
           "nextDate": "2026-10-16T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-15T22:47:23.092Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
+      "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
+      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-2-dp-attention-and-traditional-data-parallelism-are-the-same",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-16T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-15T22:47:23.092Z"
+        }
+      ],
+      "id": "rem_web_1792104443092_ody47",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-16T16:00:00.000Z",
+      "notes": "- if without EP, then it's traditional DP\n- if use with EP, then it's attention DP, attention DP only supported after MLA shows up.\n- Mostly, use TP if you cannot hold all the computation or weight in one tpu or want to claim more space for KV cache. If KV cache duplication and you want to have more space for kv cache to improve the batch size, then you can start to have the AttentionDP.",
+      "notesUpdatedAt": "2026-10-15T22:47:23.092Z",
+      "presetKey": "standard",
+      "sectionTitle": "MoE Model's DP with/without EP",
+      "tabId": null,
+      "tabName": "rocm.blogs.amd.com",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#misconception-2-dp-attention-and-traditional-data-parallelism-are-the-same",
+      "totalStages": 5,
+      "updatedAt": "2026-10-15T22:47:23.155Z",
+      "webAnchor": {
+        "epilogue": ": With EP: “DP + EP” (experts distributed; uses all-to-all or gather/slice around MoE). Without EP:",
+        "prologue": "all-gather, all-to-all, slice) to reconcile batch partitions between attention and MoE layers. configured with –data-parallel-size N.",
+        "selectedText": "It can be used"
+      }
     },
     {
       "calendarEventId": null,
