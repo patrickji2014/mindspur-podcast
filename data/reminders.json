@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T22:24:48.613Z",
+  "updatedAt": "2026-10-15T22:24:58.681Z",
   "items": [
     {
       "calendarEventId": null,
@@ -34,8 +34,8 @@
       "lastReviewedDate": null,
       "mode": "simple",
       "nextReviewDate": "2026-10-16T16:00:00.000Z",
-      "notes": "- For MoE mode, if not enable-expert-parallel, then it uses attention layer's DPxTP to do expert TP sharding. Then the prologue of MoE is an AllReduce\n- For Moe model, if use --enable-expert-parallel, then it uses attention layer's DPxTP for EP sharding. Since experts are sharded, if attention use DP, then epilogue of EP needs an All2All after router. If the attention uses TP, then epilogue of EP needs an AllReduce.\n- EP must be combined with TP or DP and with `--enable-expert-parallelism` only active when `TP_SIZExDP_SIZE>1`",
-      "notesUpdatedAt": "2026-10-15T22:24:48.002Z",
+      "notes": "- For MoE mode, if not enable-expert-parallel, then it uses attention layer's DPxTP to do expert TP sharding. Then the prologue of MoE is an AllReduce\n- For Moe model, if use --enable-expert-parallel, then it uses attention layer's DPxTP for EP sharding. Since experts are sharded, if attention use DP, then epilogue of EP needs an All2All after router. If the attention uses TP, then epilogue of EP needs an AllReduce.\n- EP must be combined with TP or DP and with `--enable-expert-parallelism` only active when `TP_SIZE*DP_SIZE>1`",
+      "notesUpdatedAt": "2026-10-15T22:24:58.266Z",
       "presetKey": "standard",
       "sectionTitle": "--enable-expert-parallel in vLLM",
       "tabId": null,
@@ -45,7 +45,7 @@
       ],
       "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
       "totalStages": 5,
-      "updatedAt": "2026-10-15T22:24:48.002Z",
+      "updatedAt": "2026-10-15T22:24:58.266Z",
       "webAnchor": {
         "epilogue": ") : Definition : All experts are present on every GPU, but their weight tensors are",
         "prologue": "are distributed is critical for interpreting the diagrams and strategies in this guide. Sharded Experts (without",
