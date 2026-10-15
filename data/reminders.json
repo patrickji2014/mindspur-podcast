@@ -1,24 +1,24 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T20:10:18.129Z",
+  "updatedAt": "2026-10-15T22:22:34.625Z",
   "items": [
     {
-      "id": "rem_web_1792095017398_sba7p",
+      "id": "rem_web_1792102953912_c2r8k",
       "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
       "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
-      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#the-vllm-moe-playbook-a-practical-guide-to-tp-dp-pp-and-expert-parallelism",
-      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#the-vllm-moe-playbook-a-practical-guide-to-tp-dp-pp-and-expert-parallelism",
+      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
       "tabId": null,
       "tabName": "rocm.blogs.amd.com",
       "contentType": "webpage",
       "webAnchor": {
-        "selectedText": "TP+EP delivers superior low-latency performance for interactive workloads with low concurrency, while DP+EP scales better for high-throughput batch processing. You’ll learn how expert activation density determines whether Expert Parallelism helps or hurts,",
-        "prologue": "from deploying DeepSeek-R1, Qwen3-235B, and Llama-4-Maverick on AMD Instinct™ MI300X GPUs reveal the performance crossover points:",
-        "epilogue": "and why MLA/MQA models like DeepSeek require special handling for KV cache management. By the end,"
+        "selectedText": "--enable-expert-parallel",
+        "prologue": "are distributed is critical for interpreting the diagrams and strategies in this guide. Sharded Experts (without",
+        "epilogue": ") : Definition : All experts are present on every GPU, but their weight tensors are"
       },
-      "sectionTitle": "TP/DP + EP performance indication",
+      "sectionTitle": "--enable-expert-parallel in vLLM",
       "headingId": null,
-      "notes": "- TP+EP delivers superior low-latency performance for interactive workloads with low concurrency \n- DP+EP scales better for high-throughput batch processing. \n- Expert activation density determines whether Expert Parallelism helps or hurts",
+      "notes": "- For MoE mode, if not enable-expert-parallel, then it uses attention layer's DPxTP to do expert TP sharding. Then the prologue of MoE is an AllReduce\n- For Moe model, if use --enable-expert-parallel, then it uses attention layer's DPxTP for EP sharding. Since experts are sharded, if attention use DP, then epilogue of EP needs an All2All after router. If the attention uses TP, then epilogue of EP needs an AllReduce.",
       "tags": [
         "web"
       ],
@@ -35,9 +35,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-15T20:10:17.398Z",
-      "updatedAt": "2026-10-15T20:10:17.451Z",
-      "notesUpdatedAt": "2026-10-15T20:10:17.398Z",
+      "createdAt": "2026-10-15T22:22:33.912Z",
+      "updatedAt": "2026-10-15T22:22:33.966Z",
+      "notesUpdatedAt": "2026-10-15T22:22:33.912Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-16T16:00:00.000Z",
@@ -45,12 +45,62 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-15T20:10:17.398Z",
+          "timestamp": "2026-10-15T22:22:33.912Z",
           "stage": 0,
           "nextDate": "2026-10-16T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-15T20:10:17.398Z",
+      "currentStage": 0,
+      "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
+      "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
+      "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#the-vllm-moe-playbook-a-practical-guide-to-tp-dp-pp-and-expert-parallelism",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-16T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-15T20:10:17.398Z"
+        }
+      ],
+      "id": "rem_web_1792095017398_sba7p",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "simple",
+      "nextReviewDate": "2026-10-16T16:00:00.000Z",
+      "notes": "- TP+EP delivers superior low-latency performance for interactive workloads with low concurrency \n- DP+EP scales better for high-throughput batch processing. \n- Expert activation density determines whether Expert Parallelism helps or hurts",
+      "notesUpdatedAt": "2026-10-15T20:10:17.398Z",
+      "presetKey": "standard",
+      "sectionTitle": "TP/DP + EP performance indication",
+      "tabId": null,
+      "tabName": "rocm.blogs.amd.com",
+      "tags": [
+        "web"
+      ],
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#the-vllm-moe-playbook-a-practical-guide-to-tp-dp-pp-and-expert-parallelism",
+      "totalStages": 5,
+      "updatedAt": "2026-10-15T20:10:17.451Z",
+      "webAnchor": {
+        "epilogue": "and why MLA/MQA models like DeepSeek require special handling for KV cache management. By the end,",
+        "prologue": "from deploying DeepSeek-R1, Qwen3-235B, and Llama-4-Maverick on AMD Instinct™ MI300X GPUs reveal the performance crossover points:",
+        "selectedText": "TP+EP delivers superior low-latency performance for interactive workloads with low concurrency, while DP+EP scales better for high-throughput batch processing. You’ll learn how expert activation density determines whether Expert Parallelism helps or hurts,"
+      }
     },
     {
       "calendarEventId": null,
