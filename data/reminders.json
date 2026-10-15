@@ -1,29 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-15T22:22:34.625Z",
+  "updatedAt": "2026-10-15T22:24:48.613Z",
   "items": [
     {
-      "id": "rem_web_1792102953912_c2r8k",
+      "calendarEventId": null,
+      "contentType": "webpage",
+      "createdAt": "2026-10-15T22:22:33.912Z",
+      "currentStage": 0,
       "docId": "web_aHR0cHMlM0ElMkYlMkZyb2Nt",
       "docTitle": "The vLLM MoE Playbook: A Practical Guide to TP, DP, PP and Expert Parallelism — ROCm Blogs",
       "docUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
-      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
-      "tabId": null,
-      "tabName": "rocm.blogs.amd.com",
-      "contentType": "webpage",
-      "webAnchor": {
-        "selectedText": "--enable-expert-parallel",
-        "prologue": "are distributed is critical for interpreting the diagrams and strategies in this guide. Sharded Experts (without",
-        "epilogue": ") : Definition : All experts are present on every GPU, but their weight tensors are"
-      },
-      "sectionTitle": "--enable-expert-parallel in vLLM",
+      "easeFactor": 2.5,
       "headingId": null,
-      "notes": "- For MoE mode, if not enable-expert-parallel, then it uses attention layer's DPxTP to do expert TP sharding. Then the prologue of MoE is an AllReduce\n- For Moe model, if use --enable-expert-parallel, then it uses attention layer's DPxTP for EP sharding. Since experts are sharded, if attention use DP, then epilogue of EP needs an All2All after router. If the attention uses TP, then epilogue of EP needs an AllReduce.",
-      "tags": [
-        "web"
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-16T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-15T22:22:33.912Z"
+        }
       ],
-      "mode": "simple",
-      "presetKey": "standard",
+      "id": "rem_web_1792102953912_c2r8k",
+      "includeInPodcast": false,
       "intervals": [
         1,
         3,
@@ -31,26 +29,28 @@
         14,
         30
       ],
-      "includeInPodcast": false,
-      "currentStage": 0,
-      "totalStages": 5,
-      "easeFactor": 2.5,
-      "createdAt": "2026-10-15T22:22:33.912Z",
-      "updatedAt": "2026-10-15T22:22:33.966Z",
-      "notesUpdatedAt": "2026-10-15T22:22:33.912Z",
+      "isMastered": false,
       "lastReviewedAt": null,
       "lastReviewedDate": null,
+      "mode": "simple",
       "nextReviewDate": "2026-10-16T16:00:00.000Z",
-      "isMastered": false,
-      "history": [
-        {
-          "action": "created",
-          "timestamp": "2026-10-15T22:22:33.912Z",
-          "stage": 0,
-          "nextDate": "2026-10-16T16:00:00.000Z"
-        }
+      "notes": "- For MoE mode, if not enable-expert-parallel, then it uses attention layer's DPxTP to do expert TP sharding. Then the prologue of MoE is an AllReduce\n- For Moe model, if use --enable-expert-parallel, then it uses attention layer's DPxTP for EP sharding. Since experts are sharded, if attention use DP, then epilogue of EP needs an All2All after router. If the attention uses TP, then epilogue of EP needs an AllReduce.\n- EP must be combined with TP or DP and with `--enable-expert-parallelism` only active when `TP_SIZExDP_SIZE>1`",
+      "notesUpdatedAt": "2026-10-15T22:24:48.002Z",
+      "presetKey": "standard",
+      "sectionTitle": "--enable-expert-parallel in vLLM",
+      "tabId": null,
+      "tabName": "rocm.blogs.amd.com",
+      "tags": [
+        "web"
       ],
-      "calendarEventId": null
+      "targetUrl": "https://rocm.blogs.amd.com/software-tools-optimization/vllm-moe-guide/README.html#glossary-expert-distribution-terminology",
+      "totalStages": 5,
+      "updatedAt": "2026-10-15T22:24:48.002Z",
+      "webAnchor": {
+        "epilogue": ") : Definition : All experts are present on every GPU, but their weight tensors are",
+        "prologue": "are distributed is critical for interpreting the diagrams and strategies in this guide. Sharded Experts (without",
+        "selectedText": "--enable-expert-parallel"
+      }
     },
     {
       "calendarEventId": null,
