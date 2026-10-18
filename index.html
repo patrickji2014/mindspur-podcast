@@ -21,6 +21,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* Offline Mode Banner */
+    .offline-banner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      transition: all 0.3s ease;
+    }
+    .offline-banner.hidden {
+      display: none !important;
+    }
+
     /* Native Pull-to-Refresh Indicator */
     .pull-refresh-indicator {
       display: flex;
@@ -871,6 +891,12 @@
       </div>
     </header>
 
+    <!-- Offline Indicator Banner -->
+    <div id="offline-banner" class="offline-banner hidden">
+      <span class="offline-icon">📡</span>
+      <span class="offline-text">Offline Mode — Reviews, notes, and new cards are saved locally and will auto-sync when you reconnect.</span>
+    </div>
+
     <!-- Pull to Refresh Bar (Native Touch Gestures on iOS) -->
     <div id="pull-refresh-indicator" class="pull-refresh-indicator">
       <span class="pull-icon" id="pull-icon">↓</span>
@@ -1235,6 +1261,15 @@
 
     // Initialize
     window.addEventListener('DOMContentLoaded', () => {
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(reg) {
+            console.log('MindSpur ServiceWorker active:', reg.scope);
+          }).catch(function(err) {
+            console.warn('MindSpur ServiceWorker registration note:', err);
+          });
+        });
+      }
       updateInstallHint();
       loadAuthFromHashOrStorage();
       loadLocalItems();
@@ -1311,8 +1346,11 @@
       if (!Array.isArray(deletedIds)) deletedIds = [];
     }
 
-    function saveDeletedIds() {
+    function saveDeletedIds(markPending = true) {
       localStorage.setItem('mindspur_deleted_ids', JSON.stringify(deletedIds));
+      if (markPending) {
+        localStorage.setItem('mindspur_pending_sync', 'true');
+      }
     }
 
     function loadLocalItems() {
@@ -1328,8 +1366,11 @@
       render();
     }
 
-    function saveLocalItems() {
+    function saveLocalItems(markPending = true) {
       localStorage.setItem('mindspur_items', JSON.stringify(items));
+      if (markPending) {
+        localStorage.setItem('mindspur_pending_sync', 'true');
+      }
     }
 
     function initEvents() {
@@ -1451,12 +1492,41 @@
         if (!document.hidden) performSync();
       });
 
+      // Network online/offline status handling & auto-sync upon reconnection
+      function updateNetworkStatus() {
+        const offlineBanner = document.getElementById('offline-banner');
+        const syncText = document.getElementById('sync-text');
+        if (typeof navigator !== 'undefined' && !navigator.onLine) {
+          if (offlineBanner) offlineBanner.classList.remove('hidden');
+          if (syncText) syncText.textContent = 'Offline';
+        } else {
+          if (offlineBanner) offlineBanner.classList.add('hidden');
+          if (syncText && (!isSyncing)) syncText.textContent = 'Sync';
+        }
+      }
+
+      window.addEventListener('online', () => {
+        updateNetworkStatus();
+        showToast('🟢 Back online — Syncing changes...');
+        if (authConfig.githubToken && authConfig.githubOwner) {
+          performSync();
+        }
+      });
+
+      window.addEventListener('offline', () => {
+        updateNetworkStatus();
+        showToast('📡 You are offline — all actions are saved locally');
+      });
+
+      updateNetworkStatus();
+
       // Bfcache support for Safari back/forward navigation
       window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
           loadAuthFromHashOrStorage();
           loadLocalItems();
-          if (authConfig.githubToken && authConfig.githubOwner) {
+          updateNetworkStatus();
+          if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) {
             performSync();
           }
         }
@@ -1465,13 +1535,15 @@
       window.addEventListener('popstate', () => {
         loadAuthFromHashOrStorage();
         loadLocalItems();
-        if (authConfig.githubToken && authConfig.githubOwner) performSync();
+        updateNetworkStatus();
+        if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) performSync();
       });
 
       window.addEventListener('hashchange', () => {
         loadAuthFromHashOrStorage();
         loadLocalItems();
-        if (authConfig.githubToken && authConfig.githubOwner) performSync();
+        updateNetworkStatus();
+        if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) performSync();
       });
 
       // Backdrop click to close settings modal
@@ -1863,6 +1935,11 @@
         return;
       }
 
+      if (typeof navigator !== 'undefined' && !navigator.onLine) {
+        if (typeof updateNetworkStatus === 'function') updateNetworkStatus();
+        return;
+      }
+
       if (isSyncing) {
         syncPending = true;
         return;
@@ -1941,11 +2018,11 @@
           // Merge deletedIds
           const allDeleted = Array.from(new Set([...(deletedIds || []), ...(remoteDeletedIds || [])]));
           deletedIds = allDeleted;
-          saveDeletedIds();
+          saveDeletedIds(false);
 
           // 2. Client-side merge
           items = mergeLists(items, remoteItems, deletedIds);
-          saveLocalItems();
+          saveLocalItems(false);
 
           // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
           const cloudSettings = {
@@ -1991,12 +2068,21 @@
             throw new Error('HTTP ' + putRes.status + detail);
           }
 
+          localStorage.removeItem('mindspur_pending_sync');
           showToast('🟢 Synced (' + items.length + ' items)');
           break;
         }
       } catch (err) {
         console.error('Sync failed:', err);
-        showToast('⚠️ Sync error: ' + err.message);
+        const isOffline = (typeof navigator !== 'undefined' && !navigator.onLine) ||
+          (err && (err.name === 'TypeError' || /network|fetch|offline|failed to fetch/i.test(err.message)));
+        if (isOffline) {
+          localStorage.setItem('mindspur_pending_sync', 'true');
+          if (typeof updateNetworkStatus === 'function') updateNetworkStatus();
+          showToast('📱 Offline — Changes saved locally');
+        } else {
+          showToast('⚠️ Sync error: ' + err.message);
+        }
       } finally {
         isSyncing = false;
         syncIcon.textContent = '🔄';
