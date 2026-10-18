@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T05:17:10.040Z",
+  "updatedAt": "2026-10-18T05:54:52.192Z",
   "items": [
     {
-      "id": "rem_1792300628901_gfq89k",
-      "docId": "rem_1792300628901_ry7me",
+      "id": "rem_1792302889686_lo4hjc",
+      "docId": "rem_1792302889686_podmw",
       "docTitle": "General Reminder",
       "docUrl": "",
       "targetUrl": "",
@@ -12,9 +12,9 @@
       "tabName": null,
       "contentType": "note",
       "webAnchor": null,
-      "sectionTitle": "Python Asyncio",
+      "sectionTitle": "Python asyncio Design Pattern",
       "headingId": null,
-      "notes": "- `import asyncio`\n- `coroutines` is an `async def ` function ***instance*** which must has `await` inside it. A coroutine will yield itself when await is called, and resume to run when await completes\n```\nasync def tiktok():\n    print('tik')\n    # this must not run on CPU so cannot call time.sleep here\n    await asyncio.sleep(1) \n    print('tok')\n    await asyncio.sleep(2)\n    return 0\n```\n```\ncoroutine = tiktok()\ntype(coroutine)\noutput: type(tiktok())=<class 'coroutine'>\n```\n\n-  `async` keyword, `await` keyword,\n- `asyncio.run` starts an even loop and run a coroutine, for example: `asyncio.run(tiktok())`\n- a coroutine must be invoked in asyncio.run() or `await`\n\n```\nimport asyncio\nimport time\n\nasync def tiktok(tid):\n    print(f'tik')\n    await asyncio.sleep(1)\n    print('tok')\n    await asyncio.sleep(1)\n    return tid\n\nasync def main():\n    ids = await asyncio.gather(tiktok(1), tiktok(2), tiktok(3))\n    return ids\n    \nprint(f'{type(tiktok(0))=}')\nstart = time.perf_counter()\n# ids = asyncio.run(main)\nids = asyncio.run(main())\nend = time.perf_counter()\nprint(f'elaps {end - start:.2f}s')\n```",
+      "notes": "- two patterns, coroutine chaining and queue integration\n- chaining is easy, just call await one after another\n- queue integration is producer and consumer pattern, need to use `asyncio.Queue()`, which provides `queue.put(item)` and `queue.get()` coroutines. so both need to be called with await\n```\nimport asyncio\nimport time\nimport random\n\n# asyncio.Queue\nasync def main():\n    async_queue = asyncio.Queue()\n    ids = [1,2,4]\n    await asyncio.gather(producer(async_queue, ids), *(consumer(async_queue) for _ in ids))\n    \n    \nasync def producer(queue, ids):\n    for i in ids:\n        t = random.random()\n        await asyncio.sleep(t * 5)\n        await queue.put({'id': i})\n        print(f'producer put {i} into queue')\n    for i in ids:\n        await queue.put({'id': None})\n\n\nasync def consumer(queue):\n    item = await queue.get()\n    while item['id'] is not None:\n        t = random.random()\n        await asyncio.sleep(t * 3)\n        print(f'consumer got {item['id']}')\n        item = await queue.get()\n    print(f'consumer completes')\n\n\nstart = time.perf_counter()\nasyncio.run(main())\nend = time.perf_counter()\nprint(f'time elapse {end - start:.2f}s')\n```",
       "tags": [],
       "mode": "self_grading",
       "presetKey": "standard",
@@ -29,9 +29,9 @@
       "currentStage": 0,
       "totalStages": 5,
       "easeFactor": 2.5,
-      "createdAt": "2026-10-18T05:17:08.901Z",
-      "updatedAt": "2026-10-18T05:17:08.926Z",
-      "notesUpdatedAt": "2026-10-18T05:17:08.901Z",
+      "createdAt": "2026-10-18T05:54:49.686Z",
+      "updatedAt": "2026-10-18T05:54:49.710Z",
+      "notesUpdatedAt": "2026-10-18T05:54:49.686Z",
       "lastReviewedAt": null,
       "lastReviewedDate": null,
       "nextReviewDate": "2026-10-18T16:00:00.000Z",
@@ -39,12 +39,56 @@
       "history": [
         {
           "action": "created",
-          "timestamp": "2026-10-18T05:17:08.901Z",
+          "timestamp": "2026-10-18T05:54:49.686Z",
           "stage": 0,
           "nextDate": "2026-10-18T16:00:00.000Z"
         }
       ],
       "calendarEventId": null
+    },
+    {
+      "calendarEventId": null,
+      "contentType": "note",
+      "createdAt": "2026-10-18T05:17:08.901Z",
+      "currentStage": 0,
+      "docId": "rem_1792300628901_ry7me",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "easeFactor": 2.5,
+      "headingId": null,
+      "history": [
+        {
+          "action": "created",
+          "nextDate": "2026-10-18T16:00:00.000Z",
+          "stage": 0,
+          "timestamp": "2026-10-18T05:17:08.901Z"
+        }
+      ],
+      "id": "rem_1792300628901_gfq89k",
+      "includeInPodcast": false,
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "isMastered": false,
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "mode": "self_grading",
+      "nextReviewDate": "2026-10-18T16:00:00.000Z",
+      "notes": "- `import asyncio`\n- `coroutines` is an `async def ` function ***instance*** which must has `await` inside it. A coroutine will yield itself when await is called, and resume to run when await completes\n```\nasync def tiktok():\n    print('tik')\n    # this must not run on CPU so cannot call time.sleep here\n    await asyncio.sleep(1) \n    print('tok')\n    await asyncio.sleep(2)\n    return 0\n```\n```\ncoroutine = tiktok()\ntype(coroutine)\noutput: type(tiktok())=<class 'coroutine'>\n```\n\n-  `async` keyword, `await` keyword,\n- `asyncio.run` starts an even loop and run a coroutine, for example: `asyncio.run(tiktok())`\n- a coroutine must be invoked in asyncio.run() or `await`\n\n```\nimport asyncio\nimport time\n\nasync def tiktok(tid):\n    print(f'tik')\n    await asyncio.sleep(1)\n    print('tok')\n    await asyncio.sleep(1)\n    return tid\n\nasync def main():\n    ids = await asyncio.gather(tiktok(1), tiktok(2), tiktok(3))\n    return ids\n    \nprint(f'{type(tiktok(0))=}')\nstart = time.perf_counter()\n# ids = asyncio.run(main)\nids = asyncio.run(main())\nend = time.perf_counter()\nprint(f'elaps {end - start:.2f}s')\n```",
+      "notesUpdatedAt": "2026-10-18T05:17:08.901Z",
+      "presetKey": "standard",
+      "sectionTitle": "Python Asyncio",
+      "tabId": null,
+      "tabName": null,
+      "tags": [],
+      "targetUrl": "",
+      "totalStages": 5,
+      "updatedAt": "2026-10-18T05:17:08.926Z",
+      "webAnchor": null
     },
     {
       "calendarEventId": null,
