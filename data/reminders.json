@@ -1,7 +1,51 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T04:58:22.256Z",
+  "updatedAt": "2026-10-18T05:17:10.040Z",
   "items": [
+    {
+      "id": "rem_1792300628901_gfq89k",
+      "docId": "rem_1792300628901_ry7me",
+      "docTitle": "General Reminder",
+      "docUrl": "",
+      "targetUrl": "",
+      "tabId": null,
+      "tabName": null,
+      "contentType": "note",
+      "webAnchor": null,
+      "sectionTitle": "Python Asyncio",
+      "headingId": null,
+      "notes": "- `import asyncio`\n- `coroutines` is an `async def ` function ***instance*** which must has `await` inside it. A coroutine will yield itself when await is called, and resume to run when await completes\n```\nasync def tiktok():\n    print('tik')\n    # this must not run on CPU so cannot call time.sleep here\n    await asyncio.sleep(1) \n    print('tok')\n    await asyncio.sleep(2)\n    return 0\n```\n```\ncoroutine = tiktok()\ntype(coroutine)\noutput: type(tiktok())=<class 'coroutine'>\n```\n\n-  `async` keyword, `await` keyword,\n- `asyncio.run` starts an even loop and run a coroutine, for example: `asyncio.run(tiktok())`\n- a coroutine must be invoked in asyncio.run() or `await`\n\n```\nimport asyncio\nimport time\n\nasync def tiktok(tid):\n    print(f'tik')\n    await asyncio.sleep(1)\n    print('tok')\n    await asyncio.sleep(1)\n    return tid\n\nasync def main():\n    ids = await asyncio.gather(tiktok(1), tiktok(2), tiktok(3))\n    return ids\n    \nprint(f'{type(tiktok(0))=}')\nstart = time.perf_counter()\n# ids = asyncio.run(main)\nids = asyncio.run(main())\nend = time.perf_counter()\nprint(f'elaps {end - start:.2f}s')\n```",
+      "tags": [],
+      "mode": "self_grading",
+      "presetKey": "standard",
+      "intervals": [
+        1,
+        3,
+        7,
+        14,
+        30
+      ],
+      "includeInPodcast": false,
+      "currentStage": 0,
+      "totalStages": 5,
+      "easeFactor": 2.5,
+      "createdAt": "2026-10-18T05:17:08.901Z",
+      "updatedAt": "2026-10-18T05:17:08.926Z",
+      "notesUpdatedAt": "2026-10-18T05:17:08.901Z",
+      "lastReviewedAt": null,
+      "lastReviewedDate": null,
+      "nextReviewDate": "2026-10-18T16:00:00.000Z",
+      "isMastered": false,
+      "history": [
+        {
+          "action": "created",
+          "timestamp": "2026-10-18T05:17:08.901Z",
+          "stage": 0,
+          "nextDate": "2026-10-18T16:00:00.000Z"
+        }
+      ],
+      "calendarEventId": null
+    },
     {
       "calendarEventId": null,
       "contentType": "note",
