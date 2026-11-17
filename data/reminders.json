@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T05:48:37.703Z",
+  "updatedAt": "2026-11-17T05:48:50.501Z",
   "items": [
     {
       "calendarEventId": null,
@@ -634,15 +634,15 @@
         30
       ],
       "includeInPodcast": false,
-      "currentStage": 1,
+      "currentStage": 2,
       "totalStages": 5,
       "easeFactor": 2.5,
       "createdAt": "2026-10-05T18:31:38.679Z",
-      "updatedAt": "2026-10-06T17:22:32.526Z",
+      "updatedAt": "2026-11-17T05:48:49.546Z",
       "notesUpdatedAt": "2026-10-05T18:31:38.679Z",
       "lastReviewedAt": "2026-10-06T17:22:32.526Z",
-      "lastReviewedDate": "2026-10-06T17:22:32.526Z",
-      "nextReviewDate": "2026-10-09T17:22:32.526Z",
+      "lastReviewedDate": "2026-11-17T05:48:49.546Z",
+      "nextReviewDate": "2026-11-24T05:48:49.546Z",
       "isMastered": false,
       "history": [
         {
