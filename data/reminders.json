@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T07:26:13.080Z",
+  "updatedAt": "2026-11-17T07:26:25.294Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1696,7 +1696,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:48:12.741Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
@@ -1721,9 +1721,9 @@
       ],
       "isMastered": false,
       "lastReviewedAt": "2026-10-06T17:27:01.951Z",
-      "lastReviewedDate": "2026-10-06T17:27:01.951Z",
+      "lastReviewedDate": "2026-11-17T07:26:24.296Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:27:01.951Z",
+      "nextReviewDate": "2026-11-24T07:26:24.296Z",
       "notes": "It will error out. Committed means an array committed to a specific mesh. The only way to move it around is use `jax.device_put` explicitly.",
       "notesUpdatedAt": "2026-10-05T18:48:12.741Z",
       "presetKey": "standard",
@@ -1735,7 +1735,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell6",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:27:01.951Z",
+      "updatedAt": "2026-11-17T07:26:24.296Z",
       "webAnchor": {
         "epilogue": ": a = jax . device_put ( 1.0 , NamedSharding ( m0 , jax . P",
         "prologue": "it stays put. Computations follow their data: an operation on xa runs on mesh_a \u2019s devices.",
