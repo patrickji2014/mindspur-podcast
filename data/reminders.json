@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T07:25:30.408Z",
+  "updatedAt": "2026-11-17T07:25:39.985Z",
   "items": [
     {
       "calendarEventId": null,
@@ -1596,7 +1596,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:55:33.523Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Data placement \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
@@ -1621,9 +1621,9 @@
       ],
       "isMastered": false,
       "lastReviewedAt": "2026-10-06T17:26:32.893Z",
-      "lastReviewedDate": "2026-10-06T17:26:32.893Z",
+      "lastReviewedDate": "2026-11-17T07:25:39.160Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:26:32.893Z",
+      "nextReviewDate": "2026-11-24T07:25:39.160Z",
       "notes": "When an array's sharding is SingleDeviceSharding, it means it's uncommitted and ready to follow other operation's commitment, like automatically moved to other mesh.",
       "notesUpdatedAt": "2026-10-05T18:55:33.523Z",
       "presetKey": "standard",
@@ -1635,7 +1635,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/placement.html#codecell5",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:26:32.893Z",
+      "updatedAt": "2026-11-17T07:25:39.160Z",
       "webAnchor": {
         "epilogue": "(device=CpuDevice(id=0), memory_kind=device) Copy to clipboard Uncommitted means the array isn\u2019t tied to its location: if it\u2019s",
         "prologue": "print ( x . committed ) print ( x . sharding ) Copy to clipboard False",
