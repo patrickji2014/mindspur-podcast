@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T06:19:35.088Z",
+  "updatedAt": "2026-11-17T06:19:38.889Z",
   "items": [
     {
       "calendarEventId": null,
@@ -708,7 +708,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T18:11:16.493Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Ahead-of-time lowering and compilation \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
@@ -733,9 +733,9 @@
       ],
       "isMastered": false,
       "lastReviewedAt": "2026-10-06T17:23:07.322Z",
-      "lastReviewedDate": "2026-10-06T17:23:07.322Z",
+      "lastReviewedDate": "2026-11-17T06:19:37.888Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:23:07.322Z",
+      "nextReviewDate": "2026-11-24T06:19:37.888Z",
       "notes": "When all you need is a function\u2019s output type, with no lowering, compiling, or executing at all, just use `.eval_shape` instead of `.trace`",
       "notesUpdatedAt": "2026-10-05T18:11:16.493Z",
       "presetKey": "standard",
@@ -747,7 +747,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/aot.html#codecell1",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:23:07.322Z",
+      "updatedAt": "2026-11-17T06:19:37.888Z",
       "webAnchor": {
         "epilogue": "runs just the specialization step: >>> jax . jit ( f ) . eval_shape ( jax",
         "prologue": "you need is a function\u2019s output type , with no lowering, compiling, or executing at all,",
