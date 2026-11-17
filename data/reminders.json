@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-17T05:37:40.082Z",
+  "updatedAt": "2026-11-17T05:38:15.322Z",
   "items": [
     {
       "calendarEventId": null,
@@ -188,7 +188,7 @@
       "calendarEventId": null,
       "contentType": "webpage",
       "createdAt": "2026-10-05T17:50:44.812Z",
-      "currentStage": 1,
+      "currentStage": 2,
       "docId": "web_aHR0cHMlM0ElMkYlMkZkb2Nz",
       "docTitle": "Distributed arrays and automatic parallelization \u2014 JAX documentation",
       "docUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
@@ -213,9 +213,9 @@
       ],
       "isMastered": false,
       "lastReviewedAt": "2026-10-06T17:22:23.738Z",
-      "lastReviewedDate": "2026-10-06T17:22:23.738Z",
+      "lastReviewedDate": "2026-11-17T05:38:14.181Z",
       "mode": "simple",
-      "nextReviewDate": "2026-10-09T17:22:23.738Z",
+      "nextReviewDate": "2026-11-24T05:38:14.181Z",
       "notes": "Layout specifies the row or column major inside a single device. sharding specifies how the array is distributed among devices. sharding and layout together becomes Format, where it fully defined the array's physical information. For the places that requires sharding, providing a Format is also acceptable.",
       "notesUpdatedAt": "2026-10-05T17:50:44.812Z",
       "presetKey": "standard",
@@ -227,7 +227,7 @@
       ],
       "targetUrl": "https://docs.jax.dev/en/latest/201/sharding.html#device-local-layout",
       "totalStages": 5,
-      "updatedAt": "2026-10-06T17:22:23.738Z",
+      "updatedAt": "2026-11-17T05:38:14.181Z",
       "webAnchor": {
         "epilogue": "# A sharding answers \u201cwhere do an array\u2019s values live?\u201d at the scale of devices: how",
         "prologue": "to clipboard float32[8@X,16] True Copy to clipboard For details, see the Manual parallelism with shard_map tutorial.",
