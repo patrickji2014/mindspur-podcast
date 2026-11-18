@@ -1117,6 +1117,12 @@
         </select>
       </div>
 
+      <div class="setting-item">
+        <label class="setting-label">🔒 Sync Encryption Passphrase</label>
+        <input type="password" id="set-enc-key" class="setting-input" placeholder="Passphrase / Key from Laptop...">
+        <p style="font-size: 11px; color: #94a3b8; margin-top: 4px;">Zero-knowledge AES-256 decryption. Automatically populated when paired via QR code.</p>
+      </div>
+
       <button id="btn-save-settings" class="btn-generate-audio" style="margin-top: 8px;">
         💾 Save Settings
       </button>
@@ -1163,7 +1169,57 @@
       ttsVoice: 'nova',
       pauseSeconds: 3,
       includeDocOrigin: false,
-      reviewMode: 'simple'
+      reviewMode: 'simple',
+      encryptionKey: ''
+    };
+
+    // Client-side Web Crypto AES-256-GCM Implementation for Zero-Knowledge Sync
+    const PwaCrypto = {
+      async encrypt(payload, passphrase) {
+        if (!passphrase || !passphrase.trim()) return payload;
+        const enc = new TextEncoder();
+        const salt = new Uint8Array(16);
+        const iv = new Uint8Array(12);
+        crypto.getRandomValues(salt);
+        crypto.getRandomValues(iv);
+        const baseKey = await crypto.subtle.importKey('raw', enc.encode(passphrase.trim()), { name: 'PBKDF2' }, false, ['deriveKey']);
+        const aesKey = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: 50000, hash: 'SHA-256' }, baseKey, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
+        const cipherBuffer = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, aesKey, enc.encode(JSON.stringify(payload)));
+        let binarySalt = '', binaryIv = '', binaryCipher = '';
+        const cipherBytes = new Uint8Array(cipherBuffer);
+        for (let i = 0; i < salt.length; i++) binarySalt += String.fromCharCode(salt[i]);
+        for (let i = 0; i < iv.length; i++) binaryIv += String.fromCharCode(iv[i]);
+        for (let i = 0; i < cipherBytes.length; i++) binaryCipher += String.fromCharCode(cipherBytes[i]);
+        return {
+          version: 2,
+          encrypted: true,
+          algorithm: 'AES-256-GCM',
+          iterations: 50000,
+          salt: btoa(binarySalt),
+          iv: btoa(binaryIv),
+          ciphertext: btoa(binaryCipher),
+          updatedAt: new Date().toISOString()
+        };
+      },
+      async decrypt(envelope, passphrase) {
+        if (!envelope || !envelope.encrypted) return envelope;
+        if (!passphrase || !passphrase.trim()) throw new Error('Encryption passphrase required');
+        const enc = new TextEncoder();
+        const dec = new TextDecoder();
+        const binSalt = atob(envelope.salt);
+        const binIv = atob(envelope.iv);
+        const binCipher = atob(envelope.ciphertext);
+        const salt = new Uint8Array(binSalt.length);
+        const iv = new Uint8Array(binIv.length);
+        const cipherBytes = new Uint8Array(binCipher.length);
+        for (let i = 0; i < binSalt.length; i++) salt[i] = binSalt.charCodeAt(i);
+        for (let i = 0; i < binIv.length; i++) iv[i] = binIv.charCodeAt(i);
+        for (let i = 0; i < binCipher.length; i++) cipherBytes[i] = binCipher.charCodeAt(i);
+        const baseKey = await crypto.subtle.importKey('raw', enc.encode(passphrase.trim()), { name: 'PBKDF2' }, false, ['deriveKey']);
+        const aesKey = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt, iterations: envelope.iterations || 50000, hash: 'SHA-256' }, baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+        const decryptedBuffer = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, aesKey, cipherBytes);
+        return JSON.parse(dec.decode(decryptedBuffer));
+      }
     };
 
     const INTERVALS = {
@@ -1213,7 +1269,8 @@
         v: authConfig.ttsVoice || 'nova',
         s: authConfig.pauseSeconds || 3,
         d: authConfig.includeDocOrigin === true,
-        m: authConfig.reviewMode || 'simple'
+        m: authConfig.reviewMode || 'simple',
+        ek: authConfig.encryptionKey || ''
       };
       return '#auth=' + encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))));
     }
@@ -1301,7 +1358,8 @@
               ttsVoice: p.v || authConfig.ttsVoice,
               pauseSeconds: p.s || 3,
               includeDocOrigin: p.d === true,
-              reviewMode: p.m || 'simple'
+              reviewMode: p.m || 'simple',
+              encryptionKey: p.ek || authConfig.encryptionKey || ''
             };
             localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
             hashLoaded = true;
@@ -1419,6 +1477,8 @@
         authConfig.ttsProvider = document.getElementById('set-tts-provider').value;
         authConfig.ttsApiKey = document.getElementById('set-tts-key').value.trim();
         authConfig.ttsVoice = document.getElementById('set-tts-voice').value;
+        const encInput = document.getElementById('set-enc-key');
+        if (encInput) authConfig.encryptionKey = encInput.value.trim();
         localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
         if (!isStandalone) {
           ensureAuthHashInUrl(true);
@@ -1922,6 +1982,8 @@
       document.getElementById('set-tts-provider').value = authConfig.ttsProvider || 'openai';
       document.getElementById('set-tts-key').value = authConfig.ttsApiKey || '';
       document.getElementById('set-tts-voice').value = authConfig.ttsVoice || 'nova';
+      const encInput = document.getElementById('set-enc-key');
+      if (encInput) encInput.value = authConfig.encryptionKey || '';
     }
 
     let isSyncing = false;
@@ -1993,7 +2055,21 @@
             remoteSha = remoteData.sha;
             if (remoteData.content) {
               const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
-              const parsed = JSON.parse(raw);
+              let parsed = JSON.parse(raw);
+              if (parsed && parsed.encrypted) {
+                if (authConfig.encryptionKey && typeof PwaCrypto !== 'undefined') {
+                  try {
+                    parsed = await PwaCrypto.decrypt(parsed, authConfig.encryptionKey);
+                  } catch (decErr) {
+                    console.error('Decryption failed on mobile:', decErr);
+                    showToast('⚠️ Decryption failed: Check key in Settings');
+                    return;
+                  }
+                } else {
+                  showToast('🔒 Cloud data is encrypted. Enter key in Settings');
+                  return;
+                }
+              }
               remoteItems = Array.isArray(parsed.items) ? parsed.items : (Array.isArray(parsed) ? parsed : []);
               remoteDeletedIds = Array.isArray(parsed.deletedIds) ? parsed.deletedIds : [];
 
@@ -2039,9 +2115,13 @@
             deletedIds: deletedIds,
             settings: cloudSettings
           };
+          let payloadToPush = payload;
+          if (authConfig.encryptionKey && typeof PwaCrypto !== 'undefined') {
+            payloadToPush = await PwaCrypto.encrypt(payload, authConfig.encryptionKey);
+          }
           const putBody = {
             message: 'Sync from iPhone (' + items.length + ' items)',
-            content: btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))))
+            content: btoa(unescape(encodeURIComponent(JSON.stringify(payloadToPush, null, 2))))
           };
           if (remoteSha) putBody.sha = remoteSha;
 
