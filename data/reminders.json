@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-18T07:47:42.291Z",
+  "updatedAt": "2026-11-18T07:47:57.881Z",
   "items": [
     {
       "calendarEventId": null,
@@ -3164,50 +3164,6 @@
         }
       ],
       "calendarEventId": null
-    },
-    {
-      "calendarEventId": null,
-      "contentType": "note",
-      "createdAt": "2026-11-18T07:45:46.691Z",
-      "currentStage": 0,
-      "docId": "rem_1794987946690_u16u4",
-      "docTitle": "General Reminder",
-      "docUrl": "",
-      "easeFactor": 2.5,
-      "headingId": null,
-      "history": [
-        {
-          "action": "created",
-          "nextDate": "2026-11-18T17:00:00.000Z",
-          "stage": 0,
-          "timestamp": "2026-11-18T07:45:46.691Z"
-        }
-      ],
-      "id": "rem_1794987946691_qc5s7q",
-      "includeInPodcast": false,
-      "intervals": [
-        1,
-        3,
-        7,
-        14,
-        30
-      ],
-      "isMastered": false,
-      "lastReviewedAt": null,
-      "lastReviewedDate": null,
-      "mode": "self_grading",
-      "nextReviewDate": "2026-11-18T17:00:00.000Z",
-      "notes": "balabala",
-      "notesUpdatedAt": "2026-11-18T07:45:46.691Z",
-      "presetKey": "standard",
-      "sectionTitle": "test encryption",
-      "tabId": null,
-      "tabName": null,
-      "tags": [],
-      "targetUrl": "",
-      "totalStages": 5,
-      "updatedAt": "2026-11-18T07:45:46.713Z",
-      "webAnchor": null
     }
   ],
   "deletedIds": [
@@ -3226,6 +3182,7 @@
     "rem_1791432015161_83wyb4",
     "rem_1791434490640_vd0qvx",
     "rem_1791435676812_vxl9nb",
+    "rem_1794987946691_qc5s7q",
     "rem_1791526913322_pxqrex"
   ],
   "settings": {
