@@ -2053,8 +2053,30 @@
           if (res.ok) {
             const remoteData = await res.json();
             remoteSha = remoteData.sha;
-            if (remoteData.content) {
-              const raw = decodeURIComponent(escape(atob(remoteData.content.replace(/\s/g, ''))));
+            let contentBase64 = remoteData.content || '';
+
+            // GitHub Contents API returns content: "" and encoding: "none" for files > 1MB.
+            // Retrieve blob from Git Blobs API (supports up to 100MB).
+            if (!contentBase64 && (remoteData.git_url || remoteData.sha)) {
+              try {
+                const blobUrl = remoteData.git_url || ('https://api.github.com/repos/' + owner + '/' + repo + '/git/blobs/' + remoteData.sha);
+                const blobRes = await fetch(blobUrl, {
+                  headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/vnd.github.v3+json'
+                  }
+                });
+                if (blobRes && blobRes.ok) {
+                  const blobData = await blobRes.json();
+                  contentBase64 = blobData.content || '';
+                }
+              } catch (blobErr) {
+                console.warn('Failed to fetch large blob in mobile:', blobErr);
+              }
+            }
+
+            if (contentBase64) {
+              const raw = decodeURIComponent(escape(atob(contentBase64.replace(/\s/g, ''))));
               let parsed = JSON.parse(raw);
               if (parsed && parsed.encrypted) {
                 if (authConfig.encryptionKey && typeof PwaCrypto !== 'undefined') {
@@ -2249,6 +2271,10 @@
             if (r.intervals) merged.intervals = r.intervals;
             if (r.totalStages) merged.totalStages = r.totalStages;
             if (r.includeInPodcast !== undefined) merged.includeInPodcast = r.includeInPodcast;
+            if (r.sectionTitle) merged.sectionTitle = r.sectionTitle;
+            if (r.docTitle) merged.docTitle = r.docTitle;
+            if (r.targetUrl) merged.targetUrl = r.targetUrl;
+            if (r.docUrl) merged.docUrl = r.docUrl;
             merged.updatedAt = r.updatedAt;
           } else {
             if (r.includeInPodcast !== undefined && l.includeInPodcast === undefined) {
@@ -2256,6 +2282,15 @@
             }
             merged.updatedAt = l.updatedAt || new Date().toISOString();
           }
+
+          // Ensure critical fields are never dropped
+          merged.docId = merged.docId || r.docId;
+          merged.docTitle = merged.docTitle || r.docTitle;
+          merged.sectionTitle = merged.sectionTitle || r.sectionTitle;
+          merged.targetUrl = merged.targetUrl || r.targetUrl;
+          merged.docUrl = merged.docUrl || r.docUrl;
+          merged.webAnchor = merged.webAnchor || r.webAnchor;
+          merged.createdAt = merged.createdAt || r.createdAt;
 
           map.set(r.id, merged);
         }
