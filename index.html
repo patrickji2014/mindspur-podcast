@@ -1337,6 +1337,9 @@
       loadLocalItems();
       initEvents();
       checkMobileUrlParamsForAddAction();
+      if (authConfig.githubToken && authConfig.githubOwner) {
+        performSync();
+      }
     });
 
     function loadAuthFromHashOrStorage() {
@@ -2845,6 +2848,7 @@
 
       saveLocalItems();
       render();
+      if (authConfig.githubToken) setTimeout(performSync, 400);
     }
 
     function getItemStatus(item) {
@@ -3037,6 +3041,7 @@
         item.updatedAt = new Date().toISOString();
         saveLocalItems();
         showToast('🎯 Curve updated');
+        if (authConfig.githubToken) setTimeout(performSync, 400);
       });
 
       // Individual Listen button listener (lazy audio synthesis)
@@ -3056,6 +3061,7 @@
         saveLocalItems();
         audioBtn.textContent = item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF';
         showToast(item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF');
+        if (authConfig.githubToken) setTimeout(performSync, 400);
       });
 
       // Notes accordion
@@ -3100,6 +3106,7 @@
         editArea.classList.add('hidden');
         render();
         showToast('📝 Note updated');
+        if (authConfig.githubToken) setTimeout(performSync, 400);
       });
 
       cancelNoteBtn.addEventListener('click', () => {
@@ -3154,6 +3161,7 @@
             saveLocalItems();
             render();
             showToast('🗑️ Reminder deleted');
+            if (authConfig.githubToken) setTimeout(performSync, 400);
           }, 250);
         }
       });
