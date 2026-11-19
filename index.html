@@ -1128,8 +1128,9 @@
       </button>
 
       <button id="btn-force-reload" class="btn-generate-audio" style="margin-top: 6px; background: rgba(59, 130, 246, 0.15); border: 1px solid #3b82f6; color: #93c5fd;">
-        🔄 Force Reload App (Bust Cache)
+        🔄 Force Reload App (Bust Cache & Re-sync)
       </button>
+      <p style="font-size: 11px; color: #94a3b8; margin-top: 2px;">Clears local offline cache and re-downloads the latest reminders from GitHub.</p>
 
       <button id="btn-copy-setup-link" class="btn-generate-audio" style="margin-top: 6px; background: rgba(99, 102, 241, 0.15); border: 1px solid var(--accent-indigo); color: #c7d2fe;">
         🔗 Copy Home Screen Setup Link
@@ -1322,6 +1323,7 @@
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('sw.js').then(function(reg) {
             console.log('MindSpur ServiceWorker active:', reg.scope);
+            reg.update().catch(function() {});
           }).catch(function(err) {
             console.warn('MindSpur ServiceWorker registration note:', err);
           });
@@ -1535,8 +1537,27 @@
 
       const btnForceReload = document.getElementById('btn-force-reload');
       if (btnForceReload) {
-        btnForceReload.addEventListener('click', () => {
-          showToast('Refreshing to latest version...');
+        btnForceReload.addEventListener('click', async () => {
+          showToast('Refreshing & syncing latest data...');
+          try {
+            if ('serviceWorker' in navigator) {
+              const regs = await navigator.serviceWorker.getRegistrations();
+              for (const reg of regs) {
+                await reg.unregister();
+              }
+            }
+            if ('caches' in window) {
+              const keys = await caches.keys();
+              for (const k of keys) {
+                await caches.delete(k);
+              }
+            }
+            // Clear local cached reminders so it forces a pristine pull from GitHub
+            localStorage.removeItem('mindspur_items');
+            localStorage.removeItem('mindspur_pending_sync');
+          } catch (e) {
+            console.warn('Cache busting error:', e);
+          }
           setTimeout(() => {
             window.location.href = window.location.origin + window.location.pathname + '?_t=' + Date.now() + (window.location.hash || '');
           }, 300);
@@ -1956,6 +1977,12 @@
           indicator.classList.add('refreshing');
           pullIcon.textContent = '🔄';
           pullText.textContent = 'Refreshing & syncing...';
+
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => {
+              regs.forEach(r => r.update().catch(() => {}));
+            }).catch(() => {});
+          }
 
           loadAuthFromHashOrStorage();
           loadLocalItems();
