@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>MindSpur Podcast Console</title>
+  <meta name="description" content="Manage ephemeral audio reviews, inspect storage, and prune old episodes on GitHub.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-base: #0a0e17;
+      --bg-surface: #121826;
+      --bg-surface-elevated: #1a2235;
+      --bg-surface-glass: rgba(18, 24, 38, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(139, 92, 246, 0.5);
+      
+      --accent-indigo: #6366f1;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.6);
+      --shadow-glow: 0 0 24px rgba(139, 92, 246, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 40%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 140px; /* Space for sticky player */
+      overflow-x: hidden;
+    }
+
+    /* Container */
+    .app-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    /* Header */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      font-size: 28px;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.3));
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glow);
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #c4b5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      min-height: 38px;
+    }
+
+    .btn:hover:not(:disabled) {
+      background: var(--bg-surface-elevated);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
+      border: none;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-danger {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: rgba(244, 63, 94, 0.6);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-indigo), var(--accent-purple));
+      opacity: 0.8;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metric-val {
+      font-family: 'Outfit', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .metric-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Retention & Cleanup Toolbar */
+    .toolbar-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 240px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 8px 14px;
+    }
+
+    .toolbar-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .toolbar-search input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Prune Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 105%;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      min-width: 220px;
+      z-index: 100;
+      padding: 6px;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.15s;
+    }
+
+    .dropdown-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+    }
+
+    .dropdown-item.danger {
+      color: #fda4af;
+    }
+
+    .dropdown-item.danger:hover {
+      background: rgba(244, 63, 94, 0.15);
+    }
+
+    /* Orphaned Alert Banner */
+    .orphaned-banner {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .orphaned-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .orphaned-title {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fde68a;
+    }
+
+    .orphaned-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Episodes List */
+    .episodes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 0 4px;
+    }
+
+    .episodes-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .select-all-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .select-all-wrap input[type="checkbox"] {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent-indigo);
+    }
+
+    .episodes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .episode-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .episode-card:hover {
+      background: var(--bg-surface-elevated);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+    }
+
+    .episode-card.playing {
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .card-checkbox input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--accent-indigo);
+    }
+
+    .play-btn-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .play-btn-circle:hover {
+      transform: scale(1.06);
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+    }
+
+    .episode-card.playing .play-btn-circle {
+      background: linear-gradient(135deg, var(--accent-emerald), #059669);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+    }
+
+    .card-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .badge-today {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #6ee7b7;
+    }
+
+    .badge-size {
+      color: #93c5fd;
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .card-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .card-topics {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .btn-icon-subtle {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .btn-icon-subtle:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--border-color);
+      color: #fff;
+    }
+
+    .btn-icon-subtle.delete:hover {
+      background: rgba(244, 63, 94, 0.15);
+      border-color: rgba(244, 63, 94, 0.4);
+      color: #fda4af;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-icon {
+      font-size: 44px;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .empty-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .empty-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 400px;
+      margin: 0 auto 20px auto;
+    }
+
+    /* Sticky Bottom Player Bar */
+    .player-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(18, 24, 38, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--border-color);
+      padding: 14px 20px;
+      z-index: 900;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(110%);
+    }
+
+    .player-dock.active {
+      transform: translateY(0);
+    }
+
+    .player-dock-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .player-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .player-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .waveform-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .waveform-bar {
+      width: 3px;
+      background: var(--accent-purple);
+      border-radius: 99px;
+      height: 6px;
+      transition: height 0.2s ease;
+    }
+
+    .player-dock.is-playing .waveform-bar:nth-child(1) { animation: wave 0.8s infinite ease-in-out; }
+    .player-dock.is-playing .waveform-bar:nth-child(2) { animation: wave 1.1s infinite ease-in-out 0.2s; }
+    .player-dock.is-playing .waveform-bar:nth-child(3) { animation: wave 0.9s infinite ease-in-out 0.4s; }
+    .player-dock.is-playing .waveform-bar:nth-child(4) { animation: wave 1.2s infinite ease-in-out 0.1s; }
+
+    @keyframes wave {
+      0%, 100% { height: 6px; }
+      50% { height: 22px; }
+    }
+
+    .player-title-col {
+      min-width: 0;
+    }
+
+    .player-track-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #fff;
+    }
+
+    .player-track-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .player-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .player-ctrl-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 18px;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .player-ctrl-btn:hover {
+      background: var(--bg-surface-elevated);
+      color: #fff;
+    }
+
+    .player-play-btn {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, var(--accent-indigo), var(--accent-purple));
+      color: #fff;
+      font-size: 18px;
+      border-radius: var(--radius-full);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+      transition: all 0.2s;
+    }
+
+    .player-play-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .player-speed-btn {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    /* Progress bar */
+    .player-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .time-label {
+      font-size: 11px;
+      font-family: monospace;
+      color: var(--text-dim);
+      min-width: 38px;
+    }
+
+    .seek-slider {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .seek-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: var(--radius-full);
+      background: var(--accent-purple);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(139, 92, 246, 0.6);
+      transition: transform 0.1s;
+    }
+
+    .seek-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Modals & Dialogs */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .input-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .input-field {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #fff;
+      outline: none;
+    }
+
+    .input-field:focus {
+      border-color: var(--accent-purple);
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    /* Toast */
+    .toast-pill {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      padding: 10px 20px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-lg);
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      z-index: 1100;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-pill.active {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 640px) {
+      .header-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .toolbar-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .toolbar-actions {
+        justify-content: space-between;
+      }
+      .episode-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .card-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+      .player-main-row {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-pill">
+    <span id="toast-icon">ℹ️</span>
+    <span id="toast-msg">Notification</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header-bar">
+      <div class="brand-group">
+        <div class="brand-icon">🎙️</div>
+        <div>
+          <h1 class="brand-title">Podcast Console</h1>
+          <p class="brand-subtitle">Manage ephemeral audio episodes & GitHub repository storage</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-refresh" class="btn" title="Reload episodes and storage from GitHub">
+          <span>🔄</span> Refresh
+        </button>
+        <button id="btn-settings" class="btn" title="Configure GitHub connection">
+          <span>⚙️</span> Setup
+        </button>
+        <a id="btn-web-app" href="./" class="btn" title="Open Mobile Review Web App">
+          <span>📱</span> Reviews
+        </a>
+      </div>
+    </header>
+
+    <!-- Metrics Cards -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <span class="metric-label"><span>📻</span> Active Episodes</span>
+        <span id="metric-episodes" class="metric-val">--</span>
+        <span id="metric-episodes-desc" class="metric-desc">In podcast RSS feed</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label"><span>💾</span> Audio Storage</span>
+        <span id="metric-storage" class="metric-val">--</span>
+        <span id="metric-storage-desc" class="metric-desc">Across all MP3 files</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label"><span>🗓️</span> Latest Episode</span>
+        <span id="metric-latest" class="metric-val">--</span>
+        <span id="metric-latest-desc" class="metric-desc">Most recent audio</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label"><span>📡</span> RSS Feed Status</span>
+        <span id="metric-status" class="metric-val">Ready</span>
+        <span id="metric-status-desc" class="metric-desc">
+          <a id="feed-link" href="#" target="_blank" style="color: var(--accent-purple); text-decoration: none;">feed.xml</a>
+        </span>
+      </div>
+    </section>
+
+    <!-- Orphaned Files Alert Banner (Hidden when 0) -->
+    <div id="orphaned-banner" class="orphaned-banner" style="display: none;">
+      <div class="orphaned-info">
+        <span style="font-size: 24px;">⚠️</span>
+        <div>
+          <div id="orphaned-title" class="orphaned-title">Found 0 Orphaned Audio Files</div>
+          <div id="orphaned-desc" class="orphaned-sub">These files are in audio/ but removed from feed.xml</div>
+        </div>
+      </div>
+      <button id="btn-clean-orphaned" class="btn btn-danger">
+        <span>🗑️</span> Clean Orphaned Audio
+      </button>
+    </div>
+
+    <!-- Retention & Filter Toolbar -->
+    <section class="toolbar-section">
+      <div class="toolbar-search">
+        <span>🔍</span>
+        <input type="text" id="search-input" placeholder="Search episodes by date, title, or concepts...">
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- Prune Dropdown -->
+        <div class="dropdown" id="prune-dropdown">
+          <button id="btn-prune-menu" class="btn">
+            <span>🧹</span> Prune Old Episodes ▾
+          </button>
+          <div class="dropdown-content">
+            <div class="dropdown-item" data-action="prune-keep-3">
+              <span>🧹</span> Keep Latest 3 Episodes
+            </div>
+            <div class="dropdown-item" data-action="prune-keep-5">
+              <span>🧹</span> Keep Latest 5 Episodes
+            </div>
+            <div class="dropdown-item" data-action="prune-days-7">
+              <span>🗓️</span> Delete Older than 7 Days
+            </div>
+            <div class="dropdown-item" data-action="prune-days-14">
+              <span>🗓️</span> Delete Older than 14 Days
+            </div>
+            <div class="dropdown-item danger" data-action="prune-orphans">
+              <span>🗑️</span> Purge All Orphaned Files
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-delete-selected" class="btn btn-danger" disabled>
+          <span>🗑️</span> Delete Selected (<span id="selected-count">0</span>)
+        </button>
+      </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section>
+      <div class="episodes-header">
+        <h2 class="episodes-title">
+          <span>🎧</span> Published Episodes
+          <span id="filtered-badge" class="badge" style="display: none;">Filtered</span>
+        </h2>
+        <label class="select-all-wrap">
+          <input type="checkbox" id="cb-select-all">
+          <span>Select All</span>
+        </label>
+      </div>
+
+      <!-- Episode Card List -->
+      <div id="episodes-list" class="episodes-list">
+        <!-- Rendered dynamically -->
+        <div class="empty-state">
+          <div class="empty-icon">⏳</div>
+          <div class="empty-title">Loading Episodes...</div>
+          <div class="empty-desc">Connecting to GitHub repository and fetching feed.xml...</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Sticky Bottom Audio Player Bar -->
+  <div id="player-dock" class="player-dock">
+    <div class="player-dock-inner">
+      <div class="player-main-row">
+        <div class="player-info">
+          <div class="waveform-bars">
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+            <div class="waveform-bar"></div>
+          </div>
+          <div class="player-title-col">
+            <div id="dock-title" class="player-track-title">Episode Title</div>
+            <div id="dock-meta" class="player-track-meta">Published Date • 0.0 MB</div>
+          </div>
+        </div>
+
+        <div class="player-controls">
+          <button id="btn-dock-skip-back" class="player-ctrl-btn" title="Rewind 15 seconds">↺15</button>
+          <button id="btn-dock-play" class="player-play-btn" title="Play / Pause">▶</button>
+          <button id="btn-dock-skip-fwd" class="player-ctrl-btn" title="Forward 15 seconds">15↻</button>
+          <button id="btn-dock-speed" class="player-speed-btn" title="Playback speed">1.0x</button>
+          <a id="btn-dock-download" href="#" download class="player-ctrl-btn" title="Download MP3">⬇️</a>
+          <button id="btn-dock-close" class="player-ctrl-btn" title="Close player">✕</button>
+        </div>
+      </div>
+
+      <div class="player-progress-row">
+        <span id="dock-time-cur" class="time-label">0:00</span>
+        <input type="range" id="dock-seek" class="seek-slider" min="0" max="100" value="0">
+        <span id="dock-time-dur" class="time-label">0:00</span>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio-player" preload="metadata"></audio>
+
+  <!-- Setup & Credentials Modal -->
+  <div id="settings-modal" class="modal-overlay">
+    <div class="modal-box">
+      <h3 class="modal-title">⚙️ GitHub Repository Setup</h3>
+      <p class="modal-desc">
+        Configure your repository and GitHub Personal Access Token to manage your podcast feed and delete ephemeral audio files.
+      </p>
+
+      <div class="input-group">
+        <label class="input-label" for="cfg-owner">GitHub Username / Organization</label>
+        <input type="text" id="cfg-owner" class="input-field" placeholder="e.g. your-github-username">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="cfg-repo">Repository Name</label>
+        <input type="text" id="cfg-repo" class="input-field" placeholder="e.g. mindspur-podcast">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="cfg-token">Personal Access Token (classic with repo scope)</label>
+        <input type="password" id="cfg-token" class="input-field" placeholder="ghp_...">
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="cfg-retention">Auto-Retention Limit</label>
+        <select id="cfg-retention" class="input-field">
+          <option value="3">Keep Latest 3 Episodes</option>
+          <option value="5" selected>Keep Latest 5 Episodes (Recommended)</option>
+          <option value="7">Keep Latest 7 Episodes</option>
+          <option value="14">Keep Latest 14 Episodes</option>
+          <option value="0">Keep All Episodes (No Auto-pruning)</option>
+        </select>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-modal-cancel" class="btn">Cancel</button>
+        <button id="btn-modal-save" class="btn btn-primary">Save & Connect</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Console State
+    let authConfig = {
+      githubOwner: '',
+      githubRepo: '',
+      githubToken: '',
+      maxRetention: 5
+    };
+
+    let allEpisodes = [];
+    let orphanedAudioFiles = [];
+    let selectedGuids = new Set();
+    let currentPlayingGuid = null;
+    let playbackRates = [1.0, 1.25, 1.5, 2.0, 0.75];
+    let currentRateIndex = 0;
+
+    const audioEl = document.getElementById('audio-player');
+
+    // Initialize
+    async function init() {
+      initEvents();
+      await loadAuthCredentials();
+      await fetchFeedAndAudio();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+    async function loadAuthCredentials() {
+      // 1. Check URL hash (#auth=...)
+      if (window.location.hash) {
+        try {
+          const match = window.location.hash.match(/[#&]auth=([^&]+)/);
+          if (match) {
+            const raw = decodeURIComponent(match[1]);
+            const parsed = JSON.parse(decodeURIComponent(escape(atob(raw))));
+            if (parsed.githubOwner) authConfig.githubOwner = parsed.githubOwner;
+            if (parsed.githubRepo) authConfig.githubRepo = parsed.githubRepo;
+            if (parsed.githubToken) authConfig.githubToken = parsed.githubToken;
+            localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+            // Sanitize address bar immediately
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState(null, '', window.location.pathname);
+            }
+          }
+        } catch (_) {}
+      }
+
+      // 2. Check localStorage
+      try {
+        const stored = localStorage.getItem('mindspur_auth');
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          authConfig = { ...authConfig, ...parsed };
+        }
+      } catch (_) {}
+
+      // 3. Check Chrome extension storage (both user_settings and settings)
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        await new Promise((resolve) => {
+          chrome.storage.local.get(['user_settings', 'settings'], (res) => {
+            const s = (res && (res.user_settings || res.settings)) || {};
+            const pc = s.podcastConfig || {};
+            if (pc.githubOwner) authConfig.githubOwner = pc.githubOwner;
+            if (pc.githubRepo) authConfig.githubRepo = pc.githubRepo;
+            if (pc.githubToken) authConfig.githubToken = pc.githubToken;
+            if (pc.podcastRetention) authConfig.maxRetention = pc.podcastRetention;
+
+            // If still missing token, check chrome.storage.sync
+            if (!authConfig.githubToken && chrome.storage.sync) {
+              chrome.storage.sync.get(['user_settings'], (syncRes) => {
+                const syncS = (syncRes && syncRes.user_settings) || {};
+                const syncPc = syncS.podcastConfig || {};
+                if (syncPc.githubOwner) authConfig.githubOwner = syncPc.githubOwner;
+                if (syncPc.githubRepo) authConfig.githubRepo = syncPc.githubRepo;
+                if (syncPc.githubToken) authConfig.githubToken = syncPc.githubToken;
+                if (syncPc.podcastRetention) authConfig.maxRetention = syncPc.podcastRetention;
+                resolve();
+              });
+              return;
+            }
+            resolve();
+          });
+        });
+      }
+
+      // Update Setup modal inputs
+      const ownerEl = document.getElementById('cfg-owner');
+      const repoEl = document.getElementById('cfg-repo');
+      const tokenEl = document.getElementById('cfg-token');
+      const retEl = document.getElementById('cfg-retention');
+      if (ownerEl) ownerEl.value = authConfig.githubOwner || '';
+      if (repoEl) repoEl.value = authConfig.githubRepo || '';
+      if (tokenEl) tokenEl.value = authConfig.githubToken || '';
+      if (retEl) retEl.value = authConfig.maxRetention || 5;
+    }
+
+    function initEvents() {
+      // Refresh
+      document.getElementById('btn-refresh').addEventListener('click', () => fetchFeedAndAudio(true));
+
+      // Settings modal
+      document.getElementById('btn-settings').addEventListener('click', () => {
+        document.getElementById('settings-modal').classList.add('active');
+      });
+      document.getElementById('btn-modal-cancel').addEventListener('click', () => {
+        document.getElementById('settings-modal').classList.remove('active');
+      });
+      document.getElementById('btn-modal-save').addEventListener('click', () => {
+        authConfig.githubOwner = document.getElementById('cfg-owner').value.trim();
+        authConfig.githubRepo = document.getElementById('cfg-repo').value.trim();
+        authConfig.githubToken = document.getElementById('cfg-token').value.trim();
+        authConfig.maxRetention = parseInt(document.getElementById('cfg-retention').value, 10) || 5;
+        localStorage.setItem('mindspur_auth', JSON.stringify(authConfig));
+
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+          chrome.storage.local.get(['user_settings', 'settings'], (res) => {
+            const s = (res && (res.user_settings || res.settings)) || {};
+            s.podcastConfig = s.podcastConfig || {};
+            s.podcastConfig.githubOwner = authConfig.githubOwner;
+            s.podcastConfig.githubRepo = authConfig.githubRepo;
+            s.podcastConfig.githubToken = authConfig.githubToken;
+            s.podcastConfig.podcastRetention = authConfig.maxRetention;
+            chrome.storage.local.set({ user_settings: s });
+            if (chrome.storage.sync) {
+              try { chrome.storage.sync.set({ user_settings: s }); } catch (_) {}
+            }
+          });
+        }
+
+        document.getElementById('settings-modal').classList.remove('active');
+        showToast('✅ Credentials updated');
+        fetchFeedAndAudio(true);
+      });
+
+      // Search filter
+      document.getElementById('search-input').addEventListener('input', renderEpisodes);
+
+      // Select all
+      document.getElementById('cb-select-all').addEventListener('change', (e) => {
+        const checked = e.target.checked;
+        const visible = getFilteredEpisodes();
+        if (checked) {
+          visible.forEach(ep => selectedGuids.add(ep.guid));
+        } else {
+          selectedGuids.clear();
+        }
+        updateSelectedUI();
+        renderEpisodes();
+      });
+
+      // Delete selected
+      document.getElementById('btn-delete-selected').addEventListener('click', handleDeleteSelected);
+
+      // Prune dropdown toggle
+      const pruneDropdown = document.getElementById('prune-dropdown');
+      document.getElementById('btn-prune-menu').addEventListener('click', (e) => {
+        e.stopPropagation();
+        pruneDropdown.classList.toggle('active');
+      });
+      document.addEventListener('click', () => pruneDropdown.classList.remove('active'));
+
+      // Prune action handlers
+      document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const action = item.getAttribute('data-action');
+          handlePruneAction(action);
+        });
+      });
+
+      // Clean orphaned
+      document.getElementById('btn-clean-orphaned').addEventListener('click', handleCleanOrphaned);
+
+      // Audio Player Dock Controls
+      document.getElementById('btn-dock-play').addEventListener('click', toggleAudioPlay);
+      document.getElementById('btn-dock-skip-back').addEventListener('click', () => { audioEl.currentTime = Math.max(0, audioEl.currentTime - 15); });
+      document.getElementById('btn-dock-skip-fwd').addEventListener('click', () => { audioEl.currentTime = Math.min(audioEl.duration || 0, audioEl.currentTime + 15); });
+      document.getElementById('btn-dock-speed').addEventListener('click', cyclePlaybackSpeed);
+      document.getElementById('btn-dock-close').addEventListener('click', closePlayerDock);
+
+      // Scrubbing
+      const seekSlider = document.getElementById('dock-seek');
+      seekSlider.addEventListener('input', () => {
+        if (audioEl.duration) {
+          audioEl.currentTime = (seekSlider.value / 100) * audioEl.duration;
+        }
+      });
+
+      audioEl.addEventListener('timeupdate', () => {
+        if (!isNaN(audioEl.duration) && audioEl.duration > 0) {
+          seekSlider.value = (audioEl.currentTime / audioEl.duration) * 100;
+          document.getElementById('dock-time-cur').textContent = formatTime(audioEl.currentTime);
+          document.getElementById('dock-time-dur').textContent = formatTime(audioEl.duration);
+        }
+      });
+
+      audioEl.addEventListener('play', () => {
+        document.getElementById('player-dock').classList.add('is-playing');
+        document.getElementById('btn-dock-play').textContent = '⏸';
+        updateEpisodePlayingState();
+      });
+
+      audioEl.addEventListener('pause', () => {
+        document.getElementById('player-dock').classList.remove('is-playing');
+        document.getElementById('btn-dock-play').textContent = '▶';
+        updateEpisodePlayingState();
+      });
+
+      audioEl.addEventListener('ended', () => {
+        document.getElementById('player-dock').classList.remove('is-playing');
+        document.getElementById('btn-dock-play').textContent = '▶';
+        updateEpisodePlayingState();
+      });
+    }
+
+    // Fetch Feed and Audio files via GitHub REST API
+    async function fetchFeedAndAudio(interactive = false) {
+      const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
+      if (!owner || !repo || !token) {
+        renderEmptyState('Missing GitHub Credentials', 'Tap Setup to enter your GitHub username, repo name, and token.');
+        return;
+      }
+
+      if (interactive) showToast('🔄 Refreshing feed and storage...');
+
+      try {
+        // 1. Fetch feed.xml
+        const feedUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/feed.xml?_t=' + Date.now();
+        const feedRes = await fetch(feedUrl, {
+          cache: 'no-store',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        allEpisodes = [];
+        let feedXmlText = '';
+        if (feedRes.ok) {
+          const feedData = await feedRes.json();
+          if (feedData.content) {
+            feedXmlText = decodeURIComponent(escape(atob(feedData.content.replace(/\s/g, ''))));
+            allEpisodes = parsePodcastRss(feedXmlText);
+          }
+        } else if (feedRes.status !== 404) {
+          let detail = '';
+          try {
+            const errData = await feedRes.json();
+            if (errData.message) detail = ': ' + errData.message;
+          } catch (_) {}
+          throw new Error('GitHub API error (' + feedRes.status + detail + ')');
+        }
+
+        // 2. Fetch audio/ folder
+        const audioDirUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/audio?_t=' + Date.now();
+        let audioFiles = [];
+        try {
+          const audioRes = await fetch(audioDirUrl, {
+            cache: 'no-store',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          });
+          if (audioRes.ok) {
+            const data = await audioRes.json();
+            if (Array.isArray(data)) {
+              audioFiles = data.filter(f => f.type === 'file' && f.name.endsWith('.mp3'));
+            }
+          }
+        } catch (_) {}
+
+        // Correlate
+        const audioMap = new Map();
+        audioFiles.forEach(f => audioMap.set(f.name, f));
+        const matchedNames = new Set();
+
+        allEpisodes = allEpisodes.map(ep => {
+          let fileName = '';
+          if (ep.url) {
+            const parts = ep.url.split('/');
+            fileName = parts[parts.length - 1];
+          }
+          const audioObj = audioMap.get(fileName);
+          if (audioObj) matchedNames.add(fileName);
+
+          return {
+            ...ep,
+            audioFileName: fileName,
+            audioPath: audioObj ? audioObj.path : (fileName ? 'audio/' + fileName : ''),
+            audioSha: audioObj ? audioObj.sha : null,
+            sizeBytes: audioObj ? audioObj.size : (ep.lengthBytes || 0)
+          };
+        });
+
+        orphanedAudioFiles = audioFiles.filter(f => !matchedNames.has(f.name));
+
+        // Update UI
+        updateMetrics(audioFiles);
+        renderEpisodes();
+
+        const pagesDomain = owner.toLowerCase() + '.github.io';
+        const feedLink = document.getElementById('feed-link');
+        feedLink.href = 'https://' + pagesDomain + '/' + repo + '/feed.xml';
+
+        if (interactive) showToast('✅ Feed & storage up to date');
+      } catch (err) {
+        console.error(err);
+        showToast('⚠️ Fetch error: ' + err.message);
+        renderEmptyState('Connection Notice', err.message);
+      }
+    }
+
+    // Parser for iTunes RSS XML
+    function parsePodcastRss(xmlContent) {
+      if (!xmlContent) return [];
+      const episodes = [];
+      const itemRegex = /<item>([\s\S]*?)<\/item>/g;
+      let match;
+
+      while ((match = itemRegex.exec(xmlContent)) !== null) {
+        const itemBlock = match[1];
+        const getTag = (tag) => {
+          const tm = new RegExp('<' + tag + '[^>]*>([\\s\\S]*?)<\/' + tag + '>', 'i').exec(itemBlock);
+          return tm ? tm[1].trim() : '';
+        };
+        const encMatch = /<enclosure\s+url="([^"]+)"(?:\s+length="([^"]+)")?/i.exec(itemBlock);
+
+        if (encMatch) {
+          episodes.push({
+            title: getTag('title').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>'),
+            description: getTag('description'),
+            pubDate: getTag('pubDate'),
+            guid: getTag('guid'),
+            url: encMatch[1],
+            lengthBytes: parseInt(encMatch[2] || '1024000', 10)
+          });
+        }
+      }
+      return episodes;
+    }
+
+    function updateMetrics(audioFiles) {
+      document.getElementById('metric-episodes').textContent = allEpisodes.length;
+      document.getElementById('metric-episodes-desc').textContent = allEpisodes.length === 1 ? '1 episode in RSS feed' : allEpisodes.length + ' episodes in RSS feed';
+
+      const totalBytes = audioFiles.reduce((acc, f) => acc + (f.size || 0), 0);
+      const formattedStorage = totalBytes > 1048576 
+        ? (totalBytes / 1048576).toFixed(1) + ' MB' 
+        : (totalBytes / 1024).toFixed(0) + ' KB';
+
+      document.getElementById('metric-storage').textContent = formattedStorage;
+      document.getElementById('metric-storage-desc').textContent = 'Across ' + audioFiles.length + ' audio files';
+
+      if (allEpisodes.length > 0 && allEpisodes[0].pubDate) {
+        const dt = new Date(allEpisodes[0].pubDate);
+        document.getElementById('metric-latest').textContent = formatDateRelative(dt);
+        document.getElementById('metric-latest-desc').textContent = dt.toLocaleDateString();
+      } else {
+        document.getElementById('metric-latest').textContent = 'None';
+        document.getElementById('metric-latest-desc').textContent = 'No episodes published yet';
+      }
+
+      // Orphaned banner
+      const orphanedBanner = document.getElementById('orphaned-banner');
+      if (orphanedAudioFiles.length > 0) {
+        const orphanBytes = orphanedAudioFiles.reduce((a, b) => a + (b.size || 0), 0);
+        const orphanMb = (orphanBytes / 1048576).toFixed(1);
+        document.getElementById('orphaned-title').textContent = '⚠️ ' + orphanedAudioFiles.length + ' Orphaned Audio File' + (orphanedAudioFiles.length === 1 ? '' : 's') + ' (' + orphanMb + ' MB)';
+        document.getElementById('orphaned-desc').textContent = 'These audio files exist in audio/ but are no longer in feed.xml. Clean them to free up GitHub repository storage.';
+        orphanedBanner.style.display = 'flex';
+      } else {
+        orphanedBanner.style.display = 'none';
+      }
+    }
+
+    function getFilteredEpisodes() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      if (!q) return allEpisodes;
+      return allEpisodes.filter(ep => {
+        const titleMatch = (ep.title || '').toLowerCase().includes(q);
+        const descMatch = (ep.description || '').toLowerCase().includes(q);
+        const dateMatch = (ep.pubDate || '').toLowerCase().includes(q);
+        return titleMatch || descMatch || dateMatch;
+      });
+    }
+
+    function renderEpisodes() {
+      const container = document.getElementById('episodes-list');
+      const filtered = getFilteredEpisodes();
+      const q = document.getElementById('search-input').value.trim();
+
+      document.getElementById('filtered-badge').style.display = q ? 'inline-block' : 'none';
+
+      if (filtered.length === 0) {
+        if (allEpisodes.length === 0) {
+          renderEmptyState('No Episodes in Podcast Feed', 'Generate a daily review episode from the laptop Review Hub or mobile web app.');
+        } else {
+          renderEmptyState('No Matching Episodes', 'No podcast episodes matched your search filter "' + escapeHtml(q) + '".');
+        }
+        return;
+      }
+
+      container.innerHTML = filtered.map(ep => {
+        const isSelected = selectedGuids.has(ep.guid);
+        const isPlaying = currentPlayingGuid === ep.guid && !audioEl.paused;
+        const sizeFormatted = ep.sizeBytes > 1048576 
+          ? (ep.sizeBytes / 1048576).toFixed(1) + ' MB' 
+          : (ep.sizeBytes / 1024).toFixed(0) + ' KB';
+
+        const dt = ep.pubDate ? new Date(ep.pubDate) : null;
+        const dateLabel = dt ? formatDateRelative(dt) : 'Episode';
+        const isToday = dateLabel === 'Today';
+
+        // Extract concepts from description
+        let concepts = '';
+        if (ep.description) {
+          const match = ep.description.match(/Concepts covered: ([^.]+)/i);
+          if (match && match[1]) concepts = match[1];
+        }
+
+        return `
+          <div class="episode-card ${isPlaying ? 'playing' : ''}" data-guid="${escapeHtml(ep.guid)}">
+            <label class="card-checkbox">
+              <input type="checkbox" class="cb-ep" data-guid="${escapeHtml(ep.guid)}" ${isSelected ? 'checked' : ''}>
+            </label>
+
+            <button class="play-btn-circle btn-play-card" data-guid="${escapeHtml(ep.guid)}" title="${isPlaying ? 'Pause' : 'Play'}">
+              ${isPlaying ? '⏸' : '▶'}
+            </button>
+
+            <div class="card-content">
+              <div class="card-title-row">
+                <span class="card-title">${escapeHtml(ep.title || 'Daily Reviews')}</span>
+                <span class="badge ${isToday ? 'badge-today' : ''}">${dateLabel}</span>
+                <span class="badge badge-size">${sizeFormatted}</span>
+              </div>
+              <div class="card-meta-row">
+                <span>🗓️ ${dt ? dt.toLocaleDateString() + ' ' + dt.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Unknown date'}</span>
+                <span>📁 ${escapeHtml(ep.audioFileName || 'audio.mp3')}</span>
+              </div>
+              ${concepts ? `<div class="card-topics">💡 Topics: ${escapeHtml(concepts)}</div>` : ''}
+            </div>
+
+            <div class="card-actions">
+              <a href="${ep.url}" download class="btn-icon-subtle" title="Download MP3">⬇️</a>
+              <button class="btn-icon-subtle delete btn-delete-single" data-guid="${escapeHtml(ep.guid)}" title="Delete episode & audio">🗑️</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Wire card events
+      container.querySelectorAll('.cb-ep').forEach(cb => {
+        cb.addEventListener('change', (e) => {
+          const guid = e.target.getAttribute('data-guid');
+          if (e.target.checked) selectedGuids.add(guid);
+          else selectedGuids.delete(guid);
+          updateSelectedUI();
+        });
+      });
+
+      container.querySelectorAll('.btn-play-card').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const guid = btn.getAttribute('data-guid');
+          playEpisodeByGuid(guid);
+        });
+      });
+
+      container.querySelectorAll('.btn-delete-single').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const guid = btn.getAttribute('data-guid');
+          handleDeleteSingle(guid);
+        });
+      });
+    }
+
+    function renderEmptyState(title, desc) {
+      const container = document.getElementById('episodes-list');
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">📻</div>
+          <div class="empty-title">${escapeHtml(title)}</div>
+          <div class="empty-desc">${escapeHtml(desc)}</div>
+        </div>
+      `;
+    }
+
+    function updateSelectedUI() {
+      const count = selectedGuids.size;
+      document.getElementById('selected-count').textContent = count;
+      document.getElementById('btn-delete-selected').disabled = count === 0;
+
+      const visible = getFilteredEpisodes();
+      const allSelected = visible.length > 0 && visible.every(ep => selectedGuids.has(ep.guid));
+      document.getElementById('cb-select-all').checked = allSelected;
+    }
+
+    // Audio Playback
+    function playEpisodeByGuid(guid) {
+      const ep = allEpisodes.find(e => e.guid === guid);
+      if (!ep) return;
+
+      if (currentPlayingGuid === guid && !audioEl.paused) {
+        audioEl.pause();
+        return;
+      }
+
+      currentPlayingGuid = guid;
+      audioEl.src = ep.url;
+      audioEl.playbackRate = playbackRates[currentRateIndex];
+      audioEl.play().catch(err => {
+        console.warn('Playback error:', err);
+        showToast('⚠️ Could not play audio: ' + err.message);
+      });
+
+      // Update Dock
+      document.getElementById('dock-title').textContent = ep.title || 'Daily Reviews';
+      const dt = ep.pubDate ? new Date(ep.pubDate).toLocaleDateString() : '';
+      const sizeMb = (ep.sizeBytes / 1048576).toFixed(1) + ' MB';
+      document.getElementById('dock-meta').textContent = dt + ' • ' + sizeMb;
+      document.getElementById('btn-dock-download').href = ep.url;
+
+      document.getElementById('player-dock').classList.add('active');
+      renderEpisodes();
+    }
+
+    function toggleAudioPlay() {
+      if (audioEl.paused) {
+        audioEl.play().catch(() => {});
+      } else {
+        audioEl.pause();
+      }
+    }
+
+    function cyclePlaybackSpeed() {
+      currentRateIndex = (currentRateIndex + 1) % playbackRates.length;
+      const rate = playbackRates[currentRateIndex];
+      audioEl.playbackRate = rate;
+      document.getElementById('btn-dock-speed').textContent = rate + 'x';
+      showToast('Speed: ' + rate + 'x');
+    }
+
+    function closePlayerDock() {
+      audioEl.pause();
+      document.getElementById('player-dock').classList.remove('active');
+      currentPlayingGuid = null;
+      renderEpisodes();
+    }
+
+    function updateEpisodePlayingState() {
+      const isPlaying = !audioEl.paused;
+      document.querySelectorAll('.episode-card').forEach(card => {
+        const guid = card.getAttribute('data-guid');
+        if (guid === currentPlayingGuid) {
+          card.classList.toggle('playing', isPlaying);
+          const btn = card.querySelector('.play-btn-circle');
+          if (btn) btn.textContent = isPlaying ? '⏸' : '▶';
+        } else {
+          card.classList.remove('playing');
+          const btn = card.querySelector('.play-btn-circle');
+          if (btn) btn.textContent = '▶';
+        }
+      });
+    }
+
+    // Delete Single Episode
+    async function handleDeleteSingle(guid) {
+      const ep = allEpisodes.find(e => e.guid === guid);
+      if (!ep) return;
+
+      const confirmMsg = 'Are you sure you want to delete "' + (ep.title || 'this episode') + '"?\n\nThis will remove it from the podcast RSS feed AND permanently delete the MP3 file (' + (ep.audioFileName || 'audio file') + ') from GitHub.';
+      if (!confirm(confirmMsg)) return;
+
+      showToast('⏳ Deleting episode from GitHub...');
+
+      try {
+        await executeDeleteEpisodes([guid], ep.audioPath ? [{ path: ep.audioPath, sha: ep.audioSha }] : []);
+        showToast('🗑️ Episode and audio deleted');
+        selectedGuids.delete(guid);
+        updateSelectedUI();
+        await fetchFeedAndAudio();
+      } catch (err) {
+        alert('Failed to delete episode: ' + err.message);
+      }
+    }
+
+    // Delete Selected Episodes in Batch
+    async function handleDeleteSelected() {
+      const count = selectedGuids.size;
+      if (count === 0) return;
+
+      const confirmMsg = 'Are you sure you want to delete ' + count + ' selected episode' + (count === 1 ? '' : 's') + '?\n\nThis will remove them from feed.xml and delete their corresponding MP3 audio files from the GitHub repository.';
+      if (!confirm(confirmMsg)) return;
+
+      showToast('⏳ Deleting ' + count + ' episodes from GitHub...');
+
+      const guids = Array.from(selectedGuids);
+      const audioFiles = [];
+
+      guids.forEach(g => {
+        const ep = allEpisodes.find(e => e.guid === g);
+        if (ep && ep.audioPath) {
+          audioFiles.push({ path: ep.audioPath, sha: ep.audioSha });
+        }
+      });
+
+      try {
+        await executeDeleteEpisodes(guids, audioFiles);
+        showToast('🗑️ ' + count + ' episodes deleted');
+        selectedGuids.clear();
+        updateSelectedUI();
+        await fetchFeedAndAudio();
+      } catch (err) {
+        alert('Failed to delete episodes: ' + err.message);
+      }
+    }
+
+    // Prune presets
+    async function handlePruneAction(action) {
+      if (allEpisodes.length === 0 && orphanedAudioFiles.length === 0) {
+        showToast('ℹ️ No episodes to prune');
+        return;
+      }
+
+      let toDeleteGuids = [];
+      let toDeleteAudio = [];
+      let actionLabel = '';
+
+      if (action === 'prune-keep-3') {
+        actionLabel = 'Keep Latest 3 Episodes';
+        if (allEpisodes.length <= 3) {
+          showToast('✅ You already have ' + allEpisodes.length + ' or fewer episodes');
+          return;
+        }
+        const pruneList = allEpisodes.slice(3);
+        toDeleteGuids = pruneList.map(e => e.guid);
+        pruneList.forEach(e => {
+          if (e.audioPath) toDeleteAudio.push({ path: e.audioPath, sha: e.audioSha });
+        });
+      } else if (action === 'prune-keep-5') {
+        actionLabel = 'Keep Latest 5 Episodes';
+        if (allEpisodes.length <= 5) {
+          showToast('✅ You already have ' + allEpisodes.length + ' or fewer episodes');
+          return;
+        }
+        const pruneList = allEpisodes.slice(5);
+        toDeleteGuids = pruneList.map(e => e.guid);
+        pruneList.forEach(e => {
+          if (e.audioPath) toDeleteAudio.push({ path: e.audioPath, sha: e.audioSha });
+        });
+      } else if (action === 'prune-days-7') {
+        actionLabel = 'Delete Episodes Older than 7 Days';
+        const now = Date.now();
+        const cutoff = 7 * 24 * 60 * 60 * 1000;
+        const pruneList = allEpisodes.filter(e => {
+          if (!e.pubDate) return false;
+          const dt = new Date(e.pubDate).getTime();
+          return !isNaN(dt) && (now - dt) > cutoff;
+        });
+        if (pruneList.length === 0) {
+          showToast('✅ No episodes older than 7 days');
+          return;
+        }
+        toDeleteGuids = pruneList.map(e => e.guid);
+        pruneList.forEach(e => {
+          if (e.audioPath) toDeleteAudio.push({ path: e.audioPath, sha: e.audioSha });
+        });
+      } else if (action === 'prune-days-14') {
+        actionLabel = 'Delete Episodes Older than 14 Days';
+        const now = Date.now();
+        const cutoff = 14 * 24 * 60 * 60 * 1000;
+        const pruneList = allEpisodes.filter(e => {
+          if (!e.pubDate) return false;
+          const dt = new Date(e.pubDate).getTime();
+          return !isNaN(dt) && (now - dt) > cutoff;
+        });
+        if (pruneList.length === 0) {
+          showToast('✅ No episodes older than 14 days');
+          return;
+        }
+        toDeleteGuids = pruneList.map(e => e.guid);
+        pruneList.forEach(e => {
+          if (e.audioPath) toDeleteAudio.push({ path: e.audioPath, sha: e.audioSha });
+        });
+      } else if (action === 'prune-orphans') {
+        handleCleanOrphaned();
+        return;
+      }
+
+      const count = toDeleteGuids.length;
+      if (count === 0) return;
+
+      const confirmMsg = actionLabel + ':\n\nThis will permanently delete ' + count + ' episode' + (count === 1 ? '' : 's') + ' and audio file' + (count === 1 ? '' : 's') + ' from GitHub. Proceed?';
+      if (!confirm(confirmMsg)) return;
+
+      showToast('⏳ Pruning ' + count + ' old episodes...');
+
+      try {
+        await executeDeleteEpisodes(toDeleteGuids, toDeleteAudio);
+        showToast('🧹 Pruned ' + count + ' old episodes');
+        await fetchFeedAndAudio();
+      } catch (err) {
+        alert('Prune failed: ' + err.message);
+      }
+    }
+
+    // Clean Orphaned Audio Files
+    async function handleCleanOrphaned() {
+      if (orphanedAudioFiles.length === 0) {
+        showToast('✅ No orphaned audio files found');
+        return;
+      }
+
+      const count = orphanedAudioFiles.length;
+      const orphanBytes = orphanedAudioFiles.reduce((a, b) => a + (b.size || 0), 0);
+      const orphanMb = (orphanBytes / 1048576).toFixed(1);
+
+      const confirmMsg = 'Delete ' + count + ' orphaned audio file' + (count === 1 ? '' : 's') + ' (' + orphanMb + ' MB)?\n\nThese files exist in audio/ but are not referenced in your RSS feed.';
+      if (!confirm(confirmMsg)) return;
+
+      showToast('⏳ Deleting ' + count + ' orphaned audio files...');
+
+      const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
+      let deleted = 0;
+
+      for (const f of orphanedAudioFiles) {
+        try {
+          const url = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + f.path;
+          const res = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + token,
+              'Accept': 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              message: 'Clean orphaned audio file ' + f.name,
+              sha: f.sha
+            })
+          });
+          if (res.ok) deleted++;
+        } catch (_) {}
+      }
+
+      showToast('🗑️ Cleaned ' + deleted + ' orphaned audio files');
+      await fetchFeedAndAudio();
+    }
+
+    // Execute bulk deletion via GitHub REST API
+    async function executeDeleteEpisodes(guidsToDelete, audioFilesToDelete) {
+      const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
+      const guidSet = new Set(guidsToDelete);
+
+      // 1. Fetch current feed.xml to obtain fresh SHA and items
+      const feedUrl = 'https://api.github.com/repos/' + owner + '/' + repo + '/contents/feed.xml?_t=' + Date.now();
+      const feedRes = await fetch(feedUrl, {
+        cache: 'no-store',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+
+      if (!feedRes.ok) {
+        throw new Error('Could not fetch feed.xml (' + feedRes.status + ')');
+      }
+
+      const feedData = await feedRes.json();
+      const rawXml = decodeURIComponent(escape(atob(feedData.content.replace(/\s/g, ''))));
+      const existing = parsePodcastRss(rawXml);
+
+      // 2. Filter remaining episodes
+      const remaining = existing.filter(e => !guidSet.has(e.guid));
+
+      // 3. Delete physical audio files from audio/
+      for (const af of audioFilesToDelete) {
+        if (!af.path) continue;
+        let sha = af.sha;
+        if (!sha) {
+          try {
+            const checkRes = await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + af.path, {
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            });
+            if (checkRes.ok) {
+              const checkData = await checkRes.json();
+              sha = checkData.sha;
+            }
+          } catch (_) {}
+        }
+
+        if (sha) {
+          try {
+            await fetch('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + af.path, {
+              method: 'DELETE',
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: 'Delete ephemeral audio ' + af.path,
+                sha: sha
+              })
+            });
+          } catch (_) {}
+        }
+      }
+
+      // 4. Re-generate and commit updated feed.xml
+      const pagesDomain = owner.toLowerCase() + '.github.io';
+      const newFeedXml = generatePodcastRssClient({
+        title: 'MindSpur Daily Audio Reviews',
+        link: 'https://' + pagesDomain + '/' + repo,
+        description: 'Personal spaced repetition audio reviews generated from your Google Docs and web highlights.'
+      }, remaining);
+
+      const putRes = await fetch(feedUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: 'Update feed.xml (pruned ' + guidsToDelete.length + ' episodes)',
+          content: btoa(unescape(encodeURIComponent(newFeedXml))),
+          sha: feedData.sha
+        })
+      });
+
+      if (!putRes.ok) {
+        throw new Error('Failed to commit updated feed.xml (' + putRes.status + ')');
+      }
+    }
+
+    // Client-side RSS feed generator
+    function generatePodcastRssClient(channelInfo, episodes) {
+      const escape = (str) => (str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      const now = new Date().toUTCString();
+
+      const itemsXml = episodes.map(ep => `    <item>
+      <title>${escape(ep.title)}</title>
+      <description>${escape(ep.description || ep.title)}</description>
+      <pubDate>${ep.pubDate || now}</pubDate>
+      <enclosure url="${escape(ep.url)}" length="${ep.lengthBytes || 1024000}" type="audio/mpeg"/>
+      <guid isPermaLink="false">${escape(ep.guid || ('mindspur-' + Date.now()))}</guid>
+      <itunes:duration>05:00</itunes:duration>
+    </item>`).join('\n');
+
+      return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>${escape(channelInfo.title)}</title>
+    <link>${escape(channelInfo.link)}</link>
+    <language>en-us</language>
+    <description>${escape(channelInfo.description)}</description>
+    <lastBuildDate>${now}</lastBuildDate>
+    <itunes:author>MindSpur Spaced Repetition</itunes:author>
+    <itunes:summary>${escape(channelInfo.description)}</itunes:summary>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:category text="Education"/>
+${itemsXml}
+  </channel>
+</rss>`;
+    }
+
+    // Utility Helpers
+    function formatDateRelative(date) {
+      const now = new Date();
+      const diffMs = now.getTime() - date.getTime();
+      const diffDays = Math.floor(diffMs / (24 * 60 * 60 * 1000));
+
+      if (diffDays === 0 && now.getDate() === date.getDate()) return 'Today';
+      if (diffDays === 1 || (diffDays === 0 && now.getDate() !== date.getDate())) return 'Yesterday';
+      if (diffDays > 1 && diffDays < 7) return diffDays + ' days ago';
+      return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    }
+
+    function formatTime(seconds) {
+      if (isNaN(seconds) || seconds < 0) return '0:00';
+      const m = Math.floor(seconds / 60);
+      const s = Math.floor(seconds % 60);
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.add('active');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
