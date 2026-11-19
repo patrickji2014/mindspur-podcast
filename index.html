@@ -3106,6 +3106,10 @@
       });
 
       saveNoteBtn.addEventListener('click', () => {
+        if (isImageUploading) {
+          showToast('⏳ Image is still uploading. Please wait for upload to complete before saving.');
+          return;
+        }
         editingItemIds.delete(item.id);
         unsavedDrafts.delete(item.id);
         item.notes = textarea.value.trim();
@@ -3361,6 +3365,12 @@
           showToast('⚠️ Selected file is not an image');
           return;
         }
+        const saveBtn = card.querySelector('#btn-save-note-' + item.id);
+        if (saveBtn) {
+          saveBtn.disabled = true;
+          saveBtn.textContent = '⏳ Uploading...';
+        }
+        if (attachBtn) attachBtn.disabled = true;
         isImageUploading = true;
         try {
           showToast('⏳ Compressing image to WebP...');
@@ -3385,6 +3395,11 @@
           console.error('Image processing failed:', err);
           showToast('❌ Image processing failed: ' + (err.message || 'Unknown error'));
         } finally {
+          if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = 'Save Note';
+          }
+          if (attachBtn) attachBtn.disabled = false;
           isImageUploading = false;
         }
       }
