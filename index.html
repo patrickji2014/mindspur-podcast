@@ -1163,6 +1163,8 @@
     let areAllExpanded = false;
     const expandedItemIds = new Set();
     const editingItemIds = new Set();
+    const unsavedDrafts = new Map();
+    let isImageUploading = false;
     let lastSyncTimestamp = 0;
     let authConfig = {
       githubOwner: '',
@@ -2015,7 +2017,7 @@
     async function performSync(evtOrOpts) {
       const now = Date.now();
       const isAutoEvent = evtOrOpts && (evtOrOpts.type === 'focus' || evtOrOpts.type === 'visibilitychange');
-      if (isAutoEvent && (now - lastSyncTimestamp < 30000)) {
+      if (isAutoEvent && (isImageUploading || (now - lastSyncTimestamp < 30000))) {
         return;
       }
       const { githubOwner: owner, githubRepo: repo, githubToken: token } = authConfig;
@@ -2937,6 +2939,13 @@
         filtered.sort((a, b) => new Date(a.nextReviewDate || 0) - new Date(b.nextReviewDate || 0));
       }
 
+      if (container) {
+        editingItemIds.forEach(id => {
+          const ta = container.querySelector('#textarea-' + id);
+          if (ta) unsavedDrafts.set(id, ta.value);
+        });
+      }
+
       container.innerHTML = '';
       if (filtered.length === 0) {
         emptyState.classList.remove('hidden');
@@ -3003,7 +3012,7 @@
             '<div style="margin-top:8px;"><button class="badge" id="btn-edit-note-' + item.id + '" style="cursor:pointer;">✏️ Edit Note</button></div>' +
           '</div>' +
           '<div class="notes-edit-area ' + (isEditing ? '' : 'hidden') + '" id="notes-edit-' + item.id + '">' +
-            '<textarea class="notes-textarea" id="textarea-' + item.id + '" placeholder="Notes or recall cues (Markdown supported: **bold**, *italic*, `code`, lists, images)...">' + escapeHtml(item.notes || '') + '</textarea>' +
+            '<textarea class="notes-textarea" id="textarea-' + item.id + '" placeholder="Notes or recall cues (Markdown supported: **bold**, *italic*, `code`, lists, images)...">' + escapeHtml(unsavedDrafts.has(item.id) ? unsavedDrafts.get(item.id) : (item.notes || '')) + '</textarea>' +
             '<div style="display:flex; justify-content:space-between; align-items:center; gap:6px; flex-wrap:wrap;">' +
               '<div style="display:flex; gap:6px; align-items:center;">' +
                 '<button type="button" class="btn-mobile-attach" id="btn-attach-' + item.id + '" title="Attach photo or image">📷 Attach Photo</button>' +
@@ -3098,6 +3107,7 @@
 
       saveNoteBtn.addEventListener('click', () => {
         editingItemIds.delete(item.id);
+        unsavedDrafts.delete(item.id);
         item.notes = textarea.value.trim();
         const nowIso = new Date().toISOString();
         item.notesUpdatedAt = nowIso;
@@ -3111,8 +3121,13 @@
 
       cancelNoteBtn.addEventListener('click', () => {
         editingItemIds.delete(item.id);
+        unsavedDrafts.delete(item.id);
         editArea.classList.add('hidden');
         notesBody.classList.remove('hidden');
+      });
+
+      textarea.addEventListener('input', () => {
+        unsavedDrafts.set(item.id, textarea.value);
       });
 
       // Mobile Image Attach & Clipboard Paste
@@ -3262,6 +3277,10 @@
         textarea.value = val.substring(0, start) + md + val.substring(end);
         const newPos = start + md.length;
         textarea.selectionStart = textarea.selectionEnd = newPos;
+        const cardMatch = textarea.id && textarea.id.match(/^textarea-(.+)$/);
+        if (cardMatch) {
+          unsavedDrafts.set(cardMatch[1], textarea.value);
+        }
         textarea.focus();
       }
 
@@ -3342,6 +3361,7 @@
           showToast('⚠️ Selected file is not an image');
           return;
         }
+        isImageUploading = true;
         try {
           showToast('⏳ Compressing image to WebP...');
           const compressed = await compressImageBlob(file, 1600, 0.82);
@@ -3364,6 +3384,8 @@
         } catch (err) {
           console.error('Image processing failed:', err);
           showToast('❌ Image processing failed: ' + (err.message || 'Unknown error'));
+        } finally {
+          isImageUploading = false;
         }
       }
 
