@@ -1337,9 +1337,6 @@
       loadLocalItems();
       initEvents();
       checkMobileUrlParamsForAddAction();
-      if (authConfig.githubToken && authConfig.githubOwner) {
-        performSync();
-      }
     });
 
     function loadAuthFromHashOrStorage() {
@@ -1575,31 +1572,23 @@
       // Method 1: Generate Audio
       document.getElementById('btn-generate-audio').addEventListener('click', handleMobileAudioGeneration);
 
-      // Real-time synchronization listeners: app/tab focus, visibility change, and navigation (event-driven, no periodic polling)
-      window.addEventListener('focus', performSync);
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) performSync();
-      });
-
-      // Network online/offline status handling & auto-sync upon reconnection
+      // Network online/offline status handling
       function updateNetworkStatus() {
         const offlineBanner = document.getElementById('offline-banner');
         const syncText = document.getElementById('sync-text');
+        const hasPending = localStorage.getItem('mindspur_pending_sync') === 'true';
         if (typeof navigator !== 'undefined' && !navigator.onLine) {
           if (offlineBanner) offlineBanner.classList.remove('hidden');
           if (syncText) syncText.textContent = 'Offline';
         } else {
           if (offlineBanner) offlineBanner.classList.add('hidden');
-          if (syncText && (!isSyncing)) syncText.textContent = 'Sync';
+          if (syncText && (!isSyncing)) syncText.textContent = hasPending ? 'Sync •' : 'Sync';
         }
       }
 
       window.addEventListener('online', () => {
         updateNetworkStatus();
-        showToast('🟢 Back online — Syncing changes...');
-        if (authConfig.githubToken && authConfig.githubOwner) {
-          performSync();
-        }
+        showToast('🟢 Back online — Tap Sync when ready');
       });
 
       window.addEventListener('offline', () => {
@@ -1615,9 +1604,6 @@
           loadAuthFromHashOrStorage();
           loadLocalItems();
           updateNetworkStatus();
-          if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) {
-            performSync();
-          }
         }
       });
 
@@ -1625,14 +1611,12 @@
         loadAuthFromHashOrStorage();
         loadLocalItems();
         updateNetworkStatus();
-        if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) performSync();
       });
 
       window.addEventListener('hashchange', () => {
         loadAuthFromHashOrStorage();
         loadLocalItems();
         updateNetworkStatus();
-        if (authConfig.githubToken && authConfig.githubOwner && (typeof navigator === 'undefined' || navigator.onLine)) performSync();
       });
 
       // Backdrop click to close settings modal
@@ -2860,10 +2844,7 @@
       }
 
       saveLocalItems();
-      // Background push to GitHub
-      if (authConfig.githubToken) {
-        setTimeout(performSync, 500);
-      }
+      render();
     }
 
     function getItemStatus(item) {
@@ -3056,7 +3037,6 @@
         item.updatedAt = new Date().toISOString();
         saveLocalItems();
         showToast('🎯 Curve updated');
-        if (authConfig.githubToken) setTimeout(performSync, 500);
       });
 
       // Individual Listen button listener (lazy audio synthesis)
@@ -3076,7 +3056,6 @@
         saveLocalItems();
         audioBtn.textContent = item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF';
         showToast(item.includeInPodcast ? '🎧 Audio ON' : '🔇 Audio OFF');
-        if (authConfig.githubToken) setTimeout(performSync, 500);
       });
 
       // Notes accordion
@@ -3121,7 +3100,6 @@
         editArea.classList.add('hidden');
         render();
         showToast('📝 Note updated');
-        if (authConfig.githubToken) setTimeout(performSync, 500);
       });
 
       cancelNoteBtn.addEventListener('click', () => {
@@ -3176,7 +3154,6 @@
             saveLocalItems();
             render();
             showToast('🗑️ Reminder deleted');
-            if (authConfig.githubToken) setTimeout(performSync, 500);
           }, 250);
         }
       });
