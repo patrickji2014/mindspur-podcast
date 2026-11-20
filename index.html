@@ -3340,6 +3340,77 @@
 
     const decryptedBlobCache = new Map();
 
+    const ImageCacheDb = {
+      dbName: 'mindspur_image_cache',
+      storeName: 'decrypted_images',
+      version: 1,
+      _dbPromise: null,
+
+      getDb() {
+        if (typeof indexedDB === 'undefined') return Promise.resolve(null);
+        if (this._dbPromise) return this._dbPromise;
+        this._dbPromise = new Promise((resolve) => {
+          try {
+            const request = indexedDB.open(this.dbName, this.version);
+            request.onupgradeneeded = (e) => {
+              const db = e.target.result;
+              if (!db.objectStoreNames.contains(this.storeName)) {
+                db.createObjectStore(this.storeName, { keyPath: 'url' });
+              }
+            };
+            request.onsuccess = (e) => resolve(e.target.result);
+            request.onerror = () => resolve(null);
+            request.onblocked = () => resolve(null);
+          } catch (_) {
+            resolve(null);
+          }
+        });
+        return this._dbPromise;
+      },
+
+      async get(url) {
+        if (typeof indexedDB === 'undefined') return null;
+        try {
+          const db = await this.getDb();
+          if (!db) return null;
+          return new Promise((resolve) => {
+            try {
+              const tx = db.transaction(this.storeName, 'readonly');
+              const store = tx.objectStore(this.storeName);
+              const req = store.get(url);
+              req.onsuccess = () => resolve(req.result || null);
+              req.onerror = () => resolve(null);
+            } catch (_) {
+              resolve(null);
+            }
+          });
+        } catch (_) {
+          return null;
+        }
+      },
+
+      async set(url, record) {
+        if (typeof indexedDB === 'undefined') return false;
+        try {
+          const db = await this.getDb();
+          if (!db) return false;
+          return new Promise((resolve) => {
+            try {
+              const tx = db.transaction(this.storeName, 'readwrite');
+              const store = tx.objectStore(this.storeName);
+              const req = store.put({ url, ...record, updatedAt: Date.now() });
+              req.onsuccess = () => resolve(true);
+              req.onerror = () => resolve(false);
+            } catch (_) {
+              resolve(false);
+            }
+          });
+        } catch (_) {
+          return false;
+        }
+      }
+    };
+
     async function decryptEncryptedImages(targetContainer, encryptionKey) {
       if (!targetContainer || !encryptionKey || typeof PwaCrypto === 'undefined') return;
       const imgs = targetContainer.querySelectorAll ? targetContainer.querySelectorAll('img[src*=".enc"], img.md-image-encrypted') : [];
@@ -3351,6 +3422,7 @@
         if (!encUrl || (!encUrl.includes('.enc') && !img.dataset.origEncUrl)) continue;
         img.dataset.origEncUrl = encUrl;
 
+        // 1. Check in-memory session cache
         if (decryptedBlobCache.has(encUrl)) {
           img.src = decryptedBlobCache.get(encUrl);
           img.classList.remove('loading-enc-image');
@@ -3358,6 +3430,27 @@
         }
 
         img.classList.add('loading-enc-image');
+
+        // 2. Check persistent IndexedDB cache (prevents re-decryption across reloads/reboots)
+        try {
+          const cached = await ImageCacheDb.get(encUrl);
+          if (cached && cached.base64) {
+            const binary = atob(cached.base64);
+            const bytes = new Uint8Array(binary.length);
+            for (let j = 0; j < binary.length; j++) bytes[j] = binary.charCodeAt(j);
+            const blob = new Blob([bytes], { type: cached.mimeType || 'image/webp' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            decryptedBlobCache.set(encUrl, blobUrl);
+            img.src = blobUrl;
+            img.classList.remove('loading-enc-image');
+            continue;
+          }
+        } catch (dbErr) {
+          console.warn('IndexedDB read failed, falling back to network decrypt:', dbErr);
+        }
+
+        // 3. Fallback: Network fetch and Web Crypto AES-256-GCM decrypt
         try {
           const res = await fetch(encUrl);
           if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -3373,6 +3466,12 @@
 
           decryptedBlobCache.set(encUrl, blobUrl);
           img.src = blobUrl;
+
+          // Asynchronously persist in local IndexedDB for subsequent launches
+          ImageCacheDb.set(encUrl, {
+            base64: decrypted.base64,
+            mimeType: decrypted.mimeType || 'image/webp'
+          }).catch(() => {});
         } catch (err) {
           console.warn('Failed to decrypt mobile image:', encUrl, err);
           img.alt = '🔒 Encrypted image (decryption failed)';
@@ -3504,6 +3603,11 @@
                 const encJson = JSON.stringify(encEnvelope);
                 const encBase64 = btoa(unescape(encodeURIComponent(encJson)));
                 finalUrl = await uploadToGitHub(encBase64, 'enc');
+                decryptedBlobCache.set(finalUrl, compressed.dataUrl);
+                ImageCacheDb.set(finalUrl, {
+                  base64: rawBase64,
+                  mimeType: imagePayload.mimeType
+                }).catch(() => {});
               } else {
                 finalUrl = await uploadToGitHub(rawBase64, compressed.format);
               }
