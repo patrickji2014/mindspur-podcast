@@ -2152,14 +2152,77 @@
           items = mergeLists(items, remoteItems, deletedIds);
           saveLocalItems(false);
 
-          // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
+          // 2b. Zero-commit fast path: if remote state already matches final merged state, skip PUT
+          function arePwaRemindersEqual(a, b) {
+            if (!a || !b || a.length !== b.length) return false;
+            const mb = new Map(b.map(it => [it.id, it]));
+            for (let i = 0; i < a.length; i++) {
+              const itA = a[i];
+              const itB = mb.get(itA.id);
+              if (!itB) return false;
+              if ((itA.updatedAt || null) !== (itB.updatedAt || null)) return false;
+              if ((itA.notesUpdatedAt || null) !== (itB.notesUpdatedAt || null)) return false;
+              if ((itA.notes || '').trim() !== (itB.notes || '').trim()) return false;
+              if ((itA.currentStage || 0) !== (itB.currentStage || 0)) return false;
+              if ((itA.nextReviewDate || null) !== (itB.nextReviewDate || null)) return false;
+              if ((itA.lastReviewedAt || null) !== (itB.lastReviewedAt || null)) return false;
+              if (Boolean(itA.isMastered) !== Boolean(itB.isMastered)) return false;
+              if (Boolean(itA.includeInPodcast) !== Boolean(itB.includeInPodcast)) return false;
+              if ((itA.history ? itA.history.length : 0) !== (itB.history ? itB.history.length : 0)) return false;
+            }
+            return true;
+          }
+
+          function arePwaDeletedEqual(delA, delB) {
+            const arrA = delA || [];
+            const arrB = delB || [];
+            if (arrA.length !== arrB.length) return false;
+            const sb = new Set(arrB);
+            for (let i = 0; i < arrA.length; i++) if (!sb.has(arrA[i])) return false;
+            return true;
+          }
+
+          function arePwaSettingsEqual(sA, sB) {
+            if (!sA && !sB) return true;
+            if (!sA || !sB) return false;
+            const keys = ['reviewMode', 'defaultPreset', 'ttsProvider', 'ttsVoice', 'pauseSeconds', 'includeDocOrigin'];
+            for (let i = 0; i < keys.length; i++) {
+              const k = keys[i];
+              if (sA[k] !== undefined && sB[k] !== undefined && sA[k] !== sB[k]) return false;
+            }
+            return true;
+          }
+
           const cloudSettings = {
             reviewMode: authConfig.reviewMode || 'simple',
+            defaultPreset: authConfig.defaultPreset || 'standard',
             ttsProvider: authConfig.ttsProvider || 'openai',
             ttsVoice: authConfig.ttsVoice || 'nova',
             pauseSeconds: authConfig.pauseSeconds || 3,
             includeDocOrigin: authConfig.includeDocOrigin || false
           };
+
+          const remoteCloudSet = (parsed && parsed.settings) ? {
+            reviewMode: parsed.settings.reviewMode || 'simple',
+            defaultPreset: parsed.settings.defaultPreset || 'standard',
+            ttsProvider: parsed.settings.ttsProvider || 'openai',
+            ttsVoice: parsed.settings.ttsVoice || 'nova',
+            pauseSeconds: parsed.settings.pauseSeconds || 3,
+            includeDocOrigin: parsed.settings.includeDocOrigin || false
+          } : null;
+
+          if (
+            remoteSha &&
+            arePwaRemindersEqual(items, remoteItems) &&
+            arePwaDeletedEqual(deletedIds, remoteDeletedIds) &&
+            arePwaSettingsEqual(cloudSettings, remoteCloudSet)
+          ) {
+            localStorage.removeItem('mindspur_pending_sync');
+            showToast('🟢 In sync (' + items.length + ' items)');
+            break;
+          }
+
+          // 3. Push merged back to GitHub (strip credentials - never commit tokens or keys!)
           const payload = {
             version: 1,
             updatedAt: new Date().toISOString(),
@@ -2957,6 +3020,9 @@
         const card = createCard(it);
         container.appendChild(card);
       });
+      if (typeof decryptEncryptedImages === 'function') {
+        decryptEncryptedImages(container, authConfig.encryptionKey);
+      }
     }
 
     function createCard(item) {
@@ -3083,6 +3149,9 @@
           expandedItemIds.add(item.id);
           notesBody.classList.remove('hidden');
           chevron.textContent = '▾';
+          if (typeof decryptEncryptedImages === 'function') {
+            decryptEncryptedImages(notesBody, authConfig.encryptionKey);
+          }
         } else {
           expandedItemIds.delete(item.id);
           notesBody.classList.add('hidden');
@@ -3269,6 +3338,50 @@
       }, true);
     }
 
+    const decryptedBlobCache = new Map();
+
+    async function decryptEncryptedImages(targetContainer, encryptionKey) {
+      if (!targetContainer || !encryptionKey || typeof PwaCrypto === 'undefined') return;
+      const imgs = targetContainer.querySelectorAll ? targetContainer.querySelectorAll('img[src*=".enc"], img.md-image-encrypted') : [];
+      if (!imgs || imgs.length === 0) return;
+
+      for (let i = 0; i < imgs.length; i++) {
+        const img = imgs[i];
+        const encUrl = img.dataset.origEncUrl || img.src;
+        if (!encUrl || (!encUrl.includes('.enc') && !img.dataset.origEncUrl)) continue;
+        img.dataset.origEncUrl = encUrl;
+
+        if (decryptedBlobCache.has(encUrl)) {
+          img.src = decryptedBlobCache.get(encUrl);
+          img.classList.remove('loading-enc-image');
+          continue;
+        }
+
+        img.classList.add('loading-enc-image');
+        try {
+          const res = await fetch(encUrl);
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const envelope = await res.json();
+          const decrypted = await PwaCrypto.decrypt(envelope, encryptionKey);
+          if (!decrypted || !decrypted.base64) throw new Error('Invalid decrypted image payload');
+
+          const binary = atob(decrypted.base64);
+          const bytes = new Uint8Array(binary.length);
+          for (let j = 0; j < binary.length; j++) bytes[j] = binary.charCodeAt(j);
+          const blob = new Blob([bytes], { type: decrypted.mimeType || 'image/webp' });
+          const blobUrl = URL.createObjectURL(blob);
+
+          decryptedBlobCache.set(encUrl, blobUrl);
+          img.src = blobUrl;
+        } catch (err) {
+          console.warn('Failed to decrypt mobile image:', encUrl, err);
+          img.alt = '🔒 Encrypted image (decryption failed)';
+        } finally {
+          img.classList.remove('loading-enc-image');
+        }
+      }
+    }
+
     function setupMobileImageUpload(textarea, attachBtn, fileInput) {
       if (!textarea) return;
 
@@ -3335,7 +3448,8 @@
         const repo = authConfig.githubRepo || 'mindspur-podcast';
         const timestamp = Date.now();
         const rand = Math.random().toString(36).substring(2, 8);
-        const filename = 'img_' + timestamp + '_' + rand + '.' + (extension || 'webp');
+        const ext = extension || 'webp';
+        const filename = 'img_' + timestamp + '_' + rand + '.' + ext;
         const assetPath = 'assets/images/' + filename;
         const apiUrl = 'https://api.github.com/repos/' + authConfig.githubOwner + '/' + repo + '/contents/' + assetPath;
 
@@ -3347,7 +3461,7 @@
             'Accept': 'application/vnd.github.v3+json'
           },
           body: JSON.stringify({
-            message: 'Upload note image: ' + filename,
+            message: (ext === 'enc' ? 'Upload encrypted note image: ' : 'Upload note image: ') + filename,
             content: base64Content,
             branch: 'main'
           })
@@ -3380,7 +3494,19 @@
 
           if (authConfig && authConfig.githubToken && authConfig.githubOwner) {
             try {
-              finalUrl = await uploadToGitHub(rawBase64, compressed.format);
+              if (authConfig.encryptionKey && typeof PwaCrypto !== 'undefined') {
+                showToast('🔒 Encrypting image (AES-256-GCM)...');
+                const imagePayload = {
+                  mimeType: compressed.format === 'jpeg' ? 'image/jpeg' : 'image/webp',
+                  base64: rawBase64
+                };
+                const encEnvelope = await PwaCrypto.encrypt(imagePayload, authConfig.encryptionKey);
+                const encJson = JSON.stringify(encEnvelope);
+                const encBase64 = btoa(unescape(encodeURIComponent(encJson)));
+                finalUrl = await uploadToGitHub(encBase64, 'enc');
+              } else {
+                finalUrl = await uploadToGitHub(rawBase64, compressed.format);
+              }
             } catch (uploadErr) {
               console.warn('Mobile GitHub upload failed, falling back to local data URL:', uploadErr);
               finalUrl = compressed.dataUrl;
@@ -3390,7 +3516,7 @@
           }
 
           insertMarkdownImage(finalUrl, label || 'Image');
-          showToast(finalUrl.startsWith('http') ? '📷 Photo uploaded to GitHub CDN!' : '📷 Photo compressed and attached!');
+          showToast(finalUrl.endsWith('.enc') ? '🔒 Photo encrypted & uploaded to GitHub!' : (finalUrl.startsWith('http') ? '📷 Photo uploaded to GitHub CDN!' : '📷 Photo compressed and attached!'));
         } catch (err) {
           console.error('Image processing failed:', err);
           showToast('❌ Image processing failed: ' + (err.message || 'Unknown error'));
