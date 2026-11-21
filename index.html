@@ -2129,7 +2129,7 @@
               // Synchronize cloud settings into mobile authConfig
               if (parsed.settings && typeof parsed.settings === 'object') {
                 let settingsChanged = false;
-                ['reviewMode', 'ttsProvider', 'ttsVoice', 'pauseSeconds', 'includeDocOrigin'].forEach(k => {
+                ['reviewMode', 'defaultPreset', 'ttsProvider', 'ttsVoice', 'pauseSeconds', 'includeDocOrigin'].forEach(k => {
                   if (parsed.settings[k] !== undefined && authConfig[k] !== parsed.settings[k]) {
                     authConfig[k] = parsed.settings[k];
                     settingsChanged = true;
@@ -2166,7 +2166,7 @@
               if ((itA.notes || '').trim() !== (itB.notes || '').trim()) return false;
               if ((itA.currentStage || 0) !== (itB.currentStage || 0)) return false;
               if ((itA.nextReviewDate || null) !== (itB.nextReviewDate || null)) return false;
-              if ((itA.lastReviewedAt || null) !== (itB.lastReviewedAt || null)) return false;
+              if ((itA.lastReviewedAt || itA.lastReviewedDate || null) !== (itB.lastReviewedAt || itB.lastReviewedDate || null)) return false;
               if (Boolean(itA.isMastered) !== Boolean(itB.isMastered)) return false;
               if (Boolean(itA.includeInPodcast) !== Boolean(itB.includeInPodcast)) return false;
               if ((itA.history ? itA.history.length : 0) !== (itB.history ? itB.history.length : 0)) return false;
@@ -2291,6 +2291,30 @@
       }
     }
 
+    function mergePwaHistory(localHistory, remoteHistory) {
+      const a = Array.isArray(localHistory) ? localHistory : [];
+      const b = Array.isArray(remoteHistory) ? remoteHistory : [];
+      if (a.length === 0 && b.length === 0) return [];
+      const seen = new Map();
+      const addEntry = (entry) => {
+        if (!entry || typeof entry !== 'object') return;
+        const stageVal = entry.stageCompleted !== undefined
+          ? entry.stageCompleted
+          : (entry.stage !== undefined ? entry.stage : '');
+        const key = (entry.action || '') + '|' + (entry.timestamp || '') + '|' + stageVal;
+        if (!seen.has(key)) {
+          seen.set(key, entry);
+        }
+      };
+      a.forEach(addEntry);
+      b.forEach(addEntry);
+      return Array.from(seen.values()).sort((x, y) => {
+        const tx = x.timestamp ? new Date(x.timestamp).getTime() : 0;
+        const ty = y.timestamp ? new Date(y.timestamp).getTime() : 0;
+        return tx - ty;
+      });
+    }
+
     function mergeLists(local, remote, deleted = []) {
       const deletedSet = new Set(deleted || []);
       const map = new Map();
@@ -2340,6 +2364,9 @@
             isMastered: reviewWinner.isMastered,
             easeFactor: reviewWinner.easeFactor !== undefined ? reviewWinner.easeFactor : l.easeFactor
           };
+          if (Array.isArray(l.history) || Array.isArray(r.history)) {
+            merged.history = mergePwaHistory(l.history, r.history);
+          }
 
           // Determine notes winner (field-level timestamp avoids review milestone discarding newer notes)
           const lNotesUp = l.notesUpdatedAt ? new Date(l.notesUpdatedAt).getTime() : 0;
@@ -2374,7 +2401,9 @@
             if (r.includeInPodcast !== undefined && l.includeInPodcast === undefined) {
               merged.includeInPodcast = r.includeInPodcast;
             }
-            merged.updatedAt = l.updatedAt || new Date().toISOString();
+            if (l.updatedAt || r.updatedAt) {
+              merged.updatedAt = l.updatedAt || r.updatedAt;
+            }
           }
 
           // Ensure critical fields are never dropped
