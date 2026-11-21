@@ -2079,6 +2079,7 @@
           let remoteItems = [];
           let remoteDeletedIds = [];
           let remoteSha = null;
+          let parsed = null;
 
           if (res.ok) {
             const remoteData = await res.json();
@@ -2107,7 +2108,7 @@
 
             if (contentBase64) {
               const raw = decodeURIComponent(escape(atob(contentBase64.replace(/\s/g, ''))));
-              let parsed = JSON.parse(raw);
+              parsed = JSON.parse(raw);
               if (parsed && parsed.encrypted) {
                 if (authConfig.encryptionKey && typeof PwaCrypto !== 'undefined') {
                   try {
@@ -3497,6 +3498,7 @@
         if (cardMatch) {
           unsavedDrafts.set(cardMatch[1], textarea.value);
         }
+        textarea.dispatchEvent(new Event('input', { bubbles: true }));
         textarea.focus();
       }
 
@@ -3578,8 +3580,17 @@
           showToast('⚠️ Selected file is not an image');
           return;
         }
-        const saveBtn = card.querySelector('#btn-save-note-' + item.id);
+
+        let saveBtn = null;
+        let origBtnText = '';
+        const cardMatch = textarea.id && textarea.id.match(/^textarea-(.+)$/);
+        if (cardMatch) {
+          saveBtn = document.getElementById('btn-save-note-' + cardMatch[1]);
+        } else if (textarea.id === 'add-notes') {
+          saveBtn = document.getElementById('btn-submit-add-reminder');
+        }
         if (saveBtn) {
+          origBtnText = saveBtn.textContent || (cardMatch ? 'Save Note' : 'Create Reminder');
           saveBtn.disabled = true;
           saveBtn.textContent = '⏳ Uploading...';
         }
@@ -3627,7 +3638,7 @@
         } finally {
           if (saveBtn) {
             saveBtn.disabled = false;
-            saveBtn.textContent = 'Save Note';
+            saveBtn.textContent = origBtnText || (cardMatch ? 'Save Note' : 'Create Reminder');
           }
           if (attachBtn) attachBtn.disabled = false;
           isImageUploading = false;
