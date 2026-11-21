@@ -3,7 +3,7 @@
  * Offline-first app-shell and static asset caching.
  */
 
-const CACHE_NAME = 'mindspur-pwa-v10';
+const CACHE_NAME = 'mindspur-pwa-v11';
 const PRECACHE_ASSETS = [
   './',
   'index.html',
